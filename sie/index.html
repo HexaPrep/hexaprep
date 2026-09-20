@@ -557,6 +557,15 @@
       margin-top: 24px;
     }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KE6HDDH2F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4KE6HDDH2F');
+  </script>
 </head>
 
 <body>
@@ -682,7 +691,7 @@
       <div class="course-grid">
 
         <!-- Chapter 1 -->
-        <a href="ch1.html" class="chapter-card">
+        <a href="ch1.html" class="chapter-card" onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 1' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 01</div>
             <div class="ch-stats">
@@ -708,7 +717,7 @@
         </a>
 
         <!-- Chapter 2 -->
-        <a href="ch2.html" class="chapter-card">
+        <a href="ch2.html" class="chapter-card" onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 2' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 02</div>
             <div class="ch-stats">
@@ -733,7 +742,7 @@
         </a>
 
         <!-- Chapter 3 -->
-        <a href="ch3.html" class="chapter-card">
+        <a href="ch3.html" class="chapter-card" onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 3' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 03</div>
             <div class="ch-stats">
@@ -758,7 +767,7 @@
         </a>
 
         <!-- Chapter 4 -->
-        <a href="ch4.html" class="chapter-card">
+        <a href="ch4.html" class="chapter-card" onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 4' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 04</div>
             <div class="ch-stats">

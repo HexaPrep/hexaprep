@@ -1092,6 +1092,15 @@
       }
     }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KE6HDDH2F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4KE6HDDH2F');
+  </script>
 </head>
 
 <body>
@@ -2128,6 +2137,9 @@
     let userAns = Array(Q.length).fill(null);
 
     function initQuiz() {
+      // Fire chapter_started event
+      if(typeof gtag === 'function') gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 3' });
+
       // Randomize options for each question to prevent patterns
       Q.forEach(q => {
         const correctText = q.o[q.a];
@@ -2233,6 +2245,9 @@
       const correct = userAns.filter((a, i) => a === Q[i].a).length;
       const total = Q.length;
       const pct = Math.round((correct / total) * 100);
+
+      // Fire quiz_completed event
+      if(typeof gtag === 'function') gtag('event', 'quiz_completed', { course_name: 'SIE', chapter_name: 'Chapter 3', final_score: pct });
 
       const secs = {};
       Q.forEach((q, i) => {
