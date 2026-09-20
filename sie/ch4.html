@@ -1,0 +1,2003 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 4: The Regulatory Framework | SIEPrep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --text-dark: #050505;
+
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #0EA5E9;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --danger: #EF4444;
+      --danger-light: #FEE2E2;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --surface-hover: #334155;
+        --border: #334155;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --text-light: #94A3B8;
+        --text-dark: #0F172A;
+        --primary: #6366F1;
+        --primary-hover: #818CF8;
+        --primary-light: #312E81;
+        --warning-light: #451A03;
+        --danger-light: #450A0A;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--surface);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    ul,
+    ol {
+      padding-left: 24px;
+      margin-bottom: 1.5em;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+      max-width: none;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(var(--surface), 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .back-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      margin-left: 24px;
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumbs a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--text-main);
+    }
+
+    .breadcrumb-sep {
+      color: var(--border);
+    }
+
+    /* Dropdown */
+    .chapter-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .chapter-dropdown>a {
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .chapter-dropdown>a:hover {
+      background: var(--surface-hover);
+    }
+
+    .chapter-dropdown>a svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--surface);
+      min-width: 160px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      z-index: 200;
+      padding: 8px 0;
+      margin-top: 4px;
+    }
+
+    .dropdown-content a {
+      color: var(--text-main);
+      padding: 8px 16px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--surface-hover);
+      color: var(--primary);
+    }
+
+    .chapter-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Grid */
+    .main-wrapper {
+      margin-left: 300px;
+      display: flex;
+      flex: 1;
+      margin-top: 64px;
+      justify-content: flex-start;
+      width: calc(100% - 300px);
+    }
+
+    /* Fixed Sidebar */
+    .sidebar {
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      width: 300px;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      padding: 32px 24px;
+      z-index: 100;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    /* Table of Contents */
+    .toc-chapter-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toc-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .toc-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .toc-link.sub {
+      font-size: 13px;
+      padding: 6px 12px 6px 24px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .toc-link.sub:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 48px 100px 100px 40px;
+      max-width: none;
+    }
+
+    /* Hero inside content */
+    .chapter-hero {
+      margin-bottom: 56px;
+    }
+
+    .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .chapter-title {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .chapter-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 65ch;
+      margin-bottom: 32px;
+    }
+
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      gap: 8px;
+    }
+
+    .stat {
+      flex: 1 1 120px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      color: var(--text-main);
+      font-weight: 700;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .stat .lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .lede {
+      font-size: 20px;
+      color: var(--text-main);
+      padding-left: 24px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 48px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* Section Typography */
+    .block {
+      margin-bottom: 64px;
+    }
+
+    .block h2 {
+      font-size: 32px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      margin-top: 64px;
+    }
+
+    .block h2 .num {
+      color: var(--primary);
+      margin-right: 12px;
+    }
+
+    .block h3 {
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    .callout-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout.tip,
+    .callout.example {
+      background: var(--success-light);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .callout.tip .callout-label,
+    .callout.example .callout-label {
+      color: var(--success);
+    }
+
+    .callout.tip p,
+    .callout.example p {
+      color: var(--text-dark);
+    }
+
+    .callout.tip p strong,
+    .callout.example p strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .callout.trap {
+      background: var(--danger-light);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .callout.trap .callout-label {
+      color: var(--danger);
+    }
+
+    .callout.trap p {
+      color: var(--text-main);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.hl {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    /* Diagrams */
+    .diagram-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      margin: 40px 0;
+      box-shadow: var(--shadow-sm);
+      font-size: 15px;
+    }
+
+    .diagram-card svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .diagram-caption {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 16px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* Quiz */
+    .quiz {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      margin-top: 64px;
+    }
+
+    .quiz h2 {
+      border-bottom: none;
+      margin-top: 0;
+    }
+
+    details.q {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    details.q summary {
+      padding: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-main);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.q summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.q summary::after {
+      content: "View Answer";
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 4px 12px;
+      background: var(--primary-light);
+      border-radius: 99px;
+      transition: var(--transition);
+    }
+
+    details.q[open] summary::after {
+      content: "Hide Answer";
+    }
+
+    details.q[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-answer {
+      padding: 20px;
+      background: var(--surface);
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Next Chapter */
+    .next-footer {
+      margin-top: 64px;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--success) 0%, var(--primary) 100%);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .next-footer:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .next-footer .lbl {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .next-footer .title {
+      font-size: 28px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .next-footer p {
+      margin: 0 auto;
+      opacity: 0.9;
+      font-size: 16px;
+    }
+
+    /* === Interactive Quiz Engine === */
+    .quiz-subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 24px;
+      max-width: 100%;
+    }
+
+    .quiz-progress {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 3px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0;
+    }
+
+    .quiz-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 32px;
+    }
+
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quiz-section-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .quiz-q-text {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 100%;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: 15px;
+      color: var(--text-main);
+      text-align: left;
+      width: 100%;
+      transition: all 0.2s ease;
+      line-height: 1.55;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .quiz-option:hover:not(.qo-disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateX(4px);
+    }
+
+    .quiz-option .ol {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      margin-top: 1px;
+    }
+
+    .quiz-option:hover:not(.qo-disabled) .ol {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .quiz-option.qo-correct {
+      border-color: var(--success);
+      background: var(--success-light);
+    }
+
+    .quiz-option.qo-correct .ol {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+
+    .quiz-option.qo-wrong {
+      border-color: var(--danger);
+      background: var(--danger-light);
+    }
+
+    .quiz-option.qo-wrong .ol {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: #fff;
+    }
+
+    .quiz-option.qo-disabled {
+      cursor: default;
+      opacity: 0.65;
+    }
+
+    .quiz-option.qo-disabled.qo-wrong {
+      opacity: 1;
+    }
+
+    .quiz-option.qo-disabled.qo-correct {
+      opacity: 1;
+      color: var(--text-dark);
+    }
+
+    .quiz-feedback {
+      margin-top: 20px;
+      padding: 20px 24px;
+      border-radius: var(--radius-md);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      animation: qFadeIn 0.3s ease;
+    }
+
+    .quiz-feedback.qf-correct {
+      border-left: 4px solid var(--success);
+    }
+
+    .quiz-feedback.qf-wrong {
+      border-left: 4px solid var(--danger);
+    }
+
+    .quiz-feedback-label {
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qf-correct .quiz-feedback-label {
+      color: var(--success);
+    }
+
+    .qf-wrong .quiz-feedback-label {
+      color: var(--danger);
+    }
+
+    @keyframes qFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .quiz-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .quiz-btn {
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .quiz-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .quiz-btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .quiz-btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .quiz-btn-secondary {
+      background: var(--surface);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .quiz-btn-secondary:hover:not(:disabled) {
+      background: var(--surface-hover);
+    }
+
+    .quiz-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      max-width: 320px;
+    }
+
+    .quiz-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .quiz-dot:hover {
+      transform: scale(1.25);
+    }
+
+    .quiz-dot.qd-active {
+      border-color: var(--primary);
+      background: var(--primary);
+      transform: scale(1.25);
+    }
+
+    .quiz-dot.qd-correct {
+      background: var(--success);
+    }
+
+    .quiz-dot.qd-wrong {
+      background: var(--danger);
+    }
+
+    .quiz-summary {
+      text-align: center;
+      padding: 48px 24px;
+      animation: qFadeIn 0.4s ease;
+    }
+
+    .quiz-score-ring {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      border: 6px solid var(--primary);
+      background: var(--primary-light);
+    }
+
+    .quiz-score-ring .qs-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .quiz-score-ring .qs-of {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .quiz-summary h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .quiz-summary-msg {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
+
+    .quiz-breakdown {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .quiz-bd-item {
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .quiz-bd-item .bd-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .quiz-bd-item .bd-score {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .quiz-summary-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+      .quiz-card {
+        padding: 20px;
+      }
+
+      .quiz-option {
+        padding: 14px 16px;
+        gap: 10px;
+        font-size: 14px;
+      }
+
+      .quiz-dots {
+        max-width: 240px;
+      }
+
+      .quiz-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .quiz-score-ring {
+        width: 130px;
+        height: 130px;
+      }
+
+      .quiz-score-ring .qs-num {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Sticky Top Navbar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Dashboard
+        </a>
+        <div class="breadcrumbs">
+          <a href="../index.html">HexaPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">SIEPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <div class="chapter-dropdown">
+            <a href="ch4.html">Chapter 4
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-content">
+              <a href="ch1.html">Chapter 1</a>
+              <a href="ch2.html">Chapter 2</a>
+              <a href="ch3.html">Chapter 3</a>
+              <a href="ch4.html">Chapter 4</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      <!-- Fixed Left Sidebar -->
+      <aside class="sidebar">
+        <div class="toc-chapter-title">Chapter 4:<br>Regulatory Framework</div>
+        <div class="toc-title">In This Chapter</div>
+        <nav class="toc-nav">
+          <a href="#registration" class="toc-link active">4.1 Registration &amp; Qualification</a>
+          <a href="#exam-windows" class="toc-link sub">The Exam Validity Windows</a>
+          <a href="#registered" class="toc-link sub">Registered vs. Non-Registered Persons</a>
+          <a href="#fingerprinting" class="toc-link sub">Fingerprinting Requirements</a>
+          <a href="#disqualification" class="toc-link sub">Statutory Disqualification &amp; The 10-Year Lookback</a>
+          <a href="#state-reg" class="toc-link sub">State Registration (Blue Sky Laws)</a>
+
+          <a href="#ce" class="toc-link">4.2 Continuing Education</a>
+          <a href="#reg-element" class="toc-link sub">The Regulatory Element &amp; "CE Inactive" Status</a>
+          <a href="#firm-element" class="toc-link sub">The Firm Element &amp; Needs Analysis</a>
+
+          <a href="#u4u5" class="toc-link">4.3 Form U4, Form U5 &amp; Conduct</a>
+          <a href="#u4-disclosures" class="toc-link sub">Deep Dive: Form U4 Disclosures</a>
+          <a href="#complaints" class="toc-link sub">Customer Complaints &amp; Reporting</a>
+
+          <a href="#reportable" class="toc-link">4.4 Reportable Events</a>
+          <a href="#obas" class="toc-link sub">Outside Business Activities (OBAs)</a>
+          <a href="#selling-away" class="toc-link sub">Private Securities Transactions (Selling Away)</a>
+          <a href="#pay-to-play" class="toc-link sub">Political Contributions (Pay-to-Play)</a>
+          <a href="#gifts" class="toc-link sub">Gifts, Gratuities, and Business Entertainment</a>
+
+          <a href="#quiz" class="toc-link">Practice Exam</a>
+        </nav>
+      </aside>
+
+      <!-- Scrollable Main Content -->
+      <main class="content-area">
+
+        <header class="chapter-hero">
+          <span class="kicker">FINRA SIE EXAM &middot; STUDY GUIDE</span>
+          <h1 class="chapter-title">Chapter 4 &mdash; The Regulatory Framework</h1>
+          <p class="chapter-subtitle">The shortest chapter, but the one that governs your own career directly: how you
+            get registered, how you stay registered, and what gets reported when something goes wrong.</p>
+          <div class="stat-strip">
+            <div class="stat"><span class="num">7</span><span class="lbl">scored items</span></div>
+            <div class="stat"><span class="num">9%</span><span class="lbl">of total exam</span></div>
+            <div class="stat"><span class="num">4th</span><span class="lbl">of 4 chapters</span></div>
+            <div class="stat"><span class="num">2</span><span class="lbl">forms to know cold</span></div>
+          </div>
+        </header>
+
+        <p class="lede">Only 9% of the exam, but this chapter is personal &mdash; it's the rulebook for your own
+          registration, your own record, and the exact things that will follow you around on your public disclosure
+          record for the rest of your career. Worth getting cold even at low item count.</p>
+
+        <!-- 4.1 REGISTRATION -->
+        <section class="block" id="registration">
+          <h2><span class="num">4.1</span>Registration &amp; Qualification</h2>
+          <p>Nobody becomes a "registered representative" by passing an exam alone. Registration is a process with
+            several checkpoints, and the exam wants you to know the full sequence &mdash; not just the test-taking part.
+            It's heavily centered around the <strong>Central Registration Depository (CRD)</strong>, the central
+            database maintained by FINRA that records the employment, qualification, and disciplinary history of every
+            registered person and firm in the industry. The public can view the disciplinary history contained in the
+            CRD via FINRA's free online <strong>BrokerCheck</strong> tool.</p>
+
+          <div class="diagram-card">
+            <svg viewBox="0 0 680 150" xmlns="http://www.w3.org/2000/svg" role="img"
+              aria-label="Registration pathway: pass exams, get sponsored by a member firm, file Form U4, complete fingerprinting and background check, become registered">
+              <g font-family="Inter, sans-serif" font-size="12.5">
+                <defs>
+                  <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                    <path d="M0,0L10,5L0,10z" fill="var(--text-muted)" />
+                  </marker>
+                </defs>
+                <rect x="10" y="30" width="120" height="70" rx="8" fill="var(--surface)" stroke="var(--border)"
+                  stroke-width="2" />
+                <text x="70" y="58" text-anchor="middle" font-weight="700" fill="var(--text-main)">Pass exams</text>
+                <text x="70" y="75" text-anchor="middle" font-size="11" fill="var(--text-muted)">SIE + a specific</text>
+                <text x="70" y="88" text-anchor="middle" font-size="11" fill="var(--text-muted)">license (e.g. Series
+                  7)</text>
+
+                <rect x="150" y="30" width="120" height="70" rx="8" fill="var(--surface)" stroke="var(--border)"
+                  stroke-width="2" />
+                <text x="210" y="58" text-anchor="middle" font-weight="700" fill="var(--text-main)">Get sponsored</text>
+                <text x="210" y="75" text-anchor="middle" font-size="11" fill="var(--text-muted)">by a FINRA</text>
+                <text x="210" y="88" text-anchor="middle" font-size="11" fill="var(--text-muted)">member firm</text>
+
+                <rect x="290" y="30" width="120" height="70" rx="8" fill="var(--surface)" stroke="var(--border)"
+                  stroke-width="2" />
+                <text x="350" y="58" text-anchor="middle" font-weight="700" fill="var(--text-main)">File Form U4</text>
+                <text x="350" y="75" text-anchor="middle" font-size="11" fill="var(--text-muted)">via the firm,</text>
+                <text x="350" y="88" text-anchor="middle" font-size="11" fill="var(--text-muted)">through CRD</text>
+
+                <rect x="430" y="30" width="120" height="70" rx="8" fill="var(--surface)" stroke="var(--border)"
+                  stroke-width="2" />
+                <text x="490" y="52" text-anchor="middle" font-weight="700"
+                  fill="var(--text-main)">Fingerprinting</text>
+                <text x="490" y="68" text-anchor="middle" font-weight="700" fill="var(--text-main)">&amp;
+                  background</text>
+                <text x="490" y="84" text-anchor="middle" font-weight="700" fill="var(--text-main)">check</text>
+
+                <rect x="570" y="30" width="100" height="70" rx="8" fill="var(--primary-light)" stroke="var(--primary)"
+                  stroke-width="2" />
+                <text x="620" y="58" text-anchor="middle" font-weight="700" fill="var(--primary)">Registered</text>
+                <text x="620" y="78" text-anchor="middle" font-size="11" fill="var(--primary)">associated</text>
+                <text x="620" y="92" text-anchor="middle" font-size="11" fill="var(--primary)">person</text>
+
+                <line x1="132" y1="65" x2="148" y2="65" stroke="var(--text-muted)" stroke-width="2"
+                  marker-end="url(#a4)" />
+                <line x1="272" y1="65" x2="288" y2="65" stroke="var(--text-muted)" stroke-width="2"
+                  marker-end="url(#a4)" />
+                <line x1="412" y1="65" x2="428" y2="65" stroke="var(--text-muted)" stroke-width="2"
+                  marker-end="url(#a4)" />
+                <line x1="552" y1="65" x2="568" y2="65" stroke="var(--text-muted)" stroke-width="2"
+                  marker-end="url(#a4)" />
+              </g>
+            </svg>
+            <div class="diagram-caption">Passing the SIE alone doesn't register anyone &mdash; it's one input into a
+              firm-sponsored process.</div>
+          </div>
+
+          <h3 id="exam-windows">The Exam Validity Windows</h3>
+          <p>The introduction of the SIE split the licensing process into two steps: a corequisites exam (the SIE) and a
+            specialized top-off exam (like the Series 6 or 7). The SIE exam results remain valid for exactly <strong>4
+              years</strong>. This means if an individual passes the SIE but does not secure sponsorship from a firm and
+            pass their top-off exam within 4 years, their SIE credential will expire and they will need to retake it.
+            Once fully registered, if a representative leaves the industry, their top-off exams remain valid for exactly
+            <strong>2 years</strong> before requiring a retake.
+          </p>
+
+          <h3 id="registered">Registered vs. Non-Registered Persons</h3>
+          <p>Firms consist of two categories of employees, and FINRA maintains very strict boundaries between what each
+            can do. A non-registered person cannot perform any activity that requires professional judgment or the
+            solicitation of business.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Activity</th>
+                  <th>Registered Person</th>
+                  <th>Non-Registered Person</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Can solicit or accept customer orders?</td>
+                  <td>Yes</td>
+                  <td>No &mdash; cannot even accept unsolicited orders</td>
+                </tr>
+                <tr>
+                  <td class="hl">Can receive performance-based commissions?</td>
+                  <td>Yes</td>
+                  <td>No &mdash; prohibited outright. They may only receive fixed salaries or hourly wages.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Can host public seminars?</td>
+                  <td>Yes</td>
+                  <td>No &mdash; cannot offer investment advice or discuss specific products</td>
+                </tr>
+                <tr>
+                  <td class="hl">Can direct mailings to customers?</td>
+                  <td>Yes</td>
+                  <td>Yes &mdash; provided the mailings are approved by a principal and they do not discuss the
+                    contents.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Typical role within a firm</td>
+                  <td>Sales, advice, trading, portfolio management</td>
+                  <td>Back-office processing, HR, clerical duties, operations support</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="fingerprinting">Fingerprinting Requirements (SEC Rule 17f-2)</h3>
+          <p>Under SEC Rule 17f-2, practically everyone at a broker-dealer must be fingerprinted. Specifically, this
+            applies to any person who <strong>handles cash or securities</strong>, handles the original books and
+            records related to cash/securities, or supervises anyone who does. Those fingerprints are submitted to the
+            U.S. Attorney General (the FBI) for a criminal background check.</p>
+          <p>There is a very narrow exemption: clerical workers who are completely walled off from handling customer
+            funds or certificates, and whose duties are strictly administrative (such as a receptionist or an IT
+            technician without access to financial records) do not need to be fingerprinted.</p>
+
+          <h3 id="disqualification">Statutory Disqualification &amp; The 10-Year Lookback</h3>
+          <p>A firm must conduct exhaustive background checks as part of the registration process. <strong>Statutory
+              disqualification</strong> is the formal legal term for conduct or history that makes a person completely
+            ineligible for registration or association with a member firm in any capacity. The key triggers for
+            statutory disqualification include:</p>
+          <ul>
+            <li>Any <strong>felony conviction</strong> (or pleading guilty/no contest to a felony) within the past
+              <strong>10 years</strong>.
+            </li>
+            <li>Any <strong>misdemeanor conviction</strong> involving money or securities within the past <strong>10
+                years</strong> (e.g., embezzlement, fraud, extortion, bribery, or theft). Note that non-financial
+              misdemeanors (like a minor traffic violation or a non-financial misdemeanor DUI) do NOT trigger statutory
+              disqualification.</li>
+            <li>Being expelled, barred, or currently suspended by an SRO (like FINRA) or a foreign equivalent regulator.
+            </li>
+            <li>Lying, omitting material facts, or making false statements on your Form U4 application.</li>
+          </ul>
+          <p>A firm that allows a statutorily disqualified person to act in a registered capacity without FINRA's
+            express waiver is in serious violation. If a firm wishes to hire someone who is statutorily disqualified,
+            they must initiate an <strong>Eligibility Proceeding</strong> with FINRA. If approved, the disqualified
+            individual is subject to heightened supervision and the firm must clearly outline their tier of supervision.
+          </p>
+
+          <h3 id="state-reg">State Registration (Blue Sky Laws)</h3>
+          <p>Passing federal and FINRA requirements is only half the battle. Representatives must also register in every
+            individual state where they conduct business. These state-level regulations are known as <strong>Blue Sky
+              Laws</strong>. This typically requires passing the Series 63 (Uniform Securities Agent State Law Exam) and
+            paying registration fees in the applicable states. A rep living in New York who wants to cold-call a
+            prospect in Florida must be registered in both New York and Florida.</p>
+
+        </section>
+
+        <!-- 4.2 CE -->
+        <section class="block" id="ce">
+          <h2><span class="num">4.2</span>Continuing Education</h2>
+          <p>Passing the initial exams isn't the end of a registered person's educational obligations &mdash;
+            <strong>Continuing Education (CE)</strong> requirements run for the life of the registration, split into two
+            distinct tracks:
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Track</th>
+                  <th>Focus &amp; Content</th>
+                  <th>Who delivers it?</th>
+                  <th>Frequency &amp; Deadline</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Regulatory Element</td>
+                  <td>Standardized content on rules, regulations, ethics, and industry-wide compliance standards.</td>
+                  <td>Completed via FINRA's online platform.</td>
+                  <td><strong>Annually</strong> (Must be completed by Dec 31 each year)</td>
+                </tr>
+                <tr>
+                  <td class="hl">Firm Element</td>
+                  <td>Firm-specific training tailored to the products, services, and strategies that the specific firm
+                    actually offers to its clients.</td>
+                  <td>Created and delivered internally by the individual's own member firm.</td>
+                  <td><strong>Annually</strong> (Deadline set by the firm)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="reg-element">The Regulatory Element &amp; "CE Inactive" Status</h3>
+          <p>The Regulatory Element was recently updated by FINRA to be an <strong>annual requirement</strong> (prior to
+            2023, it was required every 3 years). Registered persons must complete it by December 31st of each calendar
+            year. It focuses entirely on regulatory, compliance, and ethical standards.</p>
+          <p>If an individual fails to complete the Regulatory Element by the deadline, their registration status
+            automatically becomes <strong>CE Inactive</strong>. This is a severe penalty. While CE Inactive, the
+            individual cannot perform any duties requiring registration and <em>cannot receive any compensation based on
+              securities transactions</em> (no commissions). They are effectively benched. If they remain CE Inactive
+            for a continuous 2-year period, FINRA will administratively terminate their registration, forcing them to
+            retake their qualifying exams to re-enter the industry.</p>
+
+          <h3 id="firm-element">The Firm Element &amp; Needs Analysis</h3>
+          <p>The Firm Element is an annual training requirement created internally by the broker-dealer. It is required
+            for all <strong>covered persons</strong> (which generally means anyone who interacts directly with customers
+            in a registered capacity, as well as their immediate supervisors).</p>
+          <p>Because every firm is different, there is no standardized Firm Element test. Instead, the firm must conduct
+            an annual <strong>Needs Analysis</strong> to determine what training their reps actually need. This analysis
+            takes into account the firm's business model, customer complaints from the previous year, changes in the
+            firm's product offerings, and new regulatory sweeps. The firm must then create a written training plan and
+            ensure all covered persons complete the required modules.</p>
+        </section>
+
+        <!-- 4.3 U4/U5 -->
+        <section class="block" id="u4u5">
+          <h2><span class="num">4.3</span>Form U4, Form U5 &amp; Employee Conduct</h2>
+          <p>These two forms bookend a registered person's relationship with a firm, and the exam treats them as a
+            matched pair you should never mix up.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Form U4</th>
+                  <th>Form U5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Primary Purpose</td>
+                  <td>Application for registration. Collects exhaustive background, employment, residential, and
+                    disciplinary history.</td>
+                  <td>Notice of termination. Filed when the association with the firm ends, detailing the exact reason
+                    for departure.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Initial Filing Timeline</td>
+                  <td>Filed prior to joining the industry, or when moving to a new firm.</td>
+                  <td>Must be filed within <strong>30 days</strong> of a registered person leaving the firm &mdash;
+                    whether they quit, were fired, or laid off.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Required Updates</td>
+                  <td>Within <strong>30 days</strong> for routine changes (e.g., new address); Within <strong>10
+                      days</strong> if the update involves a statutory disqualification event.</td>
+                  <td>If the firm discovers new info after the rep leaves, an amended U5 must be filed within <strong>30
+                      days of discovery</strong>.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Rep's Rights</td>
+                  <td>By signing the U4, the rep agrees to an arbitration clause for employment disputes (excluding
+                    discrimination/harassment).</td>
+                  <td>The firm is legally obligated to provide a copy of the U5 to the terminated employee within the
+                    30-day window.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              EXAM TRAP: FINRA'S 2-YEAR JURISDICTION
+            </div>
+            <p>Form U4 isn't "file once and forget it." A registered person and their firm are both obligated to keep it
+              updated promptly whenever something material changes. Even a simple change of home address requires a U4
+              update. Furthermore, FINRA retains regulatory jurisdiction over an individual for <strong>2 years</strong>
+              after their Form U5 is filed. If you break a rule, quit the industry to avoid punishment, and think you
+              escaped FINRA, you haven't. They can still investigate and bar you for two full years after your
+              departure.</p>
+          </div>
+
+          <h3 id="u4-disclosures">Deep Dive: Form U4 Disclosures</h3>
+          <p>The U4 requires significant personal disclosure. You must provide a <strong>5-year residential
+              history</strong> and a <strong>10-year employment history</strong>. The firm must actively verify the last
+            3 years of that employment history. You must also disclose any outside business activities, civil judgments,
+            liens, and bankruptcies. Notably, when you sign the U4, you are signing a mandatory <strong>arbitration
+              agreement</strong>. This means you agree to settle employment disputes with your firm in binding
+            arbitration rather than taking them to court. The only exceptions are claims involving statutory employment
+            discrimination or sexual harassment, which can still be taken to the court system.</p>
+
+          <h3 id="complaints">Customer Complaints &amp; Reporting</h3>
+          <p><strong>Customer complaints</strong> must be tracked and, depending on severity, reported. For FINRA's
+            purposes, a complaint is only considered an "official" customer complaint if it is provided <strong>in
+              writing</strong> (an email or a physical letter counts, but an angry phone call does not). </p>
+          <p>Firms are required to report statistical and summary information regarding written customer complaints to
+            FINRA on a <strong>quarterly basis</strong> (by the 15th of the month following the calendar quarter).
+            However, if a complaint involves allegations of theft, forgery, or misappropriation of funds, the firm
+            cannot wait for the quarterly report—it must be reported to FINRA <em>immediately</em> (within 30 days). All
+            written complaints must be kept on file by the firm for <strong>4 years</strong> at the Office of
+            Supervisory Jurisdiction (OSJ).</p>
+        </section>
+
+        <!-- 4.4 REPORTABLE EVENTS -->
+        <section class="block" id="reportable">
+          <h2><span class="num">4.4</span>Reportable Events &amp; Conflicts of Interest</h2>
+          <p>Certain activities and life events must be disclosed &mdash; either because they create a conflict of
+            interest, or because they signal financial or legal risk the firm and regulators need visibility into.</p>
+
+          <h3 id="obas">Outside Business Activities (OBAs)</h3>
+          <p>Any employment or business activity outside the scope of your relationship with the member firm is an
+            Outside Business Activity (OBA). This includes bartending on weekends, driving for Uber, acting as a real
+            estate agent, or serving on the board of directors for a for-profit company.</p>
+          <p>OBAs require <strong>prior written notice</strong> to your employing firm. The firm does not necessarily
+            have to "approve" it, but they have the right to reject or restrict the activity if they believe it creates
+            a conflict of interest with your duties as a registered rep. Passive investments (like owning rental
+            properties or holding stock in another company) and purely volunteer work for a non-profit (where you
+            receive zero compensation) do NOT count as OBAs and do not require notice.</p>
+
+          <h3 id="selling-away">Private Securities Transactions (Selling Away)</h3>
+          <p>A Private Securities Transaction (PST) occurs when a rep facilitates a securities transaction outside the
+            regular scope of their firm's business (e.g., helping a client invest in a friend's unlisted startup
+            company). This is highly restricted to protect investors from unregulated products, and is commonly referred
+            to as "selling away."</p>
+          <ul>
+            <li><strong>If the rep is compensated:</strong> They must receive <strong>prior written approval</strong>
+              from their firm. If the firm approves it, the firm must record the transaction on its own books and
+              supervise the rep's participation as if the trade was executed entirely through the firm.</li>
+            <li><strong>If the rep is NOT compensated:</strong> They must still provide <strong>prior written
+                notice</strong> to the firm, and the firm must acknowledge receipt of that notice.</li>
+          </ul>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              HOW TO REMEMBER OBA VS. PST
+            </div>
+            <p><strong>Outside Business Activity (OBA) = Non-securities work.</strong> Requires NOTICE. The firm just
+              wants to know what you're doing so they can check for conflicts of interest.<br><strong>Private Securities
+                Transaction (PST) = Securities work.</strong> Requires APPROVAL (if compensated). The firm takes on
+              massive liability for these trades, so they must explicitly approve them and put them on their own books.
+            </p>
+          </div>
+
+          <h3 id="pay-to-play">Political Contributions (Pay-to-Play &amp; MSRB G-37)</h3>
+          <p>To prevent firms from "buying" lucrative municipal bond underwriting business by donating to local
+            politicians (a practice known as pay-to-play), the MSRB enforces Rule G-37. Under this rule, a Municipal
+            Finance Professional (MFP) is strictly limited in their political contributions.</p>
+          <p>An MFP can contribute a maximum of <strong>$250 per election</strong> to a candidate, but <em>only if they
+              are entitled to vote for that candidate</em> (i.e., they live in the district). If an MFP contributes more
+            than $250, or contributes anything at all to a candidate they cannot vote for, it triggers a devastating
+            penalty: their firm is banned from engaging in negotiated municipal underwriting with that municipality for
+            a full <strong>2 years</strong>.</p>
+
+          <h3 id="gifts">Gifts, Gratuities, and Business Entertainment</h3>
+          <p>The securities industry heavily regulates the exchange of gifts to ensure reps aren't using bribes or
+            inducements to win business from clients or other broker-dealers.</p>
+          <ul>
+            <li><strong>The Gift Limit:</strong> Gifts are strictly capped at <strong>$100 per person, per
+                year</strong>. This limit applies whether the gift is going to a customer or to an employee of another
+              firm.</li>
+            <li><strong>Exceptions to the Limit:</strong> Occasional reminder advertising items (like a branded pen or
+              golf balls with the firm's logo) and de minimis gifts do not count toward the $100 limit. Completely
+              personal gifts (like a wedding present for a client who is genuinely a close personal friend) are also
+              exempt, provided they are paid for by the rep personally and not expensed to the firm.</li>
+            <li><strong>Business Entertainment:</strong> Meals, sporting events, and theater tickets are exempt from the
+              $100 gift limit <em>only if the rep attends the event with the client</em>. If the rep simply hands the
+              client the tickets and stays home, it is a gift and subject to the $100 limit. Even if the rep attends,
+              the entertainment must not be "so frequent or lavish as to raise a question of propriety."</li>
+          </ul>
+
+          <div class="callout example">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              WORKED EXAMPLES: GIFTS VS. ENTERTAINMENT
+            </div>
+            <p><strong>Scenario 1:</strong> A rep buys two $150 tickets to a baseball game and gives them to a client.
+              The rep does NOT attend the game. <br><em>Outcome:</em> This is a $300 gift. It violates the $100 per
+              person/per year limit.</p>
+            <p><strong>Scenario 2:</strong> A rep buys two $150 tickets to a baseball game, gives one to the client, and
+              attends the game WITH the client.<br><em>Outcome:</em> This is business entertainment. As long as it is
+              not excessively frequent or lavish, it is permitted and does not count toward the $100 gift limit.</p>
+          </div>
+        </section>
+
+        <!-- QUIZ -->
+        <section class="quiz" id="quiz">
+          <div class="quiz-header">
+            <h2>Practice Exam</h2>
+            <p class="quiz-subtitle">20 FINRA-style questions covering all sections of Chapter 4</p>
+            <div class="quiz-progress">
+              <div class="quiz-progress-fill" id="qProg"></div>
+            </div>
+            <div class="quiz-meta"><span id="qCount">Question 1 of 20</span><span id="qScore"></span></div>
+          </div>
+          <div id="qBody"></div>
+          <div class="quiz-nav" id="qNav">
+            <button class="quiz-btn quiz-btn-secondary" id="qPrev" onclick="qNavigate(-1)" disabled>← Previous</button>
+            <div class="quiz-dots" id="qDots"></div>
+            <button class="quiz-btn quiz-btn-primary" id="qNext" onclick="qNavigate(1)">Next →</button>
+          </div>
+          <div id="qSummary" style="display:none"></div>
+        </section>
+
+        <a href="index.html" class="next-footer">
+          <span class="lbl">All four chapters complete</span>
+          <div class="title">75 items, 100% of the SIE outline covered</div>
+          <p>Next move: a full mixed-topic practice run pulling questions across all four chapters, or a focused pass on
+            whichever chapter still feels shaky. Back to Dashboard.</p>
+        </a>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // TOC scroll observer
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-link').forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px" });
+      document.querySelectorAll('section.block, section.quiz').forEach(s => observer.observe(s));
+    });
+
+    // === Quiz Engine ===
+    const Q = [
+      {
+        s: "4.1", n: "Registration & Qualification",
+        q: "A college graduate passes the SIE exam in January 2026 but decides to work in management consulting before entering the securities industry. She finally secures sponsorship from a FINRA member firm in March 2030 and wants to sit for the Series 7. What is her SIE status?",
+        o: [
+          "Expired — the SIE is only valid for 4 years and lapsed in January 2030",
+          "Expired — the SIE expires after 2 years if the candidate is not sponsored by a firm",
+          "Valid — the SIE remains active for 6 years from the date of passing",
+          "Valid — once passed, the SIE never expires regardless of employment status"
+        ],
+        a: 0,
+        e: "The SIE exam results are valid for exactly <strong>4 years</strong>. Since she passed in January 2026, the credential expired in January 2030. By March 2030, it has already lapsed and she must retake the SIE before sitting for the Series 7. <strong>(A)</strong> is wrong because the window is 4 years, not 6. <strong>(C)</strong> is wrong because the SIE absolutely expires. <strong>(D)</strong> is wrong because the 2-year window applies to top-off exams after leaving the industry, not to the SIE itself."
+      },
+      {
+        s: "4.1", n: "Registration & Qualification",
+        q: "A registered representative leaves their firm to take a year-long sabbatical. When they return to the industry 18 months later, which of the following is true regarding their licensing?",
+        o: [
+          "They must retake both the SIE and their top-off exam because both have expired",
+          "They must retake the SIE but not the top-off exam",
+          "Their top-off exam is still valid because it remains active for 4 years after departure",
+          "Their top-off exam is still valid because it remains active for 2 years after departure"
+        ],
+        a: 3,
+        e: "Once fully registered, if a representative leaves the industry, their <strong>top-off exams remain valid for exactly 2 years</strong>. Since only 18 months have passed, the top-off exam is still valid. <strong>(A)</strong> is wrong because 18 months is within the 2-year window. <strong>(B)</strong> is wrong because the top-off validity window is 2 years, not 4 (the 4-year window applies to the SIE). <strong>(D)</strong> reverses the likely expiration order — the SIE has a longer 4-year validity window and would also still be valid."
+      },
+      {
+        s: "4.1", n: "Registration & Qualification",
+        q: "A back-office employee at a broker-dealer processes customer checks and handles physical stock certificates daily. Her manager asks whether she needs to be fingerprinted under SEC Rule 17f-2. What is the correct answer?",
+        o: [
+          "No — fingerprinting is only required for persons who interact directly with customers",
+          "Yes — anyone who handles cash or securities, or supervises someone who does, must be fingerprinted",
+          "No — fingerprinting is only required for registered representatives",
+          "Yes — but only if the employee has been with the firm for more than 90 days"
+        ],
+        a: 1,
+        e: "Under <strong>SEC Rule 17f-2</strong>, any person who handles cash or securities, handles the original books and records related to cash/securities, or supervises anyone who does, must be fingerprinted. The fingerprints are submitted to the FBI for a criminal background check. <strong>(A)</strong> is wrong because the requirement extends beyond registered persons. <strong>(B)</strong> is wrong because customer-facing interaction is not the test — handling cash or securities is. <strong>(D)</strong> is fabricated — there is no 90-day waiting period."
+      },
+      {
+        s: "4.1", n: "Registration & Qualification",
+        q: "Which of the following events would trigger statutory disqualification from the securities industry?",
+        o: [
+          "A civil lawsuit filed by a former employer over a non-compete agreement",
+          "An unpaid credit card balance resulting in collections",
+          "A felony conviction for tax evasion 8 years ago",
+          "A misdemeanor conviction for reckless driving"
+        ],
+        a: 2,
+        e: "<strong>Any felony conviction</strong> within the past 10 years triggers statutory disqualification. Tax evasion 8 years ago falls within the 10-year lookback period. <strong>(A)</strong> is wrong because non-financial misdemeanors like reckless driving do not trigger disqualification — only misdemeanors involving money or securities (e.g., embezzlement, fraud, theft). <strong>(C)</strong> is wrong because unpaid consumer debts do not constitute statutory disqualification (though they may need to be disclosed). <strong>(D)</strong> is wrong because civil contract disputes do not trigger disqualification."
+      },
+      {
+        s: "4.1", n: "Registration & Qualification",
+        q: "A registered representative based in Texas wants to start soliciting clients in California and New York. What additional regulatory step must the representative take before contacting prospects in those states?",
+        o: [
+          "Register in California and New York under the applicable state Blue Sky Laws",
+          "Obtain a separate FINRA membership for each state",
+          "File an amended Form U5 with FINRA listing the new states",
+          "Pass the Series 66 exam, which automatically grants multi-state registration"
+        ],
+        a: 0,
+        e: "Under <strong>Blue Sky Laws</strong>, representatives must register in every individual state where they conduct business, typically by passing the Series 63 (or Series 66) and paying state registration fees. A rep in Texas soliciting clients in California and New York must be registered in all three states. <strong>(A)</strong> is wrong because Form U5 is for termination, not multi-state registration. <strong>(C)</strong> is wrong because FINRA membership is firm-level, not state-by-state for individuals. <strong>(D)</strong> is wrong because passing the Series 66 alone does not automatically register you — you must still apply and pay fees in each state."
+      },
+      {
+        s: "4.1", n: "Registration & Qualification",
+        q: "An individual has been expelled from a foreign securities regulator for fraudulent trading practices. Can this individual register with a FINRA member firm in the United States?",
+        o: [
+          "Yes — foreign regulatory actions have no bearing on U.S. registration",
+          "Yes — but only if the individual waits 5 years after the expulsion",
+          "No — but the individual may re-apply after paying a fine to FINRA",
+          "No — being expelled or barred by a foreign equivalent regulator is a trigger for statutory disqualification"
+        ],
+        a: 3,
+        e: "<strong>Statutory disqualification</strong> is triggered by being expelled, barred, or currently suspended by an SRO (like FINRA) <strong>or a foreign equivalent regulator</strong>. The individual would need the firm to initiate an Eligibility Proceeding with FINRA to seek a waiver. <strong>(A)</strong> is wrong because foreign regulatory actions absolutely apply. <strong>(B)</strong> is wrong because there is no automatic 5-year waiting period. <strong>(D)</strong> is wrong because paying a fine does not override statutory disqualification."
+      },
+      {
+        s: "4.2", n: "Continuing Education",
+        q: "A registered representative completes her Firm Element training by November but neglects to complete the Regulatory Element by December 31st. What is the immediate consequence?",
+        o: [
+          "She receives a formal written warning but may continue working",
+          "She is fined $1,000 per day until the Regulatory Element is completed",
+          "Her registration becomes CE Inactive — she cannot perform registered activities or receive commissions",
+          "Her registration is immediately and permanently terminated by FINRA"
+        ],
+        a: 2,
+        e: "If a registered person fails to complete the Regulatory Element by December 31st, their registration automatically becomes <strong>CE Inactive</strong>. While CE Inactive, the individual cannot perform any duties requiring registration and cannot receive any compensation based on securities transactions. <strong>(A)</strong> is wrong because a warning is not the regulatory consequence — actual suspension of activity is. <strong>(B)</strong> is fabricated. <strong>(D)</strong> is wrong because termination only occurs if the person remains CE Inactive for a continuous <strong>2-year</strong> period, not immediately."
+      },
+      {
+        s: "4.2", n: "Continuing Education",
+        q: "A registered representative has been CE Inactive for 20 consecutive months and has made no effort to complete the Regulatory Element. What will happen if they remain inactive for 4 more months?",
+        o: [
+          "FINRA will automatically reduce their CE Inactive status to a warning",
+          "FINRA will administratively terminate their registration, requiring them to retake their qualifying exams",
+          "The representative will be grandfathered back to active status under FINRA's safe harbor provision",
+          "The firm will be required to file a Form U5 but the representative may resume activity at any time"
+        ],
+        a: 1,
+        e: "If a registered person remains CE Inactive for a continuous <strong>2-year period</strong> (24 months), FINRA will administratively terminate their registration. To re-enter the industry, they would need to retake their qualifying exams from scratch. 20 months + 4 months = 24 months, triggering automatic termination. <strong>(A)</strong> is fabricated. <strong>(C)</strong> is wrong because termination is not a technicality — the person cannot simply resume. <strong>(D)</strong> is a fabricated provision."
+      },
+      {
+        s: "4.2", n: "Continuing Education",
+        q: "The Firm Element of Continuing Education differs from the Regulatory Element in several ways. Which of the following is an accurate distinction?",
+        o: [
+          "The Firm Element focuses on firm-specific products and services; the Regulatory Element covers industry-wide rules and ethics",
+          "The Firm Element is administered by FINRA; the Regulatory Element is administered by each firm",
+          "The Firm Element applies to all firm employees; the Regulatory Element applies only to registered representatives",
+          "The Firm Element is required every 3 years; the Regulatory Element is required annually"
+        ],
+        a: 0,
+        e: "The <strong>Firm Element</strong> is created and delivered internally by the broker-dealer, tailored to the firm's own products, services, and business model. The <strong>Regulatory Element</strong> is standardized content from FINRA covering rules, regulations, and ethics. <strong>(A)</strong> reverses the two — FINRA administers the Regulatory Element, and the firm administers the Firm Element. <strong>(C)</strong> is wrong because both are now annual requirements. <strong>(D)</strong> is wrong because the Firm Element applies to \"covered persons\" (those who deal with customers and their supervisors), not all employees."
+      },
+      {
+        s: "4.2", n: "Continuing Education",
+        q: "A broker-dealer's compliance department is preparing its annual Firm Element training plan. As part of this process, what must the firm conduct before designing the training content?",
+        o: [
+          "An independent audit by FINRA to approve the proposed training curriculum",
+          "A shareholder vote to allocate budget for the training program",
+          "A Regulatory Element pretest to benchmark each representative's current knowledge",
+          "A Needs Analysis that considers the firm's business model, recent complaints, new products, and regulatory changes"
+        ],
+        a: 3,
+        e: "Before creating Firm Element training, the firm must conduct an annual <strong>Needs Analysis</strong> that accounts for the firm's business model, customer complaints from the previous year, changes in product offerings, and new regulatory priorities. The firm then creates a written training plan based on this analysis. <strong>(A)</strong> confuses the Firm Element with the Regulatory Element. <strong>(C)</strong> is wrong because FINRA does not pre-approve Firm Element content. <strong>(D)</strong> is fabricated."
+      },
+      {
+        s: "4.3", n: "Form U4, Form U5 & Conduct",
+        q: "A registered representative is terminated from her firm on March 15th. By what date must the firm file Form U5 with FINRA, and what must the firm provide to the terminated representative?",
+        o: [
+          "Within 60 days (by May 14th); the firm is not required to share the U5 with the employee",
+          "Within 90 days; the firm must provide a summary but not the actual form",
+          "Within 30 days (by April 14th); the firm must provide a copy of the U5 to the terminated representative",
+          "Within 10 business days; the firm must provide a copy of the U5 only if the representative requests it in writing"
+        ],
+        a: 2,
+        e: "<strong>Form U5</strong> must be filed within <strong>30 days</strong> of a registered person leaving the firm, regardless of the reason for departure (resignation, termination, or layoff). The firm is also legally obligated to provide a copy of the U5 to the terminated employee within that same 30-day window. <strong>(A)</strong> is wrong on both the timeframe (it's 30 calendar days, not 10 business days) and the condition (no written request is needed). <strong>(C)</strong> and <strong>(D)</strong> use incorrect timeframes."
+      },
+      {
+        s: "4.3", n: "Form U4, Form U5 & Conduct",
+        q: "A registered representative is convicted of a misdemeanor involving securities fraud on June 1st. How quickly must the representative's Form U4 be updated to reflect this event?",
+        o: [
+          "Within 30 days, as with any routine change",
+          "Within 10 days, because the event involves a statutory disqualification trigger",
+          "At the next annual U4 review, which occurs on the representative's registration anniversary",
+          "Within 5 business days, under the SEC's expedited disclosure rule"
+        ],
+        a: 1,
+        e: "Form U4 updates follow a two-tier timeline: routine changes (like a new home address) must be updated within <strong>30 days</strong>, but any update involving a <strong>statutory disqualification event</strong> — such as a misdemeanor conviction involving money or securities — must be filed within <strong>10 days</strong>. <strong>(A)</strong> is wrong because this is not a routine change. <strong>(C)</strong> is fabricated. <strong>(D)</strong> is wrong because there is no annual review schedule — updates are event-driven."
+      },
+      {
+        s: "4.3", n: "Form U4, Form U5 & Conduct",
+        q: "A registered representative quits her firm to \"escape\" a pending FINRA investigation into unauthorized trading in her client accounts. Her Form U5 is filed, and 18 months pass. Can FINRA still pursue disciplinary action against her?",
+        o: [
+          "Yes — FINRA retains jurisdiction over the individual for 2 years after the U5 filing",
+          "No — once a representative leaves the industry, FINRA's jurisdiction ends immediately",
+          "No — FINRA's jurisdiction ends 12 months after the U5 is filed",
+          "Yes — FINRA retains permanent, lifetime jurisdiction over all former registered persons"
+        ],
+        a: 0,
+        e: "FINRA retains regulatory jurisdiction over an individual for <strong>2 years</strong> after their Form U5 is filed. Since only 18 months have passed, FINRA can still investigate and pursue disciplinary action, including barring the individual from the industry. <strong>(A)</strong> is wrong because jurisdiction does not end upon departure. <strong>(B)</strong> uses an incorrect timeframe. <strong>(D)</strong> is wrong because FINRA's post-departure jurisdiction is limited to 2 years, not lifetime."
+      },
+      {
+        s: "4.3", n: "Form U4, Form U5 & Conduct",
+        q: "When a registered representative signs Form U4, they agree to a mandatory arbitration clause. What does this clause require?",
+        o: [
+          "All customer disputes must be settled through mediation before going to court",
+          "The representative waives all rights to file regulatory complaints with FINRA",
+          "The representative agrees to pay a mandatory annual arbitration insurance premium",
+          "Employment disputes with the firm must be resolved in binding arbitration, with certain exceptions for discrimination and sexual harassment claims"
+        ],
+        a: 3,
+        e: "By signing the U4, a registered person agrees to settle <strong>employment disputes</strong> with their firm through <strong>binding arbitration</strong> rather than through the court system. The only exceptions are claims involving statutory employment discrimination or sexual harassment, which may still be taken to court. <strong>(A)</strong> is wrong because the clause mandates arbitration, not mediation, and covers employer disputes. <strong>(C)</strong> is wrong because the arbitration clause does not waive the right to file regulatory complaints. <strong>(D)</strong> is fabricated."
+      },
+      {
+        s: "4.3", n: "Form U4, Form U5 & Conduct",
+        q: "A customer sends a detailed email to their broker complaining about unsuitable investment recommendations. The complaint does not involve theft, forgery, or misappropriation. How should the firm handle this complaint from a regulatory reporting standpoint?",
+        o: [
+          "Include the complaint in the firm's quarterly summary report to FINRA and retain the email on file for 4 years",
+          "Report the complaint to FINRA immediately (within 24 hours)",
+          "Report the complaint to the SEC within 10 business days",
+          "No reporting is required because the complaint was submitted via email rather than a formal letter"
+        ],
+        a: 0,
+        e: "A written complaint (which includes emails) that does not involve theft, forgery, or misappropriation must be included in the firm's <strong>quarterly summary report</strong> to FINRA (due by the 15th of the month following the quarter). The complaint must also be retained on file for <strong>4 years</strong> at the firm's Office of Supervisory Jurisdiction (OSJ). <strong>(A)</strong> is wrong because immediate reporting is only required for complaints involving theft, forgery, or misappropriation. <strong>(C)</strong> is fabricated. <strong>(D)</strong> is wrong because emails absolutely count as written complaints."
+      },
+      {
+        s: "4.4", n: "Reportable Events & Conflicts",
+        q: "A registered representative works at a broker-dealer full-time but wants to start driving for a ride-sharing company on weekends to earn extra income. What must the representative do before starting this activity?",
+        o: [
+          "Nothing — ride-sharing is not a securities-related activity and requires no disclosure",
+          "Obtain prior written approval from FINRA before engaging in any non-securities employment",
+          "Provide prior written notice to their employing firm describing the outside business activity",
+          "File an amended Form U5 listing the secondary employer"
+        ],
+        a: 2,
+        e: "Any employment or business activity outside the scope of a representative's relationship with their firm is an <strong>Outside Business Activity (OBA)</strong>, even if it has nothing to do with securities. OBAs require <strong>prior written notice</strong> to the employing firm. The firm then decides whether the activity creates a conflict of interest. <strong>(A)</strong> is wrong because all outside employment, including non-securities work like ride-sharing, requires notice. <strong>(C)</strong> is wrong because notice goes to the firm, not FINRA. <strong>(D)</strong> is wrong because Form U5 is for termination, not OBA reporting."
+      },
+      {
+        s: "4.4", n: "Reportable Events & Conflicts",
+        q: "A registered representative helps a personal friend invest $50,000 in the friend's brother's unlisted startup company. The representative receives a $2,500 referral fee for facilitating the investment. This transaction was not disclosed to or processed through the representative's firm. What violation has occurred?",
+        o: [
+          "An Outside Business Activity (OBA) violation — the rep should have provided written notice",
+          "A Private Securities Transaction (selling away) violation — the rep needed prior written approval from the firm because compensation was received",
+          "No violation — private transactions between personal friends are exempt from FINRA rules",
+          "A churning violation — the rep generated excessive commissions from the transaction"
+        ],
+        a: 1,
+        e: "This is a <strong>Private Securities Transaction (PST)</strong>, commonly called \"selling away.\" Because the representative received compensation ($2,500), they were required to obtain <strong>prior written approval</strong> from their firm before facilitating the transaction. The firm would then be required to record it on its books and supervise the activity. <strong>(A)</strong> is wrong because OBAs involve non-securities activities — this involved actual securities. <strong>(C)</strong> is wrong because there is no \"friends and family\" exemption from PST rules. <strong>(D)</strong> is wrong because churning involves excessive trading in a customer's own brokerage account, not facilitating outside investments."
+      },
+      {
+        s: "4.4", n: "Reportable Events & Conflicts",
+        q: "A Municipal Finance Professional (MFP) who lives and votes in Chicago contributes $500 to the mayoral campaign of a candidate in Dallas, Texas. What consequence does this trigger under MSRB Rule G-37?",
+        o: [
+          "No consequence — $500 is within the permissible contribution limit",
+          "The MFP receives a personal fine of $500 from the MSRB",
+          "The firm must return all municipal underwriting fees earned from Dallas in the prior fiscal year",
+          "The firm is banned from engaging in negotiated municipal underwriting with the city of Dallas for 2 years"
+        ],
+        a: 3,
+        e: "Under <strong>MSRB Rule G-37</strong> (pay-to-play), the $250 de minimis exception only applies if the MFP is <strong>entitled to vote</strong> for the candidate. Since the MFP lives in Chicago and cannot vote in Dallas, <em>any</em> contribution to a Dallas candidate triggers the penalty: the firm is <strong>banned from negotiated municipal underwriting</strong> with that municipality for <strong>2 full years</strong>. <strong>(A)</strong> is wrong because the $250 exception does not apply when the MFP cannot vote for the candidate. <strong>(B)</strong> is wrong because the penalty falls on the firm, not just the individual. <strong>(D)</strong> is fabricated."
+      },
+      {
+        s: "4.4", n: "Reportable Events & Conflicts",
+        q: "A registered representative buys two $200 tickets to a professional basketball game. She gives both tickets to a valued client and does not attend the game herself. How is this treated under FINRA's gift and entertainment rules?",
+        o: [
+          "It is considered business entertainment and is exempt from the $100 gift limit",
+          "It is considered a $400 gift and violates the $100 per person, per year gift limit",
+          "It is permitted as a branded promotional item exempt from the gift limit",
+          "It is permitted because sporting event tickets are categorically exempt from gift rules"
+        ],
+        a: 1,
+        e: "Under FINRA's rules, event tickets are only classified as <strong>business entertainment</strong> (exempt from the $100 gift limit) if the representative <strong>attends the event with the client</strong>. Since the representative gave the tickets but did not attend, this is treated as a <strong>gift</strong> of $400, which far exceeds the <strong>$100 per person, per year</strong> limit. <strong>(A)</strong> is wrong specifically because the rep did not attend. <strong>(C)</strong> is wrong because tickets are not promotional items. <strong>(D)</strong> is wrong because sporting event tickets are not categorically exempt."
+      },
+      {
+        s: "4.4", n: "Reportable Events & Conflicts",
+        q: "A registered representative volunteers on weekends at a local non-profit animal shelter. She receives no compensation of any kind for this work. Must she report this activity to her firm as an Outside Business Activity (OBA)?",
+        o: [
+          "Yes — all activities outside the firm must be reported, regardless of compensation",
+          "Yes — but only if the volunteer work exceeds 10 hours per week",
+          "No — purely volunteer work for a non-profit where no compensation is received is exempt from OBA reporting requirements",
+          "No — but only if the non-profit is registered as a 501(c)(3) organization"
+        ],
+        a: 2,
+        e: "<strong>Passive investments</strong> and <strong>purely volunteer work for a non-profit</strong> (where zero compensation is received) are specifically exempt from OBA reporting requirements. The representative does not need to provide written notice to her firm. <strong>(A)</strong> overstates the rule — not all outside activities require notice. <strong>(B)</strong> is fabricated — there is no hours-per-week threshold. <strong>(D)</strong> is wrong because the exemption is based on the volunteer/no-compensation nature of the work, not the organization's specific tax classification."
+      }
+    ];
+
+    let qIdx = 0;
+    let userAns = Array(Q.length).fill(null);
+
+    function initQuiz() {
+      renderDots();
+      renderQ(0);
+      updateProg();
+    }
+
+    function renderDots() {
+      const el = document.getElementById('qDots');
+      el.innerHTML = Q.map((_, i) =>
+        `<div class="quiz-dot ${i === 0 ? 'qd-active' : ''}" onclick="jumpQ(${i})" title="Question ${i + 1}"></div>`
+      ).join('');
+    }
+
+    function renderQ(idx) {
+      qIdx = idx;
+      const q = Q[idx];
+      const answered = userAns[idx] !== null;
+      const body = document.getElementById('qBody');
+      const letters = ['A', 'B', 'C', 'D'];
+
+      let h = `<div class="quiz-card">`;
+      h += `<div class="quiz-section-tag">Section ${q.s} — ${q.n}</div>`;
+      h += `<div class="quiz-q-text">${idx + 1}. ${q.q}</div>`;
+      h += `<div class="quiz-options">`;
+
+      q.o.forEach((opt, i) => {
+        let cls = 'quiz-option';
+        if (answered) {
+          cls += ' qo-disabled';
+          if (i === q.a) cls += ' qo-correct';
+          else if (i === userAns[idx]) cls += ' qo-wrong';
+        }
+        h += `<button class="${cls}" ${answered ? 'disabled' : `onclick="pickAns(${i})"`}>`;
+        h += `<span class="ol">${letters[i]}</span>`;
+        h += `<span>${opt}</span></button>`;
+      });
+      h += `</div>`;
+
+      if (answered) {
+        const ok = userAns[idx] === q.a;
+        h += `<div class="quiz-feedback ${ok ? 'qf-correct' : 'qf-wrong'}">`;
+        h += `<div class="quiz-feedback-label">${ok ? '✓ Correct' : '✗ Incorrect'}</div>`;
+        h += `<p style="margin:0">${q.e}</p></div>`;
+      }
+      h += `</div>`;
+      body.innerHTML = h;
+
+      document.getElementById('qCount').textContent = `Question ${idx + 1} of ${Q.length}`;
+      document.getElementById('qPrev').disabled = idx === 0;
+
+      const nxt = document.getElementById('qNext');
+      if (idx === Q.length - 1 && userAns.every(a => a !== null)) {
+        nxt.textContent = 'See Results';
+        nxt.onclick = showResults;
+      } else {
+        nxt.textContent = 'Next →';
+        nxt.onclick = () => qNavigate(1);
+        nxt.disabled = idx === Q.length - 1;
+      }
+
+      document.querySelectorAll('.quiz-dot').forEach((d, i) => {
+        d.className = 'quiz-dot';
+        if (i === qIdx) d.classList.add('qd-active');
+        if (userAns[i] !== null) d.classList.add(userAns[i] === Q[i].a ? 'qd-correct' : 'qd-wrong');
+      });
+      updateProg();
+    }
+
+    function pickAns(i) {
+      userAns[qIdx] = i;
+      renderQ(qIdx);
+      const answered = userAns.filter(a => a !== null).length;
+      const correct = userAns.filter((a, j) => a === Q[j].a).length;
+      document.getElementById('qScore').textContent = `${correct}/${answered} correct`;
+    }
+
+    function qNavigate(dir) {
+      const ni = qIdx + dir;
+      if (ni >= 0 && ni < Q.length) renderQ(ni);
+    }
+
+    function jumpQ(i) { renderQ(i); }
+
+    function updateProg() {
+      const pct = (userAns.filter(a => a !== null).length / Q.length) * 100;
+      document.getElementById('qProg').style.width = pct + '%';
+    }
+
+    function showResults() {
+      document.getElementById('qBody').style.display = 'none';
+      document.getElementById('qNav').style.display = 'none';
+      const el = document.getElementById('qSummary');
+      el.style.display = 'block';
+
+      const correct = userAns.filter((a, i) => a === Q[i].a).length;
+      const total = Q.length;
+      const pct = Math.round((correct / total) * 100);
+
+      const secs = {};
+      Q.forEach((q, i) => {
+        if (!secs[q.s]) secs[q.s] = { n: q.n, c: 0, t: 0 };
+        secs[q.s].t++;
+        if (userAns[i] === q.a) secs[q.s].c++;
+      });
+
+      let msg = '';
+      if (pct >= 90) msg = 'Outstanding! You have a strong command of this material.';
+      else if (pct >= 75) msg = 'Great job! Review the questions you missed to strengthen weak areas.';
+      else if (pct >= 60) msg = 'Good effort. Re-read the sections where you struggled and try again.';
+      else msg = 'Keep studying! Review the chapter content thoroughly and retake the exam.';
+
+      let bd = '';
+      Object.entries(secs).forEach(([k, v]) => {
+        bd += `<div class="quiz-bd-item"><div class="bd-label">Section ${k} — ${v.n}</div><div class="bd-score">${v.c}/${v.t}</div></div>`;
+      });
+
+      el.innerHTML = `<div class="quiz-summary">
+        <div class="quiz-score-ring"><span class="qs-num">${pct}%</span><span class="qs-of">${correct} of ${total}</span></div>
+        <h3>Practice Exam Complete</h3>
+        <p class="quiz-summary-msg">${msg}</p>
+        <div class="quiz-breakdown">${bd}</div>
+        <div class="quiz-summary-actions">
+          <button class="quiz-btn quiz-btn-secondary" onclick="reviewMissed()">Review Missed Questions</button>
+          <button class="quiz-btn quiz-btn-primary" onclick="resetQuiz()">Retake Exam</button>
+        </div>
+      </div>`;
+    }
+
+    function reviewMissed() {
+      document.getElementById('qBody').style.display = '';
+      document.getElementById('qNav').style.display = '';
+      document.getElementById('qSummary').style.display = 'none';
+      const first = userAns.findIndex((a, i) => a !== Q[i].a);
+      renderQ(first >= 0 ? first : 0);
+    }
+
+    function resetQuiz() {
+      userAns = Array(Q.length).fill(null);
+      document.getElementById('qBody').style.display = '';
+      document.getElementById('qNav').style.display = '';
+      document.getElementById('qSummary').style.display = 'none';
+      document.getElementById('qScore').textContent = '';
+      renderDots();
+      renderQ(0);
+    }
+
+    // Initialize quiz on load
+    document.addEventListener('DOMContentLoaded', initQuiz);
+  </script>
+
+</body>
+
+</html>

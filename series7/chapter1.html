@@ -1,0 +1,1453 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 1: Securities Industry, Regulation &amp; New Issues | HexaPrep S7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #0EA5E9;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --danger: #EF4444;
+      --danger-light: #FEE2E2;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --surface-hover: #334155;
+        --border: #334155;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --text-light: #94A3B8;
+        --text-dark: #0F172A;
+        --primary: #6366F1;
+        --primary-hover: #818CF8;
+        --primary-light: #312E81;
+        --warning-light: #451A03;
+        --danger-light: #450A0A;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--surface);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+    }
+
+    h3 {
+      scroll-margin-top: 80px;
+      /* Offset for fixed topbar */
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    ul,
+    ol {
+      padding-left: 24px;
+      margin-bottom: 1.5em;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+      max-width: none;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(var(--surface), 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 0;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .back-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      margin-left: 24px;
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumbs a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--text-main);
+    }
+
+    .breadcrumb-sep {
+      color: var(--border);
+    }
+
+    /* Dropdown */
+    .chapter-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .chapter-dropdown>a {
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .chapter-dropdown>a:hover {
+      background: var(--surface-hover);
+    }
+
+    .chapter-dropdown>a svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--surface);
+      min-width: 160px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      z-index: 200;
+      padding: 8px 0;
+      margin-top: 4px;
+    }
+
+    .dropdown-content a {
+      color: var(--text-main);
+      padding: 8px 16px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--surface-hover);
+      color: var(--primary);
+    }
+
+    .chapter-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Grid */
+    .main-wrapper {
+      margin-left: 300px;
+      display: flex;
+      flex: 1;
+      margin-top: 64px;
+      justify-content: flex-start;
+      width: calc(100% - 300px);
+    }
+
+    /* Fixed Sidebar */
+    .sidebar {
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      width: 300px;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      padding: 32px 24px;
+      z-index: 100;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    /* Table of Contents */
+    .toc-chapter-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toc-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .toc-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .toc-link.sub {
+      font-size: 13px;
+      padding: 6px 12px 6px 24px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .toc-link.sub:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 48px 100px 100px 40px;
+      max-width: none;
+      width: 100%;
+      margin: 0;
+    }
+
+    /* Hero inside content */
+    .chapter-hero {
+      margin-bottom: 56px;
+    }
+
+    .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .chapter-title {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .chapter-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: none;
+      margin-bottom: 32px;
+    }
+
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      gap: 8px;
+    }
+
+    .stat {
+      flex: 1 1 120px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      color: var(--text-main);
+      font-weight: 700;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .stat .lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .lede {
+      font-size: 20px;
+      color: var(--text-main);
+      padding-left: 24px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 48px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* Section Typography */
+    .block {
+      margin-bottom: 64px;
+      scroll-margin-top: 80px;
+      /* offset for fixed topbar */
+    }
+
+    .block h2 {
+      font-size: 32px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      margin-top: 64px;
+    }
+
+    .block h2 .num {
+      color: var(--primary);
+      margin-right: 12px;
+    }
+
+    .block h3 {
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+    }
+
+    .callout-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout.tip {
+      background: var(--success-light);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .callout.tip .callout-label {
+      color: var(--success);
+    }
+
+    .callout.tip p {
+      color: var(--text-dark);
+    }
+
+    .callout.tip p strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .callout.trap {
+      background: var(--danger-light);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .callout.trap .callout-label {
+      color: var(--danger);
+    }
+
+    .callout.trap p {
+      color: var(--text-main);
+    }
+
+    .callout.rule {
+      background: var(--surface-hover);
+      border-color: var(--border);
+    }
+
+    .callout.rule .callout-label {
+      color: var(--text-main);
+    }
+
+    .callout.rule p {
+      color: var(--text-main);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.hl {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    /* Quiz */
+    details.q {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    details.q summary {
+      padding: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-main);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.q summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.q summary::after {
+      content: "View Answer";
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 4px 12px;
+      background: var(--primary-light);
+      border-radius: 99px;
+      transition: var(--transition);
+    }
+
+    details.q[open] summary::after {
+      content: "Hide Answer";
+    }
+
+    details.q[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-answer,
+    .answer {
+      padding: 20px;
+      background: var(--surface);
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Next Chapter */
+    .next-footer {
+      margin-top: 64px;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .next-footer:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .next-footer .lbl {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .next-footer .title {
+      font-size: 28px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .next-footer p {
+      margin: 0 auto;
+      opacity: 0.9;
+      font-size: 16px;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 30px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-left: 2px solid var(--border);
+      padding-left: 0;
+    }
+
+    .tl-step {
+      position: relative;
+      padding: 0 0 26px 30px;
+      margin-left: -2px;
+      border-left: 2px solid var(--primary-light);
+    }
+
+    .tl-step:last-child {
+      border-left: 2px solid transparent;
+      padding-bottom: 0;
+    }
+
+    .tl-step::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 2px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid var(--surface);
+    }
+
+    .tl-step .tl-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .tl-step .tl-body {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Sticky Top Navbar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Dashboard
+        </a>
+        <div class="breadcrumbs">
+          <a href="../index.html">HexaPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Series 7</a>
+          <span class="breadcrumb-sep">/</span>
+          <div class="chapter-dropdown">
+            <a href="chapter1.html">Chapter 1
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-content">
+              <a href="chapter1.html">Chapter 1</a>
+              <a href="chapter2.html">Chapter 2</a>
+              <a href="chapter3.html">Chapter 3</a>
+              <a href="chapter4.html">Chapter 4</a>
+              <a href="chapter5.html">Chapter 5</a>
+              <a href="chapter6.html">Chapter 6</a>
+              <a href="chapter7.html">Chapter 7</a>
+              <a href="chapter8.html">Chapter 8</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      <!-- Fixed Left Sidebar -->
+      <aside class="sidebar">
+        <div class="toc-chapter-title">Chapter 1:<br>Securities Industry, Regulation &amp; New Issues</div>
+        <div class="toc-title">In This Chapter</div>
+        <nav class="toc-nav">
+          <a href="#m11" class="toc-link active">1.1 Communications with Customers</a>
+          <a href="#three-comm" class="toc-link sub">The three communication categories</a>
+          <a href="#seminars" class="toc-link sub">Seminars, lectures, and group forums</a>
+          <a href="#product-rules" class="toc-link sub">Product-specific disclosure rules</a>
+
+          <a href="#m12" class="toc-link">1.2 Bringing New Securities to Market</a>
+          <a href="#ipo-timeline" class="toc-link sub">The corporate IPO timeline</a>
+          <a href="#prospectus" class="toc-link sub">Preliminary vs. final prospectus</a>
+          <a href="#muni-primary" class="toc-link sub">Municipal primary market financing</a>
+          <a href="#syndicate" class="toc-link sub">Syndicate structure and roles</a>
+          <a href="#gross-spread" class="toc-link sub">Gross spread: how underwriters get paid</a>
+          <a href="#qib" class="toc-link sub">QIB vs. accredited investor</a>
+
+          <a href="#m13" class="toc-link">1.3 Exempt Securities &amp; Placements</a>
+          <a href="#reg-a" class="toc-link sub">Regulation A</a>
+          <a href="#reg-d" class="toc-link sub">Regulation D</a>
+          <a href="#intrastate" class="toc-link sub">Intrastate offerings</a>
+          <a href="#rule-144" class="toc-link sub">Rule 144 vs. Rule 144A</a>
+          <a href="#foreign" class="toc-link sub">Foreign securities sold in the U.S.</a>
+        </nav>
+      </aside>
+
+      <!-- Scrollable Main Content -->
+      <main class="content-area">
+
+        <header class="chapter-hero">
+          <span class="kicker">FINRA SERIES 7 EXAM · STUDY GUIDE</span>
+          <h1 class="chapter-title">Chapter 1 — Securities Industry, Regulation &amp; New Issues</h1>
+          <p class="chapter-subtitle">Before you can talk to a customer about a product, you need to know what you're
+            allowed to say, and before a product exists at all, it has to come to market. This chapter builds that
+            foundation: the rules governing what a registered representative can communicate, and the full lifecycle of
+            how a security is created, registered (or exempted), and distributed.</p>
+          <div class="stat-strip">
+            <div class="stat"><span class="num">125</span><span class="lbl">scored items</span></div>
+            <div class="stat"><span class="num">3h 45m</span><span class="lbl">time allowed</span></div>
+            <div class="stat"><span class="num">9</span><span class="lbl">items from this chapter</span></div>
+            <div class="stat"><span class="num">7%</span><span class="lbl">of total exam</span></div>
+          </div>
+        </header>
+
+        <!-- Module 1.1 -->
+        <section class="block" id="m11">
+          <h2><span class="num">1.1</span>Communications with Customers and the Public</h2>
+          <p class="lede">Everything a representative says to the public — a text message, a webinar slide, a tombstone
+            ad, a fund fact sheet — falls into one of three legal buckets. The bucket determines who has to approve it
+            before it goes out, and that approval chain is the single most-tested idea in this module.</p>
+
+          <h3 id="three-comm">The three communication categories</h3>
+          <p>FINRA Rule 2210 sorts every communication by <em>audience size and type</em>, not by content or channel.
+            The same message about the same fund could be a retail communication in one context and correspondence in
+            another, depending entirely on who receives it and how many people saw it.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Definition</th>
+                  <th>Approval before use</th>
+                  <th>Typical example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Retail communication</td>
+                  <td>Any written or electronic communication distributed or made available to more than 25 retail
+                    investors within any 30-calendar-day period</td>
+                  <td>Must be approved in advance by a registered principal</td>
+                  <td>Website content, a mass-market email campaign, a brochure handed out at a public seminar</td>
+                </tr>
+                <tr>
+                  <td class="hl">Institutional communication</td>
+                  <td>Written or electronic communication distributed solely to institutional investors</td>
+                  <td>No prior principal approval required, but the firm must have written supervisory procedures</td>
+                  <td>A pitch book sent only to a pension fund's investment committee</td>
+                </tr>
+                <tr>
+                  <td class="hl">Correspondence</td>
+                  <td>Written or electronic communication distributed or made available to 25 or fewer retail investors
+                    within any 30-calendar-day period</td>
+                  <td>No prior principal approval required, but subject to supervision and spot-check review</td>
+                  <td>A one-on-one email to an existing client answering a question about their account</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>The 25-investor line resets on a rolling 30-day basis, not per message. If a representative sends the
+              <em>same</em> piece to 10 retail clients on Monday and another 20 on the following Wednesday, the
+              cumulative count within that 30-day window pushes the piece into retail-communication territory, requiring
+              principal approval it never got. Exam questions like to test whether you're counting per-message or
+              per-window.
+            </p>
+          </div>
+
+          <h3 id="seminars">Seminars, lectures, and group forums</h3>
+          <p>A live talk to a room of prospects is treated the same way a written piece would be treated, based on who's
+            in the room and what's handed out. A scripted seminar presentation distributed to more than 25 retail
+            investors is retail communication and needs advance principal approval; an extemporaneous, unscripted talk
+            generally does not require prior approval but is still subject to the firm's supervisory procedures and
+            recordkeeping. Any handout, slide deck, or leave-behind used at the seminar is judged independently as its
+            own communication — a slide deck handed to 40 attendees is retail communication even if the speaker's
+            remarks were off-the-cuff.</p>
+
+          <h3 id="product-rules">Product-specific communication and disclosure rules</h3>
+          <p>Once you know which bucket a piece falls into, several products layer on their own disclosure requirements
+            on top of the general Rule 2210 framework. The exam tests whether you can match the product to its required
+            disclosure, not the rule number in isolation.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product / area</th>
+                  <th>What must accompany or govern the communication</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Investment company products (mutual funds)</td>
+                  <td>Performance advertising must use SEC-standardized formulas (average annual total return); a
+                    prospectus or summary prospectus must be offered; sales-literature performance claims cannot
+                    cherry-pick favorable periods.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Variable contracts (variable annuities/life)</td>
+                  <td>Must balance the investment and insurance features — cannot emphasize potential returns without
+                    giving comparable prominence to fees, surrender charges, and insurance guarantees.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Options communications</td>
+                  <td>Before or at the time an options account is approved, the customer must receive the Options
+                    Disclosure Document (ODD). Any communication that recommends a specific options strategy must be
+                    balanced and cannot be distributed before the ODD has been furnished.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Municipal securities</td>
+                  <td>Communications must not imply an official statement's contents are complete without directing the
+                    reader to the actual official statement; certain product-specific disclosures for municipal fund
+                    securities (529 plans) are required.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Research reports</td>
+                  <td>Subject to quiet-period restrictions after an IPO or secondary offering, distribution controls so
+                    the firm's own trading desk doesn't get early access, and disclosure rules when a report discusses a
+                    company the firm has an investment-banking relationship with.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Government securities, CMOs, CDs</td>
+                  <td>Communications about CMOs must not imply a government guarantee where none exists and must
+                    disclose prepayment/extension risk; brokered CD advertising must disclose that FDIC insurance
+                    applies per depositor, per institution — not per CD.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Why the CMO disclosure rule exists
+            </div>
+            <p>A CMO backed by Ginnie Mae pass-throughs carries a government guarantee on the underlying mortgage
+              payments, but the CMO's own market price still moves with interest rates and prepayment speeds. A
+              representative who describes a CMO tranche as simply "government-guaranteed, so it's safe" has told the
+              truth about credit risk while hiding the interest-rate and prepayment risk entirely — this is exactly the
+              situation Rule 2210's CMO communication standards are written to prevent.</p>
+          </div>
+
+
+
+        </section>
+
+        <!-- Module 1.2 -->
+        <section class="block" id="m12">
+          <h2><span class="num">1.2</span>Bringing New Securities to Market</h2>
+          <p>A security doesn't appear on an exchange fully formed — it moves through a defined, chronological process
+            with hard legal boundaries at each stage. Learn this as a timeline first; the individual rules and document
+            names will make far more sense once you can place them on it.</p>
+
+          <h3 id="ipo-timeline">The corporate IPO timeline</h3>
+
+          <div class="timeline">
+            <div class="tl-step">
+              <div class="tl-title">1. Pre-filing period</div>
+              <div class="tl-body">The issuer selects an underwriter and the underwriting group performs due diligence
+                on the company's financials and business. No offers to sell and no sales are permitted at all during
+                this period — not even informal conversations that could be read as "conditioning the market"
+                (gun-jumping).</div>
+            </div>
+            <div class="tl-step">
+              <div class="tl-title">2. Registration statement filed</div>
+              <div class="tl-body">The issuer files a registration statement (commonly Form S-1) with the SEC. This
+                starts the clock on SEC review — it does not mean the SEC has approved or verified the offering's
+                merits.</div>
+            </div>
+            <div class="tl-step">
+              <div class="tl-title">3. Waiting / cooling-off period (typically 20 days)</div>
+              <div class="tl-body">Offers to sell are now permitted, but sales are still prohibited. The underwriter
+                circulates the <strong>preliminary prospectus</strong> ("red herring"). Only indications of interest can
+                be gathered, and they are non-binding. Limited advertising is allowed: a <strong>tombstone ad</strong>
+                and a preliminary prospectus itself.</div>
+            </div>
+            <div class="tl-step">
+              <div class="tl-title">4. Registration becomes effective</div>
+              <div class="tl-body">The SEC declares the registration effective. The offering price and final terms are
+                set. The <strong>final prospectus</strong> replaces the red herring and must accompany or precede every
+                confirmation of sale.</div>
+            </div>
+            <div class="tl-step">
+              <div class="tl-title">5. Post-effective / distribution</div>
+              <div class="tl-body">Sales occur. The underwriting syndicate distributes shares to the public and to
+                syndicate/selling-group order allocations.</div>
+            </div>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Students frequently reverse "offers" and "sales." During the cooling-off period, <strong>offers are
+                legal, sales are not.</strong> A registered rep who takes a firm order and accepts payment during the
+              waiting period — rather than a non-binding indication of interest — has violated Securities Act §5, even
+              if the trade doesn't settle until after the effective date.</p>
+          </div>
+
+          <h3 id="prospectus">Preliminary vs. final prospectus</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Preliminary prospectus (red herring)</th>
+                  <th>Final prospectus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Offering price</td>
+                  <td>Omitted or shown as a range</td>
+                  <td>Fixed, final price stated</td>
+                </tr>
+                <tr>
+                  <td class="hl">Effective-date legend</td>
+                  <td>Red-ink statement that registration is not yet effective</td>
+                  <td>Not present — registration is effective</td>
+                </tr>
+                <tr>
+                  <td class="hl">Can be used to sell?</td>
+                  <td>No — offers only, no sales</td>
+                  <td>Yes — required with every confirmation</td>
+                </tr>
+                <tr>
+                  <td class="hl">Underwriting spread / proceeds to issuer</td>
+                  <td>Not finalized</td>
+                  <td>Stated precisely</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="muni-primary">Municipal primary market financing</h3>
+          <p>Municipal issuers raise money through a different process than corporations, and the method of sale itself
+            is a tested distinction.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>How the underwriter is chosen</th>
+                  <th>Disclosure document</th>
+                  <th>Typical use</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Competitive sale</td>
+                  <td>Underwriters submit sealed bids; the syndicate offering the lowest net interest cost wins</td>
+                  <td>Notice of Sale (published in advance, inviting bids) plus a preliminary/final Official Statement
+                  </td>
+                  <td>General obligation bonds, where state law often mandates competitive bidding</td>
+                </tr>
+                <tr>
+                  <td class="hl">Negotiated sale</td>
+                  <td>The issuer selects an underwriter directly and negotiates terms, spread, and structure before the
+                    bonds are sold</td>
+                  <td>Preliminary and final Official Statement</td>
+                  <td>Revenue bonds and complex financings where underwriter input on structuring adds value</td>
+                </tr>
+                <tr>
+                  <td class="hl">Private placement</td>
+                  <td>Bonds are sold directly to a small number of sophisticated institutional buyers, no public
+                    offering</td>
+                  <td>Offering memorandum (not a full Official Statement)</td>
+                  <td>Smaller or specialized issues where a full public sale isn't cost-effective</td>
+                </tr>
+                <tr>
+                  <td class="hl">Advance refunding</td>
+                  <td>Not a new-money financing — issuer sells new bonds to refinance existing debt before the old
+                    bonds' call date, with proceeds escrowed in Treasuries until the call date</td>
+                  <td>Official Statement for the new issue; the refunded bonds become "prerefunded"</td>
+                  <td>Locking in lower rates ahead of a bond's first call date</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="syndicate">Syndicate structure and roles</h3>
+          <p>Once an underwriting is large enough to need more than one firm, the firms organize into a syndicate
+            governed by an Agreement Among Underwriters (AAU). Three layers of participants sit between the issuer and
+            the investing public:</p>
+          <ul>
+            <li><strong>Syndicate manager</strong> — the lead underwriter; runs the books, allocates bonds/shares, and
+              is responsible for stabilizing the aftermarket if needed.</li>
+            <li><strong>Syndicate members (co-underwriters)</strong> — each commits capital and takes underwriting risk
+              for a share of the issue.</li>
+            <li><strong>Selling group members</strong> — help distribute the issue and earn a concession, but take no
+              underwriting risk and are not liable if the issue doesn't sell out.</li>
+          </ul>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Eastern (undivided) account</th>
+                  <th>Western (divided) account</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Liability for unsold bonds</td>
+                  <td>Shared proportionally across the whole syndicate, even for bonds a member didn't personally sell
+                  </td>
+                  <td>Each member is liable only for its own specific allocation</td>
+                </tr>
+                <tr>
+                  <td class="hl">Common in</td>
+                  <td>Municipal bond syndicates</td>
+                  <td>Municipal and some corporate syndicates</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Order period priority (municipal new issues)</h4>
+          <p>When orders exceed available bonds, allocation typically follows a priority sequence set by the syndicate:
+            <strong>presale orders</strong> (placed before the final price is set) first, then <strong>group net
+              orders</strong> (credited to the whole syndicate), then <strong>designated orders</strong> (the customer
+            designates which syndicate members get credit), then <strong>member orders</strong> (a syndicate member
+            buying for its own account, lowest priority).
+          </p>
+
+          <h3 id="gross-spread">Gross spread: how underwriters get paid</h3>
+          <p>The gross spread is the difference between what the issuer receives per bond/share and what the public
+            pays. It splits into layered pieces as the security moves from manager to syndicate to selling group to
+            investor.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Component</th>
+                  <th>Who earns it</th>
+                  <th>Amount (illustrative)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Manager's fee</td>
+                  <td>Syndicate manager only, for running the deal</td>
+                  <td>$2.00</td>
+                </tr>
+                <tr>
+                  <td class="hl">Underwriting fee</td>
+                  <td>Syndicate manager + syndicate members, for capital risk</td>
+                  <td>$6.00</td>
+                </tr>
+                <tr>
+                  <td class="hl">Selling concession</td>
+                  <td>Whichever firm (syndicate or selling group) actually sells the bond to the investor</td>
+                  <td>$10.00</td>
+                </tr>
+                <tr>
+                  <td class="hl">Total takedown</td>
+                  <td>Underwriting fee + selling concession, earned by a firm that both underwrites and sells</td>
+                  <td>$16.00</td>
+                </tr>
+                <tr>
+                  <td class="hl"><strong>Total gross spread</strong></td>
+                  <td>—</td>
+                  <td><strong>$20.00</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>A <strong>selling-group member</strong> who is not part of the syndicate earns only the selling concession
+            ($10.00 here) — never the manager's or underwriting fee, since it took on no underwriting risk. If the
+            syndicate manager sells a bond directly to a customer, the manager keeps the entire spread ($20.00), since
+            no other firm needs to be compensated for underwriting or selling.</p>
+
+
+
+          <h3 id="qib">QIB vs. accredited investor</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Qualified Institutional Buyer (QIB)</th>
+                  <th>Accredited investor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Who qualifies</td>
+                  <td>Institutions owning/investing at least $100 million in securities of unaffiliated issuers
+                    (broker-dealers: $10 million threshold)</td>
+                  <td>Individuals meeting income ($200,000 individual / $300,000 joint, for the two most recent years
+                    with expectation of the same) or net worth (over $1 million, excluding primary residence) thresholds
+                    — or certain entities</td>
+                </tr>
+                <tr>
+                  <td class="hl">Where the term is used</td>
+                  <td>Rule 144A resales of restricted securities</td>
+                  <td>Regulation D private placements (Rule 506)</td>
+                </tr>
+                <tr>
+                  <td class="hl">Individual investors can qualify?</td>
+                  <td>No — QIB status is for institutions</td>
+                  <td>Yes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+        </section>
+
+        <!-- Module 1.3 -->
+        <section class="block" id="m13">
+          <h2><span class="num">1.3</span>Exempt Securities, Private Placements &amp; Foreign Securities</h2>
+          <p>Not every security that's legally sold in the U.S. goes through full SEC registration. An
+            <strong>exemption</strong> doesn't mean a security is risk-free or unregulated — it means Congress or the
+            SEC decided that, for this specific type of transaction or buyer, the cost of full registration outweighs
+            the investor-protection benefit. Every exemption in this module answers one question: <em>exempt from what,
+              exactly, and why?</em>
+          </p>
+
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              The distinction that drives this whole module
+            </div>
+            <p>An exemption from <em>registration</em> is not the same as an exemption from <em>anti-fraud
+                liability</em>. Every exempt security in this lesson is still fully subject to the anti-fraud provisions
+              of the securities laws. What's being exempted is the registration-and-prospectus-delivery machinery — not
+              honesty.</p>
+          </div>
+
+          <h3 id="reg-a">Regulation A: the scaled-down public offering</h3>
+          <p>Regulation A lets smaller issuers raise money from the general public — including non-accredited retail
+            investors — using an abbreviated registration process instead of a full S-1.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Tier 1</th>
+                  <th>Tier 2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">12-month offering limit</td>
+                  <td>Up to $20 million</td>
+                  <td>Up to $75 million</td>
+                </tr>
+                <tr>
+                  <td class="hl">Financial statements</td>
+                  <td>Not required to be audited</td>
+                  <td>Audited financial statements required</td>
+                </tr>
+                <tr>
+                  <td class="hl">State blue-sky review</td>
+                  <td>Offering is reviewed at both federal and state level</td>
+                  <td>State review is preempted — SEC review only</td>
+                </tr>
+                <tr>
+                  <td class="hl">Ongoing reporting after the offering</td>
+                  <td>None required</td>
+                  <td>Ongoing annual/semiannual reports required</td>
+                </tr>
+                <tr>
+                  <td class="hl">Disclosure document</td>
+                  <td colspan="2">An offering circular (Reg A's abbreviated substitute for a full prospectus)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="reg-d">Regulation D: the private placement exemption</h3>
+          <p>Regulation D exempts sales that are, by design, not offered broadly to the general public. Its three rules
+            trade off how widely the issuer can advertise against how sophisticated the buyers must be.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Rule 504</th>
+                  <th>Rule 506(b)</th>
+                  <th>Rule 506(c)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Offering limit</td>
+                  <td>Up to $10 million in 12 months</td>
+                  <td>Unlimited</td>
+                  <td>Unlimited</td>
+                </tr>
+                <tr>
+                  <td class="hl">General solicitation / advertising allowed?</td>
+                  <td>No</td>
+                  <td>No</td>
+                  <td><strong>Yes</strong></td>
+                </tr>
+                <tr>
+                  <td class="hl">Non-accredited investors allowed?</td>
+                  <td>Yes, in most cases</td>
+                  <td>Up to 35 sophisticated non-accredited investors</td>
+                  <td>No — all purchasers must be accredited, and the issuer must take reasonable steps to verify it
+                  </td>
+                </tr>
+                <tr>
+                  <td class="hl">Typical use</td>
+                  <td>Very small, often state-registered offerings</td>
+                  <td>Traditional private placement to a pre-existing relationship network</td>
+                  <td>Broadly advertised placement to accredited investors only</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>506(b) and 506(c) are frequently mixed up because both are unlimited in size and both fall under "Rule
+              506." The entire distinction is <strong>general solicitation</strong>: 506(b) forbids it and tolerates a
+              handful of non-accredited but sophisticated investors; 506(c) permits public advertising but only if every
+              single purchaser is accredited and that status is actually verified, not just self-certified.</p>
+          </div>
+
+          <h3 id="intrastate">Intrastate offerings: Section 3(a)(11) and Rule 147/147A</h3>
+          <p>An offering made entirely within one state can be exempt from federal registration because it's the state's
+            own securities regulator, not the SEC, that has primary jurisdiction over a purely local transaction. To
+            qualify, the issuer generally must be organized in that state, and a substantial portion of its operations,
+            assets, and offering proceeds must be tied to that state, and offers/sales must be made only to residents of
+            that state. Rule 147 codifies this exemption strictly within state lines; Rule 147A relaxed the rule to
+            allow the issuer to advertise across state lines (e.g., an offering posted on a public website) as long as
+            actual sales still go only to in-state residents. Securities sold under this exemption generally cannot be
+            resold to an out-of-state resident for a period of time (commonly six months) without jeopardizing the
+            exemption.</p>
+
+          <h3 id="rule-144">Resale of restricted and control securities: Rule 144 vs. Rule 144A</h3>
+          <p>Securities acquired in a private placement are "restricted" — they can't simply be flipped into the public
+            market the way freely-trading shares can. Two different rules govern how they eventually can be resold,
+            depending on who's buying.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Rule 144</th>
+                  <th>Rule 144A</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Who can buy in the resale</td>
+                  <td>The general public (once conditions are met)</td>
+                  <td>Qualified Institutional Buyers (QIBs) only</td>
+                </tr>
+                <tr>
+                  <td class="hl">Holding period</td>
+                  <td>6 months for reporting-company securities, 12 months for non-reporting companies, before resale
+                    conditions can even be met</td>
+                  <td>No mandated holding period — QIBs are presumed sophisticated enough not to need one</td>
+                </tr>
+                <tr>
+                  <td class="hl">Volume limitation</td>
+                  <td>Applies to affiliates/control persons — capped as a percentage of outstanding shares or average
+                    trading volume</td>
+                  <td>No volume limitation</td>
+                </tr>
+                <tr>
+                  <td class="hl">Filing requirement</td>
+                  <td>Form 144 required for larger sales by affiliates</td>
+                  <td>None</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>Rule 144 also governs <strong>control securities</strong> — shares held by an officer, director, or other
+            affiliate of the issuer, even if those shares weren't originally restricted. An affiliate's shares carry
+            volume limitations and filing requirements every time they're sold, precisely because an insider's large
+            sale can itself move the market or signal something to it.</p>
+
+          <h3 id="foreign">Foreign securities sold in the U.S.</h3>
+          <p>A foreign issuer that never registers with the SEC generally cannot sell its securities to U.S. retail
+            investors. Two narrow paths exist: the security can be sold to large, qualified U.S. institutions under an
+            exemption (such as Rule 144A, if it qualifies as a restricted resale to QIBs), or it can be structured as an
+            American Depositary Receipt that itself goes through the normal registration or exemption process. Absent
+            one of those paths, foreign securities that have never been registered and don't qualify for an exemption
+            are simply prohibited from being sold to U.S. investors.</p>
+
+
+
+        </section>
+
+        <a href="chapter2.html" class="next-footer">
+          <span class="lbl">Up next</span>
+          <div class="title">Chapter 2: Equities &amp; Debt Securities</div>
+          <p>Function 3 — The biggest component of the Series 7.</p>
+        </a>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Add active state to TOC links on scroll
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Find both main topics and subtopics
+            document.querySelectorAll('.toc-link').forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active');
+
+                // If it's a subtopic, make sure its parent main topic is also active (optional UX touch)
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px" });
+
+      document.querySelectorAll('section.block, h3[id]').forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+
+</body>
+
+</html>

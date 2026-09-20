@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HexaPrep | 100% Free FINRA Exam Prep & Practice Tests</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Master your FINRA exams for free. HexaPrep offers premium study guides, visual learning tools, and realistic practice mock tests for the SIE and Series 7 exams. No paywalls.">
+    <meta name="keywords"
+        content="Free FINRA Exam Prep, SIE Exam, Series 7 Exam, Free Practice Mock Tests, FINRA Licensing, Pass SIE, Study Guide, Series 7 Top-Off">
+    <meta name="author" content="HexaPrep">
+    <meta name="robots" content="index, follow">
+
+    <!-- OpenGraph & Twitter -->
+    <meta property="og:title" content="HexaPrep | Free FINRA Exam Prep">
+    <meta property="og:description"
+        content="Master the SIE and Series 7 exams with high-quality, completely free study material and realistic mock tests.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hexaprep.com/">
+    <!-- <meta property="og:image" content="https://hexaprep.com/assets/og-image.jpg"> -->
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HexaPrep | Free FINRA Exam Prep">
+    <meta name="twitter:description"
+        content="Master the SIE and Series 7 exams with high-quality, completely free study material and realistic mock tests.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- JSON-LD Structured Data for AEO / SEO -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "HexaPrep",
+    "url": "https://hexaprep.com",
+    "description": "HexaPrep provides completely free, premium educational resources and practice mock tests for FINRA licensing exams including the SIE and Series 7.",
+    "sameAs": []
+  }
+  </script>
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is HexaPrep really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, HexaPrep is 100% free. There are no paywalls, no hidden fees, and no account requirements to access our study guides and practice mock tests."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How realistic are the FINRA mock tests?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our practice exams are highly realistic. We focus heavily on scenario-based questions that mimic the actual difficulty and structure of the real FINRA SIE and Series 7 exams."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What exams does HexaPrep cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Currently, HexaPrep provides comprehensive study materials and interactive quizzes for the Securities Industry Essentials (SIE) exam and the Series 7 General Securities Representative exam."
+        }
+      }
+    ]
+  }
+  </script>
+
+    <style>
+        :root {
+            --bg: #F8FAFC;
+            --surface: #FFFFFF;
+            --surface-hover: #F1F5F9;
+            --border: #E2E8F0;
+            --text-main: #0F172A;
+            --text-muted: #475569;
+            --primary: #4F46E5;
+            --primary-hover: #4338CA;
+            --primary-light: #EEF2FF;
+            --accent: #0EA5E9;
+            --success: #10B981;
+            --success-light: #D1FAE5;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Dark Mode Theme Variables */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0B1120;
+                --surface: #1E293B;
+                --surface-hover: #334155;
+                --border: #334155;
+                --text-main: #F8FAFC;
+                --text-muted: #94A3B8;
+                --primary: #6366F1;
+                --primary-hover: #818CF8;
+                --primary-light: #312E81;
+                --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+                --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navbar */
+        header.navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(var(--surface), 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-muted);
+            background: var(--surface-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, rgba(248, 250, 252, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .hero::before {
+                background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(11, 17, 32, 0) 70%);
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 72px);
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2vw, 22px);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Trust Signals */
+        .stats {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .stat-item p {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        /* Features */
+        .features {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* Exams */
+        .curriculum {
+            padding: 120px 0;
+            background: var(--surface);
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .chapter-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .chapter-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .chapter-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .chapter-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .ch-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--primary-light);
+            border-radius: 999px;
+        }
+
+        .chapter-content h3 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .chapter-content p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .chapter-action {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .chapter-action svg {
+            transition: transform 0.2s;
+        }
+
+        .chapter-card:hover .chapter-action svg {
+            transform: translateX(4px);
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 120px 0;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+        }
+
+        .faq-item h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .faq-item h3::before {
+            content: '?';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-left: 44px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 60px 0 40px;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--text-main);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-item p {
+                padding-left: 0;
+                margin-top: 16px;
+            }
+
+            .faq-item h3 {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                HexaPrep
+            </a>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#exams">Available Exams</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#exams" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <div class="badge">✨ 100% Free Educational Resource</div>
+                <h1>Master Your FINRA Exams <span>Without the Paywall</span></h1>
+                <p>Premium study guides and interactive practice mock tests for the SIE and Series 7 exams. No hidden
+                    fees, just high-quality education.</p>
+                <div class="hero-actions">
+                    <a href="#exams" class="btn btn-primary" style="padding: 16px 32px; font-size: 16px;">Explore Free
+                        Exams</a>
+                    <a href="#features" class="btn btn-outline" style="padding: 16px 32px; font-size: 16px;">See
+                        Platform Features</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Signals -->
+        <section class="stats">
+            <div class="container stats-grid">
+                <div class="stat-item">
+                    <h3>100% Free</h3>
+                    <p>No paywalls or accounts needed</p>
+                </div>
+                <div class="stat-item">
+                    <h3>FINRA-Aligned</h3>
+                    <p>Mapped to the official outlines</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Realistic</h3>
+                    <p>Scenario-based mock exams</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="features container">
+            <div class="section-header">
+                <h2>A better way to study.</h2>
+                <p>We designed HexaPrep from the ground up to make financial concepts easy to grasp and hard to forget.
+                </p>
+            </div>
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                        </svg>
+                    </div>
+                    <h3>Structured Guides</h3>
+                    <p>We broke down massive textbooks into beautifully formatted, bite-sized chapters that focus only
+                        on what you need to pass.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <h3>Free Mock Tests</h3>
+                    <p>Test your knowledge with realistic, scenario-based practice exams designed to mimic the
+                        difficulty of the actual test.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Instant Explanations</h3>
+                    <p>Learn from your mistakes instantly. Every practice question includes a detailed rationale
+                        explaining why an answer is right or wrong.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Exams Directory -->
+        <section id="exams" class="curriculum">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Available Exams</h2>
+                    <p>Select your exam below to access the full study material and mock tests.</p>
+                </div>
+
+                <div class="course-grid">
+                    <!-- SIE Exam -->
+                    <a href="sie/index.html" class="chapter-card">
+                        <div class="ch-label">Co-requisite Exam</div>
+                        <div class="chapter-content">
+                            <h3>Securities Industry Essentials (SIE)</h3>
+                            <p>The mandatory first step for anyone looking to enter the securities industry. Master
+                                market architecture, investment products, and regulatory frameworks.</p>
+                        </div>
+                        <div class="chapter-action">
+                            Access SIE Dashboard
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <!-- Series 7 Exam -->
+                    <a href="series7/index.html" class="chapter-card">
+                        <div class="ch-label">Top-Off Exam</div>
+                        <div class="chapter-content">
+                            <h3>Series 7 Top-Off</h3>
+                            <p>The General Securities Representative Exam. Dive deep into options, margin accounts,
+                                municipal securities, and advanced suitability concepts.</p>
+                        </div>
+                        <div class="chapter-action">
+                            Access Series 7 Dashboard
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section (AEO Optimized) -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Everything you need to know about HexaPrep.</p>
+                </div>
+
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>Is HexaPrep really free?</h3>
+                        <p>Yes, HexaPrep is 100% free. There are no paywalls, no hidden fees, and no account
+                            requirements to access our study guides and practice mock tests.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How realistic are the FINRA mock tests?</h3>
+                        <p>Our practice exams are highly realistic. We focus heavily on scenario-based questions that
+                            mimic the actual difficulty, distractors, and structure of the real FINRA SIE and Series 7
+                            exams.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What exams does HexaPrep cover?</h3>
+                        <p>Currently, HexaPrep provides comprehensive study materials and interactive quizzes for the
+                            Securities Industry Essentials (SIE) exam and the Series 7 General Securities Representative
+                            exam.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-logo">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    style="display:inline-block; vertical-align:middle; margin-right:4px; color: var(--primary);">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                HexaPrep
+            </div>
+            <div class="footer-links">
+                <a href="#features">Features</a>
+                <a href="sie/index.html">SIE Exam</a>
+                <a href="series7/index.html">Series 7 Exam</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 HexaPrep. A free educational resource for FINRA candidates.
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

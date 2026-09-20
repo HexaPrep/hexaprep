@@ -1,0 +1,1312 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 6: Options &amp; Investment Strategies | HexaPrep S7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #0EA5E9;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --danger: #EF4444;
+      --danger-light: #FEE2E2;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --surface-hover: #334155;
+        --border: #334155;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --text-light: #94A3B8;
+        --text-dark: #0F172A;
+        --primary: #6366F1;
+        --primary-hover: #818CF8;
+        --primary-light: #312E81;
+        --warning-light: #451A03;
+        --danger-light: #450A0A;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--surface);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+    }
+
+    h3 {
+      scroll-margin-top: 80px;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    ul,
+    ol {
+      padding-left: 24px;
+      margin-bottom: 1.5em;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+      max-width: none;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(var(--surface), 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 0;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .back-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      margin-left: 24px;
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumbs a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--text-main);
+    }
+
+    .breadcrumb-sep {
+      color: var(--border);
+    }
+
+    /* Dropdown */
+    .chapter-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .chapter-dropdown>a {
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .chapter-dropdown>a:hover {
+      background: var(--surface-hover);
+    }
+
+    .chapter-dropdown>a svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--surface);
+      min-width: 160px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      z-index: 200;
+      padding: 8px 0;
+      margin-top: 4px;
+    }
+
+    .dropdown-content a {
+      color: var(--text-main);
+      padding: 8px 16px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--surface-hover);
+      color: var(--primary);
+    }
+
+    .chapter-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Grid */
+    .main-wrapper {
+      margin-left: 300px;
+      display: flex;
+      flex: 1;
+      margin-top: 64px;
+      justify-content: flex-start;
+      width: calc(100% - 300px);
+    }
+
+    /* Fixed Sidebar */
+    .sidebar {
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      width: 300px;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      padding: 32px 24px;
+      z-index: 100;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    /* Table of Contents */
+    .toc-chapter-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toc-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .toc-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .toc-link.sub {
+      font-size: 13px;
+      padding: 6px 12px 6px 24px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .toc-link.sub:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 48px 100px 100px 40px;
+      max-width: none;
+      width: 100%;
+      margin: 0;
+    }
+
+    /* Hero inside content */
+    .chapter-hero {
+      margin-bottom: 56px;
+    }
+
+    .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .chapter-title {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .chapter-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: none;
+      margin-bottom: 32px;
+    }
+
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      gap: 8px;
+    }
+
+    .stat {
+      flex: 1 1 120px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      color: var(--text-main);
+      font-weight: 700;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .stat .lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .lede {
+      font-size: 20px;
+      color: var(--text-main);
+      padding-left: 24px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 48px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* Section Typography */
+    .block {
+      margin-bottom: 64px;
+      scroll-margin-top: 80px;
+    }
+
+    .block h2 {
+      font-size: 32px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      margin-top: 64px;
+    }
+
+    .block h2 .num {
+      color: var(--primary);
+      margin-right: 12px;
+    }
+
+    .block h3 {
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+    }
+
+    .callout-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout.tip {
+      background: var(--success-light);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .callout.tip .callout-label {
+      color: var(--success);
+    }
+
+    .callout.tip p {
+      color: var(--text-dark);
+    }
+
+    .callout.tip p strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .callout.trap {
+      background: var(--danger-light);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .callout.trap .callout-label {
+      color: var(--danger);
+    }
+
+    .callout.trap p {
+      color: var(--text-main);
+    }
+
+    .callout.rule {
+      background: var(--surface-hover);
+      border-color: var(--border);
+    }
+
+    .callout.rule .callout-label {
+      color: var(--text-main);
+    }
+
+    .callout.rule p {
+      color: var(--text-main);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.hl {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    /* Quiz */
+    details.q {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    details.q summary {
+      padding: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-main);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.q summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.q summary::after {
+      content: "View Answer";
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 4px 12px;
+      background: var(--primary-light);
+      border-radius: 99px;
+      transition: var(--transition);
+    }
+
+    details.q[open] summary::after {
+      content: "Hide Answer";
+    }
+
+    details.q[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-answer,
+    .answer {
+      padding: 20px;
+      background: var(--surface);
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Strategy Cards */
+    .strategy-card {
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .strategy-head {
+      background: var(--bg);
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .strategy-head .sname {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .strategy-head .sbias {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .strategy-body {
+      padding: 24px;
+    }
+    .payoff-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 24px 0 32px 0;
+    }
+    .payoff-svg {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+    }
+    .payoff-line {
+      fill: none;
+      stroke: var(--primary);
+      stroke-width: 3;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+    .payoff-zero {
+      stroke: var(--border);
+      stroke-width: 2;
+      stroke-dasharray: 4 3;
+    }
+    .payoff-axis-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      fill: var(--text-muted);
+    }
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .strategy-grid .sg-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+    .strategy-grid .sg-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .strategy-grid .sg-val {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    /* Next Chapter */
+    .next-footer {
+      margin-top: 64px;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .next-footer:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .next-footer .lbl {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .next-footer .title {
+      font-size: 28px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .next-footer p {
+      margin: 0 auto;
+      opacity: 0.9;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Sticky Top Navbar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Dashboard
+        </a>
+        <div class="breadcrumbs">
+          <a href="../index.html">HexaPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Series 7</a>
+          <span class="breadcrumb-sep">/</span>
+          <div class="chapter-dropdown">
+            <a href="chapter6.html">Chapter 6
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-content">
+              <a href="chapter1.html">Chapter 1</a>
+              <a href="chapter2.html">Chapter 2</a>
+              <a href="chapter3.html">Chapter 3</a>
+              <a href="chapter4.html">Chapter 4</a>
+              <a href="chapter5.html">Chapter 5</a>
+              <a href="chapter6.html">Chapter 6</a>
+              <a href="chapter7.html">Chapter 7</a>
+              <a href="chapter8.html">Chapter 8</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      
+      <aside class="sidebar">
+        <div class="toc-chapter-title">Chapter 6:<br>Options &amp; Investment Strategies</div>
+        <div class="toc-title">In This Chapter</div>
+        <nav class="toc-nav">
+          <a href="#m61" class="toc-link active">6.1 Listed Options Fundamentals</a>
+          <a href="#m61-anatomy" class="toc-link sub">Contract anatomy</a>
+          <a href="#m61-exercise" class="toc-link sub">Exercise, assignment, and settlement</a>
+          <a href="#m61-transactions" class="toc-link sub">Opening vs. closing transactions</a>
+          <a href="#m61-premium" class="toc-link sub">Premium: intrinsic value plus time value</a>
+          <a href="#m61-occ" class="toc-link sub">Volume, open interest, and the OCC</a>
+          <a href="#m61-leaps" class="toc-link sub">LEAPS</a>
+
+          <a href="#m62" class="toc-link">6.2 Basic Hedging Strategies</a>
+          <a href="#m62-logic" class="toc-link sub">Extending logic beyond individual stocks</a>
+
+          <a href="#m63" class="toc-link">6.3 Advanced Option Strategies</a>
+          <a href="#m63-spreads" class="toc-link sub">Spreads: same option type, two strikes</a>
+          <a href="#m63-straddles" class="toc-link sub">Straddles and combinations</a>
+          <a href="#m63-uncovered" class="toc-link sub">Uncovered (naked) writing</a>
+
+          <a href="#m64" class="toc-link">6.4 Options Profit/Loss, Breakeven &amp; Taxation</a>
+          <a href="#m64-ends" class="toc-link sub">Three ways an option position ends</a>
+          <a href="#m64-sec" class="toc-link sub">Broad-based index options &amp; the §1256 rule</a>
+        </nav>
+      </aside>
+
+      <main class="content-area">
+
+        <header class="chapter-hero">
+          <span class="kicker">FINRA SERIES 7 EXAM · STUDY GUIDE</span>
+          <h1 class="chapter-title">Chapter 6 — Options &amp; Investment Strategies</h1>
+          <p class="chapter-subtitle">Every options strategy in this chapter is built from the same handful of legs — long call, short call, long put, short put — combined in different ways. Learn the contract mechanics cold first, and every strategy afterward becomes a question of "which legs, which strikes, which direction" rather than a new thing to memorize from scratch.</p>
+          <div class="stat-strip">
+            <div class="stat"><span class="num">Function 3</span><span class="lbl">FINRA function</span></div>
+            <div class="stat"><span class="num">73%</span><span class="lbl">exam weight (Ch 3-7)</span></div>
+            <div class="stat"><span class="num">4</span><span class="lbl">modules in this chapter</span></div>
+          </div>
+        </header>
+
+        <!-- ============ MODULE 6.1 ============ -->
+        <section class="block" id="m61">
+          <h2><span class="num">6.1</span>Listed Options Fundamentals</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Contract specifications and adjustments</li>
+              <li>Dividends, exercise/assignment, and settlement date</li>
+              <li>Opening and closing transactions</li>
+              <li>Premium, intrinsic value, and time value</li>
+              <li>Volume, open interest, position limits, exercise limits</li>
+              <li>The Options Clearing Corporation (OCC)</li>
+              <li>American-style vs. European-style options; LEAPS</li>
+            </ul>
+          </div>
+
+          <h3 id="m61-anatomy">Contract anatomy</h3>
+          <p>A standard listed equity option controls <strong>100 shares</strong> of the underlying stock. A <strong>call</strong> gives its owner the right to <em>buy</em> those 100 shares at the strike price; a <strong>put</strong> gives its owner the right to <em>sell</em> them at the strike price. The writer (seller) of the contract takes on the opposite obligation — a call writer must be ready to deliver stock if assigned, a put writer must be ready to buy it.</p>
+
+          <p><strong>Contract adjustments:</strong> A <strong>stock split or stock dividend</strong> triggers an adjustment to outstanding option contracts to preserve their economic value — the strike price and/or number of contracts/shares deliverable is adjusted accordingly (a 2-for-1 split, for example, doubles the number of shares deliverable per contract and halves the strike price). An ordinary <strong>cash dividend</strong>, by contrast, does <em>not</em> trigger any adjustment to a standard listed option's strike price or terms at all.</p>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Common trap
+            </div>
+            <p>Students often assume a stock going ex-dividend adjusts option contracts the way a split does. It doesn't — regular cash dividends are simply priced into the option's premium by the market ahead of time (a call is worth somewhat less, a put somewhat more, heading into an ex-dividend date), but the contract's strike price and share count stay exactly the same.</p>
+          </div>
+
+          <h3 id="m61-exercise">Exercise, assignment, and settlement</h3>
+          <div class="table-wrap">
+          <table>
+            <caption>American-style vs. European-style exercise</caption>
+            <thead><tr><th>Style</th><th>When it can be exercised</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">American-style</td><td>Any time up to and including expiration — most U.S.-listed equity options</td></tr>
+              <tr><td class="hl">European-style</td><td>Only at expiration itself — common for many broad-based index options</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p>When a holder exercises, the <strong>OCC</strong> randomly assigns the exercise notice to a member firm that is short that same option series, and that firm in turn assigns one of its own customers who is short the position (using a method — typically random or FIFO — disclosed in the firm's own procedures). Once assignment happens, the resulting stock transaction settles on the standard equity settlement timeline (currently <strong>T+1</strong>) just like any regular stock trade.</p>
+
+          <h3 id="m61-transactions">Opening vs. closing transactions</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Transaction</th><th>Effect</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Buy to open</td><td>Creates a new long position</td></tr>
+              <tr><td class="hl">Sell to open</td><td>Creates a new short (written) position</td></tr>
+              <tr><td class="hl">Sell to close</td><td>Closes out an existing long position</td></tr>
+              <tr><td class="hl">Buy to close</td><td>Closes out an existing short (written) position</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m61-premium">Premium: intrinsic value plus time value</h3>
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Formula
+            </div>
+            <p><strong>Premium = Intrinsic value + Time value</strong></p>
+          </div>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Option</th><th>Intrinsic value (never less than zero)</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Call</td><td>Stock price − Strike price (if positive; otherwise zero)</td></tr>
+              <tr><td class="hl">Put</td><td>Strike price − Stock price (if positive; otherwise zero)</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example
+            </div>
+            <p>A stock trades at $54. A 50-strike call is priced at $6.00. Intrinsic value = $54 − $50 = <strong>$4.00</strong>. Time value = Premium − Intrinsic value = $6.00 − $4.00 = <strong>$2.00</strong>.</p>
+            <p><strong>Reverse example:</strong> the 55-strike put on the same stock is priced at $3.50. Intrinsic value = $55 − $54 = <strong>$1.00</strong>. Time value = $3.50 − $1.00 = <strong>$2.50</strong>.</p>
+          </div>
+          <p>Time value erodes toward zero as expiration approaches ("time decay") — at expiration, an option's premium equals its intrinsic value exactly, with no time value left at all.</p>
+
+          <h3 id="m61-occ">Volume, open interest, and the OCC</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Term</th><th>What it measures</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Volume</td><td>Number of contracts of a given series traded during a specific period (like a stock's daily volume)</td></tr>
+              <tr><td class="hl">Open interest</td><td>Number of contracts of a given series currently outstanding — not yet closed, exercised, or expired; a rough gauge of liquidity</td></tr>
+              <tr><td class="hl">Position limit</td><td>The maximum number of contracts on the same side of the market (calls owned + puts written = the "bullish" side; puts owned + calls written = the "bearish" side) an investor may hold in a given underlying, set by the exchange based on that underlying's size and trading activity</td></tr>
+              <tr><td class="hl">Exercise limit</td><td>A cap on the number of contracts that may be exercised within a specified period, generally aligned with the position limit — prevents an unmanageable wave of delivery obligations hitting the market at once</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p>The <strong>Options Clearing Corporation (OCC)</strong> issues every listed option and stands as the guaranteeing counterparty to both sides of every trade — a call buyer's real counterparty risk runs to the OCC, not to the specific individual who wrote the contract, which is what makes listed options fungible and tradable in the first place.</p>
+
+          <h3 id="m61-leaps">LEAPS</h3>
+          <p><strong>LEAPS</strong> (Long-term Equity AnticiPation Securities) are functionally identical to standard listed options in every respect except duration — they carry expirations extending out roughly up to three years, versus the much shorter cycles of standard listed options.</p>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 6.2 ============ -->
+        <section class="block" id="m62">
+          <h2><span class="num">6.2</span>Basic Hedging Strategies</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Covered writing and hedging for equity, index, foreign-currency, and yield-based options</li>
+              <li>Protective puts for equity and index options</li>
+              <li>Covered calls and put writing for equity options</li>
+            </ul>
+          </div>
+
+          <div class="strategy-card">
+            <div class="strategy-head">
+              <span class="sname">Covered call</span>
+              <span class="sbias">Neutral to moderately bullish</span>
+            </div>
+            <div class="strategy-body">
+              <p><strong>Starting position:</strong> long 100 shares of stock. <strong>Transaction:</strong> sell (write) one call against those shares. <strong>Objective:</strong> generate income from the premium and provide a small cushion against a price decline, in exchange for capping the upside.</p>
+              <div class="payoff-wrap">
+                <svg class="payoff-svg" viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg">
+                  <line class="payoff-zero" x1="20" y1="100" x2="320" y2="100"/>
+                  <polyline class="payoff-line" points="20,170 150,100 220,60 320,60"/>
+                  <text class="payoff-axis-label" x="20" y="15">Profit</text>
+                  <text class="payoff-axis-label" x="20" y="178">Loss</text>
+                  <text class="payoff-axis-label" x="270" y="178">Stock price →</text>
+                </svg>
+              </div>
+              <div class="strategy-grid">
+                <div class="sg-item"><div class="sg-label">Max gain</div><div class="sg-val">(Strike − purchase price) + premium received</div></div>
+                <div class="sg-item"><div class="sg-label">Max loss</div><div class="sg-val">Purchase price − premium received (stock to zero)</div></div>
+                <div class="sg-item"><div class="sg-label">Breakeven</div><div class="sg-val">Purchase price − premium received</div></div>
+              </div>
+              <div class="callout tip">
+                <div class="callout-label">Worked example</div>
+                <p>An investor buys stock at $48 and writes a 50-strike call for $2.00. Breakeven = $48 − $2.00 = <strong>$46</strong>. Max gain (if called away at $50) = ($50 − $48) + $2.00 = <strong>$4.00 per share</strong>. Max loss (if stock goes to zero) = $48 − $2.00 = <strong>$46 per share</strong>.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="strategy-card">
+            <div class="strategy-head">
+              <span class="sname">Protective put (married put)</span>
+              <span class="sbias">Bullish, with downside insurance</span>
+            </div>
+            <div class="strategy-body">
+              <p><strong>Starting position:</strong> long 100 shares of stock. <strong>Transaction:</strong> buy one put on the same stock. <strong>Objective:</strong> cap downside risk (like buying insurance) while keeping unlimited upside potential.</p>
+              <div class="payoff-wrap">
+                <svg class="payoff-svg" viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg">
+                  <line class="payoff-zero" x1="20" y1="100" x2="320" y2="100"/>
+                  <polyline class="payoff-line" points="20,130 150,130 200,100 320,40"/>
+                  <text class="payoff-axis-label" x="20" y="15">Profit</text>
+                  <text class="payoff-axis-label" x="20" y="178">Loss</text>
+                  <text class="payoff-axis-label" x="270" y="178">Stock price →</text>
+                </svg>
+              </div>
+              <div class="strategy-grid">
+                <div class="sg-item"><div class="sg-label">Max gain</div><div class="sg-val">Unlimited (stock price − purchase price − premium paid)</div></div>
+                <div class="sg-item"><div class="sg-label">Max loss</div><div class="sg-val">(Purchase price − strike) + premium paid</div></div>
+                <div class="sg-item"><div class="sg-label">Breakeven</div><div class="sg-val">Purchase price + premium paid</div></div>
+              </div>
+              <div class="callout tip">
+                <div class="callout-label">Worked example</div>
+                <p>An investor buys stock at $48 and buys a 45-strike put for $1.50. Breakeven = $48 + $1.50 = <strong>$49.50</strong>. Max loss = ($48 − $45) + $1.50 = <strong>$4.50 per share</strong> — the investor's "deductible" plus the cost of the insurance. Max gain remains <strong>unlimited</strong> above breakeven.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="strategy-card">
+            <div class="strategy-head">
+              <span class="sname">Cash-secured put writing</span>
+              <span class="sbias">Neutral to bullish</span>
+            </div>
+            <div class="strategy-body">
+              <p><strong>Starting position:</strong> cash set aside equal to the purchase obligation. <strong>Transaction:</strong> sell (write) a put. <strong>Objective:</strong> earn premium income, with a willingness to buy the stock at an effective discount (strike minus premium) if assigned.</p>
+              <div class="strategy-grid">
+                <div class="sg-item"><div class="sg-label">Max gain</div><div class="sg-val">Premium received (put expires worthless)</div></div>
+                <div class="sg-item"><div class="sg-label">Max loss</div><div class="sg-val">Strike price − premium received (stock to zero)</div></div>
+                <div class="sg-item"><div class="sg-label">Breakeven</div><div class="sg-val">Strike price − premium received</div></div>
+              </div>
+              <div class="callout tip">
+                <div class="callout-label">Worked example</div>
+                <p>An investor writes a 40-strike put for $2.00, with $4,000 in cash set aside. Breakeven = $40 − $2.00 = <strong>$38</strong>. If assigned, the effective purchase price is $38/share — a discount to today's market price. Max loss if the stock went to zero = $40 − $2.00 = <strong>$38 per share</strong>.</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="m62-logic">Extending the same logic beyond individual stocks</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Underlying</th><th>What's being hedged</th><th>Key nuance</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Broad-based index options</td><td>An entire diversified portfolio, in one trade, instead of hedging each individual stock separately</td><td>Cash-settled — there's no physical delivery of a basket of stocks; the holder receives (or pays) the cash difference between the index level and the strike</td></tr>
+              <tr><td class="hl">Foreign-currency options</td><td>An investor or business with foreign-currency-denominated assets, receivables, or payables</td><td>Protects against adverse currency movements the same way an equity put protects against a stock decline</td></tr>
+              <tr><td class="hl">Yield-based (interest rate) options</td><td>A bond portfolio's exposure to interest-rate movements</td><td>Settles based on the level of a <em>yield</em>, not a price — which inverts the usual intuition: a <strong>call</strong> on a yield-based option gains value as <em>yields rise</em>, and a <strong>put</strong> gains value as <em>yields fall</em> (the opposite of how calls/puts behave on a price-based instrument)</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Common trap
+            </div>
+            <p>Yield-based options are the single most common place students misapply the standard "calls up, puts down" intuition. Because the option is based on the <em>yield level itself</em> rather than a bond's price, and yield moves inversely to price, a yield-based call is effectively a bet that rates will <strong>rise</strong> — the opposite direction from what a call on a bond's price would represent.</p>
+          </div>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 6.3 ============ -->
+        <section class="block" id="m63">
+          <h2><span class="num">6.3</span>Advanced Option Strategies</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Spreads, straddles, combinations, and uncovered writing</li>
+              <li>Long/debit and short/credit spreads</li>
+              <li>Straddle/combination strategies for equity and index options</li>
+              <li>Uncovered (naked) call or put writing for equity, index, and yield-based options</li>
+            </ul>
+          </div>
+
+          <h3 id="m63-spreads">Spreads: same option type, two strikes</h3>
+          <p>A <strong>vertical spread</strong> buys one option and sells another option of the <em>same type</em> (both calls, or both puts) on the same underlying, with the same expiration but different strikes. Whether it's a debit or credit spread depends entirely on which leg costs more.</p>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Spread</th><th>Legs</th><th>Bias</th><th>Net</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Bull call spread</td><td>Buy lower-strike call, sell higher-strike call</td><td>Bullish</td><td>Debit</td></tr>
+              <tr><td class="hl">Bear call spread</td><td>Sell lower-strike call, buy higher-strike call</td><td>Bearish</td><td>Credit</td></tr>
+              <tr><td class="hl">Bull put spread</td><td>Sell higher-strike put, buy lower-strike put</td><td>Bullish</td><td>Credit</td></tr>
+              <tr><td class="hl">Bear put spread</td><td>Buy higher-strike put, sell lower-strike put</td><td>Bearish</td><td>Debit</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="strategy-card">
+            <div class="strategy-head">
+              <span class="sname">Bull call spread (debit spread)</span>
+              <span class="sbias">Bullish, limited risk / limited reward</span>
+            </div>
+            <div class="strategy-body">
+              <div class="payoff-wrap">
+                <svg class="payoff-svg" viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg">
+                  <line class="payoff-zero" x1="20" y1="100" x2="320" y2="100"/>
+                  <polyline class="payoff-line" points="20,130 120,130 220,70 320,70"/>
+                  <text class="payoff-axis-label" x="20" y="15">Profit</text>
+                  <text class="payoff-axis-label" x="20" y="178">Loss</text>
+                  <text class="payoff-axis-label" x="270" y="178">Stock price →</text>
+                </svg>
+              </div>
+              <div class="strategy-grid">
+                <div class="sg-item"><div class="sg-label">Max gain</div><div class="sg-val">(Strike difference) − net debit</div></div>
+                <div class="sg-item"><div class="sg-label">Max loss</div><div class="sg-val">Net debit paid</div></div>
+                <div class="sg-item"><div class="sg-label">Breakeven</div><div class="sg-val">Lower strike + net debit</div></div>
+              </div>
+              <div class="callout tip">
+                <div class="callout-label">Worked example</div>
+                <p>Buy the 50-call for $4.00, sell the 55-call for $1.50. Net debit = $4.00 − $1.50 = <strong>$2.50</strong>. Strike difference = $5.00. Max gain = $5.00 − $2.50 = <strong>$2.50</strong>. Max loss = <strong>$2.50</strong> (the net debit). Breakeven = $50 + $2.50 = <strong>$52.50</strong>.</p>
+                <p><strong>Reverse example:</strong> if the strikes were $50/$60 instead (a wider spread) for the same $2.50 net debit, max gain would rise to $10.00 − $2.50 = <strong>$7.50</strong> — a wider spread increases the potential reward for the same cost, though typically at a higher net debit in practice.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Common trap
+            </div>
+            <p>For <em>any</em> vertical spread — debit or credit — max gain and max loss always add up to exactly the strike difference. If a question gives you the strike difference and one of the two figures, you can always solve for the other without a separate formula for every spread type.</p>
+          </div>
+
+          <h3 id="m63-straddles">Straddles and combinations</h3>
+          <p>A <strong>straddle</strong> combines a call and a put on the <em>same</em> underlying, <em>same</em> strike, <em>same</em> expiration. A <strong>combination</strong> is the same basic idea using different strikes and/or expirations for the two legs, which widens or narrows the strategy's profit zone.</p>
+
+          <div class="strategy-card">
+            <div class="strategy-head">
+              <span class="sname">Long straddle</span>
+              <span class="sbias">Volatility bet — big move, either direction</span>
+            </div>
+            <div class="strategy-body">
+              <p><strong>Transaction:</strong> buy one call and one put, same strike, same expiration. <strong>Objective:</strong> profit from a large price swing in <em>either</em> direction — the investor doesn't need to know which way, just that it will move a lot.</p>
+              <div class="payoff-wrap">
+                <svg class="payoff-svg" viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg">
+                  <line class="payoff-zero" x1="20" y1="100" x2="320" y2="100"/>
+                  <polyline class="payoff-line" points="20,50 170,150 320,50"/>
+                  <text class="payoff-axis-label" x="20" y="15">Profit</text>
+                  <text class="payoff-axis-label" x="150" y="178">Loss</text>
+                  <text class="payoff-axis-label" x="270" y="30">Stock price →</text>
+                </svg>
+              </div>
+              <div class="strategy-grid">
+                <div class="sg-item"><div class="sg-label">Max gain</div><div class="sg-val">Unlimited on the upside; substantial on the downside</div></div>
+                <div class="sg-item"><div class="sg-label">Max loss</div><div class="sg-val">Total premium paid (both legs), if stock finishes exactly at the strike</div></div>
+                <div class="sg-item"><div class="sg-label">Breakeven</div><div class="sg-val">Two points: Strike + total premium, and Strike − total premium</div></div>
+              </div>
+              <div class="callout tip">
+                <div class="callout-label">Worked example</div>
+                <p>Buy the 50-call for $3.00 and the 50-put for $2.50. Total premium = <strong>$5.50</strong>. Upper breakeven = $50 + $5.50 = <strong>$55.50</strong>. Lower breakeven = $50 − $5.50 = <strong>$44.50</strong>. Max loss (stock finishes exactly at $50) = <strong>$5.50</strong> — both options expire worthless.</p>
+              </div>
+            </div>
+          </div>
+
+          <p>A <strong>short straddle</strong> is the mirror image — sell the call and the put instead — betting the stock stays <em>close</em> to the strike. Max gain becomes the total premium received (capped), and max loss becomes unlimited on the upside and substantial on the downside, with the same two breakeven points.</p>
+
+          <h3 id="m63-uncovered">Uncovered (naked) writing</h3>
+          <p>Writing a call or put with no offsetting stock or option position to cover it is the highest-risk category of option strategy — the writer is fully exposed if the market moves against them.</p>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>Naked (uncovered) call write</th><th>Naked (uncovered) put write</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Max gain</td><td>Premium received</td><td>Premium received</td></tr>
+              <tr><td class="hl">Max loss</td><td><strong>Unlimited</strong> — the stock price can rise indefinitely</td><td>Substantial, but <strong>not literally unlimited</strong> — capped by the stock price falling to zero (Strike − premium received)</td></tr>
+              <tr><td class="hl">Breakeven</td><td>Strike + premium received</td><td>Strike − premium received</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Common trap
+            </div>
+            <p>Students frequently label naked put writing as carrying "unlimited" risk the same way a naked call does. It doesn't — a stock's price is bounded at zero, so a naked put's worst case is mathematically finite (strike price minus premium received, per share), even though it can still be a very large loss. Only naked calls carry genuinely unlimited loss potential, because a stock's price has no theoretical ceiling.</p>
+          </div>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 6.4 ============ -->
+        <section class="block" id="m64">
+          <h2><span class="num">6.4</span>Options Profit/Loss, Breakeven &amp; Taxation</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Profit/loss calculations, breakeven points, and position economics</li>
+              <li>Tax treatment of equity, index, foreign-currency, and yield-based option transactions</li>
+            </ul>
+          </div>
+
+          <p class="lede">Every strategy in this chapter reduces to the same underlying accounting: what did each leg cost or pay, what happened to the position (exercised, assigned, expired, or closed), and what's the resulting P/L? This module ties that accounting to its tax consequences.</p>
+
+          <h3 id="m64-ends">Three ways an option position ends</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Outcome</th><th>Holder (long)</th><th>Writer (short)</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Call exercised</td><td>Premium paid is added to the cost basis of the stock now purchased</td><td>Premium received is added to the proceeds from the stock now sold/delivered</td></tr>
+              <tr><td class="hl">Put exercised</td><td>Premium paid reduces the proceeds realized from the stock now sold</td><td>Premium received reduces the cost basis of the stock now purchased</td></tr>
+              <tr><td class="hl">Expires unexercised</td><td>Premium paid becomes a capital <em>loss</em> in the year of expiration — short-term or long-term based on how long the option itself was held</td><td>Premium received becomes a <em>short-term</em> capital gain in the year of expiration, regardless of how long the option was held</td></tr>
+              <tr><td class="hl">Closed out (opposite trade before expiration)</td><td>Capital gain/loss = premium received − premium paid on the closing trade; character (short/long-term) follows the option's own holding period</td><td>Same net premium calculation; a writer's closing transaction gain/loss is treated as short-term</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example — walking one contract through to P/L
+            </div>
+            <p>An investor buys one 50-call for $3.00 ($300 total). The stock rises to $58 at expiration and the investor exercises, buying 100 shares at $50. Cost basis in the stock = $50 (strike) + $3.00 (premium) = <strong>$53/share</strong>. If the investor immediately sells the stock at $58, the gain = $58 − $53 = <strong>$5.00/share, or $500 total</strong> — a short-term gain if the stock itself was just acquired via exercise.</p>
+            <p><strong>Reverse example:</strong> if instead the stock finished at $47 and the call expired worthless, the investor's loss is simply the <strong>$300 premium paid</strong>, recognized as a capital loss in the year of expiration.</p>
+          </div>
+
+          <h3 id="m64-sec">Broad-based index options &amp; the §1256 rule</h3>
+          <p>Because broad-based index options are cash-settled and represent an entire market rather than a single stock, the tax code treats them differently. Under <strong>Section 1256</strong>, any gain or loss from a broad-based index option (like an S&amp;P 500 option) is automatically taxed as <strong>60% long-term and 40% short-term</strong>, no matter how briefly the option was held. Furthermore, these options are "marked to market" at year-end, meaning any open positions are treated as if they were sold at their year-end value, triggering that 60/40 tax even without an actual closing trade.</p>
+          <p>Certain <strong>foreign-currency options</strong> traded on a qualified exchange in specified major currencies can also qualify for this same §1256 60/40 treatment. <strong>Yield-based (interest rate) options</strong> are generally taxed under the same standard rules that apply to equity options (the exercised/expired/closed framework above), rather than automatically receiving 60/40 treatment.</p>
+
+          <div class="callout tip">
+            <div class="callout-label">Scenario</div>
+            <p>An investor buys a broad-based, cash-settled index call option and closes it out three weeks later for a $2,000 gain.</p>
+          </div>
+          <details class="q">
+            <summary>How is this gain taxed?</summary>
+            <div class="answer">Under the <strong>§1256 60/40 rule</strong>: 60% of the $2,000 gain ($1,200) is treated as <strong>long-term</strong> capital gain, and 40% ($800) as <strong>short-term</strong> capital gain — even though the position was actually held only three weeks, which would normally make the entire gain short-term for an ordinary equity option.</div>
+          </details>
+
+
+
+        </section>
+
+        <a href="chapter7.html" class="next-footer">
+          <span class="lbl">Up next</span>
+          <div class="title">Chapter 7: Direct Participation Programs &amp; Alternative Investments</div>
+          <p>Function 3 — Learn about limited partnerships, REITs, hedge funds, and the tax implications of passive investments.</p>
+        </a>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Add active state to TOC links on scroll
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-link').forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px" });
+
+      document.querySelectorAll('section.block, h3[id]').forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+
+</body>
+</html>

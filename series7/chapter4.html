@@ -1,0 +1,1278 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 4: Debt Securities &amp; Fixed-Income Analysis | HexaPrep S7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #0EA5E9;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --danger: #EF4444;
+      --danger-light: #FEE2E2;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --surface-hover: #334155;
+        --border: #334155;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --text-light: #94A3B8;
+        --text-dark: #0F172A;
+        --primary: #6366F1;
+        --primary-hover: #818CF8;
+        --primary-light: #312E81;
+        --warning-light: #451A03;
+        --danger-light: #450A0A;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--surface);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+    }
+
+    h3 {
+      scroll-margin-top: 80px;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    ul,
+    ol {
+      padding-left: 24px;
+      margin-bottom: 1.5em;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+      max-width: none;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(var(--surface), 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 0;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .back-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      margin-left: 24px;
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumbs a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--text-main);
+    }
+
+    .breadcrumb-sep {
+      color: var(--border);
+    }
+
+    /* Dropdown */
+    .chapter-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .chapter-dropdown>a {
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .chapter-dropdown>a:hover {
+      background: var(--surface-hover);
+    }
+
+    .chapter-dropdown>a svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--surface);
+      min-width: 160px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      z-index: 200;
+      padding: 8px 0;
+      margin-top: 4px;
+    }
+
+    .dropdown-content a {
+      color: var(--text-main);
+      padding: 8px 16px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--surface-hover);
+      color: var(--primary);
+    }
+
+    .chapter-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Grid */
+    .main-wrapper {
+      margin-left: 300px;
+      display: flex;
+      flex: 1;
+      margin-top: 64px;
+      justify-content: flex-start;
+      width: calc(100% - 300px);
+    }
+
+    /* Fixed Sidebar */
+    .sidebar {
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      width: 300px;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      padding: 32px 24px;
+      z-index: 100;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    /* Table of Contents */
+    .toc-chapter-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toc-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .toc-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .toc-link.sub {
+      font-size: 13px;
+      padding: 6px 12px 6px 24px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .toc-link.sub:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 48px 100px 100px 40px;
+      max-width: none;
+      width: 100%;
+      margin: 0;
+    }
+
+    /* Hero inside content */
+    .chapter-hero {
+      margin-bottom: 56px;
+    }
+
+    .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .chapter-title {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .chapter-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: none;
+      margin-bottom: 32px;
+    }
+
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      gap: 8px;
+    }
+
+    .stat {
+      flex: 1 1 120px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      color: var(--text-main);
+      font-weight: 700;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .stat .lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .lede {
+      font-size: 20px;
+      color: var(--text-main);
+      padding-left: 24px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 48px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* Section Typography */
+    .block {
+      margin-bottom: 64px;
+      scroll-margin-top: 80px;
+    }
+
+    .block h2 {
+      font-size: 32px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      margin-top: 64px;
+    }
+
+    .block h2 .num {
+      color: var(--primary);
+      margin-right: 12px;
+    }
+
+    .block h3 {
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+    }
+
+    .callout-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout.tip {
+      background: var(--success-light);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .callout.tip .callout-label {
+      color: var(--success);
+    }
+
+    .callout.tip p {
+      color: var(--text-dark);
+    }
+
+    .callout.tip p strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .callout.trap {
+      background: var(--danger-light);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .callout.trap .callout-label {
+      color: var(--danger);
+    }
+
+    .callout.trap p {
+      color: var(--text-main);
+    }
+
+    .callout.rule {
+      background: var(--surface-hover);
+      border-color: var(--border);
+    }
+
+    .callout.rule .callout-label {
+      color: var(--text-main);
+    }
+
+    .callout.rule p {
+      color: var(--text-main);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.hl {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    /* Quiz */
+    details.q {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    details.q summary {
+      padding: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-main);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.q summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.q summary::after {
+      content: "View Answer";
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 4px 12px;
+      background: var(--primary-light);
+      border-radius: 99px;
+      transition: var(--transition);
+    }
+
+    details.q[open] summary::after {
+      content: "Hide Answer";
+    }
+
+    details.q[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-answer,
+    .answer {
+      padding: 20px;
+      background: var(--surface);
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Next Chapter */
+    .next-footer {
+      margin-top: 64px;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .next-footer:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .next-footer .lbl {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .next-footer .title {
+      font-size: 28px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .next-footer p {
+      margin: 0 auto;
+      opacity: 0.9;
+      font-size: 16px;
+    }
+
+    /* Waterfall alternative */
+    .waterfall-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .wf-tier {
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .wf-tier .wf-name {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text-main);
+      min-width: 180px;
+    }
+
+    .wf-tier .wf-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      flex: 1 1 260px;
+    }
+
+    .wf-tier.senior {
+      border-left: 4px solid var(--success);
+    }
+    .wf-tier.mezz {
+      border-left: 4px solid var(--warning);
+    }
+    .wf-tier.equity {
+      border-left: 4px solid var(--danger);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Sticky Top Navbar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Dashboard
+        </a>
+        <div class="breadcrumbs">
+          <a href="../index.html">HexaPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Series 7</a>
+          <span class="breadcrumb-sep">/</span>
+          <div class="chapter-dropdown">
+            <a href="chapter4.html">Chapter 4
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-content">
+              <a href="chapter1.html">Chapter 1</a>
+              <a href="chapter2.html">Chapter 2</a>
+              <a href="chapter3.html">Chapter 3</a>
+              <a href="chapter4.html">Chapter 4</a>
+              <a href="chapter5.html">Chapter 5</a>
+              <a href="chapter6.html">Chapter 6</a>
+              <a href="chapter7.html">Chapter 7</a>
+              <a href="chapter8.html">Chapter 8</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      
+      <aside class="sidebar">
+        <div class="toc-chapter-title">Chapter 4:<br>Debt Securities &amp; Fixed-Income Analysis</div>
+        <div class="toc-title">In This Chapter</div>
+        <nav class="toc-nav">
+          <a href="#m41" class="toc-link active">4.1 Debt Fundamentals, Yields &amp; Ratings</a>
+          <a href="#m41-money" class="toc-link sub">Money-market &amp; short-term debt</a>
+          <a href="#m41-structured" class="toc-link sub">Structured and international debt</a>
+          <a href="#m41-price" class="toc-link sub">The price/yield relationship</a>
+          <a href="#m41-hierarchy" class="toc-link sub">The yield hierarchy</a>
+          <a href="#m41-ratings" class="toc-link sub">Bond ratings</a>
+          <a href="#m41-tax" class="toc-link sub">Tax treatment: discount &amp; premium</a>
+
+          <a href="#m42" class="toc-link">4.2 Corporate &amp; Convertible Bonds</a>
+          <a href="#m42-types" class="toc-link sub">Corporate bond types</a>
+          <a href="#m42-convertible" class="toc-link sub">Convertible bonds</a>
+          <a href="#m42-decision" class="toc-link sub">What drives the conversion decision</a>
+
+          <a href="#m43" class="toc-link">4.3 U.S. Treasury &amp; Agency Securities</a>
+          <a href="#m43-family" class="toc-link sub">The Treasury family</a>
+          <a href="#m43-agencies" class="toc-link sub">Government agencies</a>
+          <a href="#m43-passthrough" class="toc-link sub">Pass-through mechanics</a>
+          <a href="#m43-pricing" class="toc-link sub">Distribution and pricing</a>
+
+          <a href="#m44" class="toc-link">4.4 ABS, CMOs, CDOs &amp; Hedge Funds</a>
+          <a href="#m44-cmos" class="toc-link sub">CMOs: slicing a mortgage pool</a>
+          <a href="#m44-cdos" class="toc-link sub">CDOs: broader collateral</a>
+          <a href="#m44-characteristics" class="toc-link sub">Structured-product characteristics</a>
+          <a href="#m44-hedge" class="toc-link sub">Registered hedge funds</a>
+          <a href="#m44-tax" class="toc-link sub">Tax treatment of distributions</a>
+        </nav>
+      </aside>
+
+      <main class="content-area">
+
+        <header class="chapter-hero">
+          <span class="kicker">FINRA SERIES 7 EXAM · STUDY GUIDE</span>
+          <h1 class="chapter-title">Chapter 4 — Debt Securities &amp; Fixed-Income Analysis</h1>
+          <p class="chapter-subtitle">Every debt product in this chapter is a variation on one relationship: a borrower promises to pay a lender back, with interest, and that promise can be priced, rated, structured, and sliced in dozens of ways. Get the core bond mechanics — price, yield, and risk — solid first, and the specialized products stop feeling like separate topics and start feeling like the same idea wearing different clothes.</p>
+          <div class="stat-strip">
+            <div class="stat"><span class="num">Function 3</span><span class="lbl">FINRA function</span></div>
+            <div class="stat"><span class="num">73%</span><span class="lbl">exam weight (Ch 3-7)</span></div>
+            <div class="stat"><span class="num">4</span><span class="lbl">modules in this chapter</span></div>
+          </div>
+        </header>
+
+        <!-- ============ MODULE 4.1 ============ -->
+        <section class="block" id="m41">
+          <h2><span class="num">4.1</span>Debt Fundamentals, Yields &amp; Bond Ratings</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Money-market instruments: commercial paper, brokered CDs, Eurodollar bonds, variable-rate preferreds</li>
+              <li>Security structure, risk/reward, and call provisions</li>
+              <li>Structured products: equity-linked securities, ETNs</li>
+              <li>Non-U.S. sovereign and corporate debt</li>
+              <li>Yield types: coupon, current yield, YTM, YTC, yield to worst, discount yield</li>
+              <li>Bond ratings</li>
+              <li>Tax treatment: OID, premiums, discounts, capital gains/losses</li>
+            </ul>
+          </div>
+
+          <h3 id="m41-money">Money-market and short-term debt instruments</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Instrument</th><th>What it is</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Commercial paper</td><td>Short-term, unsecured corporate IOU, maturing in 270 days or less (which keeps it exempt from SEC registration); typically sold at a discount to face value rather than paying periodic interest</td></tr>
+              <tr><td class="hl">Brokered CD</td><td>A bank certificate of deposit sold to investors through a broker-dealer rather than directly by the bank; remains FDIC-insured up to the standard per-depositor, per-institution limit, but — unlike a CD purchased directly from a bank — it's negotiable and can trade in a secondary market at a premium or discount to face value if the holder sells before maturity</td></tr>
+              <tr><td class="hl">Eurodollar bond/deposit</td><td>A U.S.-dollar-denominated debt instrument issued and held outside the United States; pricing and yield benchmarks for this market have shifted from LIBOR toward SOFR-based rates</td></tr>
+              <tr><td class="hl">Variable-rate preferred stock</td><td>Preferred stock whose dividend rate resets periodically against a benchmark, which dampens (but doesn't eliminate) its price sensitivity to interest-rate changes compared with a fixed-rate preferred</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m41-structured">Structured and international debt</h3>
+          <p>An <strong>equity-linked security</strong> ties its return to the performance of a stock, index, or basket of stocks rather than paying a conventional fixed coupon — some offer principal protection, others don't, and that distinction drives the entire risk profile. An <strong>ETN</strong> (exchange-traded note) tracks an index the same way many ETFs do, but structurally it is simply an <em>unsecured debt obligation</em> of the issuing bank — the ETN holder is exposed to the issuer's credit risk in a way an ETF holder (who owns a basket of actual underlying securities) is not. Non-U.S. sovereign and corporate debt adds currency risk (the bond's cash flows are in a foreign currency, or its dollar-denominated payments depend on a foreign government's or company's ability to pay) on top of ordinary credit risk.</p>
+
+          <h3 id="m41-price">The price/yield relationship</h3>
+          <p>A bond's coupon rate is fixed at issuance and never changes. Its <strong>price</strong> moves inversely with prevailing interest rates — and every yield measure beyond the coupon rate exists to answer the same question in a more refined way: <em>given what I'd actually pay for this bond today, what am I really earning?</em></p>
+
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Bond trades at...</th><th>Relationship</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Par (price = face value)</td><td>Coupon rate = current yield = YTM</td></tr>
+              <tr><td class="hl">A premium (price &gt; face value)</td><td>Coupon rate &gt; current yield &gt; YTM</td></tr>
+              <tr><td class="hl">A discount (price &lt; face value)</td><td>Coupon rate &lt; current yield &lt; YTM</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m41-hierarchy">The yield hierarchy</h3>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Formula — Current Yield
+            </div>
+            <p>Current yield = Annual interest ÷ Current market price</p>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example
+            </div>
+            <p>A 6% coupon bond ($60/year on $1,000 par) trades at $900. Current yield = $60 ÷ $900 = <strong>6.67%</strong> — higher than the 6% coupon, exactly as expected for a bond trading at a discount.</p>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Formula — Yield to maturity (approximate YTM)
+            </div>
+            <p>YTM ≈ [Annual interest + ((Face value − Price) ÷ Years to maturity)] ÷ [(Face value + Price) ÷ 2]</p>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example
+            </div>
+            <p>Same 6% ($60/year) bond, priced at $900, 10 years to maturity. YTM ≈ [$60 + (($1,000 − $900) ÷ 10)] ÷ [($1,000 + $900) ÷ 2] = [$60 + $10] ÷ $950 = $70 ÷ $950 = <strong>≈7.37%</strong> — higher again than current yield, because YTM also captures the $100 discount being "earned back" as the bond pulls to par at maturity.</p>
+            <p><strong>Reverse example:</strong> the same bond priced at a $100 <em>premium</em> ($1,100) instead: YTM ≈ [$60 + (($1,000 − $1,100) ÷ 10)] ÷ [($1,000 + $1,100) ÷ 2] = [$60 − $10] ÷ $1,050 = $50 ÷ $1,050 = <strong>≈4.76%</strong> — below the coupon, because the premium paid is being "lost" gradually as the bond pulls back down to par.</p>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Yield to call (YTC)
+            </div>
+            <p>Same formula as YTM, substituting the call price for face value and years to call for years to maturity</p>
+          </div>
+
+          <p><strong>Yield to worst</strong> is simply the lowest of a bond's YTM and every YTC calculated to each of its possible call dates — the conservative, worst-case assumption used for a callable bond, since the issuer (not the investor) controls whether and when it's called.</p>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Discount yield (used for T-bills)
+            </div>
+            <p>Discount yield = (Discount amount ÷ Face value) × (360 ÷ Days to maturity)</p>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Discount yield uses a 360-day "banker's year" and is calculated on <em>face value</em>, not purchase price — which is exactly why a T-bill's quoted discount yield is always slightly <em>lower</em> than its true investment (coupon-equivalent) yield. Don't casually treat a quoted T-bill discount yield as directly comparable to a bond's YTM without adjusting for this.</p>
+          </div>
+
+          <h3 id="m41-ratings">Bond ratings</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>Moody's</th><th>S&amp;P / Fitch</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Investment grade (lowest tier)</td><td>Baa3</td><td>BBB−</td></tr>
+              <tr><td class="hl">Below investment grade ("junk")</td><td>Ba1 and lower</td><td>BB+ and lower</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p>A bond falling below investment grade generally must offer a higher coupon to compensate investors for meaningfully greater default risk.</p>
+
+          <h3 id="m41-tax">Tax treatment: discount and premium bonds</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>Original issue discount (OID)</th><th>Bond premium</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Situation</td><td>Bond is issued below face value</td><td>Bond is purchased above face value</td></tr>
+              <tr><td class="hl">Tax treatment</td><td>The discount accretes (accrues) annually and is taxed as ordinary income each year — even though no cash is received until maturity ("phantom income")</td><td>The premium may be amortized over the bond's remaining life, which reduces the taxable interest income reported each year</td></tr>
+              <tr><td class="hl">Effect on cost basis</td><td>Basis increases each year by the amount accreted</td><td>Basis decreases each year by the amount amortized</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 4.2 ============ -->
+        <section class="block" id="m42">
+          <h2><span class="num">4.2</span>Corporate &amp; Convertible Bonds</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Corporate bond types: mortgage bonds, equipment trust certificates, debentures, step-coupon, zero-coupon, convertible, high-yield, income bonds</li>
+              <li>Convertible bonds: conversion privilege, ratio/price, parity, arbitrage, conversion factors</li>
+            </ul>
+          </div>
+
+          <h3 id="m42-types">Corporate bond types, by capital-structure priority</h3>
+          <p class="lede">In a liquidation, every corporate bond type falls somewhere on a single ladder — the more specifically a bond is secured, the higher its claim, and the more junior a claim, the higher the coupon needs to be to compensate for that added risk.</p>
+          
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Type</th><th>What backs it</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Mortgage bond</td><td>Secured by a lien on the issuer's real property</td></tr>
+              <tr><td class="hl">Equipment trust certificate</td><td>Secured by specific equipment (classically railroad cars, aircraft) — the equipment itself is collateral</td></tr>
+              <tr><td class="hl">Debenture</td><td>Unsecured — backed only by the issuer's general credit and earning power</td></tr>
+              <tr><td class="hl">Subordinated debenture</td><td>Unsecured, and explicitly ranked <em>behind</em> ordinary debentures and other general creditors in a liquidation</td></tr>
+              <tr><td class="hl">Income (adjustment) bond</td><td>Interest is paid only if the company has sufficient earnings to pay it — typically issued in a corporate reorganization; highly speculative</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <p>Layered on top of that priority structure are coupon-design variations: <strong>zero-coupon bonds</strong> (issued at a deep discount, pay no periodic interest, and generate OID phantom income annually — Module 4.1), <strong>step-coupon bonds</strong> (the coupon rate increases at preset intervals over the bond's life), and <strong>high-yield ("junk") bonds</strong> (below investment grade, compensating for default risk with a higher coupon).</p>
+
+          <h3 id="m42-convertible">Convertible bonds — the conversion chain</h3>
+          <p>A convertible bond gives the holder the right to exchange the bond for a fixed number of common shares. Because that conversion feature has value on its own, convertible bonds typically carry a <em>lower</em> coupon than an otherwise-comparable non-convertible bond from the same issuer.</p>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Key Formulas
+            </div>
+            <p><strong>Conversion ratio</strong> = Par value ÷ Conversion price</p>
+            <p><strong>Parity price of the bond</strong> = Conversion ratio × Market price of common stock</p>
+            <p><strong>Parity price of the stock</strong> = Market price of bond ÷ Conversion ratio</p>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example — the full chain
+            </div>
+            <p>A $1,000 par convertible bond has a conversion price of $40. Conversion ratio = $1,000 ÷ $40 = <strong>25 shares</strong>. If the common stock is trading at $38, parity price of the bond = 25 × $38 = <strong>$950</strong> — meaning the bond "should" trade around $950 based purely on its conversion value (it may trade somewhat above that floor for its bond-like income/safety value too). If instead the bond itself is quoted at $1,020, parity price of the stock = $1,020 ÷ 25 = <strong>$40.80</strong> — the stock price the market is implicitly assuming through the bond's price.</p>
+          </div>
+
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Arbitrage — when the chain breaks
+            </div>
+            <p>If the bond trades meaningfully <em>below</em> parity (cheap relative to the stock), an arbitrageur can buy the bond, convert it into shares, and sell those shares immediately for a profit — pure market mechanics tend to close this gap quickly. If the stock trades cheap relative to the bond instead, the reverse trade (short the bond's implied stock exposure) becomes attractive. Either direction, arbitrage activity is exactly what keeps a convertible's market price anchored close to parity.</p>
+          </div>
+
+          <h3 id="m42-decision">What drives the conversion decision</h3>
+          <ul>
+            <li><strong>Stock price vs. conversion price</strong> — conversion only makes economic sense once the stock is trading above the conversion price (in-the-money).</li>
+            <li><strong>Callability</strong> — an issuer can force conversion by calling the bond when the stock price is high enough that holders will rationally convert rather than accept the (lower) call price in cash — a classic "forced conversion."</li>
+            <li><strong>Income comparison</strong> — a holder weighs the bond's coupon income against the dividend they'd receive by holding the converted shares instead.</li>
+          </ul>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 4.3 ============ -->
+        <section class="block" id="m43">
+          <h2><span class="num">4.3</span>U.S. Treasury &amp; Government Agency Securities</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Treasury bills, notes, bonds; STRIPS and TIPS</li>
+              <li>Maturities, denominations, interest payment characteristics</li>
+              <li>Government agencies: Ginnie Mae, Fannie Mae, Freddie Mac, Sallie Mae</li>
+              <li>Primary dealers, distribution, pass-through mechanics, quotations, spread and pricing</li>
+            </ul>
+          </div>
+
+          <h3 id="m43-family">The Treasury family</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Security</th><th>Maturity</th><th>Interest</th><th>Quoted</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Treasury bill</td><td>One year or less</td><td>None — issued at a discount, matures at par</td><td>On a discount-yield basis</td></tr>
+              <tr><td class="hl">Treasury note</td><td>2–10 years</td><td>Fixed, paid semiannually</td><td>In points and 32nds of par</td></tr>
+              <tr><td class="hl">Treasury bond</td><td>More than 10 years (up to 30)</td><td>Fixed, paid semiannually</td><td>In points and 32nds of par</td></tr>
+              <tr><td class="hl">STRIPS</td><td>Varies — created by separating a note/bond's payments into individual zero-coupon pieces</td><td>None — sold at a deep discount; each piece generates annual OID phantom income despite paying no current cash</td><td>As a zero-coupon instrument</td></tr>
+              <tr><td class="hl">TIPS</td><td>Available across various maturities</td><td>Fixed coupon rate, but applied to a principal balance that adjusts with the CPI (inflation)</td><td>Real (inflation-adjusted) yield basis</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>A TIPS bond's principal adjustment for inflation is itself taxable in the year it occurs — as ordinary income — even though the investor doesn't actually receive that increased principal until the bond matures or is sold. This is the same "phantom income" idea as OID, applied to inflation adjustments instead of an issue discount.</p>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Reading a Treasury note/bond quote
+            </div>
+            <p>A quote of 98-16 means 98 and 16/32nds of par = 98.50% of face value.<br>
+            On a $1,000 bond: 98.50% × $1,000 = <strong>$985.00</strong></p>
+          </div>
+
+          <h3 id="m43-agencies">Government agencies</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Agency</th><th>Status</th><th>Primary role</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Ginnie Mae (GNMA)</td><td>A government-owned corporation, backed by the full faith and credit of the U.S. government</td><td>Guarantees mortgage-backed pass-through securities built from government-insured/guaranteed mortgages (FHA/VA loans)</td></tr>
+              <tr><td class="hl">Fannie Mae (FNMA)</td><td>A publicly traded, government-sponsored enterprise (GSE) — not backed by the full faith and credit of the U.S. government</td><td>Buys mortgages from lenders and issues its own mortgage-backed securities and debt in the secondary mortgage market</td></tr>
+              <tr><td class="hl">Freddie Mac (FHLMC)</td><td>A publicly traded GSE, structurally similar to Fannie Mae</td><td>Also purchases mortgages and issues mortgage-backed securities in the secondary market</td></tr>
+              <tr><td class="hl">Sallie Mae (SLMA)</td><td>Historically a GSE, now a fully private company</td><td>Historically associated with financing and servicing federal student loans</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Only Ginnie Mae carries the full faith and credit backing of the U.S. government. Fannie Mae and Freddie Mac securities carry strong implied (not guaranteed) government support, which matters for both credit-risk and tax questions: unlike direct Treasury securities, agency pass-through interest is generally subject to federal, state, <em>and</em> local income tax — Treasuries are exempt from state and local tax, agencies typically are not.</p>
+          </div>
+
+          <h3 id="m43-passthrough">Pass-through mechanics</h3>
+          <p>A mortgage pass-through security collects the principal and interest payments from a pool of underlying mortgages and passes them through to investors as a single blended monthly payment — a structural difference from a conventional bond's separate, predictable interest-only coupon payments plus one lump-sum principal repayment at maturity. This creates two risks unique to pass-throughs:</p>
+          <ul>
+            <li><strong>Prepayment risk</strong> — when rates fall, homeowners refinance and pay off mortgages early, returning the investor's principal sooner than expected (and forcing reinvestment at the new, lower rates).</li>
+            <li><strong>Extension risk</strong> — when rates rise, prepayments slow down, stretching the security's effective maturity out longer than expected.</li>
+          </ul>
+
+          <h3 id="m43-pricing">Distribution and pricing</h3>
+          <p>Treasury securities are distributed through regular auctions (competitive and non-competitive bids) via a network of primary dealers, with no underwriting spread the way a corporate bond issue has. Agency securities are typically priced relative to a comparable-maturity Treasury, with the difference expressed as a <strong>yield spread</strong> in basis points — a wider spread signals the market is pricing in more credit or liquidity risk relative to the "risk-free" Treasury benchmark.</p>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 4.4 ============ -->
+        <section class="block" id="m44">
+          <h2><span class="num">4.4</span>ABS, CMOs, CDOs &amp; Registered Hedge Funds</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>CMOs and CDOs: structure and cash-flow priority</li>
+              <li>Structured-product characteristics: indenture, ownership form, interest periods, priority of claim, call provisions</li>
+              <li>Registered hedge funds/fund of funds: private placements, Investment Company Act exemptions, blind pools</li>
+              <li>Hedge fund characteristics: liquidity, disclosure, lock-ups, fees</li>
+              <li>Tax treatment of distributions</li>
+            </ul>
+          </div>
+
+          <p class="lede">Both products in this module take a pool of underlying assets and slice the cash flows into pieces with different risk levels — the entire point is to start with collateral and cash-flow priority, then build up.</p>
+
+          <h3 id="m44-cmos">CMOs: slicing a mortgage pool</h3>
+          <p>A collateralized mortgage obligation takes a pool of mortgage pass-through securities and divides the cash flows into <strong>tranches</strong> — each with a different priority claim on principal repayment, which is how a CMO redistributes prepayment risk rather than eliminating it.</p>
+
+          <div class="waterfall-stack">
+            <div class="wf-tier senior">
+              <div class="wf-name">Sequential-pay tranches</div>
+              <div class="wf-desc">All tranches receive interest, but principal is paid to the earliest tranche first, in full, before the next tranche receives any principal at all — giving earlier tranches more predictable, shorter effective maturities.</div>
+            </div>
+            <div class="wf-tier mezz">
+              <div class="wf-name">PAC tranche</div>
+              <div class="wf-desc">Planned Amortization Class — designed to receive a stable, predictable principal schedule within a defined prepayment-speed range, by shifting excess prepayment variability onto the companion/support tranche instead.</div>
+            </div>
+            <div class="wf-tier equity">
+              <div class="wf-name">Z-tranche (accrual bond)</div>
+              <div class="wf-desc">Receives no cash payments at all — interest accrues and compounds onto the balance — until every other tranche in the structure has been fully retired, at which point it begins receiving large payments.</div>
+            </div>
+          </div>
+
+          <h3 id="m44-cdos">CDOs: the same idea, broader collateral</h3>
+          <p>A collateralized debt obligation applies the same tranching logic to a broader mix of debt instruments — corporate bonds, loans, or other asset-backed securities, not just residential mortgages. Tranches are typically labeled by seniority:</p>
+
+          <div class="waterfall-stack">
+            <div class="wf-tier senior">
+              <div class="wf-name">Senior tranche</div>
+              <div class="wf-desc">First claim on cash flows, last to absorb losses — lowest risk, lowest yield.</div>
+            </div>
+            <div class="wf-tier mezz">
+              <div class="wf-name">Mezzanine tranche</div>
+              <div class="wf-desc">Subordinate to senior, senior to equity — middle risk, middle yield.</div>
+            </div>
+            <div class="wf-tier equity">
+              <div class="wf-name">Equity tranche</div>
+              <div class="wf-desc">Absorbs the first losses in the pool but also captures the highest potential return — the riskiest slice of the structure.</div>
+            </div>
+          </div>
+
+          <h3 id="m44-characteristics">Structured-product characteristics</h3>
+          <p>Across both CMOs and CDOs, the same set of structural details defines each tranche: its governing <strong>indenture</strong> (the contract spelling out payment terms and priority), <strong>ownership form</strong> (almost always book-entry today), <strong>interest-payment periods</strong> (often monthly for CMOs, matching the underlying mortgage payment cycle, rather than the semiannual convention common to corporate/Treasury bonds), <strong>accrued interest</strong> conventions, the underlying <strong>collateral type</strong>, and — the single most important variable for pricing and risk — each tranche's <strong>priority of claim</strong> in the payment waterfall.</p>
+
+          <h3 id="m44-hedge">Registered hedge funds</h3>
+          <p>Most hedge funds avoid registering as investment companies under the Investment Company Act of 1940 by relying on an exemption — commonly limiting the fund to fewer than 100 investors, or restricting investors to "qualified purchasers" who meet a higher wealth threshold than an ordinary accredited investor. A <strong>registered</strong> hedge-fund-like vehicle (some fund-of-funds and interval-fund structures) instead registers under the '40 Act while still pursuing alternative strategies — trading standard mutual-fund-style disclosure and liquidity requirements for broader investor access. A <strong>blind pool (blank check)</strong> offering raises capital before the sponsor has identified specific investments, handing the sponsor broad discretion — and correspondingly higher risk for investors, since there's no specific use of proceeds to evaluate up front.</p>
+
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Characteristic</th><th>Typical hedge fund</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Liquidity</td><td>Limited or none — periodic redemption windows (sometimes with "gates" limiting how much can be redeemed at once) rather than daily liquidity</td></tr>
+              <tr><td class="hl">Disclosure</td><td>Far less standardized/public disclosure than a registered '40 Act fund's prospectus requirements</td></tr>
+              <tr><td class="hl">Lock-up</td><td>An initial period during which redemptions aren't permitted at all</td></tr>
+              <tr><td class="hl">Fees</td><td>Often a combined asset-based management fee plus a performance/incentive fee on profits</td></tr>
+              <tr><td class="hl">Strategy and assets</td><td>Broad latitude to use leverage, derivatives, short-selling, and illiquid or tangible assets that a traditional mutual fund generally cannot</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Don't let "diversification" or an attractive historical return profile stand in for a suitability analysis on its own. A hedge fund's illiquidity, lock-up terms, and limited disclosure are real costs to the customer even when the strategy itself sounds appealing — a recommendation still has to clear customer-specific suitability (Chapter 2) based on the client's actual liquidity needs and risk tolerance, not just the product's diversification story.</p>
+          </div>
+
+          <h3 id="m44-tax">Tax treatment of distributions</h3>
+          <p>A hedge fund organized as a limited partnership passes income through to investors much like a DPP (Chapter 3) — character (ordinary income, capital gain, etc.) flows through on a K-1. A registered fund-of-funds structured as a regulated investment company instead follows standard mutual-fund-style distribution taxation, reporting on Form 1099-DIV.</p>
+
+
+
+        </section>
+
+        <a href="chapter5.html" class="next-footer">
+          <span class="lbl">Up next</span>
+          <div class="title">Chapter 5: Options &amp; Margin</div>
+          <p>Function 3 — The most complex derivatives, pricing models, and leverage rules on the exam.</p>
+        </a>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Add active state to TOC links on scroll
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-link').forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px" });
+
+      document.querySelectorAll('section.block, h3[id]').forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+
+</body>
+</html>

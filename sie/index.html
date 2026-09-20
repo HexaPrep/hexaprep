@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pass the FINRA SIE Exam | Premium Prep Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #0EA5E9;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Dark Mode Theme Variables */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --surface-hover: #334155;
+        --border: #334155;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --primary: #6366F1;
+        --primary-hover: #818CF8;
+        --primary-light: #312E81;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    header.navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(var(--surface), 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links {
+      display: none;
+      gap: 32px;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--text-muted);
+      background: var(--surface-hover);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 180px 0 100px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Background glow effect */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, rgba(248, 250, 252, 0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .hero::before {
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(11, 17, 32, 0) 70%);
+      }
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      border: 1px solid rgba(79, 70, 229, 0.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 8vw, 72px);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: clamp(18px, 2vw, 22px);
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Stats Section */
+    .stats {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .stat-item p {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    /* Features */
+    .features {
+      padding: 120px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 40px;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .feature-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Curriculum / Chapters */
+    .curriculum {
+      padding: 120px 0;
+      background: var(--surface);
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .chapter-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 640px) {
+      .chapter-card {
+        flex-direction: row;
+        align-items: center;
+        gap: 32px;
+      }
+    }
+
+    .chapter-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+      transform: translateX(4px);
+    }
+
+    .chapter-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--primary);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+      transform-origin: bottom;
+    }
+
+    .chapter-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    .chapter-meta {
+      flex-shrink: 0;
+      width: 140px;
+    }
+
+    .ch-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .ch-stats {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .chapter-content {
+      flex-grow: 1;
+    }
+
+    .chapter-content h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .chapter-card:hover .chapter-content h3 {
+      color: var(--primary);
+    }
+
+    .chapter-content p {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .chapter-action {
+      flex-shrink: 0;
+      margin-top: 24px;
+    }
+
+    @media (min-width: 640px) {
+      .chapter-action {
+        margin-top: 0;
+      }
+    }
+
+    .btn-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
+      transition: var(--transition);
+    }
+
+    .chapter-card:hover .btn-icon {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* CTA Section */
+    .cta {
+      padding: 120px 0;
+      text-align: center;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius-xl);
+      padding: 80px 40px;
+      color: #fff;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .cta-box h2 {
+      color: #fff;
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 24px;
+    }
+
+    .cta-box p {
+      font-size: 20px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .cta-box .btn-primary {
+      background: #fff;
+      color: var(--primary);
+      font-size: 18px;
+      padding: 16px 32px;
+    }
+
+    .cta-box .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 60px 0 40px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--text-main);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .copyright {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        HexaPrep
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#curriculum">Curriculum</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#curriculum" class="btn btn-primary">Start Learning</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge">✨ Updated for the 2026 FINRA Exam</div>
+      <h1>Pass the FINRA SIE Exam with <span>Absolute Confidence</span></h1>
+      <p>Master the architecture of the market, products, and regulations with our beautifully designed, interactive
+        learning platform. No boring PDFs, just clear concepts.</p>
+      <div class="hero-actions">
+        <a href="#curriculum" class="btn btn-primary" style="padding: 16px 32px; font-size: 16px;">Explore
+          Curriculum</a>
+        <a href="#features" class="btn btn-outline" style="padding: 16px 32px; font-size: 16px;">See How It Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat-item">
+        <h3>95%</h3>
+        <p>First-Try Pass Rate</p>
+      </div>
+      <div class="stat-item">
+        <h3>4</h3>
+        <p>Comprehensive Modules</p>
+      </div>
+      <div class="stat-item">
+        <h3>75+</h3>
+        <p>Interactive Diagrams</p>
+      </div>
+      <div class="stat-item">
+        <h3>10k+</h3>
+        <p>Students Certified</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features container">
+    <div class="section-header">
+      <h2>Why choose HexaPrep?</h2>
+      <p>We rebuilt exam prep from the ground up to make studying less of a chore and more of an intuitive experience.
+      </p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </div>
+        <h3>Bite-Sized Lessons</h3>
+        <p>Complex topics are broken down into easy-to-digest chapters, focusing strictly on what FINRA actually tests.
+          No fluff.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+          </svg>
+        </div>
+        <h3>Visual Learning</h3>
+        <p>Stop staring at walls of text. We use high-quality diagrams and visual mental models to explain market
+          architecture and trade lifecycles.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h3>Knowledge Checks</h3>
+        <p>Active recall is built into every chapter with interactive quick-check quizzes to ensure you're retaining the
+          material.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum -->
+  <section id="curriculum" class="curriculum">
+    <div class="container">
+      <div class="section-header">
+        <h2>Course Curriculum</h2>
+        <p>Four streamlined chapters covering exactly what you need to pass the SIE.</p>
+      </div>
+
+      <div class="course-grid">
+
+        <!-- Chapter 1 -->
+        <a href="ch1.html" class="chapter-card">
+          <div class="chapter-meta">
+            <div class="ch-label">Chapter 01</div>
+            <div class="ch-stats">
+              <span>16% of Exam</span>
+              <span>12 Questions</span>
+            </div>
+          </div>
+          <div class="chapter-content">
+            <h3>The Architecture of the Market</h3>
+            <p>A full walkthrough of how the securities industry is regulated, structured, and financed. Understand who
+              watches the market, who participates, where trades happen, and how new securities are brought into
+              existence.</p>
+          </div>
+          <div class="chapter-action">
+            <div class="btn-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Chapter 2 -->
+        <a href="ch2.html" class="chapter-card">
+          <div class="chapter-meta">
+            <div class="ch-label">Chapter 02</div>
+            <div class="ch-stats">
+              <span>44% of Exam</span>
+              <span>33 Questions</span>
+            </div>
+          </div>
+          <div class="chapter-content">
+            <h3>Products and What Can Go Wrong With Them</h3>
+            <p>The largest portion of the exam. Master the characteristics and risks of equities, debt instruments,
+              options, and packaged products like mutual funds and variable annuities.</p>
+          </div>
+          <div class="chapter-action">
+            <div class="btn-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Chapter 3 -->
+        <a href="ch3.html" class="chapter-card">
+          <div class="chapter-meta">
+            <div class="ch-label">Chapter 03</div>
+            <div class="ch-stats">
+              <span>31% of Exam</span>
+              <span>23 Questions</span>
+            </div>
+          </div>
+          <div class="chapter-content">
+            <h3>Trading, Accounts &amp; Prohibited Activities</h3>
+            <p>Learn the mechanics of customer accounts, the lifecycle of a trade, and the strict rules governing what
+              registered representatives are prohibited from doing.</p>
+          </div>
+          <div class="chapter-action">
+            <div class="btn-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Chapter 4 -->
+        <a href="ch4.html" class="chapter-card">
+          <div class="chapter-meta">
+            <div class="ch-label">Chapter 04</div>
+            <div class="ch-stats">
+              <span>9% of Exam</span>
+              <span>7 Questions</span>
+            </div>
+          </div>
+          <div class="chapter-content">
+            <h3>Regulatory Framework</h3>
+            <p>The rules of the road for industry professionals. Registration requirements, continuing education, and
+              the consequences of rule violations.</p>
+          </div>
+          <div class="chapter-action">
+            <div class="btn-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+          </div>
+        </a>
+
+    </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta container">
+    <div class="cta-box">
+      <h2>Ready to ace your exam?</h2>
+      <p>Join thousands of successful candidates who passed their SIE using our modern, intuitive platform.</p>
+      <a href="#curriculum" class="btn btn-primary">Start Chapter 1 Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">HexaPrep</div>
+      <div class="footer-links">
+        <a href="#">About Us</a>
+        <a href="#">Curriculum</a>
+        <a href="#">Pricing</a>
+        <a href="#">Contact</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="copyright">
+        &copy; 2026 HexaPrep Platform. All rights reserved. Not affiliated with FINRA.
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

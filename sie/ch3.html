@@ -1,0 +1,2291 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 3: Trading, Accounts &amp; Prohibited Activities | SIEPrep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --text-dark: #050505;
+
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #0EA5E9;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --danger: #EF4444;
+      --danger-light: #FEE2E2;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --surface-hover: #334155;
+        --border: #334155;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --primary: #6366F1;
+        --primary-hover: #818CF8;
+        --primary-light: #312E81;
+        --warning-light: #451A03;
+        --danger-light: #450A0A;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--surface);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    ul,
+    ol {
+      padding-left: 24px;
+      margin-bottom: 1.5em;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+      max-width: none;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(var(--surface), 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .back-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      margin-left: 24px;
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumbs a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--text-main);
+    }
+
+    .breadcrumb-sep {
+      color: var(--border);
+    }
+
+    /* Dropdown */
+    .chapter-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .chapter-dropdown>a {
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .chapter-dropdown>a:hover {
+      background: var(--surface-hover);
+    }
+
+    .chapter-dropdown>a svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--surface);
+      min-width: 160px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      z-index: 200;
+      padding: 8px 0;
+      margin-top: 4px;
+    }
+
+    .dropdown-content a {
+      color: var(--text-main);
+      padding: 8px 16px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--surface-hover);
+      color: var(--primary);
+    }
+
+    .chapter-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Grid */
+    .main-wrapper {
+      margin-left: 300px;
+      display: flex;
+      flex: 1;
+      margin-top: 64px;
+      justify-content: flex-start;
+      width: calc(100% - 300px);
+    }
+
+    /* Fixed Sidebar */
+    .sidebar {
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      width: 300px;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      padding: 32px 24px;
+      z-index: 100;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    /* Table of Contents */
+    .toc-chapter-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toc-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .toc-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .toc-link.sub {
+      font-size: 13px;
+      padding: 6px 12px 6px 24px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .toc-link.sub:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .course-progress {
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .progress-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-radius: var(--radius-md);
+    }
+
+    .progress-item.current {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .progress-item.done {
+      color: var(--success);
+      font-weight: 500;
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 48px 100px 100px 40px;
+      max-width: none;
+    }
+
+    /* Hero inside content */
+    .chapter-hero {
+      margin-bottom: 56px;
+    }
+
+    .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .chapter-title {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+      max-width: 20ch;
+    }
+
+    .chapter-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 65ch;
+      margin-bottom: 32px;
+    }
+
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      gap: 8px;
+    }
+
+    .stat {
+      flex: 1 1 120px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      color: var(--text-main);
+      font-weight: 700;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .stat .lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .lede {
+      font-size: 20px;
+      color: var(--text-main);
+      padding-left: 24px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 48px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* Section Typography */
+    .block {
+      margin-bottom: 64px;
+    }
+
+    .block h2 {
+      font-size: 32px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      margin-top: 64px;
+    }
+
+    .block h2 .num {
+      color: var(--primary);
+      margin-right: 12px;
+    }
+
+    .block h3 {
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    .callout-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout.tip,
+    .callout.example {
+      background: var(--primary-light);
+      border-color: rgba(79, 70, 229, 0.2);
+    }
+
+    .callout.tip .callout-label,
+    .callout.example .callout-label {
+      color: var(--primary);
+    }
+
+    .callout.tip p,
+    .callout.example p {
+      color: var(--text-main);
+    }
+
+    .callout.trap {
+      background: var(--danger-light);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .callout.trap .callout-label {
+      color: var(--danger);
+    }
+
+    .callout.trap p {
+      color: var(--text-main);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.hl {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    td.bad {
+      color: var(--danger);
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    /* Diagrams */
+    .diagram-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      margin: 40px 0;
+      box-shadow: var(--shadow-sm);
+      font-size: 15px;
+    }
+
+    .diagram-card svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .diagram-caption {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 16px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* Quiz */
+    .quiz {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      margin-top: 64px;
+    }
+
+    .quiz h2 {
+      border-bottom: none;
+      margin-top: 0;
+    }
+
+    details.q {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    details.q summary {
+      padding: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-main);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.q summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.q summary::after {
+      content: "View Answer";
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 4px 12px;
+      background: var(--primary-light);
+      border-radius: 99px;
+      transition: var(--transition);
+    }
+
+    details.q[open] summary::after {
+      content: "Hide Answer";
+    }
+
+    details.q[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-answer {
+      padding: 20px;
+      background: var(--surface);
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Next Chapter */
+    .next-footer {
+      margin-top: 64px;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .next-footer:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .next-footer .lbl {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .next-footer .title {
+      font-size: 28px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .next-footer p {
+      margin: 0 auto;
+      opacity: 0.9;
+      font-size: 16px;
+    }
+
+    /* === Interactive Quiz Engine === */
+    .quiz-subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 24px;
+      max-width: 100%;
+    }
+
+    .quiz-progress {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 3px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0;
+    }
+
+    .quiz-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 32px;
+    }
+
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quiz-section-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .quiz-q-text {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 100%;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: 15px;
+      color: var(--text-main);
+      text-align: left;
+      width: 100%;
+      transition: all 0.2s ease;
+      line-height: 1.55;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .quiz-option:hover:not(.qo-disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateX(4px);
+    }
+
+    .quiz-option .ol {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      margin-top: 1px;
+    }
+
+    .quiz-option:hover:not(.qo-disabled) .ol {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .quiz-option.qo-correct {
+      border-color: var(--success);
+      background: var(--success-light);
+    }
+
+    .quiz-option.qo-correct .ol {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+
+    .quiz-option.qo-wrong {
+      border-color: var(--danger);
+      background: var(--danger-light);
+    }
+
+    .quiz-option.qo-wrong .ol {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: #fff;
+    }
+
+    .quiz-option.qo-disabled {
+      cursor: default;
+      opacity: 0.65;
+    }
+
+    .quiz-option.qo-disabled.qo-correct {
+      opacity: 1;
+      color: var(--text-dark);
+    }
+
+    .quiz-option.qo-disabled.qo-wrong {
+      opacity: 1;
+    }
+
+    .quiz-feedback {
+      margin-top: 20px;
+      padding: 20px 24px;
+      border-radius: var(--radius-md);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      animation: qFadeIn 0.3s ease;
+    }
+
+    .quiz-feedback.qf-correct {
+      border-left: 4px solid var(--success);
+    }
+
+    .quiz-feedback.qf-wrong {
+      border-left: 4px solid var(--danger);
+    }
+
+    .quiz-feedback-label {
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qf-correct .quiz-feedback-label {
+      color: var(--success);
+    }
+
+    .qf-wrong .quiz-feedback-label {
+      color: var(--danger);
+    }
+
+    @keyframes qFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .quiz-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .quiz-btn {
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .quiz-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .quiz-btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .quiz-btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .quiz-btn-secondary {
+      background: var(--surface);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .quiz-btn-secondary:hover:not(:disabled) {
+      background: var(--surface-hover);
+    }
+
+    .quiz-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      max-width: 320px;
+    }
+
+    .quiz-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .quiz-dot:hover {
+      transform: scale(1.25);
+    }
+
+    .quiz-dot.qd-active {
+      border-color: var(--primary);
+      background: var(--primary);
+      transform: scale(1.25);
+    }
+
+    .quiz-dot.qd-correct {
+      background: var(--success);
+    }
+
+    .quiz-dot.qd-wrong {
+      background: var(--danger);
+    }
+
+    .quiz-summary {
+      text-align: center;
+      padding: 48px 24px;
+      animation: qFadeIn 0.4s ease;
+    }
+
+    .quiz-score-ring {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      border: 6px solid var(--primary);
+      background: var(--primary-light);
+    }
+
+    .quiz-score-ring .qs-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .quiz-score-ring .qs-of {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .quiz-summary h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .quiz-summary-msg {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
+
+    .quiz-breakdown {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .quiz-bd-item {
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .quiz-bd-item .bd-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .quiz-bd-item .bd-score {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .quiz-summary-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+      .quiz-card {
+        padding: 20px;
+      }
+
+      .quiz-option {
+        padding: 14px 16px;
+        gap: 10px;
+        font-size: 14px;
+      }
+
+      .quiz-dots {
+        max-width: 240px;
+      }
+
+      .quiz-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .quiz-score-ring {
+        width: 130px;
+        height: 130px;
+      }
+
+      .quiz-score-ring .qs-num {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Sticky Top Navbar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="../index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Dashboard
+        </a>
+        <div class="breadcrumbs">
+          <a href="../index.html">HexaPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">SIE</a>
+          <span class="breadcrumb-sep">/</span>
+          <div class="chapter-dropdown">
+            <a href="ch3.html">Chapter 3
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-content">
+              <a href="ch1.html">Chapter 1</a>
+              <a href="ch2.html">Chapter 2</a>
+              <a href="ch3.html">Chapter 3</a>
+              <a href="ch4.html">Chapter 4</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      <!-- Fixed Left Sidebar -->
+      <aside class="sidebar">
+        <div class="toc-chapter-title">Chapter 3:<br>Trading, Accounts &amp; Prohibited Activities</div>
+        <div class="toc-title">In This Chapter</div>
+        <nav class="toc-nav">
+          <a href="#orders" class="toc-link active">3.1 Orders &amp; Trading Strategies</a>
+          <a href="#deciding" class="toc-link sub">Who's deciding, and who's on the other side</a>
+          <a href="#position-types" class="toc-link sub">Position types</a>
+          <a href="#returns" class="toc-link">3.2 Investment Returns</a>
+          <a href="#dividends" class="toc-link sub">Dividends: cash, stock, and the dates that matter</a>
+          <a href="#measuring-return" class="toc-link sub">Measuring return</a>
+          <a href="#settlement" class="toc-link">3.3 Trade Settlement</a>
+          <a href="#corpactions" class="toc-link">3.4 Corporate Actions</a>
+          <a href="#accounttypes" class="toc-link">3.5 Account Types</a>
+          <a href="#registrations" class="toc-link">3.6 Account Registrations</a>
+          <a href="#retirement" class="toc-link sub">Retirement accounts</a>
+          <a href="#aml" class="toc-link">3.7 Anti-Money Laundering</a>
+          <a href="#records" class="toc-link">3.8 Books, Records &amp; Privacy</a>
+          <a href="#suitability" class="toc-link">3.9 Communications &amp; Suitability</a>
+          <a href="#kyc" class="toc-link sub">Know-Your-Customer and suitability</a>
+          <a href="#manipulation" class="toc-link">3.10 Market Manipulation</a>
+          <a href="#insider" class="toc-link">3.11 Insider Trading</a>
+          <a href="#otherprohibited" class="toc-link">3.12 Other Prohibited Activities</a>
+          <a href="#quiz" class="toc-link">Practice Exam</a>
+        </nav>
+      </aside>
+
+      <!-- Scrollable Main Content -->
+      <main class="content-area">
+
+        <header class="chapter-hero">
+          <span class="kicker">FINRA SIE EXAM · STUDY GUIDE</span>
+          <h1 class="chapter-title">Chapter 3 — Trading, Accounts &amp; Prohibited Activities</h1>
+          <p class="chapter-subtitle">How an order actually becomes a trade, how customer accounts are structured and
+            protected, and the specific behaviors that end careers in this industry.</p>
+          <div class="stat-strip">
+            <div class="stat"><span class="num">23</span><span class="lbl">scored items</span></div>
+            <div class="stat"><span class="num">31%</span><span class="lbl">of total exam</span></div>
+            <div class="stat"><span class="num">2nd</span><span class="lbl">largest chapter</span></div>
+            <div class="stat"><span class="num">12+</span><span class="lbl">named prohibited acts</span></div>
+          </div>
+        </header>
+
+        <p class="lede">This chapter is where the exam stops asking "what is this product" and starts asking "what's
+          actually allowed to happen to it." Orders, settlement, account structures, and — perhaps most testable of all
+          — the specific list of things a registered person is never allowed to do.</p>
+
+        <!-- 3.1 ORDERS -->
+        <section class="block" id="orders">
+          <h2><span class="num">3.1</span>Orders &amp; Trading Strategies</h2>
+          <p>Every trade starts as an instruction, and the exam wants precision about what each instruction actually
+            promises. A <strong>market order</strong> guarantees execution but not price — it fills immediately at
+            whatever the best available price is. A <strong>limit order</strong> guarantees price but not execution — it
+            only fills at the specified price or better, and may never fill at all if the market doesn't cooperate. A
+            <strong>stop order</strong> sits dormant until the market hits a trigger price, at which point it becomes a
+            market order — useful for limiting losses on an existing position.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order type</th>
+                  <th>What it guarantees</th>
+                  <th>What it doesn't</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Market</td>
+                  <td>Execution, immediately</td>
+                  <td>Price</td>
+                </tr>
+                <tr>
+                  <td class="hl">Limit</td>
+                  <td>Price (at least as good as specified)</td>
+                  <td>Execution — may not fill</td>
+                </tr>
+                <tr>
+                  <td class="hl">Stop</td>
+                  <td>Becomes a market order once triggered</td>
+                  <td>Exact fill price after triggering</td>
+                </tr>
+                <tr>
+                  <td class="hl">Good-'til-canceled (GTC)</td>
+                  <td>Stays open until filled or canceled</td>
+                  <td>Any price guarantee — depends on the order type it modifies</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="diagram-card">
+            <svg viewBox="0 0 620 170" xmlns="http://www.w3.org/2000/svg" role="img"
+              aria-label="Bid-ask spread diagram with a market order filling at the ask and a limit order waiting below the bid">
+              <g font-family="Inter, sans-serif" font-size="13">
+                <line x1="60" y1="90" x2="560" y2="90" stroke="var(--border)" stroke-width="2" />
+                <circle cx="230" cy="90" r="6" fill="var(--success)" />
+                <text x="230" y="70" text-anchor="middle" font-weight="700" fill="var(--success)">Bid $49.80</text>
+                <text x="230" y="115" text-anchor="middle" font-size="11.5" fill="var(--text-muted)">highest price a
+                  buyer will pay</text>
+                <circle cx="390" cy="90" r="6" fill="var(--danger)" />
+                <text x="390" y="70" text-anchor="middle" font-weight="700" fill="var(--danger)">Ask $50.00</text>
+                <text x="390" y="115" text-anchor="middle" font-size="11.5" fill="var(--text-muted)">lowest price a
+                  seller will accept</text>
+                <text x="310" y="145" text-anchor="middle" font-size="12" fill="var(--primary)">↔ the "spread" — a buy
+                  market order fills near the ask</text>
+              </g>
+            </svg>
+            <div class="diagram-caption">Bid = what buyers offer. Ask = what sellers want. The spread is the market
+              maker's built-in profit margin.</div>
+          </div>
+
+          <h3 id="deciding">Who's deciding, and who's on the other side</h3>
+          <p>A <strong>discretionary</strong> order lets the registered representative choose the security, the amount,
+            or the action without checking with the client first (within limits set by a signed discretionary
+            authorization). A <strong>non-discretionary</strong> order requires the client's explicit instruction for
+            every element of the trade. Separately, an order is <strong>solicited</strong> if the rep recommended it, or
+            <strong>unsolicited</strong> if the client initiated it entirely on their own — a distinction that matters
+            heavily for suitability obligations, since a firm bears more responsibility for trades it actively
+            recommended.
+          </p>
+          <p>On the firm side, a broker-dealer can act in one of two capacities: as <strong>principal</strong>, trading
+            from its own inventory (buying from or selling to the customer directly, and typically marking up or down
+            the price instead of charging a commission), or as <strong>agent</strong>, simply arranging the trade
+            between two other parties and charging a commission for the service.</p>
+
+          <h3 id="position-types">Position types</h3>
+          <p>Being <strong>long</strong> means you own the security outright — your maximum loss is capped at what you
+            paid. Being <strong>short</strong> means you've sold a security you don't own (borrowed to sell, with an
+            obligation to buy it back later) — a bet that the price will fall, but with theoretically <em>unlimited</em>
+            loss potential, since there's no ceiling on how high a price can rise. <strong>Bullish</strong> describes an
+            expectation that prices will rise; <strong>bearish</strong> describes an expectation that prices will fall.
+          </p>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Going long has a floor on loss (the stock can only go to zero) but no ceiling on gain. Going short is the
+              mirror image in the worst way: gain is capped (the stock can only go to zero), but loss is theoretically
+              unlimited, since there's no cap on how high a borrowed stock's price can climb before you're forced to buy
+              it back.</p>
+          </div>
+        </section>
+
+        <!-- 3.2 RETURNS -->
+        <section class="block" id="returns">
+          <h2><span class="num">3.2</span>Investment Returns</h2>
+          <p>Return isn't one number — it's the sum of several distinct components, and the exam expects you to
+            recognize each piece separately. <strong>Interest</strong> and <strong>dividends</strong> are income paid
+            out along the way. <strong>Realized gains</strong> are profits locked in by an actual sale;
+            <strong>unrealized gains</strong> are paper profits on something still held — real on paper, but not yet
+            taxable or spendable. <strong>Return of capital</strong> is a distribution that isn't profit at all — it's
+            simply the investor's own original money being handed back, which is why it isn't taxed as income.
+          </p>
+
+          <h3 id="dividends">Dividends: cash, stock, and the dates that matter</h3>
+          <p>A <strong>cash dividend</strong> pays shareholders actual money. A <strong>stock dividend</strong> pays
+            shareholders in additional shares instead — it doesn't add real value on its own, since the same company
+            value is now split across more shares, but it's a common tool for signaling confidence or increasing share
+            liquidity. Every dividend moves through three key dates in sequence:</p>
+
+          <div class="diagram-card">
+            <svg viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg" role="img"
+              aria-label="Timeline of declaration date, ex-dividend date, record date, and payable date">
+              <g font-family="Inter, sans-serif" font-size="13">
+                <line x1="40" y1="70" x2="600" y2="70" stroke="var(--border)" stroke-width="2" />
+                <circle cx="80" cy="70" r="7" fill="var(--text-muted)" />
+                <text x="80" y="50" text-anchor="middle" font-weight="700" fill="var(--text-main)">Declaration</text>
+                <text x="80" y="95" text-anchor="middle" font-size="11.5" fill="var(--text-muted)">company
+                  announces</text>
+
+                <circle cx="260" cy="70" r="7" fill="var(--danger)" />
+                <text x="260" y="50" text-anchor="middle" font-weight="700" fill="var(--danger)">Ex-Dividend</text>
+                <text x="260" y="95" text-anchor="middle" font-size="11.5" fill="var(--text-muted)">buy on/after → no
+                  dividend</text>
+
+                <circle cx="420" cy="70" r="7" fill="var(--warning)" />
+                <text x="420" y="50" text-anchor="middle" font-weight="700" fill="var(--warning)">Record</text>
+                <text x="420" y="95" text-anchor="middle" font-size="11.5" fill="var(--text-muted)">must be owner of
+                  record</text>
+
+                <circle cx="570" cy="70" r="7" fill="var(--success)" />
+                <text x="570" y="50" text-anchor="middle" font-weight="700" fill="var(--success)">Payable</text>
+                <text x="570" y="95" text-anchor="middle" font-size="11.5" fill="var(--text-muted)">cash/shares actually
+                  paid</text>
+              </g>
+            </svg>
+            <div class="diagram-caption">Order matters: declaration → ex-dividend → record → payable, always in that
+              sequence.</div>
+          </div>
+
+          <div class="callout example">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              Worked Example
+            </div>
+            <p>A company sets a record date of Thursday. Because trades settle one business day after execution, you
+              must buy the stock no later than Wednesday to be the owner of record on Thursday and receive the dividend.
+              Buy it Thursday (the ex-dividend date) or later, and the dividend goes to the seller instead — which is
+              exactly why a stock's price typically drops by roughly the dividend amount on the ex-dividend date itself.
+            </p>
+          </div>
+
+          <h3 id="measuring-return">Measuring return</h3>
+          <p><strong>Yield to maturity (YTM)</strong> and <strong>yield to call (YTC)</strong> (covered in Chapter 2)
+            express a bond's total return under different holding assumptions. <strong>Total return</strong> is the
+            broadest measure — it captures income plus price appreciation (or depreciation) over the full holding
+            period, for any security. A <strong>basis point</strong> is simply 1/100th of one percent (0.01%) — a
+            precise way to express small rate or yield changes without the ambiguity of saying "a small increase."</p>
+          <p><strong>Cost basis</strong> is what an investor originally paid for a security (plus certain adjustments),
+            and it's the number used to calculate a gain or loss when the position is eventually sold — a foundational
+            input for tax reporting. <strong>Benchmarks and indices</strong> (the S&amp;P 500, the Dow) exist to give a
+            return context: a 6% gain looks very different in a year the benchmark returned 15% versus a year it
+            returned -10%.</p>
+        </section>
+
+        <!-- 3.3 SETTLEMENT -->
+        <section class="block" id="settlement">
+          <h2><span class="num">3.3</span>Trade Settlement</h2>
+          <p>A trade "happening" (execution) and a trade actually finalizing (settlement) are two different moments in
+            time. Most equity and corporate bond trades today settle on a <strong>T+1</strong> basis — one business day
+            after the trade date — meaning ownership and payment officially change hands the next business day, even
+            though the trade itself was agreed today (T).</p>
+          <p>Settlement also happens in one of two mechanical forms: <strong>physical delivery</strong>, where an actual
+            paper certificate changes hands (increasingly rare), or <strong>book entry</strong>, where ownership is
+            simply recorded electronically at a depository like the DTCC — the overwhelming majority of trades today
+            settle this way, since it's faster and eliminates the risk of a lost or stolen certificate.</p>
+        </section>
+
+        <!-- 3.4 CORPORATE ACTIONS -->
+        <section class="block" id="corpactions">
+          <h2><span class="num">3.4</span>Corporate Actions</h2>
+          <p>A corporate action is any event, initiated by the issuer, that changes the security itself or investors'
+            relationship to it. The exam cares most about splits, buybacks, and the mechanics of how shareholders get
+            informed and get to vote.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>What happens</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Stock split</td>
+                  <td>Increases share count, proportionally lowers price per share — total position value is unchanged
+                  </td>
+                </tr>
+                <tr>
+                  <td class="hl">Reverse split</td>
+                  <td>Decreases share count, proportionally raises price per share — often used to avoid delisting for
+                    trading too low</td>
+                </tr>
+                <tr>
+                  <td class="hl">Buyback</td>
+                  <td>Company repurchases its own shares, reducing shares outstanding</td>
+                </tr>
+                <tr>
+                  <td class="hl">Tender offer</td>
+                  <td>A formal offer to buy shares directly from shareholders, usually at a premium to market price</td>
+                </tr>
+                <tr>
+                  <td class="hl">Exchange offer</td>
+                  <td>Shareholders are offered a different security in exchange for what they hold</td>
+                </tr>
+                <tr>
+                  <td class="hl">Rights offering</td>
+                  <td>Existing shareholders offered the chance to buy new shares, usually at a discount, to maintain
+                    their ownership percentage</td>
+                </tr>
+                <tr>
+                  <td class="hl">Merger / Acquisition (M&amp;A)</td>
+                  <td>Two companies combine, or one absorbs another — often converts shares of the target into cash or
+                    acquirer shares</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout example">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              Worked Example
+            </div>
+            <p>An investor holds 100 shares at $60 each ($6,000 total) when the company announces a 2-for-1 split. After
+              the split, they hold 200 shares at $30 each — still $6,000 total. Their <em>original cost basis</em> also
+              splits proportionally: if they'd paid $50/share originally, the adjusted basis becomes $25/share, so any
+              future gain or loss calculation still reflects what they actually paid.</p>
+          </div>
+
+          <p>Corporate actions come with formal <strong>notices</strong> and <strong>deadlines</strong> — shareholders
+            must be informed in time to act (tendering shares, exercising rights) before a window closes. And
+            shareholders who can't attend a shareholder meeting in person can vote by <strong>proxy</strong> — assigning
+            their voting rights to someone else (often company management) to cast on their behalf.</p>
+        </section>
+
+        <!-- 3.5 ACCOUNT TYPES -->
+        <section class="block" id="accounttypes">
+          <h2><span class="num">3.5</span>Account Types</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Account type</th>
+                  <th>What defines it</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Cash</td>
+                  <td>Customer must pay in full for purchases — no borrowing</td>
+                </tr>
+                <tr>
+                  <td class="hl">Margin</td>
+                  <td>Customer can borrow part of the purchase price from the firm, using securities as collateral —
+                    amplifies both gains and losses</td>
+                </tr>
+                <tr>
+                  <td class="hl">Options</td>
+                  <td>Requires separate approval; customer must receive the ODD and meet suitability standards specific
+                    to options trading</td>
+                </tr>
+                <tr>
+                  <td class="hl">Discretionary</td>
+                  <td>Rep can place trades without checking each one with the client first, under signed authorization
+                  </td>
+                </tr>
+                <tr>
+                  <td class="hl">Non-discretionary</td>
+                  <td>Client approves every trade individually</td>
+                </tr>
+                <tr>
+                  <td class="hl">Fee-based</td>
+                  <td>Client pays an ongoing fee (often a % of assets) rather than per-trade commissions</td>
+                </tr>
+                <tr>
+                  <td class="hl">Commission-based</td>
+                  <td>Client pays per transaction</td>
+                </tr>
+                <tr>
+                  <td class="hl">Educational (e.g., 529)</td>
+                  <td>Tax-advantaged, restricted to qualified education expenses</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 3.6 REGISTRATIONS -->
+        <section class="block" id="registrations">
+          <h2><span class="num">3.6</span>Account Registrations</h2>
+          <p>Registration describes <em>who legally owns</em> the account, which is a separate question from what kind
+            of trading it permits.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Registration</th>
+                  <th>Who owns/controls it</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Individual</td>
+                  <td>One person, sole legal owner</td>
+                </tr>
+                <tr>
+                  <td class="hl">Joint</td>
+                  <td>Two or more owners, with rights and control terms spelled out by the joint agreement (e.g., joint
+                    tenants with rights of survivorship)</td>
+                </tr>
+                <tr>
+                  <td class="hl">Corporate / Institutional</td>
+                  <td>A legal entity, not an individual — trading authority set by corporate resolution</td>
+                </tr>
+                <tr>
+                  <td class="hl">Trust</td>
+                  <td>Held by a trustee for beneficiaries; <em>revocable</em> trusts can be changed by the grantor,
+                    <em>irrevocable</em> trusts generally cannot
+                  </td>
+                </tr>
+                <tr>
+                  <td class="hl">Custodial (UTMA)</td>
+                  <td>Held by an adult custodian for a minor — the minor is the beneficial owner, the custodian controls
+                    it until the minor reaches the age of majority</td>
+                </tr>
+                <tr>
+                  <td class="hl">Partnership</td>
+                  <td>Owned by a partnership entity; trading authority defined by the partnership agreement</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="retirement">Retirement accounts</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Traditional IRA</th>
+                  <th>Roth IRA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Contributions</td>
+                  <td>Often tax-deductible going in</td>
+                  <td>Made with after-tax dollars — no upfront deduction</td>
+                </tr>
+                <tr>
+                  <td class="hl">Withdrawals</td>
+                  <td>Taxed as ordinary income</td>
+                  <td>Qualified withdrawals are tax-free</td>
+                </tr>
+                <tr>
+                  <td class="hl">Required minimum distributions (RMDs)</td>
+                  <td>Required starting at the applicable age</td>
+                  <td>Not required during the original owner's lifetime</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>Qualified plans</strong> (like an employer-sponsored 401(k)) also carry specific rules on
+            contributions and RMDs, generally following the same tax-deferred logic as a traditional IRA while adding
+            employer-specific features like matching contributions.</p>
+        </section>
+
+        <!-- 3.7 AML -->
+        <section class="block" id="aml">
+          <h2><span class="num">3.7</span>Anti-Money Laundering (AML)</h2>
+          <p><strong>Money laundering</strong> is the process of disguising illegally obtained money to make it appear
+            legitimate. It moves through three classic stages, and the exam expects you to recognize each by name:</p>
+
+          <div class="diagram-card">
+            <svg viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg" role="img"
+              aria-label="Three stages of money laundering: placement, layering, integration">
+              <g font-family="Inter, sans-serif" font-size="13">
+                <rect x="20" y="40" width="170" height="80" rx="10" fill="var(--danger-light)" stroke="var(--danger)" />
+                <text x="105" y="70" text-anchor="middle" font-weight="700" fill="var(--danger)">Placement</text>
+                <text x="105" y="90" text-anchor="middle" font-size="11.5" fill="var(--text-main)">dirty money
+                  enters</text>
+                <text x="105" y="105" text-anchor="middle" font-size="11.5" fill="var(--text-main)">the financial
+                  system</text>
+
+                <rect x="225" y="40" width="170" height="80" rx="10" fill="var(--warning-light)"
+                  stroke="var(--warning)" />
+                <text x="310" y="70" text-anchor="middle" font-weight="700" fill="var(--warning)">Layering</text>
+                <text x="310" y="90" text-anchor="middle" font-size="11.5" fill="var(--text-main)">complex
+                  transactions</text>
+                <text x="310" y="105" text-anchor="middle" font-size="11.5" fill="var(--text-main)">obscure the
+                  source</text>
+
+                <rect x="430" y="40" width="170" height="80" rx="10" fill="var(--success-light)"
+                  stroke="var(--success)" />
+                <text x="515" y="70" text-anchor="middle" font-weight="700" fill="var(--success)">Integration</text>
+                <text x="515" y="90" text-anchor="middle" font-size="11.5" fill="var(--text-dark)">funds re-enter
+                  the</text>
+                <text x="515" y="105" text-anchor="middle" font-size="11.5" fill="var(--text-dark)">economy looking
+                  clean</text>
+
+                <line x1="192" y1="80" x2="223" y2="80" stroke="var(--text-muted)" stroke-width="2"
+                  marker-end="url(#a3)" />
+                <line x1="397" y1="80" x2="428" y2="80" stroke="var(--text-muted)" stroke-width="2"
+                  marker-end="url(#a3)" />
+                <defs>
+                  <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                    <path d="M0,0L10,5L0,10z" fill="var(--text-muted)" />
+                  </marker>
+                </defs>
+              </g>
+            </svg>
+            <div class="diagram-caption">Structuring — breaking large deposits into smaller ones to dodge reporting
+              thresholds — is a classic placement-stage tactic.</div>
+          </div>
+
+          <p>Every broker-dealer must maintain a written <strong>AML compliance program</strong>. Two specific reports
+            drive detection: a <strong>Suspicious Activity Report (SAR)</strong> is filed confidentially whenever a
+            transaction looks suspicious, regardless of dollar amount; a <strong>Currency Transaction Report
+              (CTR)</strong> is filed for cash transactions over a specific reporting threshold, suspicious or not.
+            <strong>FinCEN</strong> is the Treasury bureau that collects and analyzes this reporting. The <strong>Office
+              of Foreign Asset Control (OFAC)</strong> maintains the <strong>Specially Designated Nationals (SDN)
+              list</strong> — firms must screen customers against it and are prohibited from doing business with anyone
+            on it.
+          </p>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>A SAR is filed <em>confidentially</em> — the firm must never tip off the customer that a report was filed
+              ("tipping off" is itself a violation). A CTR, by contrast, is a routine dollar-threshold report and isn't
+              inherently confidential in the same sense — it's simply a standard filing triggered automatically by the
+              transaction size.</p>
+          </div>
+        </section>
+
+        <!-- 3.8 RECORDS & PRIVACY -->
+        <section class="block" id="records">
+          <h2><span class="num">3.8</span>Books, Records &amp; Privacy</h2>
+          <p>Firms must retain specific records for specific periods — confirmations of every trade, periodic account
+            statements, and correspondence — creating the audit trail regulators rely on. A <strong>business continuity
+              plan (BCP)</strong> is a firm's documented plan for staying operational (or recovering quickly) through a
+            disruption like a natural disaster or system outage. Firms may <strong>hold customer mail</strong> only
+            under specific conditions (such as the customer traveling), and must safeguard customer assets under strict
+            custody rules.</p>
+          <p><strong>Regulation S-P</strong> governs how firms handle <strong>nonpublic personal information
+              (NPI)</strong> — a customer's financial and personal details. It requires firms to keep that information
+            confidential, provide customers with privacy notifications explaining what's collected and how it's used,
+            and maintain safeguards (technical and procedural) to prevent unauthorized access.</p>
+        </section>
+
+        <!-- 3.9 SUITABILITY -->
+        <section class="block" id="suitability">
+          <h2><span class="num">3.9</span>Communications &amp; Suitability</h2>
+          <p>Communications with the public are classified by audience and reach, with different levels of review
+            required depending on how broadly a message is sent. Telemarketing carries its own layer of restriction,
+            including honoring a customer's placement on the firm's or the national <strong>do-not-call list</strong>.
+          </p>
+
+          <h3 id="kyc">Know-Your-Customer and suitability</h3>
+          <p><strong>Know-your-customer (KYC)</strong> is the foundational obligation to actually understand who you're
+            dealing with — their financial situation, objectives, and risk tolerance — before recommending anything.
+            Suitability obligations then build on that foundation in three layers: <strong>reasonable-basis
+              suitability</strong> asks whether a recommendation is suitable for at least some investors, based on
+            reasonable diligence into the product itself; <strong>customer-specific suitability</strong> asks whether
+            it's suitable for <em>this particular</em> customer, given what KYC revealed; and <strong>quantitative
+              suitability</strong> asks whether the volume and frequency of recommended trades, taken together, are
+            excessive for the customer's profile — even if each individual trade looked fine in isolation.</p>
+          <p>What counts as a <strong>recommendation</strong> in the first place matters too — a general market
+            commentary isn't the same as a specific call to buy or sell a particular security, and the suitability
+            obligation attaches specifically to the latter.</p>
+        </section>
+
+        <!-- 3.10 MANIPULATION -->
+        <section class="block" id="manipulation">
+          <h2><span class="num">3.10</span>Market Manipulation</h2>
+          <p><strong>Market manipulation</strong> is any deliberate attempt to interfere with the free and fair
+            operation of the market — artificially inflating, deflating, or maintaining a security's price rather than
+            letting genuine supply and demand set it. The SIE tests a specific glossary of named manipulative practices:
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Practice</th>
+                  <th>What it is</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="bad">Pump and dump</td>
+                  <td>Hyping a (often thinly-traded) stock with false or misleading claims to inflate its price, then
+                    selling into the artificial demand</td>
+                </tr>
+                <tr>
+                  <td class="bad">Front running</td>
+                  <td>Trading ahead of a known, pending large customer order using that advance knowledge to profit
+                    before the order's own price impact hits</td>
+                </tr>
+                <tr>
+                  <td class="bad">Excessive trading (churning)</td>
+                  <td>Trading a customer's account more than their objectives justify, primarily to generate commissions
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bad">Marking the close</td>
+                  <td>Executing trades right at market close specifically to manipulate the closing price</td>
+                </tr>
+                <tr>
+                  <td class="bad">Marking the open</td>
+                  <td>Same idea, aimed at manipulating the opening price instead</td>
+                </tr>
+                <tr>
+                  <td class="bad">Backing away</td>
+                  <td>A market maker failing to honor its own publicly quoted price</td>
+                </tr>
+                <tr>
+                  <td class="bad">Freeriding</td>
+                  <td>Buying and selling a security without ever actually paying for the purchase first</td>
+                </tr>
+                <tr>
+                  <td class="bad">Market rumors</td>
+                  <td>Spreading false or misleading information to move a security's price</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 3.11 INSIDER TRADING -->
+        <section class="block" id="insider">
+          <h2><span class="num">3.11</span>Insider Trading</h2>
+          <p><strong>Insider trading</strong> is trading a security based on <strong>material nonpublic information
+              (MNPI)</strong> — information significant enough that a reasonable investor would consider it in making a
+            decision, and that hasn't yet been released to the public. It's not limited to corporate executives: anyone
+            who receives and trades on MNPI can be liable, including someone who simply passed the tip along (a
+            "tipper") and the person who acted on it (the "tippee").</p>
+          <p>Penalties are severe and layered — they can include steep fines (often a multiple of the profit gained or
+            loss avoided), permanent expulsion from the industry, and criminal incarceration. This is one of the areas
+            where the exam expects you to understand that ignorance of a tip's origin doesn't automatically excuse
+            trading on it, if the circumstances made it reasonably clear the information wasn't public.</p>
+        </section>
+
+        <!-- 3.12 OTHER PROHIBITED -->
+        <section class="block" id="otherprohibited">
+          <h2><span class="num">3.12</span>Other Prohibited Activities</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Prohibited activity</th>
+                  <th>The rule in plain terms</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">IPO purchase restrictions</td>
+                  <td>Associated persons are generally restricted from buying shares in new equity IPOs — meant to stop
+                    industry insiders from front-running retail access to hot offerings</td>
+                </tr>
+                <tr>
+                  <td class="hl">Manipulative/deceptive devices</td>
+                  <td>Broad catch-all prohibition on fraud in connection with buying or selling securities</td>
+                </tr>
+                <tr>
+                  <td class="hl">Borrowing from customers</td>
+                  <td>Generally prohibited, with narrow exceptions (e.g., the customer is a family member or a financial
+                    institution in that business)</td>
+                </tr>
+                <tr>
+                  <td class="hl">Sharing in customer accounts</td>
+                  <td>A rep generally can't share in the profits/losses of a customer's account</td>
+                </tr>
+                <tr>
+                  <td class="hl">Financial exploitation of seniors</td>
+                  <td>Specific rules require extra protections and reporting when a specified adult (often elderly)
+                    shows signs of being financially exploited</td>
+                </tr>
+                <tr>
+                  <td class="hl">Activities of unregistered persons</td>
+                  <td>Unregistered individuals can't be paid commissions or solicit/take customer orders</td>
+                </tr>
+                <tr>
+                  <td class="hl">Signatures of convenience</td>
+                  <td>Forging or allowing someone else to sign on a customer's behalf without authority — a serious,
+                    common enforcement violation</td>
+                </tr>
+                <tr>
+                  <td class="hl">Falsifying records</td>
+                  <td>Includes both creating false records and improperly failing to maintain/retain required ones</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>"Signatures of convenience" sounds harmless — like just saving a client a trip to sign paperwork. On the
+              exam and in practice, it's treated as a serious falsification issue: even signing with a customer's verbal
+              permission, without their actual signature, is a books-and-records violation.</p>
+          </div>
+        </section>
+
+        <!-- QUIZ -->
+        <section class="quiz" id="quiz">
+          <div class="quiz-header">
+            <h2>Practice Exam</h2>
+            <p class="quiz-subtitle">20 FINRA-style questions covering all sections of Chapter 3</p>
+            <div class="quiz-progress">
+              <div class="quiz-progress-fill" id="qProg"></div>
+            </div>
+            <div class="quiz-meta"><span id="qCount">Question 1 of 20</span><span id="qScore"></span></div>
+          </div>
+          <div id="qBody"></div>
+          <div class="quiz-nav" id="qNav">
+            <button class="quiz-btn quiz-btn-secondary" id="qPrev" onclick="qNavigate(-1)" disabled>← Previous</button>
+            <div class="quiz-dots" id="qDots"></div>
+            <button class="quiz-btn quiz-btn-primary" id="qNext" onclick="qNavigate(1)">Next →</button>
+          </div>
+          <div id="qSummary" style="display:none"></div>
+        </section>
+
+        <a href="index.html" class="next-footer">
+          <span class="lbl">Back to Start</span>
+          <div class="title">Return to Curriculum</div>
+          <p>You have completed the core study guides for the SIE.</p>
+        </a>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // TOC scroll observer
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-link').forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px" });
+      document.querySelectorAll('section.block, section.quiz').forEach(s => observer.observe(s));
+    });
+
+    // === Quiz Engine ===
+    const Q = [
+      {
+        s: "3.1", n: "Orders & Trading Strategies",
+        q: "An investor owns 1,000 shares of XYZ trading at $50 per share. To protect against a severe downside move while retaining the ability to sell at the best available price if the stock drops rapidly, what type of order should the investor place?",
+        o: [
+          "A sell stop order at $45, because it triggers a market order if the price falls, ensuring execution.",
+          "A buy stop order at $45, because it provides downside protection for long equity positions.",
+          "A sell limit order at $45, because it strictly guarantees the investor receives at least that price.",
+          "A stop-limit order at $45, because it successfully guarantees both the exact price and the execution."
+        ],
+        a: 0,
+        e: "A <strong>sell stop order</strong> is placed below the current market price to protect a long position. If the stock falls to or below $45, the stop is triggered and becomes a <em>market order</em>, guaranteeing execution at the best available price. <strong>(B)</strong> is wrong because buy stops are used to protect short positions, not long ones. <strong>(C)</strong> is wrong because a sell limit placed below the market would fill immediately. <strong>(D)</strong> is wrong because a stop-limit guarantees price, not execution — if the stock drops violently past $45, a stop-limit might never fill, leaving the investor exposed."
+      },
+      {
+        s: "3.1", n: "Orders & Trading Strategies",
+        q: "When a broker-dealer executes a customer's order by buying or selling from its own inventory, it is acting in which capacity?",
+        o: [
+          "As an agent, successfully matching the customer with a third party and charging a commission.",
+          "As a principal, completing the trade directly from inventory and charging a markup or markdown.",
+          "As an underwriter, officially guaranteeing the distribution of new shares and charging a spread.",
+          "As an investment adviser, actively providing portfolio recommendations and charging a wrap fee."
+        ],
+        a: 1,
+        e: "When a firm trades out of its own inventory, it acts as a <strong>principal (dealer)</strong> and charges a markup (when selling to the customer) or markdown (when buying from the customer). <strong>(A)</strong> is wrong because acting as an agent (broker) means matching the customer with an outside party and charging a commission. <strong>(C)</strong> is wrong because underwriting is specific to new issues, not secondary market trading. <strong>(D)</strong> is wrong because investment advisers charge fees for advice, not markups for inventory trades."
+      },
+      {
+        s: "3.1", n: "Orders & Trading Strategies",
+        q: "An investor believes the stock of DEF Corp, currently trading at $80, is severely overvalued and expects the price to drop. To profit from this belief, the investor borrows 100 shares from their broker-dealer and sells them in the open market. This strategy is known as:",
+        o: [
+          "Writing a covered call, which guarantees premium income.",
+          "Buying on margin, which leverages a broader market decline.",
+          "Selling short, which profits by repurchasing shares lower.",
+          "Purchasing a put, which strictly obligates a future purchase."
+        ],
+        a: 2,
+        e: "<strong>Selling short</strong> involves borrowing shares to sell them, with the intent of buying them back later at a lower price to profit from a decline. <strong>(A)</strong> is an options strategy that generates premium income, not a direct bet on a severe decline. <strong>(B)</strong> is wrong because buying on margin involves borrowing <em>cash</em> to buy stock, which is a bullish strategy. <strong>(D)</strong> is wrong because while purchasing a put also profits from a decline, it involves buying an options contract, not borrowing and selling the actual shares."
+      },
+      {
+        s: "3.2", n: "Investment Returns",
+        q: "Which of the following return metrics represents the actual cash a bond pays an investor relative to its current market price?",
+        o: [
+          "Nominal yield, because it explicitly reflects the original issue price.",
+          "Yield to call, because it accurately projects early redemption value.",
+          "Yield to maturity, because it thoroughly accounts for capital gains.",
+          "Current yield, because it clearly divides the coupon by market price."
+        ],
+        a: 3,
+        e: "<strong>Current yield</strong> is calculated by dividing the annual coupon payment by the <em>current market price</em> of the bond. <strong>(A)</strong> is wrong because nominal yield is the coupon rate based on par value, regardless of market price. <strong>(C)</strong> is wrong because yield to maturity accounts for the entire return (coupon plus capital gain/loss) if held to the maturity date. <strong>(B)</strong> is wrong because yield to call calculates the return if the bond is called away before maturity."
+      },
+      {
+        s: "3.3", n: "Trade Settlement",
+        q: "On Tuesday, May 4, a customer purchases 500 shares of a common stock in a regular-way transaction. When must the customer pay for the trade, according to standard settlement rules?",
+        o: [
+          "Wednesday, May 5 (T+1), as this is the standard settlement for equities.",
+          "Tuesday, May 4 (T+0), because trades require immediate cash settlement.",
+          "Thursday, May 6 (T+2), reflecting the historical settlement timeframe.",
+          "Monday, May 10 (T+4), based on the maximum allowable payment period."
+        ],
+        a: 0,
+        e: "Regular-way settlement for common stock, corporate bonds, and municipal bonds is <strong>T+1</strong> (one business day after the trade date). Since the trade occurred on Tuesday, settlement is Wednesday, May 5. <strong>(B)</strong> describes cash settlement. <strong>(C)</strong> is the old rule (T+2), which was phased out in May 2024. <strong>(D)</strong> describes the Regulation T payment extension (T+4), which is the absolute deadline before a firm must freeze an account, not the standard settlement date."
+      },
+      {
+        s: "3.3", n: "Trade Settlement",
+        q: "An investor buys $100,000 face value of U.S. Treasury bonds on Thursday. When does this trade settle regular-way?",
+        o: [
+          "Thursday, settling on the exact same day the trade is executed.",
+          "Friday, settling on the very next business day after the trade.",
+          "Monday, settling exactly two business days following the trade.",
+          "Tuesday, settling exactly three business days after execution."
+        ],
+        a: 1,
+        e: "Regular-way settlement for <strong>U.S. government securities</strong> (Treasury bills, notes, and bonds) and options is <strong>T+1</strong> (one business day). Since the trade was on Thursday, it settles on Friday. <strong>(A)</strong> is cash settlement. <strong>(C)</strong> would be T+2 (which no longer applies to standard securities)."
+      },
+      {
+        s: "3.4", n: "Corporate Actions",
+        q: "A corporation declares a 2-for-1 forward stock split. Before the split, an investor holds 100 shares at $80 per share. What will the investor's position look like immediately after the split takes effect?",
+        o: [
+          "50 shares valued at $160 per share, doubling the individual price.",
+          "100 shares at $80 per share, plus a special cash dividend of $80.",
+          "200 shares valued at $40 per share, keeping total value the same.",
+          "200 shares valued at $80 per share, doubling the total investment."
+        ],
+        a: 2,
+        e: "In a <strong>2-for-1 forward split</strong>, the number of shares doubles, and the price per share is cut in half, keeping the total value of the investment the same ($8,000). 100 x 2 = 200 shares. $80 / 2 = $40. <strong>(A)</strong> describes a reverse split (1-for-2). <strong>(B)</strong> confuses a split with a cash dividend. <strong>(D)</strong> would miraculously double the investor's money, which splits do not do."
+      },
+      {
+        s: "3.4", n: "Corporate Actions",
+        q: "A company wishes to acquire a competitor. It makes a formal public offer to buy shares from the competitor's existing shareholders at a premium to the current market price. This corporate action is known as a:",
+        o: [
+          "Proxy solicitation, used to aggressively gather shareholder votes.",
+          "Spinoff, which establishes an entirely new publicly traded entity.",
+          "Rights offering, which allows shareholders to acquire new shares.",
+          "Tender offer, which broadly solicits shares at a specified premium."
+        ],
+        a: 3,
+        e: "A <strong>tender offer</strong> is a public solicitation to buy a substantial percentage of a company's shares directly from existing shareholders, usually at a premium to the market price, often used in acquisitions. <strong>(A)</strong> is an effort to gather shareholder votes. <strong>(B)</strong> is when a company separates a division into a new, independent publicly traded company. <strong>(C)</strong> is when a company issues new shares and gives existing shareholders the right to buy them first."
+      },
+      {
+        s: "3.5", n: "Account Types",
+        q: "A customer wants to open a margin account to leverage their stock purchases. The customer deposits $3,000 to buy $6,000 worth of stock. Which regulation mandates this initial 50% deposit requirement?",
+        o: [
+          "The Federal Reserve Board's Regulation T, which governs credit extensions.",
+          "FINRA Rule 2111, which strictly enforces general investment suitability.",
+          "The SEC's Customer Protection Rule, which rigorously safeguards assets.",
+          "The SIPC coverage limit rules, which precisely dictate insurance payouts."
+        ],
+        a: 0,
+        e: "<strong>Regulation T</strong>, established by the Federal Reserve Board, controls the extension of credit by broker-dealers and mandates that customers must initially deposit at least 50% of the purchase price when buying securities on margin. <strong>(B)</strong> governs suitability. <strong>(C)</strong> ensures customer funds and securities are safeguarded by the broker-dealer. <strong>(D)</strong> relates to insurance against firm failure."
+      },
+      {
+        s: "3.5", n: "Account Types",
+        q: "In a margin account, the broker-dealer holds the customer's securities in its own name rather than the customer's name, allowing the firm to easily liquidate them if the customer fails to meet a margin call. This arrangement is known as holding securities in:",
+        o: [
+          "Depository receipt format, facilitating fast international settlements.",
+          "Street name, allowing the broker to easily pledge or liquidate them.",
+          "Escrow, ensuring independent third-party oversight of the assets.",
+          "Trust, explicitly establishing a rigorous fiduciary legal structure."
+        ],
+        a: 1,
+        e: "Securities held in <strong>street name</strong> are registered in the name of the broker-dealer on behalf of the customer. This is a requirement for margin accounts so the firm can pledge the securities as collateral for the loan and liquidate them quickly if necessary. <strong>(C)</strong> is a third-party holding arrangement. <strong>(D)</strong> implies a fiduciary legal structure. <strong>(A)</strong> refers to instruments like ADRs, not an account registration method."
+      },
+      {
+        s: "3.6", n: "Account Registrations",
+        q: "Two sisters open a joint brokerage account as Joint Tenants with Right of Survivorship (JTWROS). If one sister passes away, what happens to the account assets?",
+        o: [
+          "The assets are immediately split evenly with the deceased's estate.",
+          "The account is frozen indefinitely until the probate court rules.",
+          "The assets easily bypass probate and go solely to the survivor.",
+          "The assets are systematically liquidated and paid to the estate."
+        ],
+        a: 2,
+        e: "In a <strong>JTWROS</strong> account, all owners have an undivided interest. Upon death, the deceased owner's share automatically passes to the surviving owner(s), bypassing the probate process entirely. <strong>(A)</strong> describes Tenants in Common (TIC), where a fractional share goes to the deceased's estate. <strong>(B)</strong> is wrong because bypassing probate is the primary feature of JTWROS. <strong>(D)</strong> is a fabricated scenario."
+      },
+      {
+        s: "3.6", n: "Account Registrations",
+        q: "A grandparent wants to open a custodial account for their minor grandchild under the Uniform Transfers to Minors Act (UTMA). Which of the following is true regarding this account?",
+        o: [
+          "The grandparent can fully revoke the gift if the child misbehaves.",
+          "The account may feature multiple minor beneficiaries listed jointly.",
+          "Taxes on the account's earnings are paid directly by the grandparent.",
+          "All gifts to the account are completely irrevocable and owned by the minor."
+        ],
+        a: 3,
+        e: "Under UGMA/UTMA rules, all gifts are <strong>irrevocable</strong> and become the legal property of the minor. <strong>(A)</strong> is wrong because the custodian cannot take the assets back. <strong>(B)</strong> is wrong because a custodial account may only have one custodian and one minor beneficiary. <strong>(C)</strong> is wrong because taxes are the responsibility of the minor, often at the minor's lower tax rate (subject to \"kiddie tax\" rules)."
+      },
+      {
+        s: "3.7", n: "Anti-Money Laundering",
+        q: "A customer makes three distinct cash deposits of $4,000, $3,500, and $3,000 into their brokerage account over two days. The registered representative suspects the customer is intentionally keeping transactions under the $10,000 threshold to avoid reporting. This behavior is called:",
+        o: [
+          "Structuring, designed to illegally evade large currency reporting.",
+          "Layering, representing the final phase of a laundering operation.",
+          "Front-running, involving trading ahead of large client deposits.",
+          "Commingling, inappropriately mixing client and brokerage funds."
+        ],
+        a: 0,
+        e: "<strong>Structuring</strong> is the illegal practice of breaking up large cash transactions into smaller ones specifically to evade the $10,000 Currency Transaction Report (CTR) filing requirement. <strong>(C)</strong> is a trading violation involving trading ahead of customer orders. <strong>(D)</strong> is the prohibited mixing of customer and firm assets. <strong>(B)</strong> is the second phase of money laundering (moving funds around to hide their origin), but the specific act of avoiding the $10,000 deposit threshold is structuring."
+      },
+      {
+        s: "3.7", n: "Anti-Money Laundering",
+        q: "A broker-dealer identifies suspicious activity in a customer's account that may be tied to money laundering. The firm must file a Suspicious Activity Report (SAR) with FinCEN within how many days of discovering the activity?",
+        o: [
+          "3 business days, matching the standard timeline for trade settlements.",
+          "30 calendar days, providing sufficient time for a formal firm review.",
+          "15 calendar days, matching the deadline for cash transaction reports.",
+          "60 calendar days, allowing exhaustive background compliance checks."
+        ],
+        a: 1,
+        e: "A Suspicious Activity Report (SAR) must be filed with the Financial Crimes Enforcement Network (FinCEN) within <strong>30 calendar days</strong> of the firm becoming aware of the suspicious transaction. <strong>(C)</strong> is the timeframe for filing a Currency Transaction Report (CTR) for cash deposits over $10,000. <strong>(A)</strong> and <strong>(D)</strong> are incorrect timeframes."
+      },
+      {
+        s: "3.8", n: "Books, Records & Privacy",
+        q: "To comply with SEC Regulation S-P, a broker-dealer must provide a privacy notice to consumers. If the firm intends to share nonpublic personal information with non-affiliated third parties, what must the firm provide to the consumer?",
+        o: [
+          "A comprehensive 1099 tax form detailing the exact value of the data.",
+          "A formal written guarantee preventing any subsequent data breaches.",
+          "A clearly explained and reasonably simple method to opt out of sharing.",
+          "A mandatory arbitration agreement effectively waiving privacy rights."
+        ],
+        a: 2,
+        e: "Under <strong>Regulation S-P</strong>, firms must provide privacy notices and, if they plan to share data with unaffiliated third parties, they must give the consumer a reasonable, easy way to <strong>\"opt out\"</strong> (like a check box or a toll-free number). <strong>(D)</strong> relates to dispute resolution, not privacy. <strong>(A)</strong> and <strong>(B)</strong> are fabricated requirements."
+      },
+      {
+        s: "3.9", n: "Communications & Suitability",
+        q: "A registered representative recommends a complex, leveraged exchange-traded fund to an elderly client with a stated objective of capital preservation. The representative argues the recommendation is fine because the fund is highly rated by analysts. Under FINRA's suitability rules, this recommendation violates:",
+        o: [
+          "Quantitative suitability, which strictly prevents excessive portfolio turnover.",
+          "Reasonable-basis suitability, which requires broad product understanding.",
+          "The Know Your Customer exemption, which broadly applies to older clients.",
+          "Customer-specific suitability, which mandates alignment with client goals."
+        ],
+        a: 3,
+        e: "<strong>Customer-specific suitability</strong> requires that a recommendation be appropriate for that specific individual based on their investment profile (age, risk tolerance, objectives). A highly volatile leveraged ETF is unsuitable for an elderly client seeking capital preservation. <strong>(A)</strong> involves excessive trading (churning). <strong>(B)</strong> means the product must be suitable for <em>at least some</em> investors, which it might be — but it fails the customer-specific test. <strong>(C)</strong> is a fabricated exemption."
+      },
+      {
+        s: "3.10", n: "Market Manipulation",
+        q: "A trader enters a large number of orders to buy a stock right at the end of the trading day. The trader has no intention of holding the stock, but merely wants to drive the closing price higher so a derivative position they hold becomes more profitable. This prohibited practice is called:",
+        o: [
+          "Marking the close, intended to artificially manipulate the final price.",
+          "Interpositioning, inserting a third party to capture additional fees.",
+          "Front-running, executing personal trades ahead of large client orders.",
+          "Free-riding, buying and immediately selling without actually paying."
+        ],
+        a: 0,
+        e: "<strong>Marking the close</strong> is the manipulative practice of executing trades near the end of the day to falsely influence the stock's closing price. <strong>(C)</strong> is trading on inside knowledge of a pending customer block order. <strong>(D)</strong> is buying a stock and selling it before paying for the original purchase. <strong>(B)</strong> is inserting a third party between a broker and the best market, charging the customer unnecessary fees."
+      },
+      {
+        s: "3.10", n: "Market Manipulation",
+        q: "Two investors coordinate to buy and sell the same thinly traded stock back and forth between each other's accounts at increasingly higher prices. No actual change of beneficial ownership occurs, but the tape shows high volume and rising prices, attracting retail investors. What is this illegal activity called?",
+        o: [
+          "Backing away, when a market maker fails to honor their published quote.",
+          "Wash trading, intended to create a completely false illusion of volume.",
+          "Selling away, representing unauthorized transactions outside the firm.",
+          "Churning, occurring when brokers generate commissions excessively."
+        ],
+        a: 1,
+        e: "<strong>Wash trading (or painting the tape)</strong> involves creating the illusion of active trading volume and price movement through coordinated trades where no real change in ownership occurs. <strong>(D)</strong> is excessive trading by a broker to generate commissions. <strong>(C)</strong> is a representative selling securities outside their firm's supervision. <strong>(A)</strong> is a market maker failing to honor their published firm quote."
+      },
+      {
+        s: "3.11", n: "Insider Trading",
+        q: "An executive at a pharmaceutical company learns confidentially that their flagship drug just failed its final FDA trial. The executive calls their brother and says, \"Sell all your shares tomorrow morning, trust me.\" The brother sells, avoiding a massive loss. Who is liable for insider trading?",
+        o: [
+          "Only the executive, because they inherently hold the fiduciary duty.",
+          "Only the brother, because he physically executed the illicit trade.",
+          "Both the executive and the brother, as they shared and used the tip.",
+          "Neither individual, because the brother lacked specific drug details."
+        ],
+        a: 2,
+        e: "Under insider trading laws, <strong>both the tipper (the executive) and the tippee (the brother)</strong> are liable. The executive breached a fiduciary duty by sharing material nonpublic information, and the brother traded on it knowing (or having reason to know) it came from an insider source. <strong>(A)</strong> and <strong>(B)</strong> are incorrect because liability extends to both parties in the chain. <strong>(D)</strong> is wrong because \"trust me\" from a corporate insider is sufficient context to establish liability."
+      },
+      {
+        s: "3.12", n: "Other Prohibited Activities",
+        q: "A customer's account declines by 20% during a severe market correction. The registered representative, feeling guilty because they recommended the portfolio, deposits $5,000 of their own personal funds into the customer's account to partially offset the losses. Under FINRA rules, this action is:",
+        o: [
+          "Permitted, provided the branch manager thoroughly reviews the transfer.",
+          "Permitted, because it demonstrates clear commitment to client success.",
+          "Prohibited, because it constitutes illegal commingling of firm assets.",
+          "Prohibited, because representatives cannot guarantee against any loss."
+        ],
+        a: 3,
+        e: "FINRA strictly <strong>prohibits guaranteeing a customer against loss</strong> or sharing in a customer's losses. A representative cannot reimburse a client out of pocket for market losses. Sharing is only permitted in a formally established joint account proportionate to financial contributions. <strong>(A)</strong> and <strong>(B)</strong> are wrong because management approval or good intentions do not override the prohibition on guarantees against loss. <strong>(C)</strong> is wrong because commingling refers to mixing firm securities with customer securities, not a cash gift/reimbursement."
+      }
+    ];
+
+    let qIdx = 0;
+    let userAns = Array(Q.length).fill(null);
+
+    function initQuiz() {
+      // Randomize options for each question to prevent patterns
+      Q.forEach(q => {
+        const correctText = q.o[q.a];
+        for (let i = q.o.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [q.o[i], q.o[j]] = [q.o[j], q.o[i]];
+        }
+        q.a = q.o.indexOf(correctText);
+      });
+      renderDots();
+      renderQ(0);
+      updateProg();
+    }
+
+    function renderDots() {
+      const el = document.getElementById('qDots');
+      el.innerHTML = Q.map((_, i) =>
+        `<div class="quiz-dot ${i === 0 ? 'qd-active' : ''}" onclick="jumpQ(${i})" title="Question ${i + 1}"></div>`
+      ).join('');
+    }
+
+    function renderQ(idx) {
+      qIdx = idx;
+      const q = Q[idx];
+      const answered = userAns[idx] !== null;
+      const body = document.getElementById('qBody');
+      const letters = ['A', 'B', 'C', 'D'];
+
+      let h = `<div class="quiz-card">`;
+      h += `<div class="quiz-section-tag">Section ${q.s} — ${q.n}</div>`;
+      h += `<div class="quiz-q-text">${idx + 1}. ${q.q}</div>`;
+      h += `<div class="quiz-options">`;
+
+      q.o.forEach((opt, i) => {
+        let cls = 'quiz-option';
+        if (answered) {
+          cls += ' qo-disabled';
+          if (i === q.a) cls += ' qo-correct';
+          else if (i === userAns[idx]) cls += ' qo-wrong';
+        }
+        h += `<button class="${cls}" ${answered ? 'disabled' : `onclick="pickAns(${i})"`}>`;
+        h += `<span class="ol">${letters[i]}</span>`;
+        h += `<span>${opt}</span></button>`;
+      });
+      h += `</div>`;
+
+      if (answered) {
+        const ok = userAns[idx] === q.a;
+        h += `<div class="quiz-feedback ${ok ? 'qf-correct' : 'qf-wrong'}">`;
+        h += `<div class="quiz-feedback-label">${ok ? '✓ Correct' : '✗ Incorrect'}</div>`;
+        h += `<p style="margin:0">${q.e}</p></div>`;
+      }
+      h += `</div>`;
+      body.innerHTML = h;
+
+      document.getElementById('qCount').textContent = `Question ${idx + 1} of ${Q.length}`;
+      document.getElementById('qPrev').disabled = idx === 0;
+
+      const nxt = document.getElementById('qNext');
+      if (idx === Q.length - 1 && userAns.every(a => a !== null)) {
+        nxt.textContent = 'See Results';
+        nxt.onclick = showResults;
+      } else {
+        nxt.textContent = 'Next →';
+        nxt.onclick = () => qNavigate(1);
+        nxt.disabled = idx === Q.length - 1;
+      }
+
+      document.querySelectorAll('.quiz-dot').forEach((d, i) => {
+        d.className = 'quiz-dot';
+        if (i === qIdx) d.classList.add('qd-active');
+        if (userAns[i] !== null) d.classList.add(userAns[i] === Q[i].a ? 'qd-correct' : 'qd-wrong');
+      });
+      updateProg();
+    }
+
+    function pickAns(i) {
+      userAns[qIdx] = i;
+      renderQ(qIdx);
+      const answered = userAns.filter(a => a !== null).length;
+      const correct = userAns.filter((a, j) => a === Q[j].a).length;
+      document.getElementById('qScore').textContent = `${correct}/${answered} correct`;
+    }
+
+    function qNavigate(dir) {
+      const ni = qIdx + dir;
+      if (ni >= 0 && ni < Q.length) renderQ(ni);
+    }
+
+    function jumpQ(i) { renderQ(i); }
+
+    function updateProg() {
+      const pct = (userAns.filter(a => a !== null).length / Q.length) * 100;
+      document.getElementById('qProg').style.width = pct + '%';
+    }
+
+    function showResults() {
+      document.getElementById('qBody').style.display = 'none';
+      document.getElementById('qNav').style.display = 'none';
+      const el = document.getElementById('qSummary');
+      el.style.display = 'block';
+
+      const correct = userAns.filter((a, i) => a === Q[i].a).length;
+      const total = Q.length;
+      const pct = Math.round((correct / total) * 100);
+
+      const secs = {};
+      Q.forEach((q, i) => {
+        if (!secs[q.s]) secs[q.s] = { n: q.n, c: 0, t: 0 };
+        secs[q.s].t++;
+        if (userAns[i] === q.a) secs[q.s].c++;
+      });
+
+      let msg = '';
+      if (pct >= 90) msg = 'Outstanding! You have a strong command of this material.';
+      else if (pct >= 75) msg = 'Great job! Review the questions you missed to strengthen weak areas.';
+      else if (pct >= 60) msg = 'Good effort. Re-read the sections where you struggled and try again.';
+      else msg = 'Keep studying! Review the chapter content thoroughly and retake the exam.';
+
+      let bd = '';
+      Object.entries(secs).forEach(([k, v]) => {
+        bd += `<div class="quiz-bd-item"><div class="bd-label">Section ${k} — ${v.n}</div><div class="bd-score">${v.c}/${v.t}</div></div>`;
+      });
+
+      el.innerHTML = `<div class="quiz-summary">
+        <div class="quiz-score-ring"><span class="qs-num">${pct}%</span><span class="qs-of">${correct} of ${total}</span></div>
+        <h3>Practice Exam Complete</h3>
+        <p class="quiz-summary-msg">${msg}</p>
+        <div class="quiz-breakdown">${bd}</div>
+        <div class="quiz-summary-actions">
+          <button class="quiz-btn quiz-btn-secondary" onclick="reviewMissed()">Review Missed Questions</button>
+          <button class="quiz-btn quiz-btn-primary" onclick="resetQuiz()">Retake Exam</button>
+        </div>
+      </div>`;
+    }
+
+    function reviewMissed() {
+      document.getElementById('qBody').style.display = '';
+      document.getElementById('qNav').style.display = '';
+      document.getElementById('qSummary').style.display = 'none';
+      const first = userAns.findIndex((a, i) => a !== Q[i].a);
+      renderQ(first >= 0 ? first : 0);
+    }
+
+    function resetQuiz() {
+      userAns = Array(Q.length).fill(null);
+      document.getElementById('qBody').style.display = '';
+      document.getElementById('qNav').style.display = '';
+      document.getElementById('qSummary').style.display = 'none';
+      document.getElementById('qScore').textContent = '';
+      renderDots();
+      renderQ(0);
+    }
+
+    // Initialize quiz on load
+    document.addEventListener('DOMContentLoaded', initQuiz);
+  </script>
+
+</body>
+
+</html>

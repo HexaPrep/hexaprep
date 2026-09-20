@@ -1,0 +1,1423 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 3: Equity Securities &amp; Packaged Products | HexaPrep S7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #0EA5E9;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --danger: #EF4444;
+      --danger-light: #FEE2E2;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --surface-hover: #334155;
+        --border: #334155;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --text-light: #94A3B8;
+        --text-dark: #0F172A;
+        --primary: #6366F1;
+        --primary-hover: #818CF8;
+        --primary-light: #312E81;
+        --warning-light: #451A03;
+        --danger-light: #450A0A;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--surface);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+    }
+
+    h3 {
+      scroll-margin-top: 80px;
+      /* Offset for fixed topbar */
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    ul,
+    ol {
+      padding-left: 24px;
+      margin-bottom: 1.5em;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+      max-width: none;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(var(--surface), 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 0;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .back-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      margin-left: 24px;
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumbs a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--text-main);
+    }
+
+    .breadcrumb-sep {
+      color: var(--border);
+    }
+
+    /* Dropdown */
+    .chapter-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .chapter-dropdown>a {
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .chapter-dropdown>a:hover {
+      background: var(--surface-hover);
+    }
+
+    .chapter-dropdown>a svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--surface);
+      min-width: 160px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      z-index: 200;
+      padding: 8px 0;
+      margin-top: 4px;
+    }
+
+    .dropdown-content a {
+      color: var(--text-main);
+      padding: 8px 16px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--surface-hover);
+      color: var(--primary);
+    }
+
+    .chapter-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Grid */
+    .main-wrapper {
+      margin-left: 300px;
+      display: flex;
+      flex: 1;
+      margin-top: 64px;
+      justify-content: flex-start;
+      width: calc(100% - 300px);
+    }
+
+    /* Fixed Sidebar */
+    .sidebar {
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      width: 300px;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      padding: 32px 24px;
+      z-index: 100;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    /* Table of Contents */
+    .toc-chapter-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toc-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .toc-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .toc-link.sub {
+      font-size: 13px;
+      padding: 6px 12px 6px 24px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .toc-link.sub:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 48px 100px 100px 40px;
+      max-width: none;
+      width: 100%;
+      margin: 0;
+    }
+
+    /* Hero inside content */
+    .chapter-hero {
+      margin-bottom: 56px;
+    }
+
+    .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .chapter-title {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .chapter-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: none;
+      margin-bottom: 32px;
+    }
+
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      gap: 8px;
+    }
+
+    .stat {
+      flex: 1 1 120px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      color: var(--text-main);
+      font-weight: 700;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .stat .lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .lede {
+      font-size: 20px;
+      color: var(--text-main);
+      padding-left: 24px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 48px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* Section Typography */
+    .block {
+      margin-bottom: 64px;
+      scroll-margin-top: 80px;
+      /* offset for fixed topbar */
+    }
+
+    .block h2 {
+      font-size: 32px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      margin-top: 64px;
+    }
+
+    .block h2 .num {
+      color: var(--primary);
+      margin-right: 12px;
+    }
+
+    .block h3 {
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+    }
+
+    .callout-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout.tip {
+      background: var(--success-light);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .callout.tip .callout-label {
+      color: var(--success);
+    }
+
+    .callout.tip p {
+      color: var(--text-dark);
+    }
+
+    .callout.tip p strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .callout.trap {
+      background: var(--danger-light);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .callout.trap .callout-label {
+      color: var(--danger);
+    }
+
+    .callout.trap p {
+      color: var(--text-main);
+    }
+
+    .callout.rule {
+      background: var(--surface-hover);
+      border-color: var(--border);
+    }
+
+    .callout.rule .callout-label {
+      color: var(--text-main);
+    }
+
+    .callout.rule p {
+      color: var(--text-main);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.hl {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    /* Quiz */
+    details.q {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    details.q summary {
+      padding: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-main);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.q summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.q summary::after {
+      content: "View Answer";
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 4px 12px;
+      background: var(--primary-light);
+      border-radius: 99px;
+      transition: var(--transition);
+    }
+
+    details.q[open] summary::after {
+      content: "Hide Answer";
+    }
+
+    details.q[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-answer,
+    .answer {
+      padding: 20px;
+      background: var(--surface);
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Next Chapter */
+    .next-footer {
+      margin-top: 64px;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .next-footer:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .next-footer .lbl {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .next-footer .title {
+      font-size: 28px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .next-footer p {
+      margin: 0 auto;
+      opacity: 0.9;
+      font-size: 16px;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 30px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-left: 2px solid var(--border);
+      padding-left: 0;
+    }
+
+    .tl-step {
+      position: relative;
+      padding: 0 0 26px 30px;
+      margin-left: -2px;
+      border-left: 2px solid var(--primary-light);
+    }
+
+    .tl-step:last-child {
+      border-left: 2px solid transparent;
+      padding-bottom: 0;
+    }
+
+    .tl-step::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 2px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid var(--surface);
+    }
+
+    .tl-step .tl-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .tl-step .tl-body {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Sticky Top Navbar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Dashboard
+        </a>
+        <div class="breadcrumbs">
+          <a href="../index.html">HexaPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Series 7</a>
+          <span class="breadcrumb-sep">/</span>
+          <div class="chapter-dropdown">
+            <a href="chapter3.html">Chapter 3
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-content">
+              <a href="chapter1.html">Chapter 1</a>
+              <a href="chapter2.html">Chapter 2</a>
+              <a href="chapter3.html">Chapter 3</a>
+              <a href="chapter4.html">Chapter 4</a>
+              <a href="chapter5.html">Chapter 5</a>
+              <a href="chapter6.html">Chapter 6</a>
+              <a href="chapter7.html">Chapter 7</a>
+              <a href="chapter8.html">Chapter 8</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      
+      <aside class="sidebar">
+        <div class="toc-chapter-title">Chapter 3:<br>Equity Securities &amp; Packaged Products</div>
+        <div class="toc-title">In This Chapter</div>
+        <nav class="toc-nav">
+          <a href="#m31" class="toc-link active">3.1 Common &amp; Preferred Stock</a>
+          <a href="#m31-count" class="toc-link sub">The share-count hierarchy</a>
+          <a href="#m31-rights" class="toc-link sub">Common stockholder rights</a>
+          <a href="#m31-actions" class="toc-link sub">Corporate actions</a>
+          <a href="#m31-penny" class="toc-link sub">Penny stocks</a>
+          <a href="#m31-preferred" class="toc-link sub">Preferred stock</a>
+
+          <a href="#m32" class="toc-link">3.2 Rights, Warrants, ADRs &amp; Markets</a>
+          <a href="#m32-rights" class="toc-link sub">Rights vs. warrants</a>
+          <a href="#m32-equity" class="toc-link sub">Where equity actually trades</a>
+          <a href="#m32-adrs" class="toc-link sub">American Depositary Receipts (ADRs)</a>
+
+          <a href="#m33" class="toc-link">3.3 Equity Taxation &amp; Cost Basis</a>
+          <a href="#m33-holding" class="toc-link sub">Holding period &amp; gain/loss</a>
+          <a href="#m33-dividends" class="toc-link sub">Dividends: qualified vs. non</a>
+          <a href="#m33-wash" class="toc-link sub">The wash-sale rule</a>
+          <a href="#m33-cost" class="toc-link sub">Cost basis rules</a>
+          <a href="#m33-valuation" class="toc-link sub">Valuation methods</a>
+
+          <a href="#m34" class="toc-link">3.4 Investment Companies, ETFs &amp; UITs</a>
+          <a href="#m34-structures" class="toc-link sub">Three structures</a>
+          <a href="#m34-nav" class="toc-link sub">NAV and forward pricing</a>
+          <a href="#m34-sales" class="toc-link sub">Sales charges and breakpoints</a>
+          <a href="#m34-fees" class="toc-link sub">Fee structures</a>
+          <a href="#m34-taxation" class="toc-link sub">Mutual fund taxation</a>
+
+          <a href="#m35" class="toc-link">3.5 Variable Life &amp; Annuity</a>
+          <a href="#m35-lifecycle" class="toc-link sub">The contract lifecycle</a>
+          <a href="#m35-features" class="toc-link sub">Insurance features</a>
+          <a href="#m35-air" class="toc-link sub">Assumed interest rate (AIR)</a>
+          <a href="#m35-tax" class="toc-link sub">Tax treatment by stage</a>
+
+          <a href="#m36" class="toc-link">3.6 REITs &amp; DPPs</a>
+          <a href="#m36-reits" class="toc-link sub">REITs vs. DPPs</a>
+          <a href="#m36-types" class="toc-link sub">REIT types</a>
+          <a href="#m36-tax" class="toc-link sub">DPP tax pass-through</a>
+          <a href="#m36-eval" class="toc-link sub">Evaluating a DPP offering</a>
+        </nav>
+      </aside>
+
+      <main class="content-area">
+
+        <header class="chapter-hero">
+          <span class="kicker">FINRA SERIES 7 EXAM · STUDY GUIDE</span>
+          <h1 class="chapter-title">Chapter 3 — Equity Securities &amp; Packaged Products</h1>
+          <p class="chapter-subtitle">This is the first product chapter, and it's built in layers: start with the simplest thing a company can sell — a share of itself — then work outward into the instruments derived from that share, the tax consequences of owning it, and the pooled, insurance, and alternative wrappers built on top of it.</p>
+          <div class="stat-strip">
+            <div class="stat"><span class="num">Function 3</span><span class="lbl">FINRA function</span></div>
+            <div class="stat"><span class="num">73%</span><span class="lbl">exam weight (Ch 3-7)</span></div>
+            <div class="stat"><span class="num">6</span><span class="lbl">modules in this chapter</span></div>
+          </div>
+        </header>
+
+        <!-- ============ MODULE 3.1 ============ -->
+        <section class="block" id="m31">
+          <h2><span class="num">3.1</span>Common &amp; Preferred Stock</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Stock types: authorized, issued, outstanding, treasury stock, stated value</li>
+              <li>Common stock rights: preemptive right, dividends, books/records access, voting power, residual claims</li>
+              <li>Spinoffs, consolidations, transfers, penny stocks and transaction rules</li>
+              <li>Preferred stock features: cumulative, participating, convertible, callable, adjustable/variable-rate</li>
+              <li>Preferred stockholder rights: dissolution preference, dividend, conversion, sinking fund</li>
+            </ul>
+          </div>
+
+          <h3 id="m31-count">The share-count hierarchy</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Authorized</td><td>The maximum number of shares the corporate charter permits the company to issue — the ceiling</td></tr>
+              <tr><td class="hl">Issued</td><td>Authorized shares actually sold or distributed at some point; issued shares can never exceed authorized shares</td></tr>
+              <tr><td class="hl">Outstanding</td><td>Issued shares currently held by investors — issued <em>minus</em> any shares the company has repurchased and holds itself</td></tr>
+              <tr><td class="hl">Treasury stock</td><td>Previously issued shares the company has bought back; treasury shares have no voting rights and receive no dividends while held by the company</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p><strong>Stated value</strong> is an arbitrary accounting figure assigned to no-par stock for balance-sheet bookkeeping purposes — it has no relationship to the stock's market price or liquidation value.</p>
+
+          <h3 id="m31-rights">Common stockholder rights</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Right</th><th>What it means</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Preemptive right</td><td>The right (when granted) to purchase newly issued shares in a follow-on offering before the public, in proportion to the shareholder's existing ownership — protects against involuntary dilution</td></tr>
+              <tr><td class="hl">Pro rata share of dividends</td><td>If the board declares a dividend, each common shareholder receives their proportional share — but dividends are never guaranteed</td></tr>
+              <tr><td class="hl">Access to corporate books</td><td>The right to inspect certain corporate records, such as shareholder lists and financial statements</td></tr>
+              <tr><td class="hl">Voting power</td><td>See the voting-methods table below</td></tr>
+              <tr><td class="hl">Residual claim</td><td>In liquidation, common shareholders are paid <em>last</em>, after creditors, bondholders, and preferred shareholders — the tradeoff for common stock's unlimited upside</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Method</th><th>How it works</th><th>Who it favors</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Statutory voting</td><td>One vote per share, per open board seat — votes cannot be concentrated on a single candidate</td><td>Majority shareholders, who can sweep every open board seat</td></tr>
+              <tr><td class="hl">Cumulative voting</td><td>Total votes (shares owned × open seats) can be cast however the shareholder chooses, including concentrated entirely on one candidate</td><td>Minority shareholders, who can combine votes to guarantee at least one board seat</td></tr>
+              <tr><td class="hl">Nonvoting stock</td><td>A share class carrying no voting rights at all</td><td>Existing control holders, who raise capital without diluting voting control</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m31-actions">Corporate actions</h3>
+          <p>A <strong>spinoff</strong> distributes shares of a subsidiary directly to the parent company's existing shareholders, creating a new, independently traded security without the shareholder paying anything. Shares can also arrive through a <strong>consolidation</strong> (a merger of two companies into a new combined entity) or a <strong>transfer</strong> (a straightforward re-registration, such as moving shares between accounts or into a trust).</p>
+
+          <h3 id="m31-penny">Penny stocks</h3>
+          <p>A <strong>penny stock</strong> is generally an equity security priced under $5 per share that does <em>not</em> trade on a national securities exchange (a stock listed on the NYSE or Nasdaq is not a penny stock regardless of price) — defined under FINRA Exchange Act Rule 3a51-1. Because these securities are thinly traded, hard to price accurately, and historically associated with high-pressure sales tactics and fraud, the SEC layered specific disclosure obligations onto any broker-dealer soliciting them.</p>
+
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Rule</th><th>Requirement</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Rule 15g-1</td><td>Exempts certain transactions from the rules below — for example, transactions with established customers or institutional accredited investors</td></tr>
+              <tr><td class="hl">Rule 15g-2</td><td>Requires a signed, dated Risk Disclosure Document before the first penny stock transaction with a customer</td></tr>
+              <tr><td class="hl">Rule 15g-5</td><td>Requires disclosure of the associated person's (salesperson's) compensation from the transaction</td></tr>
+              <tr><td class="hl">Rule 15g-9</td><td>Requires a signed suitability statement from the customer before a solicited penny stock recommendation to a new customer, unless the customer is an established customer or an accredited investor</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m31-preferred">Preferred stock</h3>
+          <p>Preferred stock behaves more like a hybrid between a bond and a stock: it typically pays a fixed dividend rate, generally carries no voting rights, and sits ahead of common stock (but behind bonds) in a liquidation.</p>
+
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Feature</th><th>What it means</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Cumulative</td><td>Any missed (skipped) dividend accrues in arrears and must be fully paid before common shareholders can receive any dividend</td></tr>
+              <tr><td class="hl">Non-cumulative</td><td>A missed dividend is simply lost — it does not accrue or carry forward</td></tr>
+              <tr><td class="hl">Participating</td><td>In addition to its fixed dividend, the shareholder may share in extra distributions along with common shareholders if the company performs well</td></tr>
+              <tr><td class="hl">Nonparticipating</td><td>The dividend is capped at the fixed stated rate — the standard case</td></tr>
+              <tr><td class="hl">Convertible</td><td>Exchangeable for a fixed number of common shares at the holder's option; the stated dividend on convertible preferred is typically lower to compensate for the conversion feature's added value</td></tr>
+              <tr><td class="hl">Callable</td><td>The issuer may redeem the shares at a stated price after a call date — a feature that benefits the issuer, so callable preferred typically carries a somewhat higher dividend rate to compensate investors for that risk</td></tr>
+              <tr><td class="hl">Adjustable-/variable-rate</td><td>The dividend rate resets periodically based on a reference benchmark, reducing (but not eliminating) interest-rate sensitivity relative to a fixed-rate preferred</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <p>Preferred stockholder rights mirror these features: <strong>preference on dissolution</strong> (paid before common in liquidation, from stated par value), <strong>dividend preference</strong> (paid before common dividends), a <strong>conversion</strong> right where applicable, and a <strong>sinking fund</strong> provision some issues carry, where the issuer sets aside money over time to retire the preferred shares systematically.</p>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Convertible preferred and callable preferred pull the dividend rate in <em>opposite</em> directions relative to a plain fixed-rate preferred issue: convertible preferred's dividend tends to be lower (the conversion feature itself has value to the investor), while callable preferred's dividend tends to be higher (call risk is a cost to the investor that must be compensated). Don't assume every "extra feature" reduces the yield the same way.</p>
+          </div>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 3.2 ============ -->
+        <section class="block" id="m32">
+          <h2><span class="num">3.2</span>Rights, Warrants, ADRs &amp; Markets</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Rights and warrants: origination, exercise terms, subscription price vs. market price, anti-dilution</li>
+              <li>Electronic exchanges and auction markets: ECNs, OTC markets, dark pools</li>
+              <li>Non-U.S. market securities including ADRs</li>
+            </ul>
+          </div>
+
+          <h3 id="m32-rights">Rights vs. warrants</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>Rights</th><th>Warrants</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Where they come from</td><td>Issued directly to existing shareholders, protecting their preemptive right in a new offering</td><td>Usually attached as a "sweetener" to a bond or preferred stock offering, or issued in a corporate restructuring</td></tr>
+              <tr><td class="hl">Subscription vs. market price</td><td>Subscription price is set <em>below</em> the current market price, to induce shareholders to exercise quickly</td><td>Exercise price is usually set <em>above</em> the market price at issuance — a warrant only has value if the stock rises above that price later</td></tr>
+              <tr><td class="hl">Life span</td><td>Short — typically 30 to 45 days</td><td>Long — often several years</td></tr>
+              <tr><td class="hl">Anti-dilution</td><td>Not typically needed given the short life</td><td>Often carries anti-dilution provisions adjusting the exercise price/share count if the company splits its stock or takes other dilutive actions</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Formula — value of one right
+            </div>
+            <p><strong>Cum rights (rights-on) period:</strong> (Market price − Subscription price) ÷ (Number of rights to buy one share + 1)</p>
+            <p><strong>Ex-rights period:</strong> (Market price − Subscription price) ÷ Number of rights to buy one share</p>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example
+            </div>
+            <p>A stock trades at $52, rights-on, and the subscription terms require 4 rights plus $40 cash to buy one new share. Value of one right = ($52 − $40) ÷ (4 + 1) = $12 ÷ 5 = <strong>$2.40 per right</strong>. If the stock then goes ex-rights and drops to $49.60 (reflecting the value of the right leaving the share), the ex-rights value becomes ($49.60 − $40) ÷ 4 = $9.60 ÷ 4 = <strong>$2.40 per right</strong> — the two formulas are built to agree at the moment the stock transitions from cum-rights to ex-rights.</p>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>The denominator changes by exactly 1 between the two formulas (+1 for cum-rights, no adjustment for ex-rights) — using the wrong denominator for the period described in the question is the single most common rights-calculation error on this material.</p>
+          </div>
+
+          <h3 id="m32-equity">Where equity actually trades</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Venue</th><th>How it works</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Exchange / auction market</td><td>Centralized venue matching displayed buy and sell orders at the best available price</td><td>High transparency, generally tighter spreads for actively traded names</td></tr>
+              <tr><td class="hl">ECN (electronic communication network)</td><td>Automated system matching orders electronically, often outside traditional exchange hours</td><td>Adds liquidity and extended-hours access, but can fragment order flow across venues</td></tr>
+              <tr><td class="hl">OTC market</td><td>A dealer (negotiated) market where market makers post their own bid/ask quotes rather than orders being matched centrally</td><td>Used for securities that don't meet exchange listing standards; pricing depends on dealer competition rather than a single consolidated book</td></tr>
+              <tr><td class="hl">Dark pool</td><td>A private trading venue where orders are not displayed publicly before execution</td><td>Lets institutions execute large blocks without moving the visible market against themselves — but offers less pre-trade transparency to the broader market</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m32-adrs">American Depositary Receipts (ADRs)</h3>
+          <p>An ADR represents shares of a foreign company held in custody by a U.S. bank, trading in U.S. dollars on a U.S. exchange or OTC market — letting U.S. investors gain exposure to a foreign company without settling a trade in a foreign market or currency directly. Dividends are collected in the foreign currency, converted to U.S. dollars (net of any foreign withholding tax), and passed through to the ADR holder. Compared with buying the foreign shares directly on their home exchange, an ADR trades U.S.-style settlement and dollar-denominated pricing for the same underlying currency and country risk — the ADR holder still bears the swing in the foreign currency's value against the dollar and the political/economic risk of the issuer's home country, even though the mechanics feel identical to buying a U.S. stock.</p>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 3.3 ============ -->
+        <section class="block" id="m33">
+          <h2><span class="num">3.3</span>Equity Taxation &amp; Cost Basis</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Capital gains/losses; qualified vs. non-qualified dividends; wash sales; holding periods</li>
+              <li>Net long-term and short-term gain/loss determination</li>
+              <li>Tax treatment of when-issued securities and conversions</li>
+              <li>Cost basis for purchases, conversions, stock dividends, rights, inherited and gifted securities</li>
+              <li>FIFO, LIFO, and identified-shares valuation methods</li>
+            </ul>
+          </div>
+
+          <h3 id="m33-holding">Holding period and gain/loss character</h3>
+          <p>A security held <strong>one year or less</strong> generates a short-term gain or loss, taxed at ordinary income rates. Held <strong>more than one year</strong>, it's long-term, taxed at preferential capital-gains rates. Net short-term gains/losses and net long-term gains/losses are calculated separately first, then netted against each other to arrive at the final taxable result.</p>
+
+          <h3 id="m33-dividends">Dividends: qualified vs. non-qualified</h3>
+          <p>A <strong>qualified</strong> dividend is taxed at the same preferential rates as long-term capital gains, but only if the shareholder meets a minimum holding-period requirement around the ex-dividend date (common stock generally requires holding the shares for more than 60 days within a 121-day window centered on the ex-dividend date). A dividend that fails this holding-period test is <strong>non-qualified</strong> (ordinary) and taxed at ordinary income rates, even if the payer would otherwise qualify.</p>
+
+          <h3 id="m33-wash">The wash-sale rule — IRC §1091</h3>
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Rule Overview
+            </div>
+            <p><strong>Situation:</strong> An investor sells a security at a loss, intending to claim the loss for tax purposes.</p>
+            <p><strong>What happens:</strong> If the investor buys the same or a "substantially identical" security within 30 days before or after the sale (a 61-day window total), the loss is disallowed for current tax purposes.</p>
+            <p><strong>What happens to the loss:</strong> The disallowed loss isn't gone — it's added to the cost basis of the newly purchased replacement shares, deferring the tax benefit rather than eliminating it.</p>
+          </div>
+
+          <h3 id="m33-cost">Cost basis rules by situation</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Situation</th><th>Basis rule</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Ordinary purchase</td><td>Purchase price plus transaction costs</td></tr>
+              <tr><td class="hl">Convertible bond/preferred converted to common</td><td>Basis carries over from the convertible security — no gain or loss is recognized at the moment of conversion, and the holding period tacks on from the original acquisition date</td></tr>
+              <tr><td class="hl">Stock dividend / stock split</td><td>The original total dollar basis is spread across the new, larger number of shares — basis per share goes down, total basis is unchanged</td></tr>
+              <tr><td class="hl">Stock rights received on existing shares</td><td>If the rights are exercised, a portion of the original stock's basis is allocated to the rights based on relative fair market value; if the rights are allowed to lapse unexercised, generally no basis is allocated (no loss is recognized for the lapse)</td></tr>
+              <tr><td class="hl">Inherited securities</td><td>Basis is "stepped up" (or down) to the security's fair market value on the date of death — and the holding period is automatically treated as long-term, regardless of how long the decedent or heir actually held it</td></tr>
+              <tr><td class="hl">Gifted securities</td><td>Generally carries over the donor's original basis; but if that carryover basis is higher than fair market value at the time of the gift, a special rule applies for determining a loss (using the lower FMV instead) — a dual-basis situation</td></tr>
+              <tr><td class="hl">When-issued securities</td><td>The holding period begins on the trade date of the when-issued contract, not the later settlement/issuance date</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m33-valuation">Valuation methods</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Method</th><th>How it works</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">FIFO (first-in, first-out)</td><td>The IRS default if the taxpayer doesn't specify otherwise — the earliest-purchased shares are treated as the ones sold first</td></tr>
+              <tr><td class="hl">Identified shares</td><td>The taxpayer specifically designates, at the time of the trade, which lot of shares is being sold — used deliberately to control which gain/loss and holding period result</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example
+            </div>
+            <p>An investor buys 100 shares of ABC at $40 on January 10 of Year 1 ($4,000 basis). On February 1 of Year 2 (just over one year later), ABC declares a 2-for-1 stock split. The investor now holds 200 shares with a total basis still of $4,000 — $20 per share — and a holding period that still traces back to the original January 10, Year 1 purchase date. If the investor sells all 200 shares on March 1 of Year 2 for $25/share ($5,000 total), the result is a <strong>$1,000 long-term capital gain</strong> ($5,000 proceeds − $4,000 basis), since the holding period (over a year from original purchase) makes it long-term.</p>
+          </div>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 3.4 ============ -->
+        <section class="block" id="m34">
+          <h2><span class="num">3.4</span>Investment Companies, ETFs &amp; UITs</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Investment companies, ETFs, UITs — structures and fund types</li>
+              <li>Open-end concepts: NAV, forward pricing, loads, 12b-1 fees</li>
+              <li>Closed-end funds: IPO distribution and secondary-market trading</li>
+              <li>Sales-charge calculation, breakpoints, dollar-cost averaging</li>
+              <li>Redemption, CDSC, mutual fund taxation</li>
+            </ul>
+          </div>
+
+          <h3 id="m34-structures">Three structures, one product category</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>Open-end fund</th><th>Closed-end fund</th><th>UIT</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Share count</td><td>Continuously issues and redeems shares</td><td>Fixed number of shares after its IPO</td><td>Fixed portfolio, fixed number of units</td></tr>
+              <tr><td class="hl">How it trades</td><td>Bought/sold directly through the fund at NAV-based pricing</td><td>Trades on an exchange/OTC at whatever price supply and demand set — can be above (premium) or below (discount) NAV</td><td>Units may be redeemed with the sponsor; not actively managed</td></tr>
+              <tr><td class="hl">Management</td><td>Actively or passively managed by a portfolio manager</td><td>Actively or passively managed</td><td>Fixed, unmanaged portfolio held to maturity/termination</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>An open-end fund can never trade at a premium or discount to NAV — every transaction happens directly with the fund at a NAV-based price. A closed-end fund trades like a stock on the open market, which is exactly why it <em>can</em> trade above or below its NAV — supply and demand for the shares themselves, not just the underlying portfolio, sets the price.</p>
+          </div>
+
+          <h3 id="m34-nav">NAV and forward pricing</h3>
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Formula — Net Asset Value per share
+            </div>
+            <p>NAV per share = (Total assets − Total liabilities) ÷ Shares outstanding</p>
+          </div>
+          <p>Open-end funds use <strong>forward pricing</strong>: every order — buy or sell — executes at the <em>next</em> NAV calculated after the order is received, never the last published NAV. A customer who places an order at 2:00 p.m. doesn't know their exact execution price until that day's NAV is struck after market close.</p>
+
+          <h3 id="m34-sales">Sales charges and breakpoints</h3>
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Formula — sales charge percentage
+            </div>
+            <p>Sales charge % = (Public Offering Price − NAV) ÷ Public Offering Price</p>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example
+            </div>
+            <p>A fund's NAV is $18.50 and its public offering price (POP) is $20.00. Sales charge % = ($20.00 − $18.50) ÷ $20.00 = $1.50 ÷ $20.00 = <strong>7.5%</strong>.</p>
+            <p><strong>Reverse example:</strong> if the sales charge is 5% and NAV is $9.50, then POP = NAV ÷ (1 − sales charge %) = $9.50 ÷ 0.95 = <strong>$10.00.</strong></p>
+          </div>
+
+          <p><strong>Breakpoints</strong> are quantity discounts — the sales-charge percentage steps down at defined investment thresholds. Two mechanisms let a customer qualify without a single lump-sum purchase: a <strong>letter of intent</strong> lets the customer commit, in writing, to reach a breakpoint within 13 months and have the whole investment (including a prior purchase within 90 days, if backdated) charged at the lower rate; a <strong>right of accumulation</strong> lets existing holdings in the fund family count toward reaching a new breakpoint on a fresh purchase.</p>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap — breakpoint selling
+            </div>
+            <p>Deliberately splitting a customer's purchase into amounts just under a breakpoint threshold — to generate a higher sales charge and higher commission — is a <strong>breakpoint sale violation</strong>, a serious sales-practice violation regardless of the representative's stated intent.</p>
+          </div>
+
+          <h3 id="m34-fees">Fee structures</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Fee type</th><th>When it's charged</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Front-end load</td><td>Deducted at purchase — this is the standard sales charge calculated above</td></tr>
+              <tr><td class="hl">Back-end load / CDSC</td><td>A contingent deferred sales charge assessed at redemption, typically declining to zero the longer the shares are held</td></tr>
+              <tr><td class="hl">No-load</td><td>No sales charge at purchase or redemption; a fund may still call itself "no-load" while charging a small 12b-1 fee, provided that fee doesn't exceed 0.25% of average net assets annually</td></tr>
+              <tr><td class="hl">12b-1 fee</td><td>An ongoing, asset-based fee deducted from fund assets to cover marketing and distribution costs — embedded in the fund's expense ratio, not a separate charge the investor writes a check for</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m34-taxation">Mutual fund taxation</h3>
+          <p>Mutual funds are pass-through entities for tax purposes: dividends and capital gains the fund distributes are taxable to the shareholder in the year received — <strong>even if automatically reinvested</strong> into additional shares rather than taken in cash. Reinvested distributions also increase the shareholder's cost basis, which matters when the shares are eventually sold.</p>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 3.5 ============ -->
+        <section class="block" id="m35">
+          <h2><span class="num">3.5</span>Variable Life Insurance &amp; Annuity Contracts</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Variable life/annuity insurance features: guarantees, death benefits, living benefits, riders</li>
+              <li>Separate accounts: purpose, management, investment policy</li>
+              <li>Valuation: accumulation units, surrender value, annuity units</li>
+              <li>Purchasing/exchanging contracts; annuitization and the assumed interest rate</li>
+              <li>Tax treatment during accumulation, annuitization, and surrender</li>
+            </ul>
+          </div>
+
+          <h3 id="m35-lifecycle">The contract lifecycle</h3>
+          <div class="callout rule">
+            <div class="callout-label">Lifecycle Stages</div>
+            <p><strong>1. Purchase:</strong> Lump-sum or periodic premiums are paid into the contract's separate account.</p>
+            <p><strong>2. Accumulation:</strong> Premiums buy accumulation units in the separate account; unit value fluctuates daily with the underlying portfolio's performance — growth is tax-deferred.</p>
+            <p><strong>3. Surrender / exchange:</strong> The contract can be surrendered for its cash/surrender value, or exchanged tax-free for another qualifying contract under IRC §1035.</p>
+            <p><strong>4. Annuitization:</strong> Accumulation units convert into a fixed number of annuity units, and the contract begins making payouts.</p>
+            <p><strong>5. Payout:</strong> Each payment = number of annuity units × that period's annuity unit value, which moves with separate-account performance relative to the assumed interest rate.</p>
+          </div>
+
+          <h3 id="m35-features">Insurance features</h3>
+          <p>Separate from investment performance, a variable annuity/life contract typically carries insurance guarantees: a <strong>minimum death benefit</strong> (paying at least the greater of the account value or total premiums paid, regardless of poor investment performance), optional <strong>living benefit riders</strong> (such as guaranteed minimum income or withdrawal benefits), and a <strong>waiver of premium</strong> rider that keeps a variable life policy in force if the insured becomes disabled. These guarantees are backed by the insurance company's general account, not the separate account — which is precisely why they cost extra in fees.</p>
+
+          <h3 id="m35-air">The assumed interest rate (AIR)</h3>
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              How AIR drives the payment
+            </div>
+            <p>The AIR is a benchmark growth rate baked into the contract's payout formula at annuitization. If the separate account's <em>actual</em> performance in a given period is <strong>higher</strong> than the AIR, the next annuity payment <strong>increases</strong>. If actual performance is <strong>lower</strong> than the AIR, the payment <strong>decreases</strong>. A higher AIR produces a larger first payment but makes it statistically harder for future performance to beat it — meaning payments are more likely to trend down from there, not up.</p>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Students often assume a variable annuity payout is fixed once annuitized. It isn't — that's the entire point of the "variable" in variable annuity. Only the AIR itself, and the formula relating it to actual performance, is fixed; the dollar payment moves every period.</p>
+          </div>
+
+          <h3 id="m35-tax">Tax treatment by stage</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Stage</th><th>Tax treatment</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Accumulation</td><td>Growth inside the separate account is tax-deferred — no current tax on gains while the money stays in the contract</td></tr>
+              <tr><td class="hl">Non-qualified withdrawal before annuitization</td><td>Taxed LIFO — the earliest dollars withdrawn are treated as gains first, taxed as ordinary income; withdrawals before age 59½ also generally trigger a 10% additional tax on the taxable portion</td></tr>
+              <tr><td class="hl">Annuitization payments</td><td>Each payment is split between a tax-free return of the investor's original cost basis (via an exclusion ratio) and a taxable ordinary-income portion representing growth</td></tr>
+              <tr><td class="hl">Full surrender</td><td>Any amount received above the original cost basis is taxed as ordinary income; the same pre-59½ additional tax can apply to the taxable portion</td></tr>
+              <tr><td class="hl">1035 exchange</td><td>Exchanging one annuity or life contract for another qualifying contract is not a taxable event — cost basis and tax deferral carry over to the new contract</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 3.6 ============ -->
+        <section class="block" id="m36">
+          <h2><span class="num">3.6</span>REITs &amp; Direct Participation Programs</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>REIT structure: share count, IPO distribution, secondary trading, premiums/discounts to NAV</li>
+              <li>REIT types and taxation: equity, mortgage, hybrid</li>
+              <li>DPP structures: LPs, LLCs, general/limited partner roles</li>
+              <li>DPP tax treatment: flow-through, depreciation, oil-and-gas advantages</li>
+              <li>DPP types: real estate, oil and gas, small-cap debt/equity, BDCs, equipment leasing</li>
+              <li>Evaluation factors for private-placement and public DPP offerings</li>
+            </ul>
+          </div>
+
+          <p class="lede">REITs and DPPs are both ways to invest in real assets — real estate, energy, equipment — without buying the asset directly, but their legal structures and tax treatment are fundamentally different, and the exam tests that difference precisely.</p>
+
+          <h3 id="m36-reits">REITs vs. DPPs, side by side</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>REIT</th><th>DPP</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Legal form</td><td>A corporation (or trust taxed like one) that issues a finite number of shares in an IPO, then trades on the secondary market like a stock — can trade at a premium or discount to its underlying NAV</td><td>A limited partnership, LLC, or similar entity structured for direct tax pass-through — income, losses, and tax credits flow directly to investors, reported on a K-1</td></tr>
+              <tr><td class="hl">Tax mechanism</td><td>Avoids corporate-level tax by taking a dividends-paid deduction — it is not literally a pass-through entity, but distributes the great majority of its taxable income to shareholders to preserve that treatment</td><td>True pass-through — no entity-level tax at all; income, deductions, and credits pass directly to the partners</td></tr>
+              <tr><td class="hl">Liquidity</td><td>Publicly traded REITs are as liquid as any listed stock; non-traded REITs are illiquid</td><td>Generally illiquid — no active secondary market for most DPP interests</td></tr>
+              <tr><td class="hl">Management/control</td><td>Shareholders have no role in property management</td><td>A general partner manages the program and bears unlimited liability; limited partners are passive investors whose liability is capped at their investment</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m36-types">REIT types</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Type</th><th>What it holds</th><th>Primary income source</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Equity REIT</td><td>Owns and operates income-producing real estate directly</td><td>Rental income and property appreciation</td></tr>
+              <tr><td class="hl">Mortgage REIT</td><td>Originates or invests in mortgages and mortgage-backed securities</td><td>Interest income — sensitive to interest-rate movements</td></tr>
+              <tr><td class="hl">Hybrid REIT</td><td>A combination of direct property ownership and mortgage investments</td><td>Both rental and interest income</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p>REIT distributions to shareholders are generally taxed as ordinary income (reported on Form 1099-DIV, not a K-1); a portion may be classified as a non-taxable return of capital, which reduces the shareholder's cost basis rather than being taxed immediately.</p>
+
+          <h3 id="m36-tax">DPP tax pass-through and depreciation</h3>
+          <p>A DPP's defining tax advantage is passing real estate depreciation and, for oil-and-gas programs, intangible drilling cost deductions, directly to investors — potentially sheltering other income (subject to passive-activity-loss limitation rules) even though the investor never touches the physical property or well.</p>
+
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Type</th><th>Key characteristic</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Real estate</td><td>Depreciation deductions are the primary tax benefit; income tied to rental and eventual property sale</td></tr>
+              <tr><td class="hl">Oil and gas</td><td>Intangible drilling costs can be substantially deductible; higher risk/reward, tied to energy prices and drilling success</td></tr>
+              <tr><td class="hl">Equipment leasing</td><td>Depreciation on leased equipment as the primary tax benefit; income from lease payments</td></tr>
+              <tr><td class="hl">Small-cap debt/equity programs</td><td>Provide financing to smaller companies; higher risk in exchange for potential higher return</td></tr>
+              <tr><td class="hl">Business development companies (BDCs)</td><td>Invest in and provide financing/management assistance to smaller or developing businesses; structured with some Investment Company Act oversight distinct from a traditional LP</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m36-eval">Evaluating a DPP offering</h3>
+          <p>Because a DPP's value depends heavily on management skill (unlike, say, an index fund), evaluation focuses on qualitative and structural factors as much as numbers:</p>
+          <ul>
+            <li><strong>Economic soundness</strong> of the underlying business plan and assumptions</li>
+            <li><strong>General partner's expertise</strong> and track record in this specific asset type</li>
+            <li><strong>Stated objectives</strong> — income, growth, tax benefits, or some combination — and whether they fit the investor</li>
+            <li><strong>Start-up/organizational costs</strong> — a heavy front-end load reduces the amount actually put to work</li>
+            <li><strong>Leverage</strong> — debt use amplifies both potential returns and potential losses</li>
+            <li><strong>Revenue and cash-flow projections</strong> — and how realistic they are given the sector</li>
+          </ul>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Students sometimes describe a REIT as a "pass-through" entity the same way a DPP is. Resist that language — a REIT is a corporation that <em>avoids double taxation</em> by distributing most of its income (and gets a dividends-paid deduction for doing so); a DPP is a true pass-through where the entity itself is never taxed at all. The distinction matters directly for how each one reports income to investors (1099-DIV vs. K-1).</p>
+          </div>
+
+
+
+        </section>
+
+        <a href="chapter4.html" class="next-footer">
+          <span class="lbl">Up next</span>
+          <div class="title">Chapter 4: Debt Securities</div>
+          <p>Function 3 — Master the yield curve, corporate bonds, municipals, and treasuries.</p>
+        </a>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Add active state to TOC links on scroll
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-link').forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px" });
+
+      document.querySelectorAll('section.block, h3[id]').forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+
+</body>
+</html>

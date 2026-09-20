@@ -1,0 +1,1388 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 8: Trading, Settlement, Records, Complaints &amp; Margin | HexaPrep S7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #0EA5E9;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --danger: #EF4444;
+      --danger-light: #FEE2E2;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --surface-hover: #334155;
+        --border: #334155;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --text-light: #94A3B8;
+        --text-dark: #0F172A;
+        --primary: #6366F1;
+        --primary-hover: #818CF8;
+        --primary-light: #312E81;
+        --warning-light: #451A03;
+        --danger-light: #450A0A;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--surface);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+    }
+
+    h3 {
+      scroll-margin-top: 80px;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    ul,
+    ol {
+      padding-left: 24px;
+      margin-bottom: 1.5em;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+      max-width: none;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(var(--surface), 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 0;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .back-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      margin-left: 24px;
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumbs a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--text-main);
+    }
+
+    .breadcrumb-sep {
+      color: var(--border);
+    }
+
+    /* Dropdown */
+    .chapter-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .chapter-dropdown>a {
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .chapter-dropdown>a:hover {
+      background: var(--surface-hover);
+    }
+
+    .chapter-dropdown>a svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--surface);
+      min-width: 160px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      z-index: 200;
+      padding: 8px 0;
+      margin-top: 4px;
+    }
+
+    .dropdown-content a {
+      color: var(--text-main);
+      padding: 8px 16px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--surface-hover);
+      color: var(--primary);
+    }
+
+    .chapter-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Grid */
+    .main-wrapper {
+      margin-left: 300px;
+      display: flex;
+      flex: 1;
+      margin-top: 64px;
+      justify-content: flex-start;
+      width: calc(100% - 300px);
+    }
+
+    /* Fixed Sidebar */
+    .sidebar {
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      width: 300px;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      padding: 32px 24px;
+      z-index: 100;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    /* Table of Contents */
+    .toc-chapter-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toc-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .toc-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .toc-link.sub {
+      font-size: 13px;
+      padding: 6px 12px 6px 24px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .toc-link.sub:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 48px 100px 100px 40px;
+      max-width: none;
+      width: 100%;
+      margin: 0;
+    }
+
+    /* Hero inside content */
+    .chapter-hero {
+      margin-bottom: 56px;
+    }
+
+    .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .chapter-title {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .chapter-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: none;
+      margin-bottom: 32px;
+    }
+
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      gap: 8px;
+    }
+
+    .stat {
+      flex: 1 1 120px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      color: var(--text-main);
+      font-weight: 700;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .stat .lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .lede {
+      font-size: 20px;
+      color: var(--text-main);
+      padding-left: 24px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 48px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* Section Typography */
+    .block {
+      margin-bottom: 64px;
+      scroll-margin-top: 80px;
+    }
+
+    .block h2 {
+      font-size: 32px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      margin-top: 64px;
+    }
+
+    .block h2 .num {
+      color: var(--primary);
+      margin-right: 12px;
+    }
+
+    .block h3 {
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+    }
+
+    .callout-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout.tip, .callout.scenario {
+      background: var(--success-light);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .callout.tip .callout-label, .callout.scenario .callout-label {
+      color: var(--success);
+    }
+
+    .callout.tip p, .callout.scenario p {
+      color: var(--text-dark);
+    }
+
+    .callout.tip p strong, .callout.scenario p strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .callout.trap {
+      background: var(--danger-light);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .callout.trap .callout-label {
+      color: var(--danger);
+    }
+
+    .callout.trap p {
+      color: var(--text-main);
+    }
+
+    .callout.rule {
+      background: var(--surface-hover);
+      border-color: var(--border);
+    }
+
+    .callout.rule .callout-label {
+      color: var(--text-main);
+    }
+
+    .callout.rule p {
+      color: var(--text-main);
+    }
+
+    .callout.calc {
+      background: var(--primary-light);
+      border-color: rgba(79, 70, 229, 0.2);
+    }
+
+    .callout.calc .callout-label {
+      color: var(--primary);
+    }
+    
+    .callout.calc p {
+      color: var(--text-main);
+    }
+
+    /* Tables */
+    .table-wrap, .ledger-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.hl {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    /* Ledger Specific Overrides */
+    table.ledger th, table.ledger td {
+      text-align: right;
+    }
+    
+    table.ledger th:first-child, table.ledger td:first-child {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    table.ledger tr.total td {
+      background: var(--bg);
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    
+    table.ledger tr.call td {
+      background: var(--danger-light);
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    /* Formulas & Flows */
+    .formula {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 32px 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .formula .fx-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .flow-step {
+      flex: 1 1 200px;
+      padding: 20px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .flow-step:last-child {
+      border-right: none;
+    }
+
+    .flow-step .fs-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .flow-step .fs-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Quiz */
+    details.q {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    details.q summary {
+      padding: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-main);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.q summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.q summary::after {
+      content: "View Answer";
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 4px 12px;
+      background: var(--primary-light);
+      border-radius: 99px;
+      transition: var(--transition);
+    }
+
+    details.q[open] summary::after {
+      content: "Hide Answer";
+    }
+
+    details.q[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-answer,
+    .answer {
+      padding: 20px;
+      background: var(--surface);
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Complete Banner */
+    .complete-banner {
+      margin-top: 80px;
+      padding: 48px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: #fff;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .complete-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .cb-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cb-body {
+      font-size: 18px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Sticky Top Navbar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Dashboard
+        </a>
+        <div class="breadcrumbs">
+          <a href="../index.html">HexaPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Series 7</a>
+          <span class="breadcrumb-sep">/</span>
+          <div class="chapter-dropdown">
+            <a href="chapter8.html">Chapter 8
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-content">
+              <a href="chapter1.html">Chapter 1</a>
+              <a href="chapter2.html">Chapter 2</a>
+              <a href="chapter3.html">Chapter 3</a>
+              <a href="chapter4.html">Chapter 4</a>
+              <a href="chapter5.html">Chapter 5</a>
+              <a href="chapter6.html">Chapter 6</a>
+              <a href="chapter7.html">Chapter 7</a>
+              <a href="chapter8.html">Chapter 8</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      
+      <aside class="sidebar">
+        <div class="toc-chapter-title">Chapter 8:<br>Trading, Settlement, Records, Complaints &amp; Margin</div>
+        <div class="toc-title">In This Chapter</div>
+        <nav class="toc-nav">
+          <a href="#m81" class="toc-link active">8.1 Quotes, Orders, Execution &amp; Best Execution</a>
+          <a href="#m81-order" class="toc-link sub">Order types</a>
+          <a href="#m81-quote" class="toc-link sub">Quote types</a>
+          <a href="#m81-short" class="toc-link sub">Short selling: order marking through delivery</a>
+          <a href="#m81-why" class="toc-link sub">Why investors short a stock</a>
+          <a href="#m81-lending" class="toc-link sub">Securities lending</a>
+          <a href="#m81-best" class="toc-link sub">Best execution</a>
+
+          <a href="#m82" class="toc-link">8.2 Order Tickets, Market Making &amp; Reporting</a>
+          <a href="#m82-ticket" class="toc-link sub">What belongs on an order ticket</a>
+          <a href="#m82-making" class="toc-link sub">Market making</a>
+          <a href="#m82-quote" class="toc-link sub">Quotation types and size obligations</a>
+          <a href="#m82-reporting" class="toc-link sub">Regulatory reporting systems</a>
+
+          <a href="#m83" class="toc-link">8.3 Delivery, Settlement &amp; Uniform Practice</a>
+          <a href="#m83-good" class="toc-link sub">Good delivery</a>
+          <a href="#m83-timeline" class="toc-link sub">The settlement timeline</a>
+          <a href="#m83-exceptions" class="toc-link sub">Settlement exceptions and special cases</a>
+
+          <a href="#m84" class="toc-link">8.4 Errors, Disputes, Complaints &amp; Reporting</a>
+          <a href="#m84-three" class="toc-link sub">Three different problems, three different tracks</a>
+          <a href="#m84-consequences" class="toc-link sub">Consequences of improper complaint handling</a>
+          <a href="#m84-formal" class="toc-link sub">Formal resolution mechanisms</a>
+          <a href="#m84-u4" class="toc-link sub">Form U4</a>
+
+          <a href="#m85" class="toc-link">8.5 Margin Accounts &amp; Calculations</a>
+          <a href="#m85-long" class="toc-link sub">The long-account ledger</a>
+          <a href="#m85-short" class="toc-link sub">The short-account ledger</a>
+          <a href="#m85-sma" class="toc-link sub">SMA: what it can and can't be used for</a>
+          <a href="#m85-product" class="toc-link sub">Product-specific and ineligible margin situations</a>
+        </nav>
+      </aside>
+
+      <main class="content-area">
+
+        <header class="chapter-hero">
+          <span class="kicker">FINRA SERIES 7 EXAM · STUDY GUIDE</span>
+          <h1 class="chapter-title">Chapter 8 — Trading, Settlement, Records, Complaints &amp; Margin</h1>
+          <p class="chapter-subtitle">Everything earlier in this course assumed a trade could simply happen. This chapter is the mechanics underneath that assumption: how an order actually gets placed and filled, how the resulting trade settles and gets recorded, what happens when something goes wrong, and how a customer can borrow against a portfolio to trade with leverage in the first place.</p>
+          <div class="stat-strip">
+            <div class="stat"><span class="num">Function 4</span><span class="lbl">FINRA function</span></div>
+            <div class="stat"><span class="num">11%</span><span class="lbl">exam weight (14 questions)</span></div>
+            <div class="stat"><span class="num">5</span><span class="lbl">modules in this chapter</span></div>
+          </div>
+        </header>
+
+        <!-- ============ MODULE 8.1 ============ -->
+        <section class="block" id="m81">
+          <h2><span class="num">8.1</span>Quotes, Orders, Execution &amp; Best Execution</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Orders, offerings, and transactions in customer accounts, including advertised yield</li>
+              <li>Trade execution activities and quote types</li>
+              <li>Order types: AON, FOK, IOC, not-held, MOC, spread and straddle</li>
+              <li>Short-sale requirements: order marking, locate, borrow, delivery; speculation, hedging, arbitrage</li>
+              <li>Securities lending: hard-to-borrow and fail-to-deliver</li>
+              <li>Best-execution obligations</li>
+            </ul>
+          </div>
+
+          <h3 id="m81-order">Order types — what triggers execution, what the customer gives up</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Order type</th><th>What triggers execution</th><th>What the customer gives up</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">AON (all-or-none)</td><td>The full order quantity can be filled — partial fills are rejected, but the order can wait for a complete fill</td><td>Speed — the order may sit unfilled if the full size isn't available at once</td></tr>
+              <tr><td class="hl">FOK (fill-or-kill)</td><td>The full order quantity must be filled <em>immediately</em>, or the entire order is canceled on the spot</td><td>Patience — there's no waiting period; it's now-or-never for the whole order</td></tr>
+              <tr><td class="hl">IOC (immediate-or-cancel)</td><td>Whatever quantity can be filled immediately is filled; the unfilled remainder is automatically canceled</td><td>Guaranteed full execution — a partial fill is accepted rather than rejected</td></tr>
+              <tr><td class="hl">Not-held (NH)</td><td>Execution timing and price are left to the floor broker's judgment</td><td>Control over exact timing/price — the customer is trusting the broker's discretion to seek a better outcome</td></tr>
+              <tr><td class="hl">MOC (market-on-close)</td><td>Executes at (or as close as possible to) the closing price</td><td>Control over price — the customer accepts whatever the market's closing price turns out to be</td></tr>
+              <tr><td class="hl">Spread / straddle order</td><td>Both legs of an options spread or straddle (Chapter 6) execute together, often at a specified net price</td><td>The ability to leg into the position separately — both sides are tied together as one instruction</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m81-quote">Quote types</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Quote</th><th>What it means</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Firm quote</td><td>The dealer is obligated to actually trade at the quoted price, for at least a normal unit of trading</td></tr>
+              <tr><td class="hl">Subject quote</td><td>Subject to reconfirmation — not a binding commitment, and may change or be withdrawn before a trade is actually agreed</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m81-short">Short selling: order marking through delivery</h3>
+          <div class="flow">
+            <div class="flow-step"><div class="fs-label">1. Order marking</div><div class="fs-body">Every sell order must be marked "long" or "short" so the market and the firm's systems know exactly what kind of position is being created.</div></div>
+            <div class="flow-step"><div class="fs-label">2. Locate</div><div class="fs-body">Before executing a short sale, the firm must have reasonable grounds to believe the security can actually be borrowed and delivered by settlement — the Reg SHO "locate" requirement.</div></div>
+            <div class="flow-step"><div class="fs-label">3. Borrow</div><div class="fs-body">The firm actually arranges to borrow the shares (often from another customer's margin account or an institutional lender) to deliver against the short sale.</div></div>
+            <div class="flow-step"><div class="fs-label">4. Delivery</div><div class="fs-body">Borrowed shares are delivered to the buyer's side of the trade by the standard settlement date, just like any other sale.</div></div>
+          </div>
+
+          <h3 id="m81-why">Why investors short a stock</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Purpose</th><th>What it means</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Speculation</td><td>Betting the security's price will decline, to profit from buying it back cheaper later</td></tr>
+              <tr><td class="hl">Hedging</td><td>Offsetting risk in an existing long position, or locking in a gain on a position the investor doesn't want to sell outright yet (e.g., "short against the box")</td></tr>
+              <tr><td class="hl">Arbitrage</td><td>Exploiting a temporary pricing gap between related securities — the convertible-bond arbitrage from Chapter 4 is a direct example</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m81-lending">Securities lending: hard-to-borrow and fail-to-deliver</h3>
+          <p>A <strong>hard-to-borrow</strong> security is one where locating shares to borrow is difficult — typically due to heavy short demand or a limited available float — which usually carries an elevated borrow fee for the short seller. A <strong>fail-to-deliver</strong> occurs when a seller doesn't actually deliver the securities by the required settlement date, which can trigger mandatory close-out requirements under Reg SHO to resolve the open failure.</p>
+
+          <h3 id="m81-best">Best execution</h3>
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              FINRA Rule 5310
+            </div>
+            <p>Best execution is the obligation to use <strong>reasonable diligence</strong> to obtain the most favorable terms reasonably available for the customer under prevailing market conditions — weighing price, speed, likelihood of execution, size, and the overall nature of the transaction together. It is <em>not</em> simply an obligation to route every order to whichever venue executes fastest; the fastest execution and the best overall execution are not automatically the same thing.</p>
+          </div>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 8.2 ============ -->
+        <section class="block" id="m82">
+          <h2><span class="num">8.2</span>Order Tickets, Market Making &amp; Reporting</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Order-ticket information</li>
+              <li>Market making: role, listing requirements, quotation types, size obligations, order-handling rules, transaction reporting</li>
+              <li>Automated execution systems</li>
+              <li>Regulatory reporting systems: TRACE, EMMA, TRF, RTRS</li>
+            </ul>
+          </div>
+
+          <h3 id="m82-ticket">What belongs on an order ticket</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Field</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Symbol</td><td>Identifies exactly which security is being traded</td></tr>
+              <tr><td class="hl">Account number</td><td>Ties the order to the correct customer account</td></tr>
+              <tr><td class="hl">Side</td><td>Buy or sell (and, for a sale, long or short — Module 8.1)</td></tr>
+              <tr><td class="hl">Quantity</td><td>How many shares/units</td></tr>
+              <tr><td class="hl">Order type and price</td><td>Market, limit, stop, etc., with a limit/stop price where applicable</td></tr>
+              <tr><td class="hl">Time in force</td><td>Day order, good-till-canceled, or another duration instruction</td></tr>
+              <tr><td class="hl">Capacity</td><td>Whether the firm is acting as agent or principal on the trade</td></tr>
+              <tr><td class="hl">Solicited / unsolicited</td><td>Whether the representative recommended the trade or the customer initiated it independently — relevant to suitability documentation (Chapter 2)</td></tr>
+              <tr><td class="hl">Time stamp</td><td>When the order was received and entered, for the audit trail</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Common trap — order-ticket error spotting
+            </div>
+            <p>A ticket marked "solicited" for a trade the customer actually called in on their own initiative (or vice versa) isn't a harmless clerical slip — it misrepresents whether the recommendation-and-suitability framework from Chapter 2 even applies to that specific trade, which is exactly the kind of detail an exam scenario will ask you to catch.</p>
+          </div>
+
+          <h3 id="m82-making">Market making</h3>
+          <p>A <strong>Designated Market Maker (DMM)</strong> is responsible for maintaining a fair and orderly market in its assigned securities, which can include committing its own capital to smooth out temporary imbalances between buyers and sellers. Exchange <strong>listing requirements</strong> (minimum price, market value, shareholder count, and similar standards) determine which companies' securities can trade on that exchange in the first place, and <strong>limitations during significant market declines</strong> — market-wide circuit breakers — can pause or halt trading altogether once a benchmark index falls past defined thresholds in a single session.</p>
+
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>Principal</th><th>Agency</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Who's the counterparty?</td><td>The firm itself, trading from (or into) its own inventory</td><td>Another party in the market — the firm simply facilitates the trade for the customer</td></tr>
+              <tr><td class="hl">How the firm is compensated</td><td>A markup (on a sale to the customer) or markdown (on a purchase from the customer) built into the price</td><td>A separately disclosed commission</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m82-quote">Quotation types and size obligations</h3>
+          <p>Beyond firm and subject quotes (Module 8.1), a <strong>bid wanted</strong> notice signals that a holder is seeking buyers/bids for a security, and an <strong>offer wanted</strong> notice signals that a party is seeking sellers/offers for a security it wants to acquire. A firm quote's <strong>size obligation</strong> means the dealer must honor that price for at least a standard trading unit — not an unlimited amount, and not less than the standard size without updating the quote. SEC order-handling rules require market makers to properly display and represent customer limit orders rather than simply trading around them, and every executed trade must be reported to the tape on a timely basis.</p>
+
+          <h3 id="m82-reporting">Regulatory reporting systems</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>System</th><th>Market/product</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">TRACE (Trade Reporting and Compliance Engine)</td><td>Corporate and agency bonds</td><td>Post-trade price transparency for the fixed-income market</td></tr>
+              <tr><td class="hl">EMMA (Electronic Municipal Market Access)</td><td>Municipal securities</td><td>The MSRB's official public disclosure and trade-price access system for municipal bonds</td></tr>
+              <tr><td class="hl">TRF (Trade Reporting Facility)</td><td>OTC equity trades executed away from an exchange</td><td>Captures and reports off-exchange equity trades to the consolidated tape</td></tr>
+              <tr><td class="hl">RTRS (Real-Time Transaction Reporting System)</td><td>Municipal securities</td><td>The MSRB's real-time municipal trade-reporting engine, which feeds pricing data into EMMA</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 8.3 ============ -->
+        <section class="block" id="m83">
+          <h2><span class="num">8.3</span>Delivery, Settlement &amp; Uniform Practice</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Good delivery requirements and exceptions</li>
+              <li>Settlement timeline, security-specific rules, and exceptions</li>
+              <li>When-, as-, and if-issued trading; ex-rights and ex-dividend mechanics; due-bill checks</li>
+              <li>DKs and settlement extensions</li>
+            </ul>
+          </div>
+
+          <h3 id="m83-good">Good delivery</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Situation</th><th>Requirement</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Certificate in seller's own name</td><td>Delivered as-is, in good order</td></tr>
+              <tr><td class="hl">Certificate registered in two names</td><td>Both registered owners generally must sign/endorse (unless registered "or," which allows either to act alone)</td></tr>
+              <tr><td class="hl">Deceased owner</td><td>Requires proof of death and appropriate estate/appointment documentation before delivery can be completed (Chapter 2)</td></tr>
+              <tr><td class="hl">Stock/bond power</td><td>A separate assignment document that can transfer ownership without requiring the owner to endorse the certificate itself directly — useful when a certificate is held for safekeeping</td></tr>
+              <tr><td class="hl">Mutilated certificate</td><td>Generally not good delivery as-is; typically must be replaced/validated before it can settle a trade</td></tr>
+              <tr><td class="hl">Book-entry / DRS (Direct Registration System)</td><td>The modern standard — shares held electronically, either in street name at the broker or directly on the issuer's books via the transfer agent, with no physical certificate at all</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p>A <strong>due bill</strong> is issued when a trade settles in a way that would otherwise cause the buyer to miss out on a dividend or right they're actually entitled to (or vice versa) — it obligates the party who received the distribution to pass it along to the party who was actually entitled to it. The <strong>registrar</strong> verifies that total shares issued never exceed the number authorized and countersigns new certificate issuances, a distinct function from the transfer agent, though the two roles are sometimes combined at the same institution.</p>
+
+          <h3 id="m83-timeline">The settlement timeline</h3>
+          <div class="flow">
+            <div class="flow-step"><div class="fs-label">Trade date</div><div class="fs-body">The order executes; price and terms are locked in.</div></div>
+            <div class="flow-step"><div class="fs-label">Confirmation</div><div class="fs-body">Written confirmation is sent at or before completion of the transaction (Chapter 7).</div></div>
+            <div class="flow-step"><div class="fs-label">Settlement</div><div class="fs-body">Regular-way settlement for most equities and corporate bonds is currently T+1 — one business day after the trade date, per Exchange Act Rule 15c6-1.</div></div>
+          </div>
+
+          <h3 id="m83-exceptions">Settlement exceptions and special cases</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Situation</th><th>What happens</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">When-, as-, and if-issued</td><td>The security trades before it formally exists (e.g., ahead of a new bond issue or pending spinoff) — settlement is necessarily deferred until the security is actually issued</td></tr>
+              <tr><td class="hl">Ex-dividend / ex-rights date</td><td>A buyer purchasing on or after the ex-date does <em>not</em> receive the upcoming dividend or right — the seller retains that entitlement, since the buyer's trade settles too late to be the shareholder of record for it</td></tr>
+              <tr><td class="hl">Due-bill check</td><td>Used to settle a cash-dividend mismatch when a trade happened to cross the ex-date incorrectly relative to when it should have — ensures the economically entitled party actually receives the dividend</td></tr>
+              <tr><td class="hl">Negotiated settlement</td><td>Both parties agree to a settlement date other than the standard regular-way cycle</td></tr>
+              <tr><td class="hl">Option exercise/assignment</td><td>Settles on the standard equity timeline (T+1) once exercised (Chapter 6)</td></tr>
+              <tr><td class="hl">DK ("don't know")</td><td>A notice sent when one side of a reported trade can't reconcile the details against its own records — must be resolved before the trade can settle</td></tr>
+              <tr><td class="hl">Extension</td><td>A formal request to extend a payment or delivery deadline, requiring approval from the applicable exchange or self-regulatory body rather than being automatic</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout scenario">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 22 22 22 12 2"></polygon>
+                <path d="M12 16v.01"></path>
+              </svg>
+              Scenario
+            </div>
+            <p>A stock goes ex-dividend on Thursday. A customer buys the stock on Wednesday (the last day to be entitled to the dividend), but due to a processing error, the trade doesn't get properly recorded as "cum-dividend" and initially settles as though the customer bought after the ex-date.</p>
+          </div>
+          <details class="q">
+            <summary>What corrects this, and who ends up with the dividend?</summary>
+            <div class="answer">A <strong>due-bill check</strong> corrects the mismatch — since the customer actually purchased before the ex-date, they were entitled to the dividend, and the due-bill process ensures that entitlement is honored despite the processing error, rather than the dividend improperly staying with whoever the error initially credited it to.</div>
+          </details>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 8.4 ============ -->
+        <section class="block" id="m84">
+          <h2><span class="num">8.4</span>Errors, Disputes, Complaints &amp; Regulatory Reporting</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Erroneous reports, errors, cancels, and rebills</li>
+              <li>Customer-complaint requirements and consequences of improper handling</li>
+              <li>Formal resolution: arbitration, mediation, litigation</li>
+              <li>Form U4 reporting requirements</li>
+            </ul>
+          </div>
+
+          <h3 id="m84-three">Three different problems, three different tracks</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Situation</th><th>What it is</th><th>How it's handled</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Erroneous trade report</td><td>A purely mechanical/reporting mistake — wrong price, quantity, or symbol reported for an otherwise legitimate trade</td><td>Corrected through a formal cancel/rebill or cancel/correct process, preserving an accurate audit trail — not simply overwritten silently</td></tr>
+              <tr><td class="hl">Customer complaint</td><td>A customer's written expression of dissatisfaction with the firm's or a representative's conduct</td><td>Must be logged, reviewed, and — for specific categories of alleged misconduct — reported to FINRA under <strong>Rule 4530</strong></td></tr>
+              <tr><td class="hl">Industry dispute</td><td>A disagreement between member firms, or between a firm and an associated person, rather than a customer-facing complaint</td><td>Typically resolved through FINRA's industry arbitration process rather than customer-facing complaint handling</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Common trap
+            </div>
+            <p>Not every unhappy customer email is a "complaint" in the regulatory sense, and not every reporting glitch is a "complaint" either. A simple price-reporting error that gets caught and corrected the same day is a transaction correction, not a customer complaint — conflating the two, or failing to escalate a genuine complaint because it superficially looks like "just an error," is exactly the kind of mishandling that creates real regulatory exposure for the firm.</p>
+          </div>
+
+          <h3 id="m84-consequences">Consequences of improper complaint handling</h3>
+          <p>Failing to properly log, escalate, or report a qualifying customer complaint isn't a minor administrative lapse — it's a rule violation in its own right, independent of whatever the underlying complaint alleged, and can expose the firm to fines, sanctions, and reputational harm on top of whatever remedy the original complaint might have warranted.</p>
+
+          <h3 id="m84-formal">Formal resolution mechanisms</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Mechanism</th><th>Nature</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Arbitration</td><td>A binding, generally faster and less formal alternative to court — most customer-firm and industry disputes covered by an arbitration agreement are resolved through FINRA's arbitration forum</td></tr>
+              <tr><td class="hl">Mediation</td><td>A non-binding, facilitated negotiation aimed at a mutually agreeable settlement, often attempted before or alongside arbitration</td></tr>
+              <tr><td class="hl">Litigation</td><td>Formal court proceedings — generally available when a dispute isn't subject to a mandatory arbitration agreement, or by mutual choice of the parties</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m84-u4">Form U4</h3>
+          <p>Form U4 (the Uniform Application for Securities Industry Registration) is how an individual registers with FINRA and the states, and it discloses employment history, disciplinary history, and other required background information. It must be kept current — a firm is required to file an amendment promptly after learning of a reportable event, such as certain customer complaints, regulatory actions, or criminal charges involving the registered individual.</p>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 8.5 ============ -->
+        <section class="block" id="m85">
+          <h2><span class="num">8.5</span>Margin Accounts &amp; Calculations</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Margin-account requirements: minimums, approvals, ineligible accounts/securities, required disclosures</li>
+              <li>Product-specific margin: Treasury securities, mutual funds</li>
+              <li>Initial margin calculations: long and short positions</li>
+              <li>Maintenance margin: calls, deposits, restrictions</li>
+              <li>SMA: balance, buying power, prohibited uses</li>
+              <li>Portfolio margin and day trading</li>
+            </ul>
+          </div>
+
+          <p class="lede">Every margin calculation in this module reduces to the same handful of ledger lines. Learn the ledger once, and every scenario becomes an exercise in updating it correctly.</p>
+
+          <h3 id="m85-long">The long-account ledger, built step by step</h3>
+          <div class="formula">
+            <div class="fx-label">Core long-account formulas</div>
+            Equity = Long Market Value (LMV) − Debit balance<br>
+            Reg T initial requirement = 50% × LMV<br>
+            Loan value = LMV − Reg T requirement<br>
+            Excess equity = Equity − Reg T requirement (becomes SMA when positive)<br>
+            Buying power from SMA = SMA ÷ 50% = SMA × 2
+          </div>
+
+          <div class="callout calc">
+            <div class="callout-label">Day 1 — opening the position</div>
+            <p>A customer buys $10,000 of stock in a new margin account. Current Reg T initial margin is 50%.</p>
+          </div>
+          <div class="ledger-wrap">
+          <table class="ledger">
+            <thead><tr><th>Line</th><th>Amount</th></tr></thead>
+            <tbody>
+              <tr><td>LMV</td><td>$10,000</td></tr>
+              <tr><td>Reg T requirement (50% × LMV)</td><td>$5,000</td></tr>
+              <tr><td>Customer's required deposit</td><td>$5,000</td></tr>
+              <tr><td>Debit balance (LMV − deposit)</td><td>$5,000</td></tr>
+              <tr class="total"><td>Equity (LMV − debit)</td><td>$5,000</td></tr>
+              <tr><td>Excess equity (Equity − Reg T requirement)</td><td>$0</td></tr>
+              <tr><td>SMA</td><td>$0</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout calc">
+            <div class="callout-label">Day 2 — the stock appreciates</div>
+            <p>LMV rises to $12,000. The debit balance doesn't change on its own — it only changes when the customer borrows more or repays some of it.</p>
+          </div>
+          <div class="ledger-wrap">
+          <table class="ledger">
+            <thead><tr><th>Line</th><th>Amount</th></tr></thead>
+            <tbody>
+              <tr><td>LMV</td><td>$12,000</td></tr>
+              <tr><td>Debit balance (unchanged)</td><td>$5,000</td></tr>
+              <tr class="total"><td>Equity (LMV − debit)</td><td>$7,000</td></tr>
+              <tr><td>New Reg T requirement (50% × new LMV)</td><td>$6,000</td></tr>
+              <tr class="total"><td>Excess equity (Equity − Reg T requirement)</td><td>$1,000</td></tr>
+              <tr class="total"><td>New SMA</td><td>$1,000</td></tr>
+              <tr><td>Buying power from this SMA (SMA × 2)</td><td>$2,000</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p>That $1,000 of SMA can be used two different ways: withdrawn as <strong>cash</strong>, dollar-for-dollar, up to the full $1,000 — or used to buy up to <strong>$2,000</strong> in additional fully marginable securities, since new purchases are only required to be 50% covered.</p>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Common trap — SMA doesn't ratchet back down with ordinary price moves
+            </div>
+            <p>Once SMA is credited, an ordinary subsequent decline in the stock's price does <em>not</em> erase it. The SMA sits there as a line of credit until the customer uses it, or until the account's equity falls so far that using the SMA would trigger a maintenance call.</p>
+          </div>
+
+          <div class="callout calc">
+            <div class="callout-label">Day 3 — the stock falls sharply (maintenance call)</div>
+            <p>From the $12,000 peak, LMV drops to $6,000. Debit balance remains $5,000. FINRA maintenance requirement is 25% of LMV.</p>
+          </div>
+          <div class="ledger-wrap">
+          <table class="ledger">
+            <thead><tr><th>Line</th><th>Amount</th></tr></thead>
+            <tbody>
+              <tr><td>LMV</td><td>$6,000</td></tr>
+              <tr><td>Debit balance (unchanged)</td><td>$5,000</td></tr>
+              <tr class="total"><td>Equity (LMV − debit)</td><td>$1,000</td></tr>
+              <tr><td>Equity as % of LMV</td><td>16.7%</td></tr>
+              <tr><td>Maintenance requirement (25% × LMV)</td><td>$1,500</td></tr>
+              <tr class="call"><td>Maintenance call (deficiency)</td><td>$500</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p>Because 16.7% equity has fallen below the 25% FINRA maintenance minimum, the customer must deposit at least $500 in cash (or an equivalent amount of marginable securities at their loan-value rate) to restore the account to the required maintenance level.</p>
+
+          <h3 id="m85-short">The short-account ledger</h3>
+          <div class="formula">
+            <div class="fx-label">Core short-account formulas</div>
+            Credit balance = Short-sale proceeds + Reg T deposit<br>
+            Equity = Credit balance − Short Market Value (SMV)<br>
+            Reg T initial requirement (short) = 50% × SMV at time of sale<br>
+            FINRA maintenance requirement (short) = 30% × current SMV
+          </div>
+
+          <div class="callout calc">
+            <div class="callout-label">Opening a short position</div>
+            <p>A customer shorts $8,000 of stock. Reg T initial requirement = 50% × $8,000 = $4,000.</p>
+          </div>
+          <div class="ledger-wrap">
+          <table class="ledger">
+            <thead><tr><th>Line</th><th>Amount</th></tr></thead>
+            <tbody>
+              <tr><td>SMV</td><td>$8,000</td></tr>
+              <tr><td>Reg T deposit required (50% × SMV)</td><td>$4,000</td></tr>
+              <tr class="total"><td>Credit balance (proceeds + deposit)</td><td>$12,000</td></tr>
+              <tr class="total"><td>Equity (Credit − SMV)</td><td>$4,000</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout calc">
+            <div class="callout-label">The stock rises — unfavorable to the short seller</div>
+            <p>SMV climbs to $10,500. The credit balance stays fixed at $12,000 (it doesn't change on its own, same logic as the long account's debit balance).</p>
+          </div>
+          <div class="ledger-wrap">
+          <table class="ledger">
+            <thead><tr><th>Line</th><th>Amount</th></tr></thead>
+            <tbody>
+              <tr><td>SMV</td><td>$10,500</td></tr>
+              <tr><td>Credit balance (unchanged)</td><td>$12,000</td></tr>
+              <tr class="total"><td>Equity (Credit − SMV)</td><td>$1,500</td></tr>
+              <tr><td>Maintenance requirement (30% × SMV)</td><td>$3,150</td></tr>
+              <tr class="call"><td>Maintenance call (deficiency)</td><td>$1,650</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Common trap — long vs. short maintenance percentages, and direction
+            </div>
+            <p>Long positions use a <strong>25%</strong> FINRA maintenance minimum; short positions use a higher <strong>30%</strong> minimum, reflecting a short seller's theoretically unlimited loss exposure. Direction also flips: for a <em>long</em> position, a <strong>falling</strong> price threatens the account; for a <em>short</em> position, a <strong>rising</strong> price threatens it. Mixing up either the percentage or the direction is the single most common error on margin calculations.</p>
+          </div>
+
+          <h3 id="m85-sma">SMA: what it can and can't be used for</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Use</th><th>Permitted?</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Withdraw as cash, up to the SMA balance</td><td>Yes</td></tr>
+              <tr><td class="hl">Purchase additional marginable securities, leveraged at the Reg T rate (SMA × 2 at 50%)</td><td>Yes</td></tr>
+              <tr><td class="hl">Meet a maintenance call</td><td><strong>No</strong> — a maintenance call requires a fresh deposit of cash or marginable securities; existing SMA cannot be applied to satisfy a deficiency</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m85-product">Product-specific and ineligible margin situations</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Asset type</th><th>Treatment</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Treasury and municipal securities</td><td>Exempt from Reg T (which applies to non-exempt equity/corporate debt), so their margin requirements are set by the SRO (FINRA) or the firm's own house rules, usually at a much lower percentage than 50%</td></tr>
+              <tr><td class="hl">New issues (IPOs)</td><td>Cannot be purchased on margin — must be paid for in full</td></tr>
+              <tr><td class="hl">Mutual funds</td><td>Cannot be purchased on margin, but <em>become</em> marginable (can be used as collateral for a margin loan) after being held fully paid for 30 days</td></tr>
+              <tr><td class="hl">Options (standard)</td><td>Cannot be purchased on margin (must pay 100% of the premium), except for LEAPS with more than 9 months to expiration, which have specific borrowing rules</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p><strong>Portfolio margin</strong> is an alternative to standard rules that calculates requirements based on the net risk of the entire portfolio, often resulting in lower requirements for highly hedged positions. <strong>Pattern day trading</strong> rules apply to customers executing four or more day trades in a rolling five-business-day period, imposing a stricter $25,000 minimum equity requirement.</p>
+
+
+
+        </section>
+
+        <div class="complete-banner">
+          <div class="cb-title">Congratulations!</div>
+          <div class="cb-body">You have completed the entire FINRA Series 7 curriculum. You are now ready to tackle the comprehensive practice exams and finalize your preparation for test day. Review your weak areas, trust your preparation, and good luck.</div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Add active state to TOC links on scroll
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-link').forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px" });
+
+      document.querySelectorAll('section.block, h3[id]').forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+
+</body>
+</html>

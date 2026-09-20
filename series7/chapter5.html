@@ -1,0 +1,1284 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 5: Municipal Securities | HexaPrep S7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #0EA5E9;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --danger: #EF4444;
+      --danger-light: #FEE2E2;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --surface-hover: #334155;
+        --border: #334155;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --text-light: #94A3B8;
+        --text-dark: #0F172A;
+        --primary: #6366F1;
+        --primary-hover: #818CF8;
+        --primary-light: #312E81;
+        --warning-light: #451A03;
+        --danger-light: #450A0A;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--surface);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+    }
+
+    h3 {
+      scroll-margin-top: 80px;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    ul,
+    ol {
+      padding-left: 24px;
+      margin-bottom: 1.5em;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+      max-width: none;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(var(--surface), 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 0;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .back-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      margin-left: 24px;
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumbs a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--text-main);
+    }
+
+    .breadcrumb-sep {
+      color: var(--border);
+    }
+
+    /* Dropdown */
+    .chapter-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .chapter-dropdown>a {
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .chapter-dropdown>a:hover {
+      background: var(--surface-hover);
+    }
+
+    .chapter-dropdown>a svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--surface);
+      min-width: 160px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      z-index: 200;
+      padding: 8px 0;
+      margin-top: 4px;
+    }
+
+    .dropdown-content a {
+      color: var(--text-main);
+      padding: 8px 16px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--surface-hover);
+      color: var(--primary);
+    }
+
+    .chapter-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Grid */
+    .main-wrapper {
+      margin-left: 300px;
+      display: flex;
+      flex: 1;
+      margin-top: 64px;
+      justify-content: flex-start;
+      width: calc(100% - 300px);
+    }
+
+    /* Fixed Sidebar */
+    .sidebar {
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      width: 300px;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      padding: 32px 24px;
+      z-index: 100;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    /* Table of Contents */
+    .toc-chapter-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toc-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .toc-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .toc-link.sub {
+      font-size: 13px;
+      padding: 6px 12px 6px 24px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .toc-link.sub:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 48px 100px 100px 40px;
+      max-width: none;
+      width: 100%;
+      margin: 0;
+    }
+
+    /* Hero inside content */
+    .chapter-hero {
+      margin-bottom: 56px;
+    }
+
+    .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .chapter-title {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .chapter-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: none;
+      margin-bottom: 32px;
+    }
+
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      gap: 8px;
+    }
+
+    .stat {
+      flex: 1 1 120px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      color: var(--text-main);
+      font-weight: 700;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .stat .lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .lede {
+      font-size: 20px;
+      color: var(--text-main);
+      padding-left: 24px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 48px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* Section Typography */
+    .block {
+      margin-bottom: 64px;
+      scroll-margin-top: 80px;
+    }
+
+    .block h2 {
+      font-size: 32px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      margin-top: 64px;
+    }
+
+    .block h2 .num {
+      color: var(--primary);
+      margin-right: 12px;
+    }
+
+    .block h3 {
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+    }
+
+    .callout-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout.tip {
+      background: var(--success-light);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .callout.tip .callout-label {
+      color: var(--success);
+    }
+
+    .callout.tip p {
+      color: var(--text-dark);
+    }
+
+    .callout.tip p strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .callout.trap {
+      background: var(--danger-light);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .callout.trap .callout-label {
+      color: var(--danger);
+    }
+
+    .callout.trap p {
+      color: var(--text-main);
+    }
+
+    .callout.rule {
+      background: var(--surface-hover);
+      border-color: var(--border);
+    }
+
+    .callout.rule .callout-label {
+      color: var(--text-main);
+    }
+
+    .callout.rule p {
+      color: var(--text-main);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.hl {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    /* Quiz */
+    details.q {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    details.q summary {
+      padding: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-main);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.q summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.q summary::after {
+      content: "View Answer";
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 4px 12px;
+      background: var(--primary-light);
+      border-radius: 99px;
+      transition: var(--transition);
+    }
+
+    details.q[open] summary::after {
+      content: "Hide Answer";
+    }
+
+    details.q[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-answer,
+    .answer {
+      padding: 20px;
+      background: var(--surface);
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Next Chapter */
+    .next-footer {
+      margin-top: 64px;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .next-footer:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .next-footer .lbl {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .next-footer .title {
+      font-size: 28px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .next-footer p {
+      margin: 0 auto;
+      opacity: 0.9;
+      font-size: 16px;
+    }
+
+    /* Waterfall alternative */
+    .waterfall-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .wf-tier {
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .wf-tier .wf-name {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text-main);
+      min-width: 180px;
+    }
+
+    .wf-tier .wf-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      flex: 1 1 260px;
+    }
+
+    .wf-tier.senior {
+      border-left: 4px solid var(--success);
+    }
+    .wf-tier.mezz {
+      border-left: 4px solid var(--warning);
+    }
+    .wf-tier.equity {
+      border-left: 4px solid var(--danger);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Sticky Top Navbar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Dashboard
+        </a>
+        <div class="breadcrumbs">
+          <a href="../index.html">HexaPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Series 7</a>
+          <span class="breadcrumb-sep">/</span>
+          <div class="chapter-dropdown">
+            <a href="chapter5.html">Chapter 5
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-content">
+              <a href="chapter1.html">Chapter 1</a>
+              <a href="chapter2.html">Chapter 2</a>
+              <a href="chapter3.html">Chapter 3</a>
+              <a href="chapter4.html">Chapter 4</a>
+              <a href="chapter5.html">Chapter 5</a>
+              <a href="chapter6.html">Chapter 6</a>
+              <a href="chapter7.html">Chapter 7</a>
+              <a href="chapter8.html">Chapter 8</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      
+      <aside class="sidebar">
+        <div class="toc-chapter-title">Chapter 5:<br>Municipal Securities</div>
+        <div class="toc-title">In This Chapter</div>
+        <nav class="toc-nav">
+          <a href="#m51" class="toc-link active">5.1 Municipal Fundamentals &amp; Quotations</a>
+          <a href="#m51-quotes" class="toc-link sub">Two ways a municipal bond is quoted</a>
+          <a href="#m51-maturity" class="toc-link sub">Serial vs. term maturities</a>
+          <a href="#m51-legal" class="toc-link sub">The legal opinion</a>
+
+          <a href="#m52" class="toc-link">5.2 GO &amp; Revenue Bonds: Credit Analysis</a>
+          <a href="#m52-go" class="toc-link sub">GO bond credit analysis</a>
+          <a href="#m52-rev" class="toc-link sub">Revenue bond credit analysis</a>
+          <a href="#m52-flow" class="toc-link sub">Flow of funds</a>
+          <a href="#m52-div" class="toc-link sub">Diversification</a>
+
+          <a href="#m53" class="toc-link">5.3 Types of Municipal Securities</a>
+          <a href="#m53-short" class="toc-link sub">Short-term municipal obligations</a>
+          <a href="#m53-types" class="toc-link sub">The specialized municipal bond taxonomy</a>
+          <a href="#m53-fund" class="toc-link sub">Municipal fund securities</a>
+          <a href="#m53-call" class="toc-link sub">Call features</a>
+          <a href="#m53-refunding" class="toc-link sub">Refunding methods</a>
+
+          <a href="#m54" class="toc-link">5.4 Marketability, Pricing &amp; Taxation</a>
+          <a href="#m54-marketability" class="toc-link sub">What makes a municipal bond marketable</a>
+          <a href="#m54-accrued" class="toc-link sub">Accrued interest</a>
+          <a href="#m54-taxeq" class="toc-link sub">Taxable-equivalent yield</a>
+          <a href="#m54-premium" class="toc-link sub">Yield to call on a premium bond</a>
+          <a href="#m54-second" class="toc-link sub">Tax treatment: secondary market</a>
+          <a href="#m54-status" class="toc-link sub">Federal, state, and local tax status</a>
+          <a href="#m54-bank" class="toc-link sub">Taxable and bank-qualified bonds</a>
+          <a href="#m54-msrb" class="toc-link sub">MSRB rules</a>
+        </nav>
+      </aside>
+
+      <main class="content-area">
+
+        <header class="chapter-hero">
+          <span class="kicker">FINRA SERIES 7 EXAM · STUDY GUIDE</span>
+          <h1 class="chapter-title">Chapter 5 — Municipal Securities</h1>
+          <p class="chapter-subtitle">Municipal bonds run on a different logic than corporate debt: a different quoting convention, a different tax story, and a credit analysis built around a government's taxing or revenue-generating power instead of a company's earnings. Treat this chapter as one connected system — structure feeds credit, credit feeds pricing, and pricing feeds the tax comparison every muni recommendation ultimately comes down to.</p>
+          <div class="stat-strip">
+            <div class="stat"><span class="num">Function 3</span><span class="lbl">FINRA function</span></div>
+            <div class="stat"><span class="num">73%</span><span class="lbl">exam weight (Ch 3-7)</span></div>
+            <div class="stat"><span class="num">4</span><span class="lbl">modules in this chapter</span></div>
+          </div>
+        </header>
+
+        <!-- ============ MODULE 5.1 ============ -->
+        <section class="block" id="m51">
+          <h2><span class="num">5.1</span>Municipal Fundamentals &amp; Quotations</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>General characteristics of municipal securities and municipal fund securities</li>
+              <li>Quotation methods: yield/basis price and dollar price</li>
+              <li>Interest rate, payment periods, denominations, serial vs. term maturities</li>
+              <li>Legal opinions: purpose and contents</li>
+            </ul>
+          </div>
+
+          <p class="lede">A municipal security is a debt obligation issued by a state, city, county, or a special-purpose authority created by one of them, and its defining feature to most investors is that the interest is generally exempt from federal income tax (and often from the tax of the issuer's own state, for a resident investor). Beyond bonds, a small family of <strong>municipal fund securities</strong> — 529 plans, ABLE accounts, and local government investment pools — are also regulated as municipal securities even though they don't look like a traditional bond at all.</p>
+
+          <h3 id="m51-quotes">Two ways a municipal bond is quoted</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Quotation style</th><th>How it works</th><th>Typically used for</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Dollar price</td><td>Quoted as a percentage of par, the same style used for corporate and Treasury bonds (e.g., a quote of 98 means $980 per $1,000 bond)</td><td>Term bonds, which trade more like a single large issue</td></tr>
+              <tr><td class="hl">Yield/basis price</td><td>Quoted directly as a yield percentage rather than a dollar figure — the dealer and customer must convert the yield to an actual dollar price to settle the trade</td><td>Serial bonds, where a whole schedule of different maturities makes a single dollar quote per maturity impractical to quote informally</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m51-maturity">Serial vs. term maturities</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>Serial maturity</th><th>Term maturity</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Structure</td><td>A single bond issue is divided into many smaller maturities, each coming due in a different year</td><td>The entire issue matures on one single date</td></tr>
+              <tr><td class="hl">Quoted as</td><td>Yield/basis (each maturity has its own yield)</td><td>Dollar price</td></tr>
+              <tr><td class="hl">Typical use</td><td>GO bond issues, where predictable annual tax revenue supports paying off a portion each year</td><td>Revenue bond issues, often paired with a sinking fund that retires bonds gradually before the stated maturity</td></tr>
+              <tr><td class="hl" colspan="2">A "serial" issue with a large final chunk maturing together</td><td>Called a <strong>term bond within a serial structure</strong>, or a "balloon" maturity — combines both patterns in one issue</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m51-legal">The legal opinion</h3>
+          <p>Before a municipal bond can be sold, bond counsel — an attorney specializing in municipal law — issues a <strong>legal opinion</strong> confirming that the bond was validly issued in accordance with applicable law and stating whether the interest is exempt from federal (and relevant state) income tax. A bond sold "subject to" the legal opinion, or one whose opinion hasn't yet been finalized, is treated as carrying somewhat more legal uncertainty than one with an unqualified, delivered legal opinion in hand. Some issues are sold "ex-legal" — without a legal opinion at all — which shifts additional risk onto the investor and typically requires clear disclosure.</p>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 5.2 ============ -->
+        <section class="block" id="m52">
+          <h2><span class="num">5.2</span>GO Bonds &amp; Revenue Bonds: Credit Analysis</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>GO bond analysis: issuer characteristics, nature of debt, ability to pay, municipal debt ratios</li>
+              <li>Revenue bond analysis: feasibility studies, revenue sources, protective covenants, flow of funds, coverage, credit enhancements</li>
+              <li>Municipal diversification by geography, type, and rating</li>
+            </ul>
+          </div>
+
+          <p class="lede">GO bonds and revenue bonds tell two completely different credit stories, and the exam consistently tests whether you're analyzing the right one. A GO bond's story is about the <em>issuer's overall taxing and financial capacity</em>. A revenue bond's story is about <em>one specific income-producing project</em> and whether its own cash flow can service its own debt.</p>
+
+          <h3 id="m52-go">GO bond credit analysis</h3>
+          <p>A general obligation bond is backed by the issuer's full taxing power — typically property taxes for a city or county — so analysis centers on the issuer's capacity to tax and collect, not any single project's performance.</p>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Factor</th><th>What it tells you</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Nature of the issuer's debt (direct vs. overlapping)</td><td>Direct debt is what the issuer itself owes; overlapping debt is the taxpayer's proportional share of debt owed by other overlapping taxing jurisdictions (a school district, a county) covering the same property — both matter to the true tax burden</td></tr>
+              <tr><td class="hl">Tax base and collection rate</td><td>A broad, diverse, growing tax base with a high collection rate signals stronger repayment capacity than a narrow, shrinking, or poorly collected one</td></tr>
+              <tr><td class="hl">Debt limit</td><td>Many issuers face a statutory or constitutional cap on how much GO debt they can carry — how close the issuer sits to that limit affects future flexibility</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Key Formulas
+            </div>
+            <p><strong>Debt per capita</strong> = Net direct debt ÷ Population</p>
+            <p><strong>Debt to assessed valuation</strong> = Net direct debt ÷ Assessed value of taxable property</p>
+          </div>
+          
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example
+            </div>
+            <p>A city has $80 million in net direct GO debt, a population of 100,000, and $1 billion in assessed property valuation. Debt per capita = $80,000,000 ÷ 100,000 = <strong>$800 per resident</strong>. Debt-to-assessed-valuation = $80,000,000 ÷ $1,000,000,000 = <strong>8%</strong>. Both ratios are read comparatively — a lower ratio, relative to similar issuers, generally signals a stronger credit.</p>
+          </div>
+
+          <h3 id="m52-rev">Revenue bond credit analysis</h3>
+          <p>A revenue bond is backed only by the income generated by a specific project — a toll road, airport, water system, or stadium — with no claim on the issuer's general taxing power. Analysis follows the money, not the taxpayer.</p>
+          <ul>
+            <li><strong>Feasibility study</strong> — an independent engineer/consultant's projection of whether the project will generate enough revenue to cover its debt service, commissioned before the bonds are even sold.</li>
+            <li><strong>Revenue sources</strong> — tolls, fees, rents, or usage charges tied directly to the project.</li>
+            <li><strong>Protective covenants</strong> — promises written into the bond indenture: a <em>rate covenant</em> (the issuer will set fees high enough to meet a minimum coverage level), a <em>maintenance covenant</em> (the facility will be kept in good working order), and an <em>additional bonds test</em> (restricting how much new debt of equal or senior priority can be issued against the same revenue stream).</li>
+            <li><strong>Financial reports and audits</strong> — ongoing disclosure that lets bondholders monitor whether the project is performing as projected.</li>
+          </ul>
+
+          <h3 id="m52-flow">Flow of funds</h3>
+          <p>Revenue collected by the project doesn't go straight to bondholders — it moves through a defined sequence set by the bond indenture, and where a payment falls in that sequence determines how protected it is.</p>
+
+          <div class="waterfall-stack">
+            <div class="wf-tier senior">
+              <div class="wf-name">Revenue fund</div>
+              <div class="wf-desc">All gross revenue from the project lands here first.</div>
+            </div>
+            <div class="wf-tier senior">
+              <div class="wf-name">Operation &amp; maintenance fund</div>
+              <div class="wf-desc">Pays the cost of actually running the facility — this comes out before bondholders are paid.</div>
+            </div>
+            <div class="wf-tier mezz">
+              <div class="wf-name">Debt service fund</div>
+              <div class="wf-desc">Pays bondholders their scheduled principal and interest.</div>
+            </div>
+            <div class="wf-tier mezz">
+              <div class="wf-name">Debt service reserve fund</div>
+              <div class="wf-desc">A cushion set aside to cover a future debt service payment if project revenue falls short.</div>
+            </div>
+            <div class="wf-tier equity">
+              <div class="wf-name">Surplus fund</div>
+              <div class="wf-desc">Whatever remains after every obligation above is satisfied — may be used for further capital improvements or returned toward reducing rates.</div>
+            </div>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Debt service coverage ratio
+            </div>
+            <p>Coverage ratio = Net revenue available for debt service ÷ Annual debt service requirement</p>
+          </div>
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example
+            </div>
+            <p>A toll bridge generates $12 million in net revenue after operating expenses, against $8 million in annual debt service. Coverage ratio = $12,000,000 ÷ $8,000,000 = <strong>1.5×</strong> — meaning net revenue covers the required debt payment one-and-a-half times over. A higher ratio signals a larger cushion and a stronger credit; a ratio close to 1.0× leaves little room for a revenue shortfall.</p>
+          </div>
+
+          <p>A <strong>credit enhancement</strong> — bond insurance from a monoline insurer, or a bank letter of credit — substitutes a stronger third party's credit for the issuer's own, generally lowering the bond's yield in exchange for that added security.</p>
+
+          <h3 id="m52-div">Diversification</h3>
+          <p>A municipal portfolio's risk also depends on spreading exposure across <strong>geography</strong> (not concentrated in one region's economy), <strong>bond type</strong> (a mix of GO and revenue credits, ideally across different revenue sectors), and <strong>credit rating</strong> — the same diversification logic that applies to any concentrated single-issuer risk.</p>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 5.3 ============ -->
+        <section class="block" id="m53">
+          <h2><span class="num">5.3</span>Types of Municipal Securities</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>GO bonds, limited-tax GO bonds and notes</li>
+              <li>Short-term obligations: TANs, BANs, RANs, tax-exempt commercial paper, GANs, TRANs</li>
+              <li>Special-purpose bonds: special-tax, special-assessment, moral-obligation, advance-refunded, double-barreled, taxable/BABs, OID, zero-coupon/CAB, COPs, AMT, lease-revenue, variable-rate, auction-rate</li>
+              <li>Municipal fund securities: 529 plans, LGIPs, ABLE accounts</li>
+              <li>Call features, put/tender options, and refunding methods</li>
+            </ul>
+          </div>
+
+          <h3 id="m53-short">Short-term municipal obligations</h3>
+          <p>Municipalities often need cash before an expected revenue source arrives, and borrow short-term against that specific future inflow — the note's name tells you exactly what it's waiting on.</p>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Note</th><th>Repaid from</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">TAN (Tax Anticipation Note)</td><td>Future property or other tax collections</td></tr>
+              <tr><td class="hl">RAN (Revenue Anticipation Note)</td><td>Future non-tax revenue (such as project income) expected to arrive</td></tr>
+              <tr><td class="hl">BAN (Bond Anticipation Note)</td><td>Proceeds of a long-term bond issue the municipality plans to sell later</td></tr>
+              <tr><td class="hl">GAN (Grant Anticipation Note)</td><td>An expected federal or state grant</td></tr>
+              <tr><td class="hl">TRAN (Tax &amp; Revenue Anticipation Note)</td><td>A combination of anticipated tax and non-tax revenue</td></tr>
+              <tr><td class="hl">Tax-exempt commercial paper</td><td>Very short-term, continuously rolled-over municipal borrowing, structurally similar to corporate commercial paper (Chapter 4) but tax-exempt</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m53-types">The specialized municipal bond taxonomy</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Type</th><th>What backs it / distinctive feature</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Limited-tax GO bond</td><td>Backed by property taxes, but capped at a specific maximum tax rate — weaker than an unlimited-tax GO pledge</td></tr>
+              <tr><td class="hl">Special-tax bond</td><td>Backed by a specific, narrower tax (such as a gas or sales tax) rather than the issuer's general property tax</td></tr>
+              <tr><td class="hl">Special-assessment bond</td><td>Repaid only by property owners who directly benefit from the improvement it financed (e.g., new sidewalks or sewers in one district)</td></tr>
+              <tr><td class="hl">Moral-obligation bond</td><td>Carries a non-binding pledge that the state legislature will <em>consider</em> appropriating funds to cover a shortfall — not a legal obligation, so it depends on political willingness, not statutory requirement</td></tr>
+              <tr><td class="hl">Double-barreled bond</td><td>Structured as a revenue bond but backed by a second layer — the issuer's general taxing power as well — giving it two potential repayment sources</td></tr>
+              <tr><td class="hl">Advance-refunded bond</td><td>A bond whose repayment is now escrowed in Treasury securities ahead of its call date, effectively making it one of the safest municipal credits available</td></tr>
+              <tr><td class="hl">Taxable muni / Build America Bond</td><td>Interest is fully subject to federal tax despite being issued by a municipality — used to widen the investor base beyond tax-exempt buyers</td></tr>
+              <tr><td class="hl">Zero-coupon / CAB</td><td>Issued at a deep discount, pays no periodic interest, and compounds to full face value at maturity</td></tr>
+              <tr><td class="hl">Certificate of participation (COP)</td><td>Represents a share in an ongoing lease payment stream (such as for a municipal building or equipment) rather than a general or revenue-bond pledge</td></tr>
+              <tr><td class="hl">Lease-revenue bond</td><td>Backed by lease payments the municipality makes for use of a specific facility — similar logic to a COP, structured as a bond</td></tr>
+              <tr><td class="hl">AMT bond (private-activity)</td><td>Otherwise tax-exempt interest that is nonetheless added back as a preference item for investors subject to the federal Alternative Minimum Tax</td></tr>
+              <tr><td class="hl">VRDO</td><td>Long-term bond with a coupon that resets frequently against a short-term benchmark, typically paired with a put feature</td></tr>
+              <tr><td class="hl">Auction-rate security</td><td>Coupon reset periodically through a Dutch-auction process among bidders — liquidity depends entirely on the auction succeeding</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m53-fund">Municipal fund securities</h3>
+          <p>These are regulated as municipal securities under <strong>MSRB Rule D-12</strong> even though they don't look like a traditional bond at all.</p>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Product</th><th>Purpose</th><th>Key features</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">529 college savings plan</td><td>Tax-advantaged education savings</td><td>Beneficiary can be changed to another qualifying family member; unqualified withdrawals of earnings are subject to ordinary income tax plus a 10% penalty on the earnings portion</td></tr>
+              <tr><td class="hl">LGIP</td><td>Lets municipalities and public agencies pool short-term cash for professional management</td><td>Owned and used by governmental entities rather than individual investors</td></tr>
+              <tr><td class="hl">ABLE account</td><td>Tax-advantaged savings for a beneficiary with a qualifying disability</td><td>Rollovers permitted under specific conditions; unqualified withdrawals of earnings are taxed as ordinary income plus a 10% penalty, similar to a 529</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p>Dealers selling these products must report transaction information to the MSRB under <strong>MSRB Rule G-45</strong>.</p>
+
+          <h3 id="m53-call">Call features</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Call type</th><th>What it means</th><th>Who benefits</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Optional call</td><td>Issuer may redeem early, at its discretion, on or after a stated call date</td><td>Issuer (can refinance if rates fall)</td></tr>
+              <tr><td class="hl">Mandatory call</td><td>Issuer must redeem upon a specified triggering event</td><td>Neither side chooses</td></tr>
+              <tr><td class="hl">Partial call</td><td>Only a portion of the outstanding issue is redeemed, often by lottery</td><td>Issuer flexibility</td></tr>
+              <tr><td class="hl">Sinking-fund call</td><td>The issuer systematically retires a portion of the issue each year using funds set aside for that purpose</td><td>Issuer (orderly debt reduction)</td></tr>
+              <tr><td class="hl">Extraordinary call</td><td>Triggered by an unusual event outside normal operations</td><td>Neither side chooses</td></tr>
+              <tr><td class="hl">Make-whole call</td><td>Issuer can call early but must pay a premium calculated to compensate the investor for the lost future interest</td><td>More balanced (investor is compensated fully)</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <p>Every call feature favors the <strong>issuer</strong> at the investor's expense in one key way: it caps the investor's potential price appreciation and creates reinvestment risk. A <strong>put/tender option</strong> works in the investor's favor instead — it lets the <em>holder</em> force the issuer to redeem early, typically used with variable-rate structures like VRDOs to give the holder an exit if the reset rate becomes unattractive.</p>
+
+          <h3 id="m53-refunding">Refunding methods</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Method</th><th>How it works</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Direct exchange</td><td>Bondholders swap their old bonds directly for new ones — no new cash sale involved</td></tr>
+              <tr><td class="hl">Sale of a new issue</td><td>The issuer sells entirely new bonds for cash, then uses proceeds to retire the old issue</td></tr>
+              <tr><td class="hl">Current refunding</td><td>New bonds are sold at or near the old bonds' call date, with proceeds used to redeem them almost immediately</td></tr>
+              <tr><td class="hl">Advance refunding</td><td>New bonds are sold well <em>before</em> the old bonds' call date; proceeds are escrowed in Treasury securities until that future call date arrives</td></tr>
+              <tr><td class="hl">Escrowed-to-maturity</td><td>Refunding proceeds are escrowed to pay off the old bonds at their final <em>maturity</em> date rather than an earlier call date</td></tr>
+              <tr><td class="hl">Crossover refunding</td><td>The new bonds' own debt service is paid from a separate source until a future "crossover date," at which point responsibility shifts to the escrow funding the old bonds' payoff</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>"Advance refunding" and "escrowed-to-maturity" both involve an escrow account, and students often conflate them. Advance refunding escrows money to redeem the old bonds at their <em>next call date</em> — the old bonds get called early. Escrowed-to-maturity escrows money to pay the old bonds off at their <em>original maturity date</em> — there's no early call at all, just a fully funded, essentially risk-free payoff already set aside.</p>
+          </div>
+
+
+
+        </section>
+
+        <!-- ============ MODULE 5.4 ============ -->
+        <section class="block" id="m54">
+          <h2><span class="num">5.4</span>Marketability, Pricing &amp; Taxation</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Marketability factors</li>
+              <li>Pricing and calculations: dollar price, accrued interest, premium amortization, discount accretion, taxable-equivalent yield, current yield, YTC, basis-point value, calculations in default</li>
+              <li>Tax treatment: secondary-market discount/premium, OID, federal/state/local status, AMT, taxable and bank-qualified bonds</li>
+              <li>MSRB Rules D-12, G-13, G-17, G-30, G-45</li>
+            </ul>
+          </div>
+
+          <h3 id="m54-marketability">What makes a municipal bond marketable</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Factor</th><th>Effect on marketability</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Rating</td><td>Higher-rated bonds appeal to a broader, more conservative buyer base</td></tr>
+              <tr><td class="hl">Maturity</td><td>Shorter maturities are generally easier to trade; very long maturities appeal to a narrower set of buyers</td></tr>
+              <tr><td class="hl">Call features</td><td>Bonds with unattractive call terms (deep discount to a near-term call) can be harder to place</td></tr>
+              <tr><td class="hl">Coupon rate</td><td>Coupons far from current market rates (deep discount or deep premium bonds) can face a thinner market</td></tr>
+              <tr><td class="hl">Block size</td><td>Very large or very small blocks can each be harder to move than a "round lot" size the market is used to trading</td></tr>
+              <tr><td class="hl">Issuer reputation / credit enhancement</td><td>A well-known, well-regarded issuer, or a bond insured/backed by a strong credit enhancement, trades more easily</td></tr>
+              <tr><td class="hl">Denominations</td><td>Standard denominations are easier to trade than unusual ones</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <h3 id="m54-accrued">Accrued interest — the 30/360 convention</h3>
+          <p>Municipal (and corporate) bonds use a standardized <strong>30/360</strong> day-count convention: every month is treated as having exactly 30 days, and every year exactly 360 — regardless of the actual calendar.</p>
+          
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Accrued interest formula
+            </div>
+            <p>Accrued interest = Par value × Coupon rate × (Days accrued ÷ 360)</p>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example
+            </div>
+            <p>A $10,000 face value, 6% coupon municipal bond last paid interest on March 1. It settles on June 1 — under 30/360, that's exactly 90 days (30 days each for March, April, and May). Accrued interest = $10,000 × 6% × (90 ÷ 360) = $600 × 0.25 = <strong>$150</strong>, owed by the buyer to the seller at settlement.</p>
+            <p><strong>Reverse example:</strong> if a buyer paid $175 in accrued interest on the same $10,000, 6% bond, days accrued = ($175 ÷ $600) × 360 = <strong>105 days</strong> since the last coupon.</p>
+          </div>
+
+          <p>An <strong>odd first coupon</strong> — where the bond's issue date doesn't line up cleanly with the standard coupon cycle — simply means the very first interest payment covers a longer or shorter period than every subsequent one; the same 30/360 day-count still applies to compute exactly how much interest that first odd period represents.</p>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap — bonds trading flat
+            </div>
+            <p>A bond in <strong>default</strong> trades "flat" — meaning with <em>no accrued interest added to the price at all</em>, since it's genuinely uncertain whether that interest will ever actually be paid. Don't apply the standard 30/360 accrued-interest calculation to a defaulted bond on the exam; the correct answer is that no accrued interest changes hands.</p>
+          </div>
+
+          <h3 id="m54-taxeq">Taxable-equivalent yield</h3>
+          <p>Because municipal interest is often exempt from federal (and sometimes state) tax, comparing a muni's yield directly to a taxable bond's yield understates the muni's real value to a taxpaying investor. Taxable-equivalent yield restates the muni's yield as what a taxable bond would need to pay to leave the investor equally well off after tax.</p>
+          
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Formula
+            </div>
+            <p>Taxable-equivalent yield = Tax-exempt yield ÷ (1 − Investor's marginal tax rate)</p>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Worked example
+            </div>
+            <p>An investor in the 32% federal tax bracket is considering a municipal bond yielding 4%. Taxable-equivalent yield = 4% ÷ (1 − 0.32) = 4% ÷ 0.68 = <strong>≈5.88%</strong> — meaning a taxable bond would need to yield about 5.88% to match this muni's after-tax return for this investor.</p>
+            <p><strong>Reverse example:</strong> the same investor is offered a taxable corporate bond at 5.50%. Its municipal-equivalent yield = 5.50% × (1 − 0.32) = <strong>3.74%</strong> — meaning any muni yielding more than 3.74% beats this particular taxable alternative for this investor, after tax.</p>
+          </div>
+
+          <h3 id="m54-premium">Yield to call on a premium bond</h3>
+          <p>A municipal bond trading at a premium is conventionally priced and quoted to the <strong>lower</strong> of its yield-to-maturity or its yield-to-call to the nearest call date — the more conservative ("yield to worst") assumption, since a premium bond is the type most likely to actually get called away from the investor.</p>
+
+          <h3 id="m54-second">Tax treatment: discount and premium in the secondary market</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Situation</th><th>Tax treatment</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">Secondary-market discount, small ("de minimis")</td><td>Treated as a capital gain when the bond is sold or matures</td></tr>
+              <tr><td class="hl">Secondary-market discount, larger than the de minimis threshold</td><td>The discount is treated as <strong>ordinary income</strong> (market discount), not a capital gain, when realized at sale or maturity — even though the bond's stated interest itself remains tax-exempt</td></tr>
+              <tr><td class="hl">Original issue discount (OID) on a genuinely tax-exempt municipal bond</td><td>The annual accretion is generally treated as tax-exempt (not taxable "phantom income"), unlike OID on a taxable corporate or Treasury STRIPS bond</td></tr>
+              <tr><td class="hl">Premium paid in the secondary market</td><td>Amortization of the premium is <strong>mandatory</strong> for a tax-exempt municipal bond (not elective, as it is for many taxable corporate bonds) — and because the underlying interest is already tax-exempt, the amortized premium is <em>not</em> separately deductible; it simply reduces the bond's cost basis over time</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Don't assume every discount on a municipal bond produces a tax-favored capital gain. A discount purchased in the secondary market that exceeds the de minimis threshold generates <strong>ordinary income</strong>, not a capital gain — the opposite of what many students instinctively assume "it's a muni, so it must be tax-favored" implies.</p>
+          </div>
+
+          <h3 id="m54-status">Federal, state, and local tax status</h3>
+          <p>Municipal interest is generally exempt from federal income tax. It's also typically exempt from the <em>investor's own state</em> (and sometimes local) income tax if the investor resides in the same state as the issuer — commonly called being "double tax-exempt," or "triple tax-exempt" if local tax is exempted too. A resident holding an out-of-state municipal bond usually owes state tax on that interest even though it remains federally exempt. <strong>AMT bonds</strong> (private-activity municipal bonds, Module 5.3) are a specific exception where interest, though federally tax-exempt in the ordinary sense, is added back as a preference item for investors who owe the Alternative Minimum Tax.</p>
+
+          <h3 id="m54-bank">Taxable and bank-qualified bonds</h3>
+          <p>A <strong>taxable municipal bond</strong> (such as a Build America Bond) simply doesn't carry the federal tax exemption at all, usually because the financed purpose doesn't qualify, or the issuer specifically opted into a taxable structure to broaden its investor base (including institutions that can't use a tax exemption, like pension funds). A <strong>bank-qualified bond</strong> is a designation available to smaller municipal issuers (those issuing a limited amount of debt annually) that gives purchasing banks a favorable tax treatment for holding it — which tends to make bank-qualified bonds more attractive to bank buyers and can translate into a somewhat lower borrowing cost for the issuer.</p>
+
+          <h3 id="m54-msrb">MSRB rules governing marketability, quotes, and pricing</h3>
+          <div class="table-wrap">
+          <table>
+            <thead><tr><th>Rule</th><th>What it requires</th></tr></thead>
+            <tbody>
+              <tr><td class="hl">D-12</td><td>Defines "municipal fund security" — the category covering 529 plans, LGIPs, and ABLE accounts</td></tr>
+              <tr><td class="hl">G-13</td><td>Quotations must be bona fide (a genuine bid or offer); a nominal, informational-only quote must be clearly labeled as such — no fictitious quotes</td></tr>
+              <tr><td class="hl">G-17</td><td>The general fair-dealing standard for all municipal securities and municipal advisory activity</td></tr>
+              <tr><td class="hl">G-30</td><td>Prices and commissions must be fair and reasonable — markups/markdowns on principal trades and commissions on agency trades are each judged against prevailing market price, transaction cost, and value of services rendered</td></tr>
+              <tr><td class="hl">G-45</td><td>Requires dealers to report transaction information on municipal fund securities to the MSRB</td></tr>
+            </tbody>
+          </table>
+          </div>
+
+
+
+        </section>
+
+        <a href="chapter6.html" class="next-footer">
+          <span class="lbl">Up next</span>
+          <div class="title">Chapter 6: Equities &amp; Investment Companies</div>
+          <p>Function 3 — Understand common and preferred stock, and dive into Mutual Funds, ETFs, and REITs.</p>
+        </a>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Add active state to TOC links on scroll
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-link').forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px" });
+
+      document.querySelectorAll('section.block, h3[id]').forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+
+</body>
+</html>

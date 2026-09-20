@@ -1,0 +1,2434 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 2: Products and What Can Go Wrong With Them | SIEPrep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --text-dark: #1A1A1A;
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #0EA5E9;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --danger: #EF4444;
+      --danger-light: #FEE2E2;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --surface-hover: #334155;
+        --border: #334155;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --primary: #6366F1;
+        --primary-hover: #818CF8;
+        --primary-light: #312E81;
+        --warning-light: #451A03;
+        --danger-light: #450A0A;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--surface);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    ul,
+    ol {
+      padding-left: 24px;
+      margin-bottom: 1.5em;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+      max-width: none;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(var(--surface), 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .back-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      margin-left: 24px;
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumbs a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--text-main);
+    }
+
+    .breadcrumb-sep {
+      color: var(--border);
+    }
+
+    /* Dropdown */
+    .chapter-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .chapter-dropdown>a {
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .chapter-dropdown>a:hover {
+      background: var(--surface-hover);
+    }
+
+    .chapter-dropdown>a svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--surface);
+      min-width: 160px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      z-index: 200;
+      padding: 8px 0;
+      margin-top: 4px;
+    }
+
+    .dropdown-content a {
+      color: var(--text-main);
+      padding: 8px 16px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--surface-hover);
+      color: var(--primary);
+    }
+
+    .chapter-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Grid */
+    .main-wrapper {
+      margin-left: 300px;
+      display: flex;
+      flex: 1;
+      margin-top: 64px;
+      justify-content: flex-start;
+      width: calc(100% - 300px);
+    }
+
+    /* Fixed Sidebar */
+    .sidebar {
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      width: 300px;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      padding: 32px 24px;
+      z-index: 100;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    /* Table of Contents */
+    .toc-chapter-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toc-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .toc-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .toc-link.sub {
+      font-size: 13px;
+      padding: 6px 12px 6px 24px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .toc-link.sub:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .course-progress {
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .progress-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-radius: var(--radius-md);
+    }
+
+    .progress-item.current {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .progress-item.done {
+      color: var(--success);
+      font-weight: 500;
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 48px 100px 100px 40px;
+      max-width: none;
+    }
+
+    /* Hero inside content */
+    .chapter-hero {
+      margin-bottom: 56px;
+    }
+
+    .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .chapter-title {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .chapter-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 65ch;
+      margin-bottom: 32px;
+    }
+
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      gap: 8px;
+    }
+
+    .stat {
+      flex: 1 1 120px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      color: var(--text-main);
+      font-weight: 700;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .stat .lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .lede {
+      font-size: 20px;
+      color: var(--text-main);
+      padding-left: 24px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 48px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* Section Typography */
+    .block {
+      margin-bottom: 64px;
+    }
+
+    .block h2 {
+      font-size: 32px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      margin-top: 64px;
+    }
+
+    .block h2 .num {
+      color: var(--primary);
+      margin-right: 12px;
+    }
+
+    .block h3 {
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    .callout-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout.tip,
+    .callout.example {
+      background: var(--primary-light);
+      border-color: rgba(79, 70, 229, 0.2);
+    }
+
+    .callout.tip .callout-label,
+    .callout.example .callout-label {
+      color: var(--primary);
+    }
+
+    .callout.tip p,
+    .callout.example p {
+      color: var(--text-main);
+    }
+
+    .callout.trap {
+      background: var(--danger-light);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .callout.trap .callout-label {
+      color: var(--danger);
+    }
+
+    .callout.trap p {
+      color: var(--text-main);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.hl {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    /* Diagrams */
+    .diagram-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      margin: 40px 0;
+      box-shadow: var(--shadow-sm);
+      font-size: 15px;
+    }
+
+    .diagram-card svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .diagram-caption {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 16px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    @media (min-width: 640px) {
+      .risk-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .risk-col {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .risk-col.sys {
+      background: var(--danger-light);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .risk-col.nonsys {
+      background: var(--success-light);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .risk-col h4 {
+      margin-top: 0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+    }
+
+    .risk-col.sys h4 {
+      color: var(--danger);
+    }
+
+    .risk-col.nonsys h4 {
+      color: var(--success);
+    }
+
+    .risk-col ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .risk-col.nonsys li {
+      margin-bottom: 12px;
+      font-size: 15px;
+      color: var(--text-dark);
+    }
+
+    .risk-col.nonsys li b {
+      display: block;
+      color: var(--text-dark);
+      font-size: 15px;
+    }
+
+    /* Quiz */
+    .quiz {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      margin-top: 64px;
+    }
+
+    .quiz h2 {
+      border-bottom: none;
+      margin-top: 0;
+    }
+
+    details.q {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    details.q summary {
+      padding: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-main);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.q summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.q summary::after {
+      content: "View Answer";
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 4px 12px;
+      background: var(--primary-light);
+      border-radius: 99px;
+      transition: var(--transition);
+    }
+
+    details.q[open] summary::after {
+      content: "Hide Answer";
+    }
+
+    details.q[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-answer {
+      padding: 20px;
+      background: var(--surface);
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Next Chapter */
+    .next-footer {
+      margin-top: 64px;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .next-footer:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .next-footer .lbl {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .next-footer .title {
+      font-size: 28px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .next-footer p {
+      margin: 0 auto;
+      opacity: 0.9;
+      font-size: 16px;
+    }
+
+    /* === Interactive Quiz Engine === */
+    .quiz-subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 24px;
+      max-width: 100%;
+    }
+
+    .quiz-progress {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 3px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0;
+    }
+
+    .quiz-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 32px;
+    }
+
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quiz-section-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 99px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .quiz-q-text {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 100%;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: 15px;
+      color: var(--text-main);
+      text-align: left;
+      width: 100%;
+      transition: all 0.2s ease;
+      line-height: 1.55;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .quiz-option:hover:not(.qo-disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateX(4px);
+    }
+
+    .quiz-option .ol {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      margin-top: 1px;
+    }
+
+    .quiz-option:hover:not(.qo-disabled) .ol {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .quiz-option.qo-correct {
+      border-color: var(--success);
+      background: var(--success-light);
+    }
+
+    .quiz-option.qo-correct .ol {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+
+    .quiz-option.qo-wrong {
+      border-color: var(--danger);
+      background: var(--danger-light);
+    }
+
+    .quiz-option.qo-wrong .ol {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: #fff;
+    }
+
+    .quiz-option.qo-disabled {
+      cursor: default;
+      opacity: 0.65;
+    }
+
+    .quiz-option.qo-disabled.qo-correct {
+      opacity: 1;
+      color: var(--text-dark);
+    }
+
+    .quiz-option.qo-disabled.qo-wrong {
+      opacity: 1;
+    }
+
+    .quiz-feedback {
+      margin-top: 20px;
+      padding: 20px 24px;
+      border-radius: var(--radius-md);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      animation: qFadeIn 0.3s ease;
+    }
+
+    .quiz-feedback.qf-correct {
+      border-left: 4px solid var(--success);
+    }
+
+    .quiz-feedback.qf-wrong {
+      border-left: 4px solid var(--danger);
+    }
+
+    .quiz-feedback-label {
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qf-correct .quiz-feedback-label {
+      color: var(--success);
+    }
+
+    .qf-wrong .quiz-feedback-label {
+      color: var(--danger);
+    }
+
+    @keyframes qFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .quiz-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .quiz-btn {
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .quiz-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .quiz-btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .quiz-btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .quiz-btn-secondary {
+      background: var(--surface);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .quiz-btn-secondary:hover:not(:disabled) {
+      background: var(--surface-hover);
+    }
+
+    .quiz-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      max-width: 320px;
+    }
+
+    .quiz-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .quiz-dot:hover {
+      transform: scale(1.25);
+    }
+
+    .quiz-dot.qd-active {
+      border-color: var(--primary);
+      background: var(--primary);
+      transform: scale(1.25);
+    }
+
+    .quiz-dot.qd-correct {
+      background: var(--success);
+    }
+
+    .quiz-dot.qd-wrong {
+      background: var(--danger);
+    }
+
+    .quiz-summary {
+      text-align: center;
+      padding: 48px 24px;
+      animation: qFadeIn 0.4s ease;
+    }
+
+    .quiz-score-ring {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      border: 6px solid var(--primary);
+      background: var(--primary-light);
+    }
+
+    .quiz-score-ring .qs-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .quiz-score-ring .qs-of {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .quiz-summary h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .quiz-summary-msg {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
+
+    .quiz-breakdown {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .quiz-bd-item {
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .quiz-bd-item .bd-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .quiz-bd-item .bd-score {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .quiz-summary-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+      .quiz-card {
+        padding: 20px;
+      }
+
+      .quiz-option {
+        padding: 14px 16px;
+        gap: 10px;
+        font-size: 14px;
+      }
+
+      .quiz-dots {
+        max-width: 240px;
+      }
+
+      .quiz-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .quiz-score-ring {
+        width: 130px;
+        height: 130px;
+      }
+
+      .quiz-score-ring .qs-num {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Sticky Top Navbar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Dashboard
+        </a>
+        <div class="breadcrumbs">
+          <a href="../index.html">HexaPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">SIEPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <div class="chapter-dropdown">
+            <a href="ch2.html">Chapter 2
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-content">
+              <a href="ch1.html">Chapter 1</a>
+              <a href="ch2.html">Chapter 2</a>
+              <a href="ch3.html">Chapter 3</a>
+              <a href="ch4.html">Chapter 4</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      <!-- Fixed Left Sidebar -->
+      <aside class="sidebar">
+        <div class="toc-chapter-title">Chapter 2:<br>Products and What Can Go Wrong With Them</div>
+        <div class="toc-title">In This Chapter</div>
+        <nav class="toc-nav">
+          <a href="#equity" class="toc-link active">2.1 Equity Securities</a>
+          <a href="#common" class="toc-link sub">Common stock: the baseline ownership claim</a>
+          <a href="#preferred" class="toc-link sub">Preferred stock: fixed income wearing an equity costume</a>
+          <a href="#rights-warrants" class="toc-link sub">Rights and warrants: the "buy more later" instruments</a>
+          <a href="#adrs" class="toc-link sub">American Depositary Receipts (ADRs)</a>
+          <a href="#control" class="toc-link sub">Control and restricted stock</a>
+
+          <a href="#debt" class="toc-link">2.2 Debt Instruments</a>
+          <a href="#issuers" class="toc-link sub">The universe of issuers</a>
+          <a href="#price-yield" class="toc-link sub">The price/yield seesaw</a>
+          <a href="#bond-vocab" class="toc-link sub">The vocabulary of a bond</a>
+          <a href="#muni-bonds" class="toc-link sub">How municipal bonds get sold</a>
+
+          <a href="#options" class="toc-link">2.3 Options</a>
+          <a href="#building-blocks" class="toc-link sub">The two building blocks</a>
+          <a href="#moneyness" class="toc-link sub">In-the-money vs. out-of-the-money</a>
+          <a href="#covered-uncovered" class="toc-link sub">Covered vs. uncovered (naked)</a>
+          <a href="#style-oversight" class="toc-link sub">Style, use, and oversight</a>
+
+          <a href="#funds" class="toc-link">2.4 Packaged Products (Investment Companies)</a>
+          <a href="#loads-classes" class="toc-link sub">The cost of getting in: loads and share classes</a>
+          <a href="#breakpoints" class="toc-link sub">Breakpoints, rights of accumulation, and letters of intent</a>
+
+          <a href="#munifund" class="toc-link">2.5 Municipal Fund Securities</a>
+          <a href="#dpp" class="toc-link">2.6 Direct Participation Programs (DPPs)</a>
+          <a href="#reit" class="toc-link">2.7 REITs</a>
+          <a href="#hedge" class="toc-link">2.8 Hedge Funds</a>
+          <a href="#etp" class="toc-link">2.9 Exchange-Traded Products (ETPs)</a>
+
+          <a href="#risk" class="toc-link">2.10 Investment Risk</a>
+          <a href="#managing-risk" class="toc-link sub">Managing risk: the three levers</a>
+
+          <a href="#quiz" class="toc-link">Practice Exam</a>
+        </nav>
+      </aside>
+
+      <!-- Scrollable Main Content -->
+      <main class="content-area">
+
+        <header class="chapter-hero">
+          <span class="kicker">FINRA SIE EXAM · STUDY GUIDE</span>
+          <h1 class="chapter-title">Chapter 2 — Products and What Can Go Wrong With Them</h1>
+          <p class="chapter-subtitle">The biggest chapter on the exam by far. Nine product families, the mechanics that
+            make each one behave the way it does, and the ten risk types the SIE expects you to attach to the right
+            product on sight.</p>
+          <div class="stat-strip">
+            <div class="stat"><span class="num">33</span><span class="lbl">scored items</span></div>
+            <div class="stat"><span class="num">44%</span><span class="lbl">of total exam</span></div>
+            <div class="stat"><span class="num">9</span><span class="lbl">product families</span></div>
+            <div class="stat"><span class="num">10</span><span class="lbl">risk types</span></div>
+            <div class="stat"><span class="num">#1</span><span class="lbl">highest-weighted chapter</span></div>
+          </div>
+        </header>
+
+        <p class="lede">Nearly half the SIE lives in this chapter, and the reason is simple: everything else in the exam
+          — trading rules, account types, regulations — exists to govern how these products get bought, sold, and
+          disclosed. Get the products themselves solid, and the rest of the exam has something to hang onto.</p>
+
+        <!-- 2.1 EQUITY -->
+        <section class="block" id="equity">
+          <h2><span class="num">2.1</span>Equity Securities</h2>
+          <p>Equity means ownership. When you buy an equity security, you're buying a slice of the company itself — not
+            a promise of repayment, like a bond, but a claim on whatever's left after everyone else with a stronger
+            claim gets paid. That single fact — where equity sits in the pecking order — explains almost everything
+            about how these products behave.</p>
+
+          <h3 id="common">Common stock: the baseline ownership claim</h3>
+          <p>Common stockholders own the company, which comes with real upside — if the business does well, so does the
+            stock, with no ceiling — and real downside exposure. Two protections matter here: <strong>limited
+              liability</strong> means a shareholder can never lose more than what they invested, no matter how much
+            debt the company racks up; and voting rights give common shareholders a say in major corporate decisions
+            (electing the board, approving mergers), typically one vote per share.</p>
+          <p>But common stock sits at the <em>very bottom</em> of the claim structure. If the company goes bankrupt and
+            starts liquidating assets, common shareholders are paid last — after every creditor and after preferred
+            shareholders. In practice, that usually means common shareholders recover little or nothing in a
+            liquidation. This is the trade the market makes: unlimited upside, last-in-line downside.</p>
+
+          <div class="diagram-card">
+            <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img"
+              aria-label="Liquidation priority waterfall from secured creditors at top to common stockholders at bottom">
+              <g font-family="Inter, sans-serif" font-size="13.5">
+                <rect x="60" y="10" width="480" height="60" rx="8" fill="var(--bg)" stroke="var(--border)" />
+                <text x="300" y="35" text-anchor="middle" font-weight="700" fill="var(--text-main)">1. Secured
+                  Creditors</text>
+                <text x="300" y="54" text-anchor="middle" font-size="12" fill="var(--text-muted)">loans backed by
+                  specific collateral</text>
+
+                <rect x="60" y="76" width="480" height="60" rx="8" fill="var(--bg)" stroke="var(--border)" />
+                <text x="300" y="101" text-anchor="middle" font-weight="700" fill="var(--text-main)">2. Unsecured
+                  Creditors / Bondholders</text>
+                <text x="300" y="120" text-anchor="middle" font-size="12" fill="var(--text-muted)">general debt,
+                  corporate bonds</text>
+
+                <rect x="60" y="142" width="480" height="60" rx="8" fill="var(--warning-light)"
+                  stroke="var(--warning)" />
+                <text x="300" y="167" text-anchor="middle" font-weight="700" fill="var(--warning)">3. Preferred
+                  Stockholders</text>
+                <text x="300" y="186" text-anchor="middle" font-size="12" fill="var(--warning)">fixed dividend claim,
+                  paid before common</text>
+
+                <rect x="60" y="208" width="480" height="60" rx="8" fill="var(--danger-light)" stroke="var(--danger)" />
+                <text x="300" y="233" text-anchor="middle" font-weight="700" fill="var(--danger)">4. Common
+                  Stockholders</text>
+                <text x="300" y="252" text-anchor="middle" font-size="12" fill="var(--danger)">paid last — whatever
+                  remains, if anything</text>
+
+                <text x="300" y="295" text-anchor="middle" font-size="12.5" fill="var(--text-muted)">↑ Paid first,
+                  lowest risk · Paid last, highest risk ↓</text>
+              </g>
+            </svg>
+            <div class="diagram-caption">The order of liquidation — the single most tested structural fact tying equity
+              and debt together.</div>
+          </div>
+
+          <h3 id="preferred">Preferred stock: fixed income wearing an equity costume</h3>
+          <p>Preferred stock behaves more like a bond than like common stock, even though it's technically equity. It
+            pays a <strong>fixed dividend</strong> — stated as a percentage of par value — and that dividend must be
+            paid before common shareholders get a dime. In a liquidation, preferred sits ahead of common but behind all
+            debt. Because its price behaves like a bond's, preferred stock is sensitive to interest rate changes in the
+            same inverse way bonds are.</p>
+          <p>Preferred stock comes in several flavors you're expected to distinguish:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>What it means for the holder</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Cumulative</td>
+                  <td>Missed dividends accumulate and must be paid in full before common shareholders receive anything
+                  </td>
+                </tr>
+                <tr>
+                  <td class="hl">Convertible</td>
+                  <td>Can be exchanged for a set number of common shares — lets the holder participate in upside</td>
+                </tr>
+                <tr>
+                  <td class="hl">Participating</td>
+                  <td>Can receive extra dividends above the stated rate if the company performs very well</td>
+                </tr>
+                <tr>
+                  <td class="hl">Callable</td>
+                  <td>The issuer can force a buyback at a set price, usually after a call-protection period</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="rights-warrants">Rights and warrants: the "buy more later" instruments</h3>
+          <p><strong>Rights</strong> are short-term instruments a company issues to its existing shareholders, giving
+            them the option to buy additional shares — usually at a discount to the market price — before the company
+            sells those shares to the public. They exist to let current shareholders maintain their ownership percentage
+            (their proportional stake) when a company issues new stock. Rights typically expire within a few weeks.</p>
+          <p><strong>Warrants</strong> serve a similar "buy more stock later" purpose but on a much longer timeline —
+            often years — and are usually attached to a bond or preferred stock offering as a sweetener to make the deal
+            more attractive, rather than issued to existing shareholders to protect their stake.</p>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Rights and warrants both let the holder buy stock at a fixed price — that's where the similarity ends.
+              Rights are short-lived (weeks) and go to <em>existing</em> shareholders to protect against dilution.
+              Warrants run much longer (years) and are typically bundled into a new bond or preferred offering as an
+              incentive, unrelated to protecting anyone's existing stake.</p>
+          </div>
+
+          <h3 id="adrs">American Depositary Receipts (ADRs)</h3>
+          <p>An ADR is how U.S. investors buy shares of a foreign company without dealing with a foreign exchange
+            directly. A U.S. bank holds the foreign shares in custody overseas and issues a receipt — the ADR — that
+            trades on a U.S. exchange in U.S. dollars. ADR holders get exposure to the foreign company's performance,
+            but they also take on <strong>currency risk</strong>: if the foreign currency weakens against the dollar,
+            the ADR's value can fall even if the underlying foreign stock is flat or rising in its home currency.</p>
+
+          <h3 id="control">Control and restricted stock</h3>
+          <p>Stock held by a company insider — an officer, director, or anyone owning more than 10% — is <strong>control
+              stock</strong>, and its resale is restricted regardless of how it was acquired. <strong>Restricted
+              stock</strong> is unregistered stock, typically acquired through a private placement, and it also carries
+            resale limits. <strong>SEC Rule 144</strong> governs how both types can eventually be resold — it sets a
+            holding period and caps the volume that can be sold in any given period, preventing insiders from dumping
+            large blocks and distorting the market.</p>
+        </section>
+
+        <!-- 2.2 DEBT -->
+        <section class="block" id="debt">
+          <h2><span class="num">2.2</span>Debt Instruments</h2>
+          <p>A bond is a loan, structured as a security. The issuer borrows money from investors and promises two things
+            in return: periodic interest payments (the coupon) and repayment of the original amount (par value, usually
+            $1,000 per bond) at a set future date (maturity). Everything else in this section is detail layered on top
+            of that basic promise.</p>
+
+          <h3 id="issuers">The universe of issuers</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Issuer type</th>
+                  <th>Examples</th>
+                  <th>Notable trait</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">U.S. Treasury</td>
+                  <td>Bills (&lt;1 yr), Notes (2–10 yr), Bonds (20–30 yr), STRIPS</td>
+                  <td>Backed by the full faith and credit of the U.S. government — the benchmark for "risk-free"</td>
+                </tr>
+                <tr>
+                  <td class="hl">Agency</td>
+                  <td>Mortgage-backed and asset-backed securities</td>
+                  <td>Pools of loans (often mortgages) packaged into a tradeable security; carries prepayment risk</td>
+                </tr>
+                <tr>
+                  <td class="hl">Corporate</td>
+                  <td>Investment-grade and high-yield bonds</td>
+                  <td>Credit quality varies by issuer; rated by agencies like Moody's and S&amp;P</td>
+                </tr>
+                <tr>
+                  <td class="hl">Municipal — GO</td>
+                  <td>General obligation bonds</td>
+                  <td>Backed by the issuing municipality's taxing power</td>
+                </tr>
+                <tr>
+                  <td class="hl">Municipal — Revenue</td>
+                  <td>Revenue bonds</td>
+                  <td>Backed only by revenue from a specific project (a toll road, a stadium) — no taxing power behind
+                    it</td>
+                </tr>
+                <tr>
+                  <td class="hl">Money market</td>
+                  <td>CDs, banker's acceptances, commercial paper</td>
+                  <td>Short-term, highly liquid, used for cash management rather than long-term investing</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>General obligation bonds are backed by a government's power to tax — a broad, flexible source of
+              repayment. Revenue bonds are backed <em>only</em> by the income a specific project generates. A revenue
+              bond for a toll road that never gets built has essentially no repayment source. That makes revenue bonds
+              inherently riskier than GO bonds from the same municipality, and typically compensates investors with a
+              higher yield.</p>
+          </div>
+
+          <h3 id="price-yield">The price/yield seesaw</h3>
+          <p>This is the single most important relationship in the fixed-income world, and the SIE will test it from a
+            dozen different angles: <strong>bond prices and yields move in opposite directions.</strong> When prevailing
+            interest rates rise, existing bonds with lower fixed coupons become less attractive, so their price falls to
+            compensate — pushing their effective yield up to stay competitive with new issues. When rates fall, the
+            opposite happens.</p>
+
+          <div class="diagram-card">
+            <svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg" role="img"
+              aria-label="Seesaw diagram showing bond price and yield moving in opposite directions">
+              <g font-family="Inter, sans-serif" font-size="14">
+                <line x1="280" y1="90" x2="280" y2="130" stroke="var(--text-muted)" stroke-width="4" />
+                <polygon points="280,60 480,95 80,95" fill="var(--bg)" stroke="var(--border)" />
+                <circle cx="120" cy="88" r="26" fill="var(--success-light)" stroke="var(--success)" stroke-width="2" />
+                <text x="120" y="93" text-anchor="middle" font-weight="700" fill="var(--success)">Price ↑</text>
+                <circle cx="440" cy="100" r="26" fill="var(--danger-light)" stroke="var(--danger)" stroke-width="2" />
+                <text x="440" y="105" text-anchor="middle" font-weight="700" fill="var(--danger)">Yield ↓</text>
+                <text x="280" y="150" text-anchor="middle" font-size="12.5" fill="var(--text-muted)">When rates fall,
+                  existing higher-coupon bonds become more valuable — price rises, yield falls</text>
+              </g>
+            </svg>
+            <div class="diagram-caption">Flip it the other way for rising rates: price down, yield up.</div>
+          </div>
+
+          <div class="callout example">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              Worked Example
+            </div>
+            <p>A bond was issued at $1,000 par with a 5% coupon, paying $50/year. Interest rates in the broader market
+              then rise, and new bonds of similar quality are being issued at 6%. Nobody will pay full $1,000 for your
+              5% bond when they could get 6% elsewhere — so its price has to drop, to roughly $950, so that the fixed
+              $50 coupon translates into a competitive yield for a new buyer at that lower price.</p>
+          </div>
+
+          <h3 id="bond-vocab">The vocabulary of a bond</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Term</th>
+                  <th>Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Par value</td>
+                  <td>The face amount repaid at maturity — typically $1,000 per bond</td>
+                </tr>
+                <tr>
+                  <td class="hl">Coupon</td>
+                  <td>The stated annual interest rate, fixed at issuance</td>
+                </tr>
+                <tr>
+                  <td class="hl">Current yield</td>
+                  <td>Annual coupon ÷ current market price</td>
+                </tr>
+                <tr>
+                  <td class="hl">Yield to maturity (YTM)</td>
+                  <td>Total return if held to maturity, factoring in price paid, coupon, and time remaining</td>
+                </tr>
+                <tr>
+                  <td class="hl">Yield to call (YTC)</td>
+                  <td>Total return if the bond is called at the earliest possible date rather than held to maturity</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Bonds also carry optional features that shift risk between issuer and investor. A <strong>callable</strong>
+            bond lets the issuer redeem it early — typically when rates have fallen and the issuer wants to refinance
+            more cheaply, which is precisely when the investor least wants to give up their higher-coupon bond. A
+            <strong>convertible</strong> bond lets the investor exchange it for common stock, trading some yield for
+            upside potential. <strong>Ratings agencies</strong> (Moody's, S&amp;P, Fitch) grade issuers on
+            creditworthiness, splitting the market into investment-grade and high-yield ("junk") tiers — the lower the
+            rating, the higher the yield needed to compensate for added credit risk.
+          </p>
+
+          <h3 id="muni-bonds">How municipal bonds get sold</h3>
+          <p>A <strong>negotiated</strong> underwriting means the issuer directly selects and negotiates terms with an
+            underwriter — common for revenue bonds, where the issuer's specific credit story matters. A
+            <strong>competitive</strong> underwriting puts the deal out for bid, and the underwriter offering the lowest
+            cost to the issuer wins — more common for GO bonds, where the credit is more standardized (backed by taxing
+            power). Treasury securities, meanwhile, are sold through a formal <strong>auction</strong> process open to
+            the public and institutions alike.
+          </p>
+        </section>
+
+        <!-- 2.3 OPTIONS -->
+        <section class="block" id="options">
+          <h2><span class="num">2.3</span>Options</h2>
+          <p>An option is a contract, not ownership of anything. It gives the buyer the <em>right</em> — but not the
+            obligation — to buy or sell an underlying security at a fixed price within a fixed window. That asymmetry
+            between right and obligation is the whole concept: the buyer can walk away and lose only the premium paid;
+            the seller (writer) has no such escape and must perform if assigned.</p>
+
+          <h3 id="building-blocks">The two building blocks</h3>
+          <p>A <strong>call</strong> gives the buyer the right to <em>buy</em> the underlying at the strike price —
+            calls gain value as the underlying rises, so buying a call is a bullish bet. A <strong>put</strong> gives
+            the buyer the right to <em>sell</em> the underlying at the strike price — puts gain value as the underlying
+            falls, so buying a put is a bearish bet.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Term</th>
+                  <th>Definition</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Strike price</td>
+                  <td>The fixed price at which the underlying can be bought (call) or sold (put)</td>
+                </tr>
+                <tr>
+                  <td class="hl">Premium</td>
+                  <td>The price paid by the buyer to the seller for the contract itself</td>
+                </tr>
+                <tr>
+                  <td class="hl">Expiration date</td>
+                  <td>The last date the option can be exercised</td>
+                </tr>
+                <tr>
+                  <td class="hl">Exercise</td>
+                  <td>The buyer's act of actually using the right the contract grants</td>
+                </tr>
+                <tr>
+                  <td class="hl">Assignment</td>
+                  <td>What happens to the seller when a buyer exercises — the seller must now perform</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="moneyness">In-the-money vs. out-of-the-money</h3>
+          <p>A call is <strong>in-the-money (ITM)</strong> when the underlying's market price is <em>above</em> the
+            strike — the right to buy at a lower price than the market has real, immediate value. A put is ITM when the
+            market price is <em>below</em> the strike — the right to sell at a higher price than the market has value.
+            When the relationship is reversed, the option is <strong>out-of-the-money (OTM)</strong> and has no
+            immediate exercise value, only whatever time value remains before expiration.</p>
+
+          <div class="callout example">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              Worked Example
+            </div>
+            <p>Stock XYZ trades at $54. A call with a $50 strike is in-the-money by $4 — the holder could exercise, buy
+              at $50, and immediately be holding stock worth $54. A put with a $50 strike on that same stock is
+              out-of-the-money — nobody would exercise the right to sell at $50 when the open market pays $54.</p>
+          </div>
+
+          <h3 id="covered-uncovered">Covered vs. uncovered (naked)</h3>
+          <p>Writing a <strong>covered call</strong> means the seller already owns the underlying stock — if assigned,
+            they simply deliver shares they already hold. It's a conservative, income-generating strategy. Writing an
+            <strong>uncovered (naked) call</strong> means the seller doesn't own the stock — if assigned, they must buy
+            it on the open market at whatever price it's trading, an exposure with theoretically unlimited risk. This
+            distinction is one of the most heavily tested risk concepts in the options section.
+          </p>
+
+          <h3 id="style-oversight">Style, use, and oversight</h3>
+          <p>An <strong>American-style</strong> option can be exercised any time up to expiration; a
+            <strong>European-style</strong> option can only be exercised at expiration itself. Options can be used to
+            <strong>hedge</strong> an existing position (buying a put to protect stock you own) or to
+            <strong>speculate</strong> outright (buying a call with no underlying position, purely betting on
+            direction). <strong>Equity options</strong> settle in shares of the underlying stock; <strong>index
+              options</strong> settle in cash, since you can't physically deliver "the S&amp;P 500."
+          </p>
+          <p>Every options customer must receive the <strong>Options Disclosure Document (ODD)</strong> before or at
+            account approval, spelling out the risks in plain terms. The <strong>Options Clearing Corporation
+              (OCC)</strong> is the issuer and guarantor of every listed option contract — it stands behind every trade,
+            which is what makes exercise and assignment reliable rather than dependent on trusting the counterparty
+            directly.</p>
+        </section>
+
+        <!-- 2.4 PACKAGED PRODUCTS -->
+        <section class="block" id="funds">
+          <h2><span class="num">2.4</span>Packaged Products (Investment Companies)</h2>
+          <p>A packaged product bundles many individual securities into one investment, giving a single investor instant
+            diversification they couldn't easily build trade-by-trade. The SIE cares most about the structural
+            differences between the wrapper types.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>How shares are created/redeemed</th>
+                  <th>How it trades</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Open-end fund</td>
+                  <td>Continuously issues new shares and redeems them at NAV</td>
+                  <td>Not exchange-traded; bought/sold through the fund company at end-of-day NAV</td>
+                </tr>
+                <tr>
+                  <td class="hl">Closed-end fund</td>
+                  <td>Raises capital once in an IPO, then a fixed number of shares exist</td>
+                  <td>Trades on an exchange all day, at a market price that can differ from NAV</td>
+                </tr>
+                <tr>
+                  <td class="hl">Unit Investment Trust (UIT)</td>
+                  <td>Fixed, unmanaged portfolio, sold as units</td>
+                  <td>Has a set termination date; not actively traded/managed</td>
+                </tr>
+                <tr>
+                  <td class="hl">Variable annuity/contract</td>
+                  <td>Insurance wrapper investing in sub-accounts</td>
+                  <td>Not exchange-traded; combines investment risk with insurance features</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>An open-end fund's price is always its <strong>NAV</strong> — supply and demand can't push it away from
+              the value of the underlying holdings, because shares are created and destroyed on demand. A closed-end
+              fund has a <em>fixed</em> share count, so it trades like a stock and can sit at a premium or a discount to
+              its own NAV depending on investor sentiment. That's the core structural difference the exam wants you to
+              apply.</p>
+          </div>
+
+          <h3 id="loads-classes">The cost of getting in: loads and share classes</h3>
+          <p>A <strong>sales charge (load)</strong> is the fee an investor pays to buy into a fund, and mutual funds
+            package that cost differently depending on share class:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Share class</th>
+                  <th>Fee structure</th>
+                  <th>Best suited for</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Class A</td>
+                  <td>Front-end load, paid at purchase; lower ongoing expenses</td>
+                  <td>Long-term holders, especially if breakpoints reduce the load</td>
+                </tr>
+                <tr>
+                  <td class="hl">Class B</td>
+                  <td>Back-end load (declines over time), higher ongoing expenses; usually converts to Class A
+                    eventually</td>
+                  <td>Investors who can't afford a large charge upfront</td>
+                </tr>
+                <tr>
+                  <td class="hl">Class C</td>
+                  <td>Little or no front/back load, but higher ongoing annual expenses indefinitely</td>
+                  <td>Shorter holding periods</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="breakpoints">Breakpoints, rights of accumulation, and letters of intent</h3>
+          <p>Fund companies reward larger investments with lower sales charges at set thresholds — called
+            <strong>breakpoints</strong>. A <strong>right of accumulation (ROA)</strong> lets an investor count the
+            current value of their existing holdings in the same fund family toward reaching the next breakpoint, rather
+            than starting from zero with each new purchase. A <strong>letter of intent (LOI)</strong> lets an investor
+            commit — in writing — to investing enough to reach a breakpoint within 13 months, getting the lower sales
+            charge immediately even though the full amount hasn't been invested yet.
+          </p>
+
+          <div class="callout example">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              Worked Example
+            </div>
+            <p>A fund's sales charge drops from 5% to 4% once an investor crosses $50,000. A client wants to invest
+              $48,000 today and is likely to add more within the year. Rather than paying the 5% charge on the full
+              $48,000, signing a letter of intent lets them pay the lower 4% rate now, on the promise to reach $50,000
+              within 13 months.</p>
+          </div>
+
+          <p>Other fee-related terms worth locking in: <strong>net asset value (NAV)</strong> is a fund's total assets
+            minus liabilities, divided by shares outstanding — its intrinsic per-share value. A <strong>net
+              transaction</strong> in this context refers to trades executed without an added commission, common with
+            no-load funds. A <strong>surrender charge</strong> applies specifically to variable annuities — a penalty
+            for withdrawing money within a set number of years after purchase, distinct from a mutual fund's sales
+            charge.</p>
+        </section>
+
+        <!-- 2.5 MUNI FUND SECURITIES -->
+        <section class="block" id="munifund">
+          <h2><span class="num">2.5</span>Municipal Fund Securities</h2>
+          <p>These are technically municipal securities, but they function like savings and investment vehicles for
+            individuals — regulated by the MSRB even though they don't look like a typical bond.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Vehicle</th>
+                  <th>Purpose</th>
+                  <th>Key feature</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">529 Plan — Prepaid Tuition</td>
+                  <td>Locks in tuition at today's rates for future use</td>
+                  <td>Directly tied to education costs, less investment flexibility</td>
+                </tr>
+                <tr>
+                  <td class="hl">529 Plan — Savings Plan</td>
+                  <td>Invests contributions for future education expenses</td>
+                  <td>Grows with market performance; more common of the two 529 types</td>
+                </tr>
+                <tr>
+                  <td class="hl">ABLE Account</td>
+                  <td>Tax-advantaged savings for individuals with disabilities</td>
+                  <td>Doesn't jeopardize eligibility for certain public benefits, within limits</td>
+                </tr>
+                <tr>
+                  <td class="hl">LGIP</td>
+                  <td>Local Government Investment Pool</td>
+                  <td>Lets municipalities pool cash for short-term investment, like a money market fund for governments
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Two relationships to keep straight for 529 plans and ABLE accounts: the account has an
+            <strong>owner</strong> (usually a parent or family member, who controls the account) and a
+            <strong>beneficiary</strong> (the person the funds are ultimately meant to benefit) — and these are often
+            different people. Funds are subject to <strong>restricted use</strong> — spend them outside the plan's
+            intended purpose and tax advantages can be lost. Plans can be sold <strong>direct</strong> (investor buys
+            straight from the plan, no advisor involved) or <strong>advisor-sold</strong> (through a broker-dealer,
+            typically with sales charges attached).
+          </p>
+        </section>
+
+        <!-- 2.6 DPPs -->
+        <section class="block" id="dpp">
+          <h2><span class="num">2.6</span>Direct Participation Programs (DPPs)</h2>
+          <p>A DPP is a business structure — most often a <strong>limited partnership</strong>, sometimes structured as
+            <strong>tenants in common (TIC)</strong> — designed to pass both income <em>and losses</em> directly through
+            to investors without the entity itself being taxed. That pass-through tax treatment is the defining feature:
+            profits and losses flow straight to the investor's personal tax return.
+          </p>
+          <p>The trade-off for that tax treatment is liquidity. DPPs are <strong>unlisted</strong> — there's no exchange
+            to sell into — and <strong>generally illiquid</strong>, meaning an investor who needs to exit early may
+            struggle to find a buyer, or may have to accept a steep discount to do so. DPPs are appropriate only for
+            investors who understand they may be committing capital for years with limited ability to get it back early.
+          </p>
+        </section>
+
+        <!-- 2.7 REITs -->
+        <section class="block" id="reit">
+          <h2><span class="num">2.7</span>Real Estate Investment Trusts (REITs)</h2>
+          <p>A REIT lets investors buy into real estate — either the physical property itself (equity REITs) or
+            mortgages secured by property (debt/mortgage REITs) — without buying and managing buildings themselves. The
+            signature tax benefit: a REIT that distributes the required share of its taxable income to shareholders
+            avoids corporate-level tax, so income is taxed only once, at the shareholder level — avoiding the double
+            taxation that hits a typical corporation and its shareholders.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Liquidity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Listed REIT</td>
+                  <td>Trades on an exchange — most liquid</td>
+                </tr>
+                <tr>
+                  <td class="hl">Non-listed, registered REIT</td>
+                  <td>SEC-registered but not exchange-traded — much less liquid</td>
+                </tr>
+                <tr>
+                  <td class="hl">Private REIT</td>
+                  <td>Not registered with the SEC, typically limited to accredited/institutional investors — least
+                    liquid</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 2.8 HEDGE FUNDS -->
+        <section class="block" id="hedge">
+          <h2><span class="num">2.8</span>Hedge Funds</h2>
+          <p>Hedge funds are private investment partnerships built for sophisticated investors, typically requiring a
+            substantial <strong>minimum investment</strong> that puts them out of reach for most retail investors.
+            Structured much like private equity vehicles, they aren't required to register the way mutual funds are,
+            which gives managers far more flexibility in strategy — but also far less regulatory transparency for
+            investors. Like DPPs, hedge fund interests are <strong>generally illiquid</strong>, often locking up capital
+            for defined periods with limited redemption windows.</p>
+        </section>
+
+        <!-- 2.9 ETPs -->
+        <section class="block" id="etp">
+          <h2><span class="num">2.9</span>Exchange-Traded Products (ETPs)</h2>
+          <p>ETPs bring the packaged-product idea to the exchange floor — they trade all day like a stock, unlike a
+            traditional open-end mutual fund priced once daily at NAV.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Structure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">ETF (Exchange-Traded Fund)</td>
+                  <td>Holds an actual basket of underlying securities; shares represent real ownership of that basket
+                  </td>
+                </tr>
+                <tr>
+                  <td class="hl">ETN (Exchange-Traded Note)</td>
+                  <td>An unsecured debt obligation of the issuing bank, promising a return linked to an index — carries
+                    the issuing bank's credit risk, since there's no underlying basket of assets backing it</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>ETFs are commonly framed as a lower-cost, more flexible alternative to traditional mutual funds — many are
+            <strong>passively managed</strong> (tracking an index) with lower fees than actively managed funds, though
+            <strong>actively managed</strong> ETFs also exist. Fee considerations matter here just as much as with
+            mutual funds: expense ratios vary widely, and trading an ETF throughout the day (unlike a mutual fund) also
+            means bid-ask spreads and potential commissions come into play.
+          </p>
+        </section>
+
+        <!-- 2.10 RISK -->
+        <section class="block" id="risk">
+          <h2><span class="num">2.10</span>Investment Risk</h2>
+          <p>Every product in this chapter carries risk — the SIE's real test is whether you can identify <em>which</em>
+            risk applies to a given scenario, and critically, whether that risk can be reduced through diversification
+            or not. That single distinction — <strong>systematic vs. non-systematic</strong> — is the organizing idea
+            behind this entire section.</p>
+
+          <div class="risk-grid">
+            <div class="risk-col sys">
+              <h4>Systematic Risk — affects the whole market, can't be diversified away</h4>
+              <ul>
+                <li><b>Market / systematic risk</b> The broad risk that the entire market moves against you, regardless
+                  of how well any one holding is chosen.</li>
+                <li><b>Interest rate / reinvestment risk</b> Rate changes hit bond prices directly; reinvestment risk is
+                  the flip side — when a bond matures or is called, future cash flows may only be reinvestable at a
+                  lower rate.</li>
+                <li><b>Inflationary / purchasing power risk</b> The risk that returns don't keep pace with rising
+                  prices, quietly eroding real value over time.</li>
+                <li><b>Currency risk</b> Exposure to exchange-rate swings on any foreign holding, including ADRs.</li>
+                <li><b>Political risk</b> Government action — regulation, instability, expropriation — that affects an
+                  investment's value.</li>
+              </ul>
+            </div>
+            <div class="risk-col nonsys">
+              <h4>Non-Systematic Risk — specific to one issuer or security, reduced by diversification</h4>
+              <ul>
+                <li><b>Credit / default risk</b> The chance a specific borrower fails to make interest or principal
+                  payments.</li>
+                <li><b>Capital risk</b> The risk tied to a specific company's business performance — poor management,
+                  weak sales, a failed product.</li>
+                <li><b>Liquidity risk</b> The risk that a specific security can't be sold quickly without accepting a
+                  discount, because there aren't enough willing buyers.</li>
+                <li><b>Prepayment risk</b> Specific to mortgage-backed securities — borrowers refinancing or paying off
+                  loans early, disrupting expected cash flows.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                </path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Diversification is powerful, but it has a hard limit: it only reduces <em>non-systematic</em> risk — the
+              risk specific to individual issuers or securities. No amount of diversification protects a portfolio from
+              a market-wide downturn, rising interest rates across the board, or broad inflation. If a question
+              describes a risk that "affects every security in the market at once," diversification is not the answer to
+              it.</p>
+          </div>
+
+          <h3 id="managing-risk">Managing risk: the three levers</h3>
+          <p><strong>Diversification</strong> spreads capital across many issuers, sectors, and asset classes so that
+            one bad outcome doesn't sink the whole portfolio — it directly targets non-systematic risk.
+            <strong>Portfolio rebalancing</strong> means periodically buying and selling to bring a portfolio back to
+            its target allocation, preventing any one position (often a winner that's grown too large) from dominating
+            the risk profile by accident. <strong>Hedging</strong> uses a separate position — commonly an option — to
+            offset potential losses in an existing holding, trading away some upside in exchange for downside
+            protection.
+          </p>
+        </section>
+
+        <!-- QUIZ -->
+        <section class="quiz" id="quiz">
+          <div class="quiz-header">
+            <h2>Practice Exam</h2>
+            <p class="quiz-subtitle">20 FINRA-style questions covering all sections of Chapter 2</p>
+            <div class="quiz-progress">
+              <div class="quiz-progress-fill" id="qProg"></div>
+            </div>
+            <div class="quiz-meta"><span id="qCount">Question 1 of 20</span><span id="qScore"></span></div>
+          </div>
+          <div id="qBody"></div>
+          <div class="quiz-nav" id="qNav">
+            <button class="quiz-btn quiz-btn-secondary" id="qPrev" onclick="qNavigate(-1)" disabled>← Previous</button>
+            <div class="quiz-dots" id="qDots"></div>
+            <button class="quiz-btn quiz-btn-primary" id="qNext" onclick="qNavigate(1)">Next →</button>
+          </div>
+          <div id="qSummary" style="display:none"></div>
+        </section>
+
+        <a href="ch3.html" class="next-footer">
+          <span class="lbl">Up next</span>
+          <div class="title">Chapter 3: Trading, Accounts &amp; Prohibited Activities</div>
+          <p>31% of the exam — order types, settlement, account structures, AML, and the specific behaviors that get
+            people barred from the industry.</p>
+        </a>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // TOC scroll observer
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-link').forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px" });
+      document.querySelectorAll('section.block, section.quiz').forEach(s => observer.observe(s));
+    });
+
+    // === Quiz Engine ===
+    const Q = [
+      {
+        s: "2.1", n: "Equity Securities",
+        q: "A company files for bankruptcy and begins liquidating assets. After secured creditors and bondholders have been paid, a small amount of assets remains. Which group has the next claim on those remaining assets?",
+        o: [
+          "The preferred stockholders, because their fixed dividend provides liquidation priority over common.",
+          "The common stockholders, because they hold ultimate ownership of the company's remaining assets.",
+          "The company's transfer agent, because they officially maintain the corporation's ownership records.",
+          "The underwriting syndicate, because they provided the guarantee for the original public offering."
+        ],
+        a: 0,
+        e: "In a liquidation, the priority order is: secured creditors → unsecured creditors/bondholders → <strong>preferred stockholders</strong> → common stockholders. Preferred sits ahead of common but behind all debt. <strong>(B)</strong> is wrong because common stockholders are last in line — they only receive what remains after everyone else, including preferred, has been paid. <strong>(C)</strong> is wrong because a transfer agent is a service provider, not a claimant in liquidation. <strong>(D)</strong> is wrong because the underwriting syndicate's role ends after the offering is distributed."
+      },
+      {
+        s: "2.1", n: "Equity Securities",
+        q: "A corporation has missed its preferred stock dividend payments for the past three quarters. Before the company can pay any dividends to common shareholders, it must first pay all missed preferred dividends in full. This type of preferred stock is classified as:",
+        o: [
+          "Callable preferred, which allows the issuer to redeem the preferred shares prior to maturity.",
+          "Cumulative preferred, which requires all missed dividends be paid before common shareholders.",
+          "Convertible preferred, which allows investors to exchange their preferred shares into common.",
+          "Participating preferred, which provides extra dividends if the company exceeds performance goals."
+        ],
+        a: 1,
+        e: "<strong>Cumulative preferred</strong> stock requires that all missed (accumulated) dividends be paid in full before any dividends can be distributed to common shareholders. <strong>(A)</strong> is wrong because callable preferred allows the <em>issuer</em> to redeem the shares early — it has nothing to do with missed dividends. <strong>(C)</strong> is wrong because convertible preferred allows exchange into common shares — an upside feature, not a dividend protection. <strong>(D)</strong> is wrong because participating preferred can receive <em>extra</em> dividends beyond the stated rate when the company performs well — but doesn't specifically address missed payments."
+      },
+      {
+        s: "2.1", n: "Equity Securities",
+        q: "A company announces a new stock offering. Existing common shareholders receive short-term instruments allowing them to buy additional shares at a price below the current market before the shares are offered to the public. These instruments are best described as:",
+        o: [
+          "Call options, which are standardized derivative contracts traded on secondary market exchanges.",
+          "Warrants, which serve as long-term instruments typically bundled to sweeten bond offerings.",
+          "Rights, which are short-term instruments allowing existing shareholders to maintain proportion.",
+          "Convertible bonds, which allow investors to exchange their fixed-income debt into equity shares."
+        ],
+        a: 2,
+        e: "<strong>Rights</strong> are short-term instruments (typically expiring in weeks) issued to existing shareholders, giving them the ability to purchase additional shares — usually at a discount — before a public offering, thereby protecting their proportional ownership against dilution. <strong>(B)</strong> is wrong because warrants serve a similar \"buy more later\" purpose but run much longer (often years) and are typically bundled with bond or preferred offerings as a sweetener, not issued to protect existing shareholders. <strong>(A)</strong> is wrong because call options are exchange-traded derivatives, not issued by the company to its shareholders. <strong>(D)</strong> is wrong because convertible bonds allow bondholders to exchange debt for equity — a different mechanism entirely."
+      },
+      {
+        s: "2.1", n: "Equity Securities",
+        q: "A U.S. investor holds American Depositary Receipts (ADRs) for a European company. The European stock rises 5% in euros, but the euro weakens 8% against the U.S. dollar over the same period. What is the most likely impact on the investor's ADR value?",
+        o: [
+          "The ADR is entirely unaffected because ADRs are always issued and denominated in U.S. dollars.",
+          "The ADR is automatically hedged against currency exchange risk by the issuing depositary bank.",
+          "The ADR rises in market value because the underlying European stock experienced a price gain.",
+          "The ADR declines in market value because the currency depreciation offsets the stock's gain."
+        ],
+        a: 3,
+        e: "ADRs expose holders to <strong>currency risk</strong>. Even though the underlying stock rose 5% in its local currency, the 8% weakening of the euro against the dollar more than offsets that gain — resulting in a net decline in the dollar-denominated ADR value. <strong>(C)</strong> ignores the currency impact entirely. <strong>(A)</strong> is a common misconception — while ADRs trade in dollars, their value is derived from a foreign-currency-denominated stock, so exchange rate movements affect them directly. <strong>(B)</strong> is wrong because depositary banks do not hedge currency risk for ADR holders."
+      },
+      {
+        s: "2.2", n: "Debt Instruments",
+        q: "An investor holds a corporate bond with a 4% coupon, purchased at par ($1,000). Interest rates in the broader market subsequently rise to 6% for comparable bonds. What is the most likely effect on this investor's bond?",
+        o: [
+          "The bond's market price falls below $1,000 because its fixed coupon is now less competitive.",
+          "The bond's market price rises above $1,000 because the original 4% coupon is permanently locked.",
+          "The bond's coupon rate automatically adjusts upward to match the newly prevailing market rates.",
+          "The bond is completely unaffected because its initial coupon rate was securely fixed at issuance."
+        ],
+        a: 0,
+        e: "Bond prices and yields move in opposite directions. When market rates rise to 6%, the investor's fixed 4% coupon becomes less attractive. No one would pay full par for a 4% bond when new 6% bonds are available — so the price <strong>falls</strong> to bring the effective yield in line with the market. <strong>(B)</strong> describes what happens when rates <em>fall</em>, not rise. <strong>(C)</strong> is wrong because fixed-rate bonds do not adjust their coupon. <strong>(D)</strong> is wrong because while the coupon is indeed fixed, the bond's <em>market price</em> is not — it fluctuates inversely with rates."
+      },
+      {
+        s: "2.2", n: "Debt Instruments",
+        q: "A municipality needs to finance a new toll bridge. The bonds issued to fund the project will be repaid exclusively from tolls collected on the bridge once it opens. These bonds are best classified as:",
+        o: [
+          "Treasury bonds, which are unconditionally backed by the full faith and credit of the government.",
+          "Revenue bonds, which are backed exclusively by the specific income generated from the project.",
+          "General obligation bonds, which are backed primarily by the issuing municipality's taxing power.",
+          "Commercial paper, which serves as a short-term unsecured debt instrument for corporations."
+        ],
+        a: 1,
+        e: "<strong>Revenue bonds</strong> are backed solely by the income generated from a specific project — in this case, toll collections from the bridge. <strong>(C)</strong> is wrong because general obligation (GO) bonds are backed by the issuing municipality's broader taxing power, not tied to a specific revenue stream. <strong>(A)</strong> is wrong because Treasury bonds are issued by the federal government, not municipalities. <strong>(D)</strong> is wrong because commercial paper is a short-term corporate borrowing instrument, not a municipal bond."
+      },
+      {
+        s: "2.2", n: "Debt Instruments",
+        q: "A bond is currently trading at $1,080 with an annual coupon of $50. Which of the following correctly states the bond's current yield?",
+        o: [
+          "It cannot be determined accurately without explicitly knowing the bond's exact maturity date.",
+          "5.0%, which is calculated by dividing the annual coupon payment by the bond's original par value.",
+          "Approximately 4.63%, which is calculated by dividing the annual coupon by the current market price.",
+          "Approximately 5.4%, because the premium paid over par effectively increases the investor's return."
+        ],
+        a: 2,
+        e: "<strong>Current yield</strong> = annual coupon ÷ current market price = $50 ÷ $1,080 ≈ <strong>4.63%</strong>. <strong>(B)</strong> confuses current yield with the nominal (coupon) rate — $50 ÷ $1,000 par = 5%, but current yield uses market price, not par. <strong>(D)</strong> incorrectly suggests a premium <em>increases</em> yield — in fact, paying more than par <em>decreases</em> the yield. <strong>(A)</strong> is wrong because current yield is a simple coupon-to-price ratio and does not require the maturity date (that's yield to maturity)."
+      },
+      {
+        s: "2.3", n: "Options",
+        q: "An investor owns 500 shares of stock XYZ trading at $72. She writes (sells) five call option contracts with a $75 strike price, collecting a premium. If the stock rises above $75 and she is assigned, what happens?",
+        o: [
+          "She must buy 500 shares on the open market at the higher price, resulting in unlimited potential loss.",
+          "The options will eventually expire worthless, allowing her to keep the premium as pure profit.",
+          "She is legally forced to buy the stock at $75 regardless of where the current market price is trading.",
+          "She delivers the 500 shares she already owns at $75 per share, retaining the premium collected."
+        ],
+        a: 3,
+        e: "This is a <strong>covered call</strong> — the writer owns the underlying stock. If assigned, she simply delivers the 500 shares she already holds at the $75 strike price, plus she keeps the premium. <strong>(A)</strong> describes the risk of writing an <em>uncovered (naked)</em> call, where the writer doesn't own the stock. <strong>(B)</strong> describes what happens if the stock stays <em>below</em> $75 — but the question states the stock has risen above the strike. <strong>(C)</strong> confuses the obligations of a call writer with those of a call buyer."
+      },
+      {
+        s: "2.3", n: "Options",
+        q: "Stock ABC is currently trading at $48. An investor holds a put option on ABC with a $55 strike price. This put option is:",
+        o: [
+          "In-the-money by $7, because the right to sell at $55 is valuable when the stock trades at $48.",
+          "Out-of-the-money, because the current market price of the underlying stock is below the strike.",
+          "At-the-money, because the underlying stock is currently trading in relatively close proximity.",
+          "In-the-money by $48, because the full market price inherently represents the intrinsic value."
+        ],
+        a: 0,
+        e: "A put is <strong>in-the-money</strong> when the market price is <em>below</em> the strike — the right to sell at $55 when the stock is only worth $48 has $7 of intrinsic value ($55 − $48). <strong>(B)</strong> incorrectly applies call logic to a put — for <em>calls</em>, being below the strike means OTM, but for puts, being below the strike means ITM. <strong>(C)</strong> is wrong because a $7 gap is not \"near.\" <strong>(D)</strong> is wrong because intrinsic value is the difference between strike and market price, not the full market price."
+      },
+      {
+        s: "2.3", n: "Options",
+        q: "Which organization is the issuer and guarantor of every listed options contract, ensuring that exercise and assignment are reliably fulfilled?",
+        o: [
+          "The Securities and Exchange Commission (SEC), which provides broad regulatory oversight.",
+          "The Options Clearing Corporation (OCC), which guarantees exercise and assignment fulfillment.",
+          "The Financial Industry Regulatory Authority (FINRA), which actively regulates broker-dealers.",
+          "The Depository Trust & Clearing Corporation (DTCC), which handles equity trade settlement."
+        ],
+        a: 1,
+        e: "The <strong>OCC</strong> stands behind every listed options contract as both issuer and guarantor — it ensures that when a buyer exercises, the assigned seller must perform, without depending on counterparty trust. <strong>(C)</strong> is wrong because FINRA regulates broker-dealers, not options contracts. <strong>(A)</strong> is wrong because the SEC provides regulatory oversight but does not issue or guarantee individual contracts. <strong>(D)</strong> is wrong because DTCC handles clearing and settlement for equities and fixed income, not listed options."
+      },
+      {
+        s: "2.4", n: "Packaged Products",
+        q: "An investor purchases shares of a fund that trades on the NYSE throughout the day. At the end of the trading session, she notices her purchase price was $2 below the fund's reported net asset value (NAV). This fund is most likely:",
+        o: [
+          "A unit investment trust, because its fixed portfolio remains completely unmanaged over its lifespan.",
+          "A variable annuity, because complex insurance wrappers inherently create wide pricing discrepancies.",
+          "A closed-end fund, because its fixed share count means the market price can easily differ from NAV.",
+          "An open-end mutual fund, because all issued fund shares are systematically purchased exactly at NAV."
+        ],
+        a: 2,
+        e: "A <strong>closed-end fund</strong> issues a fixed number of shares in an IPO, then those shares trade on an exchange. Because supply and demand — not creation/redemption mechanics — determine the price, a closed-end fund can trade at a <strong>premium or discount</strong> to NAV. <strong>(D)</strong> is wrong because open-end funds continuously create and redeem shares at NAV — their price cannot deviate from NAV. <strong>(A)</strong> is wrong because UITs have a fixed portfolio and a set termination date; they are typically redeemed with the sponsor, not actively traded at fluctuating market prices. <strong>(B)</strong> is wrong because variable annuities are insurance products that don't trade on exchanges."
+      },
+      {
+        s: "2.4", n: "Packaged Products",
+        q: "A client wants to invest $48,000 in a mutual fund with a Class A share structure. The fund's sales charge drops from 5% to 4% at the $50,000 breakpoint. The client expects to invest an additional $10,000 within the next year. To receive the lower sales charge now, the registered representative should recommend:",
+        o: [
+          "Splitting the investment across two different fund families to significantly lower the overall charge.",
+          "Purchasing Class C shares instead, which comfortably avoid any immediate front-end sales loads.",
+          "Waiting until the client accumulates the full $50,000 before proceeding with any new investment.",
+          "Signing a letter of intent to commit to reaching the $50,000 threshold within a 13-month period."
+        ],
+        a: 3,
+        e: "A <strong>letter of intent (LOI)</strong> lets an investor commit in writing to investing enough to reach a breakpoint within 13 months, receiving the reduced sales charge immediately. <strong>(B)</strong> is wrong because while Class C shares avoid a front-end load, they carry higher ongoing annual expenses — and the client's plan is long-term, making Class A with a breakpoint discount more cost-effective. <strong>(A)</strong> is wrong because splitting investments across fund families prevents reaching any single family's breakpoint. <strong>(C)</strong> is wrong because the LOI mechanism exists precisely so the client doesn't have to wait."
+      },
+      {
+        s: "2.4", n: "Packaged Products",
+        q: "What is the primary reason a mutual fund's net asset value (NAV) is significant to open-end fund investors?",
+        o: [
+          "NAV is the exact price at which all open-end mutual fund shares are directly bought and redeemed.",
+          "NAV represents the portfolio manager's performance fee, routinely charged as a percentage of assets.",
+          "NAV is the specific breakpoint threshold that explicitly determines the applicable sales charge tier.",
+          "NAV is the absolute maximum price at which mutual fund shares can ever trade on a public exchange."
+        ],
+        a: 0,
+        e: "An open-end fund continuously issues new shares and redeems existing ones at <strong>NAV</strong> (total assets minus liabilities, divided by shares outstanding). This is the price investors pay (plus any applicable sales charge) and the price they receive upon redemption. <strong>(D)</strong> is wrong because open-end fund shares don't trade on an exchange — that describes closed-end funds. <strong>(B)</strong> is wrong because NAV is a valuation metric, not a fee. <strong>(C)</strong> is wrong because breakpoints are set dollar thresholds for sales charge reductions, not the NAV itself."
+      },
+      {
+        s: "2.5", n: "Municipal Fund Securities",
+        q: "A parent opens a 529 savings plan for their child's future college expenses. Three years later, the parent withdraws funds to pay for a family vacation instead. What is the most likely consequence?",
+        o: [
+          "The withdrawal is entirely penalty-free but remains subject to ordinary income tax on the full amount.",
+          "The earnings portion of the withdrawal is subject to ordinary income tax plus an additional tax penalty.",
+          "The account experiences no tax impact, because 529 plans allow unrestricted withdrawals after 3 years.",
+          "The plan is automatically and permanently closed, and all remaining funds are strictly forfeited to the state."
+        ],
+        a: 1,
+        e: "529 plans provide tax-advantaged growth for <strong>qualified education expenses</strong>. Withdrawals used for non-qualified purposes subject the <em>earnings</em> portion to ordinary income tax plus a 10% federal tax penalty. <strong>(C)</strong> is wrong because there is no waiting period that removes restrictions — 529 funds must be used for qualified expenses regardless of how long the account has been open. <strong>(A)</strong> is wrong because both tax <em>and</em> penalty apply to the earnings on non-qualified withdrawals. <strong>(D)</strong> is wrong because the plan is not forfeited — non-qualified withdrawals simply trigger tax consequences."
+      },
+      {
+        s: "2.6", n: "DPPs",
+        q: "An investor is considering a limited partnership structured as a direct participation program (DPP). The financial adviser explains that both the program's income and its losses will appear directly on the investor's personal tax return. What risk should the adviser emphasize most strongly?",
+        o: [
+          "The investment guarantees the systematic return of initial principal upon reaching a set maturity date.",
+          "The investment trades continuously on a public exchange but remains subject to extreme daily volatility.",
+          "The investment is generally illiquid and the investor may struggle to sell it before the program ends.",
+          "The investment is completely FDIC-insured but inherently offers a significantly limited upside potential."
+        ],
+        a: 2,
+        e: "DPPs are <strong>unlisted and generally illiquid</strong> — there is no exchange to sell on, and finding a buyer before the program terminates may be difficult or require a steep discount. The pass-through tax treatment is the defining benefit, but illiquidity is the primary risk. <strong>(D)</strong> is wrong because DPPs are not FDIC-insured — FDIC covers bank deposits. <strong>(B)</strong> is wrong because DPPs do <em>not</em> trade on exchanges. <strong>(A)</strong> is wrong because DPPs do not guarantee return of principal."
+      },
+      {
+        s: "2.7", n: "REITs",
+        q: "A registered representative is explaining why a particular real estate investment trust (REIT) avoids corporate-level taxation. Which statement correctly describes how this tax treatment works?",
+        o: [
+          "REITs are fundamentally structured as 501(c)(3) nonprofits and therefore strictly pay no tax at any level.",
+          "REITs typically pay full corporate tax on income but shareholders receive a matching direct tax credit.",
+          "REITs are considered tax-exempt entities, similar to municipal bonds, so all income is completely free.",
+          "REITs avoid corporate tax by distributing their taxable income to shareholders, who are taxed individually."
+        ],
+        a: 3,
+        e: "REITs that distribute the required portion of their taxable income (generally at least 90%) to shareholders avoid being taxed at the corporate level. Income is then taxed only once — at the <strong>shareholder level</strong> — avoiding the double taxation that affects typical corporations. <strong>(C)</strong> is wrong because REIT income is not tax-exempt — shareholders pay tax on distributions. <strong>(A)</strong> is wrong because REITs are for-profit investment vehicles, not nonprofits. <strong>(B)</strong> is wrong because REITs don't pay corporate tax and pass a credit — they avoid corporate tax entirely through distribution requirements."
+      },
+      {
+        s: "2.8", n: "Hedge Funds",
+        q: "Which of the following best describes a hedge fund?",
+        o: [
+          "A private investment partnership for sophisticated investors, lacking liquidity and regulatory transparency.",
+          "A publicly traded, SEC-registered investment company that is legally required to disclose holdings quarterly.",
+          "A widely available exchange-traded product that tracks a broader market index and offers daily liquidity.",
+          "A government-sponsored retirement savings plan that systematically provides tax-free growth over time."
+        ],
+        a: 0,
+        e: "Hedge funds are <strong>private investment partnerships</strong> built for sophisticated (typically accredited or institutional) investors. They are not required to register the way mutual funds are, giving managers broad strategy flexibility but offering investors limited regulatory transparency and generally <strong>illiquid</strong> capital structures with lock-up periods. <strong>(B)</strong> describes a mutual fund or closed-end fund. <strong>(C)</strong> describes an ETF. <strong>(D)</strong> describes a 529 plan."
+      },
+      {
+        s: "2.9", n: "ETPs",
+        q: "An investor is comparing two exchange-traded products. Product X holds an actual basket of S&P 500 stocks. Product Y is an unsecured debt obligation of a large bank, with returns linked to the same S&P 500 index. If the issuing bank of Product Y declares bankruptcy, what is the key additional risk Product Y's investors face that Product X's investors do not?",
+        o: [
+          "Interest rate risk, because sharply rising rates will reliably reduce the financial product's market value.",
+          "Credit risk, because the ETN is an unsecured bank obligation lacking any underlying asset basket.",
+          "Market risk, because the tracked S&P 500 index may inevitably experience a broad decline in market value.",
+          "Liquidity risk, because the issued product is legally prohibited from being traded on any public exchange."
+        ],
+        a: 1,
+        e: "Product X is an <strong>ETF</strong> (holds actual securities), while Product Y is an <strong>ETN</strong> (unsecured debt of the issuing bank). If the bank goes bankrupt, ETN holders face <strong>credit/default risk</strong> — they are unsecured creditors with no underlying basket to fall back on. ETF holders own actual shares of the index stocks, so the issuer's creditworthiness is irrelevant. <strong>(C)</strong> applies equally to both products, so it's not the <em>additional</em> risk. <strong>(A)</strong> is not the distinguishing risk here. <strong>(D)</strong> is wrong because ETNs <em>do</em> trade on exchanges."
+      },
+      {
+        s: "2.10", n: "Investment Risk",
+        q: "An investor holds a well-diversified portfolio of 50 different stocks across multiple sectors. Despite this diversification, the entire portfolio declines 12% during a broad market selloff. The risk that caused this decline is best classified as:",
+        o: [
+          "Capital risk, because specific companies thoughtfully selected in the portfolio unfortunately performed poorly.",
+          "Credit risk, because individual underlying corporate issuers may potentially default on their debt obligations.",
+          "Systematic risk, because it severely affects the entire broader market and inherently cannot be diversified away.",
+          "Liquidity risk, because the frustrated investor cannot readily sell off all positions quickly enough to exit."
+        ],
+        a: 2,
+        e: "<strong>Systematic (market) risk</strong> affects the entire market simultaneously and cannot be eliminated through diversification. A broad market selloff hits all securities regardless of how well-diversified the portfolio is. <strong>(B)</strong> is non-systematic risk specific to individual issuers. <strong>(D)</strong> describes difficulty selling a specific security — not a market-wide downturn. <strong>(A)</strong> is non-systematic risk tied to a specific company's business performance."
+      },
+      {
+        s: "2.10", n: "Investment Risk",
+        q: "A retired investor holds a portfolio of fixed-income securities paying 3% annually. Over the next two years, inflation averages 4.5% per year. What risk is this investor primarily experiencing?",
+        o: [
+          "Reinvestment risk, because the maturing bonds can unfortunately only be reliably reinvested at much lower rates.",
+          "Political risk, because unpredictable government fiscal policy is actively and aggressively driving inflation higher.",
+          "Credit risk, because the distressed bond issuers may ultimately fail to make their required interest payments.",
+          "Purchasing power risk, because the investment returns are steadily failing to keep pace with broadly rising prices."
+        ],
+        a: 3,
+        e: "<strong>Purchasing power (inflationary) risk</strong> is the risk that an investment's returns fail to keep pace with inflation, eroding real value over time. At 3% yield with 4.5% inflation, the investor is losing purchasing power in real terms. <strong>(C)</strong> is wrong because there's no indication of issuer default. <strong>(A)</strong> is wrong because reinvestment risk concerns the rate available when proceeds are reinvested — not the comparison of current yield to inflation. <strong>(B)</strong> is wrong because while government policy <em>can</em> influence inflation, the risk being described is inflationary risk, not political risk."
+      }
+    ];
+
+    let qIdx = 0;
+    let userAns = Array(Q.length).fill(null);
+
+    function initQuiz() {
+      // Randomize options for each question to prevent patterns
+      Q.forEach(q => {
+        const correctText = q.o[q.a];
+        for (let i = q.o.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [q.o[i], q.o[j]] = [q.o[j], q.o[i]];
+        }
+        q.a = q.o.indexOf(correctText);
+      });
+      renderDots();
+      renderQ(0);
+      updateProg();
+    }
+
+    function renderDots() {
+      const el = document.getElementById('qDots');
+      el.innerHTML = Q.map((_, i) =>
+        `<div class="quiz-dot ${i === 0 ? 'qd-active' : ''}" onclick="jumpQ(${i})" title="Question ${i + 1}"></div>`
+      ).join('');
+    }
+
+    function renderQ(idx) {
+      qIdx = idx;
+      const q = Q[idx];
+      const answered = userAns[idx] !== null;
+      const body = document.getElementById('qBody');
+      const letters = ['A', 'B', 'C', 'D'];
+
+      let h = `<div class="quiz-card">`;
+      h += `<div class="quiz-section-tag">Section ${q.s} — ${q.n}</div>`;
+      h += `<div class="quiz-q-text">${idx + 1}. ${q.q}</div>`;
+      h += `<div class="quiz-options">`;
+
+      q.o.forEach((opt, i) => {
+        let cls = 'quiz-option';
+        if (answered) {
+          cls += ' qo-disabled';
+          if (i === q.a) cls += ' qo-correct';
+          else if (i === userAns[idx]) cls += ' qo-wrong';
+        }
+        h += `<button class="${cls}" ${answered ? 'disabled' : `onclick="pickAns(${i})"`}>`;
+        h += `<span class="ol">${letters[i]}</span>`;
+        h += `<span>${opt}</span></button>`;
+      });
+      h += `</div>`;
+
+      if (answered) {
+        const ok = userAns[idx] === q.a;
+        h += `<div class="quiz-feedback ${ok ? 'qf-correct' : 'qf-wrong'}">`;
+        h += `<div class="quiz-feedback-label">${ok ? '✓ Correct' : '✗ Incorrect'}</div>`;
+        h += `<p style="margin:0">${q.e}</p></div>`;
+      }
+      h += `</div>`;
+      body.innerHTML = h;
+
+      document.getElementById('qCount').textContent = `Question ${idx + 1} of ${Q.length}`;
+      document.getElementById('qPrev').disabled = idx === 0;
+
+      const nxt = document.getElementById('qNext');
+      if (idx === Q.length - 1 && userAns.every(a => a !== null)) {
+        nxt.textContent = 'See Results';
+        nxt.onclick = showResults;
+      } else {
+        nxt.textContent = 'Next →';
+        nxt.onclick = () => qNavigate(1);
+        nxt.disabled = idx === Q.length - 1;
+      }
+
+      document.querySelectorAll('.quiz-dot').forEach((d, i) => {
+        d.className = 'quiz-dot';
+        if (i === qIdx) d.classList.add('qd-active');
+        if (userAns[i] !== null) d.classList.add(userAns[i] === Q[i].a ? 'qd-correct' : 'qd-wrong');
+      });
+      updateProg();
+    }
+
+    function pickAns(i) {
+      userAns[qIdx] = i;
+      renderQ(qIdx);
+      const answered = userAns.filter(a => a !== null).length;
+      const correct = userAns.filter((a, j) => a === Q[j].a).length;
+      document.getElementById('qScore').textContent = `${correct}/${answered} correct`;
+    }
+
+    function qNavigate(dir) {
+      const ni = qIdx + dir;
+      if (ni >= 0 && ni < Q.length) renderQ(ni);
+    }
+
+    function jumpQ(i) { renderQ(i); }
+
+    function updateProg() {
+      const pct = (userAns.filter(a => a !== null).length / Q.length) * 100;
+      document.getElementById('qProg').style.width = pct + '%';
+    }
+
+    function showResults() {
+      document.getElementById('qBody').style.display = 'none';
+      document.getElementById('qNav').style.display = 'none';
+      const el = document.getElementById('qSummary');
+      el.style.display = 'block';
+
+      const correct = userAns.filter((a, i) => a === Q[i].a).length;
+      const total = Q.length;
+      const pct = Math.round((correct / total) * 100);
+
+      const secs = {};
+      Q.forEach((q, i) => {
+        if (!secs[q.s]) secs[q.s] = { n: q.n, c: 0, t: 0 };
+        secs[q.s].t++;
+        if (userAns[i] === q.a) secs[q.s].c++;
+      });
+
+      let msg = '';
+      if (pct >= 90) msg = 'Outstanding! You have a strong command of this material.';
+      else if (pct >= 75) msg = 'Great job! Review the questions you missed to strengthen weak areas.';
+      else if (pct >= 60) msg = 'Good effort. Re-read the sections where you struggled and try again.';
+      else msg = 'Keep studying! Review the chapter content thoroughly and retake the exam.';
+
+      let bd = '';
+      Object.entries(secs).forEach(([k, v]) => {
+        bd += `<div class="quiz-bd-item"><div class="bd-label">Section ${k} — ${v.n}</div><div class="bd-score">${v.c}/${v.t}</div></div>`;
+      });
+
+      el.innerHTML = `<div class="quiz-summary">
+        <div class="quiz-score-ring"><span class="qs-num">${pct}%</span><span class="qs-of">${correct} of ${total}</span></div>
+        <h3>Practice Exam Complete</h3>
+        <p class="quiz-summary-msg">${msg}</p>
+        <div class="quiz-breakdown">${bd}</div>
+        <div class="quiz-summary-actions">
+          <button class="quiz-btn quiz-btn-secondary" onclick="reviewMissed()">Review Missed Questions</button>
+          <button class="quiz-btn quiz-btn-primary" onclick="resetQuiz()">Retake Exam</button>
+        </div>
+      </div>`;
+    }
+
+    function reviewMissed() {
+      document.getElementById('qBody').style.display = '';
+      document.getElementById('qNav').style.display = '';
+      document.getElementById('qSummary').style.display = 'none';
+      const first = userAns.findIndex((a, i) => a !== Q[i].a);
+      renderQ(first >= 0 ? first : 0);
+    }
+
+    function resetQuiz() {
+      userAns = Array(Q.length).fill(null);
+      document.getElementById('qBody').style.display = '';
+      document.getElementById('qNav').style.display = '';
+      document.getElementById('qSummary').style.display = 'none';
+      document.getElementById('qScore').textContent = '';
+      renderDots();
+      renderQ(0);
+    }
+
+    // Initialize quiz on load
+    document.addEventListener('DOMContentLoaded', initQuiz);
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1433 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 2: Customer Accounts, Profiles &amp; Recommendations | HexaPrep S7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-hover: #F1F5F9;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --primary: #4F46E5;
+      --primary-hover: #4338CA;
+      --primary-light: #EEF2FF;
+      --accent: #0EA5E9;
+      --success: #10B981;
+      --success-light: #D1FAE5;
+      --warning: #F59E0B;
+      --warning-light: #FEF3C7;
+      --danger: #EF4444;
+      --danger-light: #FEE2E2;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius-md: 0.5rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --surface-hover: #334155;
+        --border: #334155;
+        --text-main: #F8FAFC;
+        --text-muted: #94A3B8;
+        --text-light: #94A3B8;
+        --text-dark: #0F172A;
+        --primary: #6366F1;
+        --primary-hover: #818CF8;
+        --primary-light: #312E81;
+        --warning-light: #451A03;
+        --danger-light: #450A0A;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--surface);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+    }
+
+    h3 {
+      scroll-margin-top: 80px;
+      /* Offset for fixed topbar */
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    ul,
+    ol {
+      padding-left: 24px;
+      margin-bottom: 1.5em;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+      max-width: none;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(var(--surface), 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 0;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .back-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      margin-left: 24px;
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumbs a {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--text-main);
+    }
+
+    .breadcrumb-sep {
+      color: var(--border);
+    }
+
+    /* Dropdown */
+    .chapter-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .chapter-dropdown>a {
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .chapter-dropdown>a:hover {
+      background: var(--surface-hover);
+    }
+
+    .chapter-dropdown>a svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--surface);
+      min-width: 160px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      z-index: 200;
+      padding: 8px 0;
+      margin-top: 4px;
+    }
+
+    .dropdown-content a {
+      color: var(--text-main);
+      padding: 8px 16px;
+      display: block;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--surface-hover);
+      color: var(--primary);
+    }
+
+    .chapter-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Main Grid */
+    .main-wrapper {
+      margin-left: 300px;
+      display: flex;
+      flex: 1;
+      margin-top: 64px;
+      justify-content: flex-start;
+      width: calc(100% - 300px);
+    }
+
+    /* Fixed Sidebar */
+    .sidebar {
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      width: 300px;
+      position: fixed;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg);
+      padding: 32px 24px;
+      z-index: 100;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    /* Table of Contents */
+    .toc-chapter-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      line-height: 1.3;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .toc-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toc-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .toc-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .toc-link.sub {
+      font-size: 13px;
+      padding: 6px 12px 6px 24px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .toc-link.sub:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      padding: 48px 100px 100px 40px;
+      max-width: none;
+      width: 100%;
+      margin: 0;
+    }
+
+    /* Hero inside content */
+    .chapter-hero {
+      margin-bottom: 56px;
+    }
+
+    .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .chapter-title {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .chapter-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: none;
+      margin-bottom: 32px;
+    }
+
+    .stat-strip {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      gap: 8px;
+    }
+
+    .stat {
+      flex: 1 1 120px;
+      padding: 16px;
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat .num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      color: var(--text-main);
+      font-weight: 700;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .stat .lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .lede {
+      font-size: 20px;
+      color: var(--text-main);
+      padding-left: 24px;
+      border-left: 4px solid var(--primary);
+      margin-bottom: 48px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* Section Typography */
+    .block {
+      margin-bottom: 64px;
+      scroll-margin-top: 80px;
+      /* offset for fixed topbar */
+    }
+
+    .block h2 {
+      font-size: 32px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      margin-top: 64px;
+    }
+
+    .block h2 .num {
+      color: var(--primary);
+      margin-right: 12px;
+    }
+
+    .block h3 {
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+    }
+
+    .callout-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout.tip {
+      background: var(--success-light);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .callout.tip .callout-label {
+      color: var(--success);
+    }
+
+    .callout.tip p {
+      color: var(--text-dark);
+    }
+
+    .callout.tip p strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .callout.trap {
+      background: var(--danger-light);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .callout.trap .callout-label {
+      color: var(--danger);
+    }
+
+    .callout.trap p {
+      color: var(--text-main);
+    }
+
+    .callout.rule {
+      background: var(--surface-hover);
+      border-color: var(--border);
+    }
+
+    .callout.rule .callout-label {
+      color: var(--text-main);
+    }
+
+    .callout.rule p {
+      color: var(--text-main);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td.hl {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    /* Quiz */
+    details.q {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    details.q summary {
+      padding: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-main);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.q summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.q summary::after {
+      content: "View Answer";
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      padding: 4px 12px;
+      background: var(--primary-light);
+      border-radius: 99px;
+      transition: var(--transition);
+    }
+
+    details.q[open] summary::after {
+      content: "Hide Answer";
+    }
+
+    details.q[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .q-answer,
+    .answer {
+      padding: 20px;
+      background: var(--surface);
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* Next Chapter */
+    .next-footer {
+      margin-top: 64px;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .next-footer:hover {
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .next-footer .lbl {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .next-footer .title {
+      font-size: 28px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .next-footer p {
+      margin: 0 auto;
+      opacity: 0.9;
+      font-size: 16px;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 30px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-left: 2px solid var(--border);
+      padding-left: 0;
+    }
+
+    .tl-step {
+      position: relative;
+      padding: 0 0 26px 30px;
+      margin-left: -2px;
+      border-left: 2px solid var(--primary-light);
+    }
+
+    .tl-step:last-child {
+      border-left: 2px solid transparent;
+      padding-bottom: 0;
+    }
+
+    .tl-step::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 2px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid var(--surface);
+    }
+
+    .tl-step .tl-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .tl-step .tl-body {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Sticky Top Navbar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="index.html" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Dashboard
+        </a>
+        <div class="breadcrumbs">
+          <a href="../index.html">HexaPrep</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html">Series 7</a>
+          <span class="breadcrumb-sep">/</span>
+          <div class="chapter-dropdown">
+            <a href="chapter2.html">Chapter 2
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="dropdown-content">
+              <a href="chapter1.html">Chapter 1</a>
+              <a href="chapter2.html">Chapter 2</a>
+              <a href="chapter3.html">Chapter 3</a>
+              <a href="chapter4.html">Chapter 4</a>
+              <a href="chapter5.html">Chapter 5</a>
+              <a href="chapter6.html">Chapter 6</a>
+              <a href="chapter7.html">Chapter 7</a>
+              <a href="chapter8.html">Chapter 8</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrapper">
+      <!-- Fixed Left Sidebar -->
+      <aside class="sidebar">
+        <div class="toc-chapter-title">Chapter 2:<br>Customer Accounts, Profiles &amp; Recommendations</div>
+        <div class="toc-title">In This Chapter</div>
+        <nav class="toc-nav">
+          <a href="#m21" class="toc-link active">2.1 Account Types and Registration</a>
+          <a href="#m21-functional" class="toc-link sub">Functional account types</a>
+          <a href="#m21-registration" class="toc-link sub">Account registration types</a>
+          <a href="#m21-opening" class="toc-link sub">Opening a customer account</a>
+          <a href="#m21-retirement" class="toc-link sub">Retirement and tax-advantaged accounts</a>
+          <a href="#m21-wealth" class="toc-link sub">Wealth events and registration changes</a>
+
+          <a href="#m22" class="toc-link">2.2 Identification, Privacy &amp; Authority</a>
+          <a href="#m22-screening" class="toc-link sub">Customer screening</a>
+          <a href="#m22-privacy" class="toc-link sub">Privacy: Regulation S-P</a>
+          <a href="#m22-authorizations" class="toc-link sub">Account authorizations</a>
+
+          <a href="#m23" class="toc-link">2.3 Investment Profile, Suitability &amp; Best Interest</a>
+          <a href="#m23-building" class="toc-link sub">Building the investment profile</a>
+          <a href="#m23-objectives" class="toc-link sub">Investment objectives</a>
+          <a href="#m23-obligations" class="toc-link sub">The three suitability obligations</a>
+          <a href="#m23-regbi" class="toc-link sub">Regulation Best Interest</a>
+          <a href="#m23-verifying" class="toc-link sub">Verifying accreditation &amp; analysis tools</a>
+
+          <a href="#m24" class="toc-link">2.4 Supervisory Approval &amp; Maintenance</a>
+          <a href="#m24-supervisory" class="toc-link sub">Supervisory review and approval</a>
+          <a href="#m24-handling" class="toc-link sub">Handling customer funds and securities</a>
+          <a href="#m24-restricting" class="toc-link sub">Restricting, freezing, or closing an account</a>
+        </nav>
+      </aside>
+
+      <!-- Scrollable Main Content -->
+      <main class="content-area">
+
+        <header class="chapter-hero">
+          <span class="kicker">FINRA SERIES 7 EXAM · STUDY GUIDE</span>
+          <h1 class="chapter-title">Chapter 2 — Customer Accounts, Profiles &amp; Recommendations</h1>
+          <p class="chapter-subtitle">Before a representative can recommend anything, an account has to exist — properly identified, properly authorized, and properly understood. This chapter is the decision framework that sits underneath every suitability and best-interest question you'll see later: who owns the account, who's allowed to act on it, what the firm knows about the customer, and who has to sign off before money moves.</p>
+          <div class="stat-strip">
+            <div class="stat"><span class="num">9%</span><span class="lbl">of exam weight</span></div>
+            <div class="stat"><span class="num">11</span><span class="lbl">scored questions</span></div>
+            <div class="stat"><span class="num">4</span><span class="lbl">modules in this chapter</span></div>
+          </div>
+        </header>
+
+        <!-- Module 2.1 -->
+        <section class="block" id="m21">
+          <h2><span class="num">2.1</span>Account Types and Registration</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Functional account types: pattern day trading, prime brokerage, DVP/RVP, advisory/fee-based</li>
+              <li>Registration types: tenants in common, community property, sole proprietorship, partnership, unincorporated association</li>
+              <li>Requirements for opening a customer account</li>
+              <li>Retirement plans and tax-advantaged accounts: contributions, rollovers, distributions, taxation, age rules</li>
+              <li>Employer-sponsored plans and ERISA</li>
+              <li>Wealth events, account registration changes, and internal transfers</li>
+            </ul>
+          </div>
+
+          <p class="lede">Two separate questions get asked about every account: <em>what is it for</em> (a functional account type) and <em>who legally owns it</em> (a registration type). Keep those questions apart — a single account can be, for example, a margin account (function) registered as tenants in common (ownership) held for a retirement purpose that isn't tax-advantaged at all. The exam mixes and matches these freely.</p>
+
+          <h3 id="m21-functional">Functional account types</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>What it is</th>
+                  <th>Key requirement</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Pattern day trader (PDT)</td>
+                  <td>A margin account flagged once a customer executes four or more day trades within five business days, where those trades exceed 6% of the account's total trading activity in that window</td>
+                  <td>Minimum equity of $25,000 must be maintained in the account; the firm must obtain approval under FINRA Rule 2130 and furnish the day-trading risk disclosure statement required by Rule 2270 before the account can day-trade</td>
+                </tr>
+                <tr>
+                  <td class="hl">Prime brokerage</td>
+                  <td>A large institutional client executes trades away, across multiple broker-dealers, but consolidates clearing, custody, and reporting through one "prime" broker</td>
+                  <td>Executing brokers "give up" the trade to the prime broker under a give-up agreement; the prime broker handles margin, custody, and reporting centrally</td>
+                </tr>
+                <tr>
+                  <td class="hl">DVP / RVP</td>
+                  <td>An institutional settlement arrangement where securities and cash move simultaneously through the customer's own custodian bank, rather than being held at the broker-dealer</td>
+                  <td>The broker-dealer never holds the customer's free credit balance or securities — settlement instructions route to the custodian instead</td>
+                </tr>
+                <tr>
+                  <td class="hl">Advisory / fee-based</td>
+                  <td>The customer pays an asset-based fee for ongoing advice and trading rather than per-transaction commissions</td>
+                  <td>Requires its own advisory agreement (and, if the firm is acting as an investment adviser, Form ADV disclosure); the conflict-of-interest profile differs from a commission account, since the fee doesn't change based on trading activity</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="m21-registration">Account registration types</h3>
+          <p>Registration answers a narrower question: when more than one party (or a non-individual entity) owns the account, who has legal title, and what happens to that title if an owner dies, leaves, or is added?</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Registration</th>
+                  <th>Ownership pattern</th>
+                  <th>What happens on an owner's death or exit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Tenants in common (TIC)</td>
+                  <td>Two or more owners, each holding a specified (possibly unequal) undivided percentage interest</td>
+                  <td>A deceased owner's share passes to their <em>estate</em>, not automatically to the surviving co-owner(s) — TIC carries no automatic right of survivorship</td>
+                </tr>
+                <tr>
+                  <td class="hl">Community property</td>
+                  <td>Applies to married couples in community-property states; property acquired during the marriage is generally deemed owned 50/50 regardless of whose name is on the account</td>
+                  <td>Governed by the applicable state's community-property and probate rules</td>
+                </tr>
+                <tr>
+                  <td class="hl">Sole proprietorship</td>
+                  <td>An unincorporated business with a single owner — legally, the business and the owner are the same person</td>
+                  <td>The account may need to be re-registered in the individual's name alone if the business ceases</td>
+                </tr>
+                <tr>
+                  <td class="hl">Partnership</td>
+                  <td>Two or more owners operating under a partnership agreement that specifies who may direct trading in the account</td>
+                  <td>Requires an updated partnership agreement/resolution on file whenever trading authority changes</td>
+                </tr>
+                <tr>
+                  <td class="hl">Unincorporated association</td>
+                  <td>A club, committee, or similar group with no separate corporate legal identity</td>
+                  <td>Requires a resolution or governing document naming who is authorized to sign and trade for the group</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>Students often assume tenants in common works like joint accounts with survivorship. It doesn't. TIC is defined precisely by the <em>absence</em> of automatic survivorship — if the exam describes two unrelated business partners who each want their own share to go to their own heirs (not to the other partner), TIC is the answer; an arrangement built around automatic survivorship between the co-owners is a different registration entirely.</p>
+          </div>
+
+          <h3 id="m21-opening">Opening a customer account</h3>
+          <p>Every new account starts with a new account form capturing the customer's identity, contact information, employment, and an initial snapshot of investment objectives — details that feed directly into the suitability profile built out in Module 2.3. The form requires the registered representative's signature and, before the account can be used, a registered principal's approval.</p>
+
+          <h3 id="m21-retirement">Retirement and tax-advantaged accounts</h3>
+
+          <h4>Traditional IRA vs. Roth IRA</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Traditional IRA</th>
+                  <th>Roth IRA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Contributions</td>
+                  <td>Pre-tax (deductible, subject to income/coverage limits) or non-deductible after-tax</td>
+                  <td>Always after-tax</td>
+                </tr>
+                <tr>
+                  <td class="hl">Growth</td>
+                  <td>Tax-deferred</td>
+                  <td>Tax-free if the distribution is qualified</td>
+                </tr>
+                <tr>
+                  <td class="hl">Qualified withdrawal</td>
+                  <td>Ordinary income tax on withdrawal after age 59½</td>
+                  <td>Tax-free once the account has been open 5 years <em>and</em> the owner is 59½ (or another qualifying event applies)</td>
+                </tr>
+                <tr>
+                  <td class="hl">Early withdrawal (before 59½)</td>
+                  <td>10% additional tax plus ordinary income tax, unless an exception applies (first-time home purchase up to a lifetime cap, higher education, certain medical expenses, disability, death, and others)</td>
+                  <td>Contributions (not earnings) can be withdrawn anytime without tax or penalty, since they were already taxed; early withdrawal of earnings follows similar exceptions to a Traditional IRA</td>
+                </tr>
+                <tr>
+                  <td class="hl">Required minimum distributions (RMDs)</td>
+                  <td>Required starting at the IRS's current RMD age (73, rising to 75 later this decade)</td>
+                  <td>None for the original owner during their lifetime</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>SEP IRA</h4>
+          <p>A Simplified Employee Pension is funded entirely by <strong>employer</strong> contributions (typically self-employed individuals or small business owners), calculated as a percentage of compensation, with the employee immediately 100% vested. It uses the same withdrawal and RMD framework as a Traditional IRA once funds are in the account.</p>
+
+          <h4>Employer-sponsored plans and ERISA</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Plan</th>
+                  <th>Typical employer</th>
+                  <th>ERISA-covered?</th>
+                  <th>Defining feature</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">401(k)</td>
+                  <td>Private-sector employer</td>
+                  <td>Yes</td>
+                  <td>Employee salary-deferral contributions, often with an employer match; a defined-contribution plan</td>
+                </tr>
+                <tr>
+                  <td class="hl">403(b)</td>
+                  <td>Public schools, nonprofits</td>
+                  <td>Often, though church/government-affiliated plans may be exempt</td>
+                  <td>Tax-sheltered annuity structure; functions similarly to a 401(k) for its sector</td>
+                </tr>
+                <tr>
+                  <td class="hl">457(b)</td>
+                  <td>State/local government and certain tax-exempt employers</td>
+                  <td>Governmental 457(b) plans are generally exempt from ERISA</td>
+                  <td>No 10% early-withdrawal penalty upon separation from service, regardless of age — a key contrast with 401(k)/403(b)</td>
+                </tr>
+                <tr>
+                  <td class="hl">Defined benefit</td>
+                  <td>Traditional pension sponsors</td>
+                  <td>Yes</td>
+                  <td>Employer promises a specific future benefit (formula-based on salary/service); the <strong>employer</strong> bears the investment risk</td>
+                </tr>
+                <tr>
+                  <td class="hl">Profit-sharing</td>
+                  <td>Any employer</td>
+                  <td>Yes</td>
+                  <td>Employer contributions (often discretionary, tied to profits) go into individual employee accounts; the <strong>employee</strong> bears the investment risk</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Stock compensation and non-qualified deferred compensation</h4>
+          <p>Incentive stock options (ISOs) can qualify for favorable capital-gains treatment if specific holding-period requirements are met, but may trigger alternative minimum tax exposure; non-qualified stock options (NQSOs) are taxed as ordinary income at exercise. An employee stock purchase plan (ESPP) lets employees buy employer stock, often at a discount. A <strong>non-qualified deferred compensation</strong> (NQDC) plan, by contrast, is not ERISA-protected — it can be offered selectively to executives rather than all employees, and because the deferred amounts remain a general, unsecured obligation of the employer, they're exposed to the employer's own creditors if the company becomes insolvent.</p>
+
+          <h4>Education savings: 529 plans vs. Coverdell ESAs</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>529 plan</th>
+                  <th>Coverdell ESA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Contribution limit</td>
+                  <td>Very high lifetime limits set by the state plan; large contributions can be spread over five years for gift-tax purposes</td>
+                  <td>Fixed, comparatively low annual limit per beneficiary</td>
+                </tr>
+                <tr>
+                  <td class="hl">Contributor income limit</td>
+                  <td>Generally none</td>
+                  <td>Phases out for higher-income contributors</td>
+                </tr>
+                <tr>
+                  <td class="hl">Qualified use</td>
+                  <td>Broad — K-12 tuition (subject to limits) through college and certain apprenticeship/student-loan uses</td>
+                  <td>K-12 and higher-education expenses</td>
+                </tr>
+                <tr>
+                  <td class="hl">Age/timing rule</td>
+                  <td>No age limit on the beneficiary</td>
+                  <td>Funds generally must be used by the beneficiary's 30th birthday (disability exception applies) or rolled to another family member</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="m21-wealth">Wealth events and account registration changes</h3>
+          <p>An inheritance is an operational event as much as a tax event: the account has to be legally re-registered before anything else happens. A beneficiary typically must provide a death certificate and any required estate documentation before an inherited (beneficiary) IRA can be established in their name. For most non-spouse beneficiaries who don't qualify as an "eligible designated beneficiary", current law generally requires the inherited account to be fully distributed within 10 years.</p>
+          <p>Any registration change on an existing account — adding or removing an owner, converting an individual account to a trust account, or similar — requires review, approval, and documentation by a principal under FINRA Rule 4515.</p>
+
+
+
+        </section>
+
+
+        <!-- Module 2.2 -->
+        <section class="block" id="m22">
+          <h2><span class="num">2.2</span>Customer Identification, Documentation, Privacy &amp; Authority</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Customer screening: CIP, KYC, residency/citizenship status, corporate insiders, and employees of other broker-dealers or SROs</li>
+              <li>Information security and privacy: initial disclosures, opt-out notices, exceptions</li>
+              <li>Account authorizations: power of attorney, trust documents, corporate resolutions, trading authority, discretionary account documentation</li>
+            </ul>
+          </div>
+
+          <p class="lede">This module is best understood as a customer file, built one document at a time. Each piece of paper in that file exists to answer one question: <em>who is this customer, and who — if anyone besides the customer — is allowed to act on this account?</em></p>
+
+          <h3 id="m22-screening">Customer screening</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Screening element</th>
+                  <th>What it verifies</th>
+                  <th>Why it matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">CIP (Customer Identification Program)</td>
+                  <td>The customer's true identity — name, date of birth, address, and an identification number</td>
+                  <td>Prevents the firm from opening an account for someone whose identity can't be confirmed, a core anti-money-laundering safeguard</td>
+                </tr>
+                <tr>
+                  <td class="hl">KYC (Know Your Customer)</td>
+                  <td>The essential facts about the customer and who has authority to act on their behalf</td>
+                  <td>Ties directly into the suitability obligations covered in Module 2.3 — you can't assess suitability for a customer you don't actually know</td>
+                </tr>
+                <tr>
+                  <td class="hl">Residency / citizenship</td>
+                  <td>Whether the customer is a U.S. person or a non-resident alien</td>
+                  <td>Determines tax withholding and reporting (a U.S. person certifies with Form W-9; a non-resident alien certifies foreign status with Form W-8BEN)</td>
+                </tr>
+                <tr>
+                  <td class="hl">Corporate insiders</td>
+                  <td>Whether the customer is an officer, director, or other affiliate/control person of a public company</td>
+                  <td>Triggers heightened monitoring — sales by an affiliate are subject to Rule 144's control-person volume limitations and filing requirements</td>
+                </tr>
+                <tr>
+                  <td class="hl">Employees of another broker-dealer or SRO</td>
+                  <td>Whether the prospective customer works for a different member firm</td>
+                  <td>The representative's firm must be notified before such a person opens or maintains a brokerage account elsewhere, and the executing firm must be able to furnish duplicate statements/confirmations to the employer firm on request</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="m22-privacy">Privacy: Regulation S-P</h3>
+          <p>Every new customer must receive an <strong>initial privacy notice</strong> describing what nonpublic personal information (NPI) the firm collects and who it may be shared with. If the firm intends to share NPI with <em>nonaffiliated</em> third parties outside specific exceptions, the customer must be given an <strong>opt-out</strong> right and a reasonable opportunity to exercise it before that sharing begins. Sharing with affiliates, and sharing that falls under specific carve-outs does not require an opt-out.</p>
+
+          <h3 id="m22-authorizations">Account authorizations</h3>
+          <p>Trading authority over an account is granted, in writing, through one of a small set of standard documents — and the exam consistently tests whether you can match the situation to the correct document.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Document</th>
+                  <th>Grants authority to</th>
+                  <th>Scope</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Power of attorney (POA)</td>
+                  <td>A named agent to act for the account owner</td>
+                  <td>Can be limited (trading only) or full/durable; does not itself change who owns the account</td>
+                </tr>
+                <tr>
+                  <td class="hl">Trust documents</td>
+                  <td>The named trustee, per the terms of the trust agreement</td>
+                  <td>The account is titled in the name of the trust; the trustee's authority is limited to what the trust instrument permits</td>
+                </tr>
+                <tr>
+                  <td class="hl">Corporate resolution</td>
+                  <td>The specific officers/signers the corporation's board authorizes</td>
+                  <td>Required before a corporate account can be opened or before signing authority changes</td>
+                </tr>
+                <tr>
+                  <td class="hl">Discretionary trading authorization</td>
+                  <td>The representative (or another named party) to enter orders without the customer's prior approval of each transaction</td>
+                  <td>Must be in writing, signed and dated by the customer, and approved by a principal before discretion is exercised</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Rule walkthrough — discretionary authority
+            </div>
+            <p><strong>Situation:</strong> A representative wants to enter orders for a customer without checking in on each individual trade.</p>
+            <p><strong>Governing rule:</strong> FINRA Rule 3260 (and Rule 408T where applicable) — Discretionary Accounts.</p>
+            <p><strong>What's required:</strong> Written authorization signed and dated by the customer, prompt written approval by a principal for each discretionary order, and frequent principal review of the account.</p>
+            <p><strong>Exception:</strong> Time-or-price discretion on an order the customer already placed that day isn't "discretion" in this sense — only discretion over the asset, the action (buy/sell), or the amount triggers the rule.</p>
+          </div>
+
+
+
+
+
+        </section>
+
+
+        <!-- Module 2.3 -->
+        <section class="block" id="m23">
+          <h2><span class="num">2.3</span>Investment Profile, Suitability &amp; Best Interest</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Financial and personal factors that make up a customer's investment profile</li>
+              <li>Investment objectives: preservation of capital, income, growth, speculation</li>
+              <li>Reasonable-basis, customer-specific, and quantitative suitability</li>
+              <li>Investment strategies and recommendations to hold</li>
+              <li>Verification of investor accreditation and sophistication</li>
+              <li>Regulation Best Interest and MSRB Rule G-19</li>
+            </ul>
+          </div>
+
+          <p class="lede">This module is best learned through profiles, not definitions — so before the frameworks, start with the raw material every suitability analysis is built from.</p>
+
+          <h3 id="m23-building">Building the investment profile</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Financial factors</th>
+                  <th>Personal / other factors</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Current securities holdings</td><td>Age</td></tr>
+                <tr><td>Other assets and liabilities</td><td>Marital status and dependents</td></tr>
+                <tr><td>Annual income</td><td>Employment status and occupation</td></tr>
+                <tr><td>Net worth (and liquid net worth specifically)</td><td>Investment experience and knowledge</td></tr>
+                <tr><td>Tax bracket / tax considerations</td><td>Home ownership and financing situation</td></tr>
+                <tr><td></td><td>Employee stock options held</td></tr>
+                <tr><td></td><td>Insurance coverage in place</td></tr>
+                <tr><td></td><td>Liquidity needs and time horizon</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="m23-objectives">Investment objectives</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Objective</th>
+                  <th>What the customer is prioritizing</th>
+                  <th>Products that typically fit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Preservation of capital</td>
+                  <td>Not losing principal, even at the cost of return</td>
+                  <td>Money market funds, short-term Treasuries, high-grade short-term bonds</td>
+                </tr>
+                <tr>
+                  <td class="hl">Income</td>
+                  <td>Steady cash flow from the portfolio</td>
+                  <td>Investment-grade bonds, dividend-paying stocks, income-focused funds</td>
+                </tr>
+                <tr>
+                  <td class="hl">Growth</td>
+                  <td>Increasing the value of the portfolio over time, generally accepting more volatility</td>
+                  <td>Common stock, growth-oriented equity funds</td>
+                </tr>
+                <tr>
+                  <td class="hl">Speculation</td>
+                  <td>Higher risk pursued for higher potential (and less certain) return</td>
+                  <td>Options strategies, low-rated bonds, concentrated or leveraged positions</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="m23-obligations">The three suitability obligations — FINRA Rule 2111</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Obligation</th>
+                  <th>Definition</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Reasonable-basis suitability</td>
+                  <td>The representative must understand the product well enough to believe it could be suitable for <em>at least some</em> investors before recommending it to anyone.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Customer-specific suitability</td>
+                  <td>The recommendation must fit <em>this particular customer's</em> investment profile — not just be a generally reasonable product.</td>
+                </tr>
+                <tr>
+                  <td class="hl">Quantitative suitability</td>
+                  <td>A series of individually suitable transactions can still be unsuitable in the aggregate if their frequency, size, or cost is excessive given the customer's profile (churning).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout trap">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              Exam Trap
+            </div>
+            <p>"Suitable product" and "suitable recommendation" are not the same claim. A well-diversified, investment-grade bond fund can pass reasonable-basis suitability easily and still fail customer-specific suitability for a client whose stated objective is short-term liquidity for a home down payment next quarter. The exam will describe a perfectly reasonable product and ask you to reject the recommendation anyway, because it doesn't fit the customer in front of you.</p>
+          </div>
+
+          <p>Rule 2111 also reaches beyond buy recommendations: an explicit recommendation to <strong>hold</strong> a position, and a recommended <strong>investment strategy</strong> (not just a specific security), both fall within the suitability obligation the same way a purchase recommendation would.</p>
+
+          <h3 id="m23-regbi">Regulation Best Interest</h3>
+          <p>Reg BI (Exchange Act Rule 15l-1) applies when a broker-dealer recommends a securities transaction or investment strategy to a <strong>retail customer</strong> — a natural person using the recommendation primarily for personal, family, or household purposes. It layers four obligations on top of, and in places beyond, Rule 2111's suitability framework:</p>
+          <ul>
+            <li><strong>Disclosure obligation</strong> — disclose material facts about the recommendation and the relationship, including conflicts of interest.</li>
+            <li><strong>Care obligation</strong> — exercise reasonable diligence, care, and skill to act in the retail customer's best interest, <em>without placing the firm's or the representative's own financial interest ahead of the customer's</em>.</li>
+            <li><strong>Conflict of interest obligation</strong> — establish policies to identify and address (through disclosure, mitigation, or elimination) conflicts, including those created by compensation.</li>
+            <li><strong>Compliance obligation</strong> — maintain written policies and procedures reasonably designed to achieve compliance with Reg BI as a whole.</li>
+          </ul>
+          <p>For municipal securities recommendations specifically, <strong>MSRB Rule G-19</strong> imposes a parallel suitability obligation, built on the same reasonable-basis / customer-specific / quantitative structure.</p>
+
+          <h3 id="m23-verifying">Verifying accreditation and using analysis tools</h3>
+          <p>When a recommendation involves an offering limited to accredited investors (Regulation D, Chapter 1), the representative's obligation doesn't stop at asking the customer to self-certify — for a 506(c) offering in particular, the issuer (and, in practice, the firm facilitating it) must take reasonable steps to actually verify accredited status. Separately, whenever a representative uses an investment analysis tool — a retirement calculator or return projection, for example — with a customer, FINRA 2214 requires disclosing the tool's criteria and methodology, its limitations, and a statement that actual results will vary.</p>
+
+
+        </section>
+
+        <!-- Module 2.4 -->
+        <section class="block" id="m24">
+          <h2><span class="num">2.4</span>Supervisory Approval, Restrictions &amp; Account Maintenance</h2>
+          
+          <div class="callout rule">
+            <div class="callout-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              What this lesson covers
+            </div>
+            <ul>
+              <li>Supervisory review and approval (Rules 3110 and 3120)</li>
+              <li>Handling customer funds and securities</li>
+              <li>Restricting, freezing, or closing an account</li>
+            </ul>
+          </div>
+
+          <p class="lede">A broker-dealer isn't just a collection of representatives; it's a regulated entity with an obligation to supervise its people and safeguard its customers' assets. The exam tests this conceptually: given a specific situation at a branch, can you recognize what requires supervisory sign-off, and why?</p>
+
+          <h3 id="m24-supervisory">Supervisory review and approval</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rule</th>
+                  <th>What it requires</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">FINRA 3110 Supervision</td>
+                  <td>Written supervisory procedures (WSPs) covering account opening, transaction review, and correspondence; a registered principal must review and approve new accounts and supervise the activity in them</td>
+                </tr>
+                <tr>
+                  <td class="hl">FINRA 3120 Supervisory Control System</td>
+                  <td>An independent test-and-verify layer on top of Rule 3110 — the firm must periodically confirm its WSPs are actually being followed in practice, with annual CEO/CCO certification of the process</td>
+                </tr>
+                <tr>
+                  <td class="hl">Cboe 9.2 Options accounts</td>
+                  <td>A Registered Options Principal must approve an options account before, or promptly after, the customer's first options transaction</td>
+                </tr>
+                <tr>
+                  <td class="hl">MSRB G-27 Municipal supervision</td>
+                  <td>Parallel supervisory structure for municipal securities activity, including designation of a qualified municipal securities principal</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="m24-handling">Handling customer funds and securities</h3>
+          <p>A registered representative generally should not personally accept and hold a customer's cash or physically retain a customer's securities certificates. Checks must be made payable to the firm, never to the individual representative, and forwarded promptly and unopened to the appropriate operations area for processing and safekeeping. Third-party checks and unusual payment instructions are red flags that call for extra scrutiny and, often, principal escalation before the funds are accepted.</p>
+
+          <h3 id="m24-restricting">Restricting, freezing, or closing an account</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Situation</th>
+                  <th>What typically happens</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="hl">Nonpayment / freeriding in a cash account</td>
+                  <td>Under Regulation T, the account is frozen for 90 days, requiring the customer to have funds on deposit before placing a new purchase</td>
+                </tr>
+                <tr>
+                  <td class="hl">Suspected unauthorized trading</td>
+                  <td>Activity in the account is restricted pending an internal investigation</td>
+                </tr>
+                <tr>
+                  <td class="hl">AML / source-of-funds red flags</td>
+                  <td>The firm may restrict activity while it resolves the concern, and may be obligated to file a Suspicious Activity Report</td>
+                </tr>
+                <tr>
+                  <td class="hl">Legitimate business reasons</td>
+                  <td>A firm may close an account it no longer wishes to service, generally with appropriate advance notice to the customer</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+        </section>
+
+        <a href="chapter3.html" class="next-footer">
+          <span class="lbl">Up next</span>
+          <div class="title">Chapter 3: Margin Accounts &amp; Trading Rules</div>
+          <p>Function 3 — Learn the math and mechanics behind Reg T.</p>
+        </a>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Add active state to TOC links on scroll
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-link').forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-20% 0px -70% 0px" });
+
+      document.querySelectorAll('section.block, h3[id]').forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+
+</body>
+</html>
