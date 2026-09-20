@@ -749,6 +749,15 @@
       line-height: 1.6;
     }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KE6HDDH2F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4KE6HDDH2F');
+  </script>
 </head>
 
 <body>
@@ -1365,6 +1374,8 @@
   <script>
     // Add active state to TOC links on scroll
     document.addEventListener("DOMContentLoaded", () => {
+      if(typeof gtag === 'function') gtag('event', 'chapter_started', { course_name: 'Series 7', chapter_name: 'Chapter 8' });
+      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {

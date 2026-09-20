@@ -557,6 +557,15 @@
       margin-top: 24px;
     }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KE6HDDH2F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4KE6HDDH2F');
+  </script>
 </head>
 
 <body>
@@ -583,7 +592,7 @@
         <a href="#pricing">Pricing</a>
       </nav>
       <div class="nav-actions">
-        <a href="#curriculum" class="btn btn-primary">Start Learning</a>
+        <a href="#curriculum" class="btn btn-primary" onclick="if(typeof gtag === 'function') gtag('event', 'course_selected', { course_name: 'Series 7' });">Start Learning</a>
       </div>
     </div>
   </header>
@@ -596,7 +605,7 @@
       <p>You've passed the SIE. Now it's time to tackle the Series 7. Dive deep into complex products, suitability,
         margin, and municipal securities to earn your license.</p>
       <div class="hero-actions">
-        <a href="#curriculum" class="btn btn-primary" style="padding: 16px 32px; font-size: 16px;">Explore
+        <a href="#curriculum" class="btn btn-primary" style="padding: 16px 32px; font-size: 16px;" onclick="if(typeof gtag === 'function') gtag('event', 'course_selected', { course_name: 'Series 7' });">Explore
           Curriculum</a>
         <a href="#features" class="btn btn-outline" style="padding: 16px 32px; font-size: 16px;">See How It Works</a>
       </div>
@@ -683,7 +692,7 @@
       <div class="course-grid">
 
         <!-- Chapter 1 -->
-        <a href="chapter1.html" class="chapter-card">
+        <a href="chapter1.html" class="chapter-card" onclick="if(typeof gtag === 'function') gtag('event', 'chapter_started', { course_name: 'Series 7', chapter_name: 'Chapter 1' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 01</div>
             <div class="ch-stats">
@@ -708,7 +717,7 @@
         </a>
 
         <!-- Chapter 2 -->
-        <a href="chapter2.html" class="chapter-card">
+        <a href="chapter2.html" class="chapter-card" onclick="if(typeof gtag === 'function') gtag('event', 'chapter_started', { course_name: 'Series 7', chapter_name: 'Chapter 2' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 02</div>
             <div class="ch-stats">
@@ -733,7 +742,7 @@
         </a>
 
         <!-- Chapter 3 -->
-        <a href="chapter3.html" class="chapter-card">
+        <a href="chapter3.html" class="chapter-card" onclick="if(typeof gtag === 'function') gtag('event', 'chapter_started', { course_name: 'Series 7', chapter_name: 'Chapter 3' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 03</div>
             <div class="ch-stats">
@@ -758,7 +767,7 @@
         </a>
 
         <!-- Chapter 4 -->
-        <a href="chapter4.html" class="chapter-card">
+        <a href="chapter4.html" class="chapter-card" onclick="if(typeof gtag === 'function') gtag('event', 'chapter_started', { course_name: 'Series 7', chapter_name: 'Chapter 4' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 04</div>
             <div class="ch-stats">
@@ -783,7 +792,7 @@
         </a>
 
         <!-- Chapter 5 -->
-        <a href="chapter5.html" class="chapter-card">
+        <a href="chapter5.html" class="chapter-card" onclick="if(typeof gtag === 'function') gtag('event', 'chapter_started', { course_name: 'Series 7', chapter_name: 'Chapter 5' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 05</div>
             <div class="ch-stats">
@@ -808,7 +817,7 @@
         </a>
 
         <!-- Chapter 6 -->
-        <a href="chapter6.html" class="chapter-card">
+        <a href="chapter6.html" class="chapter-card" onclick="if(typeof gtag === 'function') gtag('event', 'chapter_started', { course_name: 'Series 7', chapter_name: 'Chapter 6' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 06</div>
             <div class="ch-stats">
