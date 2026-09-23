@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIE Mock Exam Simulator — Test 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4F46E5;
+      --primary-light: #EEF2FF;
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --ink: #0F172A;
+      --body-text: #0F172A;
+      --muted: #475569;
+      --line: #E2E8F0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0B1120;
+        --surface: #1E293B;
+        --line: #334155;
+        --ink: #F8FAFC;
+        --body-text: #F8FAFC;
+        --muted: #94A3B8;
+        --primary: #6366F1;
+        --primary-light: #312E81;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--body-text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.55;
+    }
+    .global-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+    .global-nav .brand {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .global-nav .nav-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .global-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .global-nav a:hover { color: var(--ink); }
+    .global-nav a.next-test {
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .global-nav a.next-test:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    .placeholder-card {
+      text-align: center;
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 40px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .placeholder-card h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 34px;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+    .placeholder-card p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    .btn-return {
+      display: inline-block;
+      padding: 16px 32px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .btn-return:hover { opacity: 0.9; }
+
+    .gears {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .gear-main {
+      color: var(--primary);
+      animation: spin-right 6s linear infinite;
+    }
+    .gear-sub {
+      color: #0EA5E9; /* accent */
+      position: absolute;
+      margin-left: 60px;
+      margin-top: 36px;
+      animation: spin-left 4s linear infinite;
+    }
+    @keyframes spin-right { 100% { transform: rotate(360deg); } }
+    @keyframes spin-left { 100% { transform: rotate(-360deg); } }
+  </style>
+</head>
+<body>
+  <nav class="global-nav">
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="color:var(--primary);">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      HexaPrep
+    </div>
+    <div class="nav-links">
+      <a href="./index.html">← Back to SIE Course</a>
+      <a href="test5.html" class="next-test">Test 5 →</a>
+    </div>
+  </nav>
+
+  <div class="placeholder-card">
+    <div class="gears">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="gear-main">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="gear-sub">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+    </div>
+    <h1>SIE Mock Exam 4</h1>
+    <p>This mock exam is currently under development. Our team is actively building a unique set of 75 practice questions to test your readiness. Check back soon!</p>
+    <a href="./index.html" class="btn-return">Return to Dashboard</a>
+  </div>
+</body>
+</html>

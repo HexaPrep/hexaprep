@@ -10,6 +10,14 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
     rel="stylesheet">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KE6HDDH2F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-4KE6HDDH2F');
+  </script>
   <style>
     :root {
       --bg: #F8FAFC;
@@ -81,17 +89,6 @@
       line-height: 1.25;
       margin-bottom: 0.5em;
     }
-  </style>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KE6HDDH2F"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4KE6HDDH2F');
-  </script>
-</head>
 
     a {
       text-decoration: none;
@@ -1945,8 +1942,8 @@
 
     function initQuiz() {
       // Fire chapter_started event
-      if(typeof gtag === 'function') gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 1' });
-      
+      if (typeof gtag === 'function') gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 1' });
+
       // Randomize options for each question to prevent patterns
       Q.forEach(q => {
         const correctText = q.o[q.a];
@@ -2054,7 +2051,7 @@
       const pct = Math.round((correct / total) * 100);
 
       // Fire quiz_completed event
-      if(typeof gtag === 'function') gtag('event', 'quiz_completed', { course_name: 'SIE', chapter_name: 'Chapter 1', final_score: pct });
+      if (typeof gtag === 'function') gtag('event', 'quiz_completed', { course_name: 'SIE', chapter_name: 'Chapter 1', final_score: pct });
 
       const secs = {};
       Q.forEach((q, i) => {

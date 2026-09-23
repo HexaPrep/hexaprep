@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIE Mock Exam Simulator — Test 3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-hover: #4338CA;
+            --primary-light: #EEF2FF;
+            --accent: #0EA5E9;
+            --success: #10B981;
+            --success-light: #D1FAE5;
+            --error: #EF4444;
+            --error-light: #FEE2E2;
+            --warning: #F59E0B;
+            --warning-light: #FEF3C7;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --radius-lg: 1rem;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            --bg: #F8FAFC;
+            --surface: #FFFFFF;
+            --surface-2: #F1F5F9;
+            --ink: #0F172A;
+            --body-text: #0F172A;
+            --muted: #475569;
+            --line: #E2E8F0;
+            --gold: var(--warning);
+            --gold-ink: var(--warning);
+            --gold-tint: var(--warning-light);
+            --teal: var(--success);
+            --teal-tint: var(--success-light);
+            --brick: var(--error);
+            --brick-tint: var(--error-light);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0B1120;
+                --surface: #1E293B;
+                --surface-2: #334155;
+                --line: #334155;
+                --ink: #F8FAFC;
+                --body-text: #F8FAFC;
+                --muted: #94A3B8;
+                --primary: #6366F1;
+                --primary-hover: #818CF8;
+                --primary-light: #312E81;
+                --success-light: #064E3B;
+                --error-light: #7F1D1D;
+                --warning-light: #78350F;
+                --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--body-text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 15.5px;
+            line-height: 1.55;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--ink);
+            font-weight: 700;
+            margin: 0 0 0.4em 0;
+        }
+
+        #hamburgerBtn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--ink);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        @media(max-width:800px) {
+            #hamburgerBtn {
+                display: block;
+            }
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ===== GLOBAL NAV ===== */
+        .global-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .global-nav .brand {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--ink);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .global-nav .nav-links {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .global-nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .global-nav a:hover {
+            color: var(--ink);
+        }
+
+        .global-nav a.next-test {
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .global-nav a.next-test:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        @media(max-width:600px) {
+            .global-nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        /* ===== INTRO SCREEN ===== */
+        #intro {
+            max-width: 640px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .intro-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 32px 28px;
+        }
+
+        .intro-card h1 {
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .intro-card p {
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        .intro-stats {
+            display: flex;
+            gap: 0;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .intro-stats div {
+            flex: 1;
+            padding: 12px 14px;
+            border-right: 1px solid var(--line);
+            background: var(--surface-2);
+        }
+
+        .intro-stats div:last-child {
+            border-right: none;
+        }
+
+        .intro-stats .num {
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--ink);
+            display: block;
+        }
+
+        .intro-stats .lbl {
+            font-size: 11.5px;
+            color: var(--muted);
+        }
+
+        #startBtn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15.5px;
+            margin-top: 10px;
+        }
+
+        #startBtn:hover {
+            opacity: 0.92;
+        }
+
+        .intro-note {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 14px;
+        }
+
+        /* ===== EXAM SCREEN ===== */
+        #exam {
+            display: none;
+            grid-template-columns: 260px 1fr;
+            min-height: 100vh;
+        }
+
+        #exam.active {
+            display: grid;
+        }
+
+        @media(max-width:800px) {
+            #exam.active {
+                grid-template-columns: 1fr;
+            }
+
+            main.qpanel {
+                margin: 20px auto 80px auto;
+                padding: 24px 20px;
+                border-left: none;
+                border-right: none;
+                border-radius: 0;
+            }
+
+            #sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 280px;
+                z-index: 100;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                order: unset;
+            }
+
+            #sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(11, 17, 32, 0.5);
+                z-index: 90;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+        }
+
+        .topbar {
+            grid-column: 1 / -1;
+            background: var(--surface);
+            border-bottom: 1px solid var(--line);
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+
+        .topbar .brand {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--ink);
+            font-size: 15px;
+            margin-right: auto;
+        }
+
+        .timer {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--ink);
+            background: var(--surface-2);
+            padding: 5px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+        }
+
+        .timer.low {
+            color: var(--brick);
+            background: var(--brick-tint);
+            border-color: var(--brick);
+        }
+
+        .progress-pill {
+            font-size: 12.5px;
+            color: var(--muted);
+            background: var(--surface-2);
+            padding: 5px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+        }
+
+        .btn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--body-text);
+            font-weight: 600;
+            font-size: 13.5px;
+        }
+
+        .btn:hover {
+            background: var(--surface-2);
+        }
+
+        .btn.primary {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .btn.flagged {
+            background: var(--gold-tint);
+            border-color: var(--gold);
+            color: var(--gold-ink);
+        }
+
+        .btn.submit {
+            background: var(--brick);
+            border-color: var(--brick);
+            color: #fff;
+        }
+
+        main.qpanel {
+            margin: 40px auto 80px auto;
+            padding: 40px 48px;
+            max-width: 760px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .qmeta {
+            font-size: 12.5px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .qstem {
+            font-size: 18px;
+            color: var(--ink);
+            margin-bottom: 22px;
+            max-width: 65ch;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            border: 1.5px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface);
+            cursor: pointer;
+        }
+
+        .option:hover {
+            border-color: var(--gold);
+        }
+
+        .option.selected {
+            border-color: var(--ink);
+            background: var(--gold-tint);
+        }
+
+        .option .letter {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--gold-ink);
+            width: 20px;
+            flex-shrink: 0;
+        }
+
+        .option .otext {
+            color: var(--body-text);
+        }
+
+        .navrow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 28px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== SIDEBAR ===== */
+        #sidebar {
+            background: var(--surface);
+            border-right: 1px solid var(--line);
+            padding: 18px 16px;
+            overflow-y: auto;
+        }
+
+        .sb-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .legend span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            display: inline-block;
+            border: 1.5px solid var(--line);
+        }
+
+        .dot.answered {
+            background: var(--teal-tint);
+            border-color: var(--teal);
+        }
+
+        .dot.flagged {
+            background: var(--gold-tint);
+            border-color: var(--gold);
+        }
+
+        .dot.unanswered {
+            background: var(--surface);
+            border-color: var(--line);
+        }
+
+        .qgrid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+        }
+
+        .qcell {
+            aspect-ratio: 1;
+            border-radius: 6px;
+            border: 1.5px solid var(--line);
+            background: var(--surface);
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--body-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .qcell.answered {
+            background: var(--teal-tint);
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+
+        .qcell.flagged {
+            border-color: var(--gold);
+            box-shadow: inset 0 0 0 1.5px var(--gold);
+        }
+
+        .qcell.flagged::after {
+            content: "🚩";
+            position: absolute;
+            top: -6px;
+            right: -4px;
+            font-size: 9px;
+        }
+
+        .qcell.current {
+            outline: 2.5px solid var(--ink);
+            outline-offset: 1px;
+        }
+
+        .qcell:hover {
+            border-color: var(--ink);
+        }
+
+        .sb-submit {
+            width: 100%;
+            margin-top: 16px;
+            padding: 12px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        /* modal */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(16, 21, 31, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            padding: 20px;
+        }
+
+        .modal-backdrop.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--surface);
+            border-radius: 14px;
+            padding: 24px;
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .modal h3 {
+            margin-bottom: 10px;
+        }
+
+        .modal p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .modal .row {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .modal .row button {
+            flex: 1;
+            padding: 11px;
+            border-radius: 9px;
+            font-weight: 700;
+            border: 1px solid var(--line);
+        }
+
+        .modal .row .confirm {
+            background: var(--brick);
+            color: #fff;
+            border-color: var(--brick);
+        }
+
+        .modal .row .cancel {
+            background: var(--surface);
+            color: var(--body-text);
+        }
+
+        /* ===== RESULTS SCREEN ===== */
+        #results {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 20px 80px;
+        }
+
+        #results.active {
+            display: block;
+        }
+
+        .score-hero {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .score-hero .big {
+            font-family: 'Outfit', sans-serif;
+            font-size: 52px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .score-hero .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .badge.pass {
+            background: var(--teal-tint);
+            color: var(--teal);
+            border: 1px solid var(--teal);
+        }
+
+        .badge.fail {
+            background: var(--brick-tint);
+            color: var(--brick);
+            border: 1px solid var(--brick);
+        }
+
+        .section-bars {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .sbar-row {
+            margin-bottom: 16px;
+        }
+
+        .sbar-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .sbar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13.5px;
+            margin-bottom: 6px;
+        }
+
+        .sbar-label b {
+            color: var(--ink);
+        }
+
+        .sbar-track {
+            background: var(--surface-2);
+            border-radius: 8px;
+            height: 14px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+        }
+
+        .sbar-fill {
+            height: 100%;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .weak-callout {
+            background: var(--brick-tint);
+            border: 1px solid var(--brick);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .weak-callout b {
+            color: var(--brick);
+        }
+
+        .filters {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .filters button.active {
+            background: var(--ink);
+            color: #fff;
+            border-color: var(--ink);
+        }
+
+        .review-item {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+        }
+
+        .review-item .rtag {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .review-item .rstem {
+            color: var(--ink);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .review-item .ans-line {
+            font-size: 13.5px;
+            margin-bottom: 4px;
+        }
+
+        .review-item .ans-line.wrong {
+            color: var(--brick);
+        }
+
+        .review-item .ans-line.right {
+            color: var(--teal);
+        }
+
+        .review-item .rexp {
+            font-size: 13.5px;
+            color: var(--body-text);
+            background: var(--surface-2);
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+
+        .retake-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- GLOBAL NAV -->
+    <nav class="global-nav" id="globalNav">
+        <div class="brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                style="color:var(--primary);">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            HexaPrep
+        </div>
+        <div class="nav-links">
+            <a href="./index.html">← Back to SIE Course</a>
+            <a href="test4.html" class="next-test">Test 4 →</a>
+        </div>
+    </nav>
+
+    <!-- INTRO -->
+    <div id="intro">
+        <div class="intro-card">
+            <span class="test-tag">TEST 3 — ANOTHER FRESH SET</span>
+            <h1>SIE Mock Exam Simulator</h1>
+            <p>A third full-length practice run, with another completely new set of 75 questions covering the same FINRA
+                SIE outline. Full analytics when you're done.</p>
+            <div class="intro-stats">
+                <div><span class="num">75</span><span class="lbl">questions</span></div>
+                <div><span class="num">1h 45m</span><span class="lbl">time limit</span></div>
+                <div><span class="num">70%</span><span class="lbl">passing score</span></div>
+                <div><span class="num">4</span><span class="lbl">topic areas scored</span></div>
+            </div>
+            <p style="font-size:13.5px;">Flag anything you want to revisit, jump between questions freely using the
+                panel on the right once you begin, and submit whenever you're ready — or the clock will submit for you.
+            </p>
+            <button id="startBtn">Begin Exam</button>
+            <div class="intro-note">Question order and answer order are randomized every time you start — no two
+                attempts look the same.</div>
+        </div>
+    </div>
+
+    <!-- EXAM -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div id="exam">
+        <div class="topbar">
+            <button id="hamburgerBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <div class="brand" style="display:flex; align-items:center; gap:8px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    style="color:var(--primary);">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                HexaPrep | Test No. 3
+            </div>
+            <div class="progress-pill" id="progressPill">0 / 75 answered</div>
+            <div class="timer" id="timer">1:45:00</div>
+            <button class="btn flagged" id="flagBtn">🚩 Flag</button>
+            <button class="btn submit" id="submitBtn">Submit Exam</button>
+        </div>
+
+        <aside id="sidebar">
+            <div class="sb-title">QUESTION NAVIGATOR</div>
+            <div class="legend">
+                <span><span class="dot unanswered"></span>Unanswered</span>
+                <span><span class="dot answered"></span>Answered</span>
+                <span><span class="dot flagged"></span>Flagged</span>
+            </div>
+            <div class="qgrid" id="qgrid"></div>
+            <button class="sb-submit" id="sbSubmitBtn">Submit Exam</button>
+        </aside>
+
+        <main class="qpanel">
+            <div class="qmeta" id="qmeta">Question 1 of 75</div>
+            <div class="qstem" id="qstem"></div>
+            <div class="options" id="options"></div>
+            <div class="navrow">
+                <button class="btn" id="prevBtn">← Previous</button>
+                <button class="btn" id="nextBtn">Next →</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- SUBMIT MODAL -->
+    <div class="modal-backdrop" id="modalBackdrop">
+        <div class="modal">
+            <h3>Submit exam?</h3>
+            <p id="modalUnanswered"></p>
+            <p id="modalFlagged"></p>
+            <p>Once submitted, you can't return to change answers.</p>
+            <div class="row">
+                <button class="cancel" id="modalCancel">Keep working</button>
+                <button class="confirm" id="modalConfirm">Submit now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results">
+        <div class="score-hero">
+            <div class="big" id="scoreBig">0%</div>
+            <div id="scoreFrac" style="color:var(--muted);">0 / 75 correct</div>
+            <div class="badge" id="scoreBadge">—</div>
+        </div>
+
+        <div class="section-bars" id="sectionBars">
+            <h2 style="font-size:18px;">Performance by Chapter</h2>
+            <div id="sbarContainer"></div>
+        </div>
+
+        <div class="weak-callout" id="weakCallout"></div>
+
+        <h2 style="font-size:18px; margin-bottom:12px;">Question Review</h2>
+        <div class="filters">
+            <button class="btn active" data-filter="all">All 75</button>
+            <button class="btn" data-filter="wrong">Missed Only</button>
+            <button class="btn" data-filter="flagged">Flagged</button>
+        </div>
+        <div id="reviewList"></div>
+
+        <button class="retake-btn" id="retakeBtn">Retake — Freshly Shuffled</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+            if (hamburgerBtn) {
+                hamburgerBtn.addEventListener('click', () => {
+                    sidebar.classList.add('open');
+                    sidebarOverlay.classList.add('active');
+                });
+            }
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', () => {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.classList.remove('active');
+                });
+            }
+        });
+
+        const RAW_QUESTIONS = [
+            { ch: 1, q: "A broker-dealer wants to confirm whether an individual representative has met all the state-level securities registration requirements needed to do business with residents of a particular state. This state-level oversight is coordinated by:", opts: ["NASAA", "The SEC", "FINRA", "The OCC"], c: 0, exp: "NASAA coordinates state securities regulators and blue-sky laws. The SEC operates at the federal level. FINRA is an SRO focused on broker-dealer conduct generally, not state blue-sky coordination specifically. The OCC clears listed options, unrelated." },
+            { ch: 1, q: "A brokerage firm wants to know how much of a new stock purchase a customer is allowed to buy on margin under federal rules. This initial margin requirement is set by:", opts: ["FINRA Rule 4210 exclusively", "The Federal Reserve's Regulation T", "The SEC's Regulation S-P", "The MSRB"], c: 1, exp: "Regulation T, set by the Federal Reserve, establishes initial margin requirements. FINRA rules address related maintenance margin, not the foundational initial requirement. Regulation S-P concerns privacy, unrelated. The MSRB writes municipal securities rules, also unrelated." },
+            { ch: 1, q: "An investor wonders which single federal agency has legal authority spanning exchanges, broker-dealers, investment advisers, and public companies, even though it delegates much of the actual day-to-day examination work elsewhere. This agency is:", opts: ["FINRA", "The Federal Reserve", "The SEC", "NASAA"], c: 2, exp: "The SEC holds this broad legal authority and delegates much of the examination work to SROs like FINRA. FINRA is the delegated SRO itself, not the source of the authority. The Fed sets monetary policy. NASAA coordinates state regulators, a narrower scope." },
+            { ch: 1, q: "A pension fund manager trades large blocks of securities on behalf of thousands of plan participants, relying on professional-grade resources and expertise. This entity is classified as a(n):", opts: ["Retail investor", "Accredited investor only", "Municipal advisor", "Institutional investor"], c: 3, exp: "A pension fund managing large-scale investments with professional resources is a classic institutional investor. Retail describes everyday individuals. \"Accredited investor\" is an income/net-worth threshold typically applied to individuals, not the defining classification here. A municipal advisor is a service role, not an investor type." },
+            { ch: 1, q: "A small introducing firm outsources the safekeeping of customer assets and the actual processing of trades to a larger partner firm. That larger partner firm is acting as the:", opts: ["Clearing broker-dealer", "Prime broker", "Transfer agent", "Municipal advisor"], c: 0, exp: "A clearing broker-dealer is the firm receiving outsourced custody and trade processing work, exactly as described. A prime broker instead serves large institutional clients with a different bundled-service relationship. A transfer agent maintains ownership records. A municipal advisor serves municipal issuers." },
+            { ch: 1, q: "In a company's initial public offering, the party legally selling the new shares and receiving the capital raised is the:", opts: ["Underwriter", "Issuer", "Market maker", "Custodian"], c: 1, exp: "The issuer is the entity actually selling the new shares and receiving the proceeds. The underwriter helps structure and distribute the offering but doesn't sell its own shares. A market maker provides trading liquidity. A custodian holds assets, an unrelated role in an IPO." },
+            { ch: 1, q: "A firm continuously posts both a price at which it will buy and a price at which it will sell a particular stock, standing ready to trade at those quoted prices. This firm is functioning as a:", opts: ["Transfer agent", "Custodian", "Market maker", "Municipal advisor"], c: 2, exp: "Continuously quoting two-sided prices and standing ready to trade is the definition of a market maker. A transfer agent maintains ownership records. A custodian holds assets in safekeeping. A municipal advisor serves municipal issuers — none involve quoting tradeable prices this way." },
+            { ch: 1, q: "A corporation issues new bonds directly to investors for the first time, receiving the proceeds to fund a factory expansion. This bond issuance takes place in the:", opts: ["Secondary market", "Third market", "Fourth market", "Primary market"], c: 3, exp: "The primary market is where new securities are sold directly by the issuer, who receives the proceeds — exactly this scenario. The secondary market involves trading existing securities. The third and fourth markets involve OTC and institution-to-institution trading of already-issued securities, respectively." },
+            { ch: 1, q: "Economic activity has been declining for months and finally reaches its lowest point before beginning to turn upward again. This lowest point in the business cycle is called the:", opts: ["Trough", "Peak", "Expansion", "Contraction"], c: 0, exp: "The trough is the lowest point of the business cycle, right before recovery begins. The peak is the opposite, the high point. Expansion and contraction are the phases of movement toward and away from these extremes, not the extreme points themselves." },
+            { ch: 1, q: "Industrial production data moves in step with the broader economy in real time, neither predicting change in advance nor confirming it after the fact. This makes industrial production a:", opts: ["Leading indicator", "Coincident indicator", "Lagging indicator", "Monetary indicator"], c: 1, exp: "A coincident indicator moves with the economy in real time, exactly as described. A leading indicator would predict change in advance instead. A lagging indicator confirms a trend after the fact. \"Monetary indicator\" isn't a standard classification in this framework." },
+            { ch: 1, q: "A country's currency weakens significantly against its trading partners' currencies. All else equal, this tends to make that country's exports:", opts: ["More expensive and less competitive abroad", "Entirely unaffected by currency shifts", "Cheaper and more competitive abroad", "Automatically subject to new tariffs"], c: 2, exp: "A weaker currency makes a country's goods cheaper for foreign buyers, improving export competitiveness. The opposite effect (more expensive) is incorrect. Currency shifts clearly do affect trade competitiveness. Tariffs are a separate policy tool, not an automatic consequence of a currency move." },
+            { ch: 1, q: "A large utility company registers $1 billion in bonds with the SEC today but intends to sell them in smaller tranches over the next couple of years as its capital needs arise, without filing a brand-new registration each time. This approach is a:", opts: ["Private placement", "Tender offer", "Best efforts underwriting", "Shelf registration"], c: 3, exp: "A shelf registration lets an issuer register once and sell in pieces over time without re-registering, exactly as described. A private placement is an exempt, non-public offering, a different mechanism. A tender offer is a share purchase offer to shareholders. Best efforts describes underwriter risk-bearing, not a registration approach." },
+
+            { ch: 2, q: "A shareholder invests $5,000 in common stock. If the company later becomes insolvent with massive outstanding debts, the most this shareholder can lose is:", opts: ["The original $5,000 invested, due to limited liability", "An amount equal to the company's total debt", "Whatever the company's board decides to assess", "Nothing, since common stock is fully protected"], c: 0, exp: "Limited liability caps a shareholder's loss at the amount invested, exactly as described. Shareholders aren't personally liable for the company's broader debts. A board cannot assess additional liability onto shareholders. Common stock is not \"fully protected\" from loss — losing the investment is a real risk." },
+            { ch: 2, q: "An issuer includes a provision in its preferred stock allowing the company to force a buyback of the shares at a set price after a certain date. This feature is:", opts: ["Cumulative", "Callable", "Participating", "Convertible"], c: 1, exp: "Callable describes the issuer's right to force redemption at a set price, exactly as described. Cumulative concerns missed dividends accumulating, a different feature. Participating allows extra dividends in strong years. Convertible allows exchange into common stock — none describe a forced buyback right." },
+            { ch: 2, q: "A company plans a new stock offering and first gives its existing 10,000 shareholders a two-week window to buy additional shares at a discount, specifically to let them maintain their current ownership percentage. This instrument is a:", opts: ["Warrant", "ADR", "Right", "Convertible bond"], c: 2, exp: "A right is short-term, goes to existing shareholders, and exists specifically to protect against dilution, exactly matching this two-week window scenario. A warrant runs much longer. An ADR represents foreign shares, unrelated. A convertible bond is a debt instrument, also unrelated." },
+            { ch: 2, q: "A U.S. investor wants exposure to a South Korean electronics company but doesn't want to open a foreign brokerage account or trade on a foreign exchange directly. The most direct solution is to buy the company's:", opts: ["Corporate bond issued in Korea", "Preferred stock listed only in Seoul", "Rights offering shares", "ADR"], c: 3, exp: "An ADR lets a U.S. investor gain exposure to a foreign company through a U.S.-listed, dollar-denominated receipt, without a foreign brokerage account. The other options would all still require direct access to foreign markets, defeating the investor's stated goal." },
+            { ch: 2, q: "A company's Chief Operating Officer wants to sell company stock he holds. Because of his insider status, his resale is subject to specific holding period and volume limitations under:", opts: ["SEC Rule 144", "Regulation T", "The Options Disclosure Document", "FINRA Rule 2111"], c: 0, exp: "SEC Rule 144 governs resale of control/restricted stock by insiders, including holding periods and volume limits. Regulation T concerns margin, unrelated. The ODD concerns options risk disclosure. FINRA Rule 2111 is the suitability rule, unrelated to insider stock resale." },
+            { ch: 2, q: "A bondholder is guaranteed to receive $1,000 back from the issuer when the bond reaches its maturity date, separate from any interest payments received along the way. This $1,000 figure is the bond's:", opts: ["Current yield", "Par value", "Yield to maturity", "Coupon rate"], c: 1, exp: "Par value is the face amount repaid at maturity, exactly as described. Current yield and yield to maturity are both return measures, not the repayment amount itself. The coupon rate is the interest rate paid along the way, a separate figure from the principal repayment." },
+            { ch: 2, q: "An investor buys a security backed by a large pool of residential mortgage loans, where the investor's cash flow depends on homeowners making their mortgage payments. This is best classified as a(n):", opts: ["General obligation bond", "Corporate debenture", "Agency mortgage-backed security", "Money market instrument"], c: 2, exp: "An agency mortgage-backed security is exactly this — backed by a pool of mortgage payments. A GO bond is backed by a municipality's taxing power, unrelated. A corporate debenture is unsecured corporate debt, a different structure. A money market instrument is short-term and not mortgage-backed." },
+            { ch: 2, q: "A city issues bonds to build a new public school, with repayment backed by the city's general taxing authority rather than any specific project's revenue. This is a:", opts: ["Revenue bond", "Corporate bond", "Agency security", "General obligation (GO) bond"], c: 3, exp: "A GO bond is backed by a municipality's broad taxing power, exactly as described. A revenue bond would instead be backed only by a specific project's income. A corporate bond is issued by a company, not a municipality. An agency security is backed by pooled loans, unrelated to municipal taxing power." },
+            { ch: 2, q: "A corporate bond receives a credit quality assessment from an independent firm that specializes in evaluating issuers' ability to repay debt. Firms performing this function include:", opts: ["Moody's and S&P", "The OCC and DTCC", "FINRA and the MSRB", "The SEC and NASAA"], c: 0, exp: "Moody's and S&P are independent credit rating agencies performing exactly this function. The OCC and DTCC are clearing/settlement organizations, not rating agencies. FINRA and the MSRB write industry rules, a different function. The SEC and NASAA are regulators, also not credit rating agencies." },
+            { ch: 2, q: "An investor wants to know their total return assuming the issuer exercises its right to redeem a bond at the earliest possible call date, rather than holding it to full maturity. This figure is the bond's:", opts: ["Current yield", "Yield to call (YTC)", "Nominal yield", "Par yield"], c: 1, exp: "Yield to call specifically measures return assuming early redemption at the call date, exactly as described. Current yield doesn't factor in early redemption timing. \"Nominal yield\" and \"par yield\" aren't the standard terms for this specific early-call scenario." },
+            { ch: 2, q: "A bank issues a large-denomination, negotiable certificate representing a fixed-term deposit that can be traded before maturity, commonly used by institutional investors for short-term cash management. This instrument is a:", opts: ["Treasury bond", "Revenue bond", "Negotiable certificate of deposit (CD)", "Convertible bond"], c: 2, exp: "A negotiable CD is exactly this — a large, tradeable, bank-issued short-term deposit instrument. A Treasury bond is a long-term federal government security, unrelated. A revenue bond is municipal debt tied to project income. A convertible bond is a corporate debt instrument exchangeable for stock." },
+            { ch: 2, q: "A financial professional mistakenly tells a client that new Treasury notes are sold through a negotiated deal between the Treasury and a single underwriter, similar to some municipal bond deals. Is this description accurate?", opts: ["Yes, Treasury securities are always negotiated deals", "Yes, but only for Treasury bonds specifically", "No, Treasury securities are sold through private placements", "No, Treasury securities are sold through a formal public auction process"], c: 3, exp: "Treasury securities — bills, notes, and bonds alike — are sold through a formal public auction process, not negotiated deals or private placements. The description in the question is inaccurate across all Treasury security types, not just bonds specifically." },
+            { ch: 2, q: "A stock trades at $47. An investor holds a call option with a $50 strike price. This call is currently:", opts: ["Out-of-the-money", "In-the-money", "At-the-money", "Automatically exercised"], c: 0, exp: "A call is out-of-the-money when the market price is below the strike — $47 is below $50, so exercising wouldn't be profitable right now. In-the-money would require the market price to exceed the strike. At-the-money would require equality. Nothing here triggers automatic exercise." },
+            { ch: 2, q: "An investor has sold a stock short and wants to protect against the risk of the price rising sharply. Buying a call option on that same stock would serve as a:", opts: ["Purely speculative bet unrelated to the short position", "Hedge against the short position's upside risk", "Method to increase margin requirements", "Way to convert the short position into a long position automatically"], c: 1, exp: "Buying a call caps the cost of covering a short position if the price rises, directly hedging that specific risk. It isn't purely speculative given the existing short position, doesn't mechanically increase margin requirements, and doesn't automatically convert the underlying short position." },
+            { ch: 2, q: "An investor buys a call option and pays $300 upfront to the option's seller for the rights the contract grants. This $300 payment is the option's:", opts: ["Strike price", "Par value", "Premium", "Intrinsic value only"], c: 2, exp: "The premium is the price paid by the buyer to the seller for the contract itself, exactly as described. The strike price is the fixed exercise price, a separate figure. Par value is a bond concept, unrelated to options. Intrinsic value is only the in-the-money portion of an option's total worth." },
+            { ch: 2, q: "A buyer exercises their call option. The option writer who is required to now deliver the underlying shares has been:", opts: ["Exercised", "Expired", "Hedged", "Assigned"], c: 3, exp: "Assignment is what happens to the writer when a buyer exercises, obligating the writer to perform. \"Exercised\" describes the buyer's own action, not the writer's status. Expiration is unrelated to an option being used before or at expiry. Hedging is a separate risk-management concept." },
+            { ch: 2, q: "A customer exercises a call option on an individual company's stock. Upon exercise, this option settles by delivering:", opts: ["Actual shares of the underlying stock", "A cash payment based on an index value", "A basket of unrelated securities", "A refund of the premium only"], c: 0, exp: "Equity options settle in actual shares of the underlying stock upon exercise. A cash settlement based on an index value describes index options instead, a different product. There's no basket of unrelated securities involved, and exercise isn't simply a premium refund." },
+            { ch: 2, q: "An investor redeems shares of a mutual fund directly through the fund company at the fund's end-of-day net asset value, with the fund simply retiring those shares from circulation. This describes a(n):", opts: ["Closed-end fund", "Open-end fund", "UIT", "ETN"], c: 1, exp: "Continuous redemption directly through the fund company at NAV, with shares retired from circulation, defines an open-end fund. A closed-end fund has a fixed share count trading on an exchange instead. A UIT has a set termination date rather than ongoing redemption. An ETN is unsecured bank debt, unrelated." },
+            { ch: 2, q: "An investor in a mutual fund's Class B shares pays no charge at purchase, but if they sell within the first several years, the fund charges a declining percentage fee that shrinks the longer they hold. This fee structure is the fund's:", opts: ["Front-end load", "Right of accumulation", "Contingent deferred sales charge (back-end load)", "Surrender charge"], c: 2, exp: "A contingent deferred sales charge (back-end load) is exactly this declining early-withdrawal fee structure, characteristic of Class B shares. A front-end load is charged at purchase instead, the opposite. Right of accumulation is an unrelated breakpoint-counting tool. A surrender charge is the variable annuity equivalent, a different product." },
+            { ch: 2, q: "An investor already holds $40,000 in Fund Family X and wants to invest another $20,000. A breakpoint applies at $50,000. Rather than treating the new purchase in isolation, the investor's rep counts the existing $40,000 toward the combined total to secure the lower sales charge immediately. This is an application of:", opts: ["A letter of intent", "A surrender charge waiver", "A net transaction", "Right of accumulation"], c: 3, exp: "Right of accumulation lets an investor count existing holdings in the same fund family toward reaching a breakpoint, exactly as described. A letter of intent instead concerns committing to future purchases within 13 months, not counting holdings already owned. The other two options are unrelated fee concepts." },
+            { ch: 2, q: "An investor buys units of a fixed, professionally selected but unmanaged bond portfolio that is set to fully liquidate and distribute proceeds to unit holders on a specific future date. This product is a:", opts: ["Unit investment trust (UIT)", "Open-end fund", "Hedge fund", "Closed-end fund"], c: 0, exp: "A UIT holds a fixed, unmanaged portfolio with a set termination date, exactly matching this description. An open-end fund is actively managed with continuous share creation/redemption. A hedge fund is a private, actively managed partnership. A closed-end fund is actively managed with a fixed share count but no set termination date." },
+            { ch: 2, q: "A product combines market-based investment growth potential with certain insurance guarantees, such as a death benefit, wrapped inside an insurance contract rather than a pure investment fund. This product is most likely a:", opts: ["Closed-end fund", "Variable annuity", "UIT", "Money market fund"], c: 1, exp: "A variable annuity combines investment growth potential with insurance features like a death benefit, wrapped in an insurance contract. The other three options are all pure investment vehicles without an insurance wrapper or guarantee structure." },
+            { ch: 2, q: "A tax-advantaged savings account is designed so that an individual with a qualifying disability can save money without automatically losing eligibility for certain public assistance programs. This account is a(n):", opts: ["UTMA account", "529 prepaid tuition plan", "ABLE account", "Traditional IRA"], c: 2, exp: "An ABLE account is specifically designed for individuals with disabilities, with protections around public benefit eligibility. A UTMA is a general custodial account for any minor. A 529 prepaid plan addresses tuition costs. A Traditional IRA is a general retirement account — none address this disability-specific purpose." },
+            { ch: 2, q: "A parent purchases a 529 plan directly from the plan itself online, without going through a broker-dealer and without paying any associated sales charge. This is an example of a:", opts: ["An advisor-sold plan", "A prepaid tuition plan specifically", "An LGIP", "A direct-sold plan"], c: 3, exp: "A direct-sold plan is purchased straight from the plan, with no broker-dealer or sales charge involved, exactly as described. An advisor-sold plan would go through a broker-dealer instead, typically with charges. Prepaid tuition is a plan type, not defined by sales channel. An LGIP is a municipal cash pool, unrelated." },
+            { ch: 2, q: "An investor in a real estate limited partnership is allocated a share of the partnership's operating losses, which the investor can then apply against other income on their personal tax return. This favorable tax treatment is a hallmark of:", opts: ["A direct participation program (DPP)", "An ETF", "A closed-end fund", "A Roth IRA"], c: 0, exp: "Pass-through tax treatment of income and losses directly to investors' personal returns is the hallmark of a DPP. An ETF, closed-end fund, and Roth IRA don't pass through operating losses to investors' personal tax returns this way." },
+            { ch: 2, q: "A REIT is structured so that, as long as it distributes the required share of its taxable income to shareholders, it avoids paying corporate-level income tax itself. This structure exists primarily to:", opts: ["Guarantee shareholders a fixed rate of return", "Avoid taxing the same income twice, once at the corporate level and again at the shareholder level", "Exempt shareholders from all income tax on distributions", "Allow the REIT to avoid SEC registration entirely"], c: 1, exp: "This structure avoids double taxation — income is taxed once, at the shareholder level, instead of at both the corporate and shareholder levels. There's no guaranteed fixed return, shareholders still generally owe tax on distributions received, and this requirement doesn't exempt a REIT from SEC registration." },
+            { ch: 2, q: "An investor buys into a REIT that has registered its shares with the SEC and files regular reports, but those shares do not trade on any stock exchange, making it much harder to sell quickly compared to an exchange-traded alternative. This is a:", opts: ["Listed REIT", "Private REIT", "Non-listed, registered REIT", "Hedge fund"], c: 2, exp: "A non-listed, registered REIT is SEC-registered but not exchange-traded, exactly matching this reduced-liquidity description. A listed REIT would trade on an exchange, the opposite. A private REIT isn't SEC-registered at all. A hedge fund is an entirely different private partnership structure." },
+            { ch: 2, q: "A private fund isn't required to register the way a mutual fund is, giving its manager significant flexibility in strategy but offering investors far less regulatory transparency in return. This description best fits a:", opts: ["Money market fund", "ETF", "UIT", "Hedge fund"], c: 3, exp: "Reduced registration requirements, manager flexibility, and lower transparency are hallmark features of hedge funds. Money market funds, ETFs, and UITs are all more heavily regulated and standardized structures that don't match this description." },
+            { ch: 2, q: "An investor compares two exchange-traded funds tracking similar indexes. Fund X simply mirrors the index with minimal manager intervention and charges a low expense ratio. Fund Y is actively managed with a manager selecting securities and charges a much higher expense ratio. Fund X is best described as:", opts: ["Passively managed", "Actively managed", "Structured as bank debt", "Ineligible for exchange trading"], c: 0, exp: "Fund X, simply tracking an index with minimal intervention and low fees, is passively managed. Fund Y is the actively managed one, the opposite of Fund X. ETFs aren't structured as bank debt (that describes an ETN). Passively managed ETFs are fully eligible for normal exchange trading." },
+            { ch: 2, q: "Two exchange-traded products track the same index. Product A holds an actual portfolio of the index's underlying securities. Product B holds no underlying securities at all and is instead a promise from the issuing bank to pay a return linked to the index. Product B is best classified as a(n):", opts: ["ETF", "ETN", "Closed-end fund", "UIT"], c: 1, exp: "Product B, with no underlying securities and structured as a bank's promise to pay, is an ETN. Product A, holding actual underlying securities, is the ETF. A closed-end fund and a UIT both hold actual underlying securities as well, unlike Product B's unsecured debt structure." },
+            { ch: 2, q: "An investor holds a bond from a small, rarely-traded issuer. When the investor tries to sell before maturity, they find very few willing buyers and must accept a steep discount to exit the position quickly. This exposure is best described as:", opts: ["Credit risk", "Political risk", "Liquidity risk", "Currency risk"], c: 2, exp: "Difficulty finding a buyer and needing to accept a discount to sell quickly is liquidity risk, exactly as described. Credit risk concerns the issuer's ability to pay, a different concern than finding a buyer. Political and currency risk are both unrelated to this specific scenario." },
+            { ch: 2, q: "A company that issued corporate bonds files for bankruptcy and stops making interest payments to bondholders entirely. This exposure that materialized is best described as:", opts: ["Liquidity risk", "Prepayment risk", "Political risk", "Credit (default) risk"], c: 3, exp: "An issuer failing to make payments is precisely credit (default) risk. Liquidity risk concerns difficulty selling a position, a different problem. Prepayment risk is specific to mortgage-backed securities. Political risk concerns government action, unrelated to this issuer-specific default." },
+            { ch: 2, q: "An investor spreads a bond portfolio across issuers in dozens of unrelated industries specifically to reduce the impact of any single company defaulting. This strategy is most effective at reducing:", opts: ["Non-systematic (credit) risk", "Systematic/market risk", "Inflationary risk", "Political risk"], c: 0, exp: "Spreading across many unrelated issuers directly reduces non-systematic (issuer-specific, credit) risk. Systematic/market risk, inflationary risk, and political risk are all broad, market-wide risks that this kind of diversification across issuers doesn't meaningfully reduce." },
+
+            { ch: 3, q: "An investor needs to sell shares immediately to cover an urgent cash need and doesn't want to risk the order not filling, even if the exact price isn't guaranteed. The appropriate order type is a:", opts: ["Limit order", "Market order", "Stop order", "GTC order"], c: 1, exp: "A market order guarantees immediate execution, matching this investor's priority on speed. A limit order guarantees price but not execution, the opposite priority. A stop order only becomes a market order once triggered. GTC concerns order duration, not urgency of execution." },
+            { ch: 3, q: "An investor wants to buy a stock only if the price is $30 or lower, and is fine with the order simply not executing if that price isn't available. This investor should place a:", opts: ["Market order", "Stop order", "Limit order", "Discretionary order"], c: 2, exp: "A limit order guarantees a price ceiling but not execution, exactly matching this investor's priorities. A market order guarantees execution instead, not a price cap. A stop order is trigger-based, not a standing price limit. A discretionary order concerns trading authority, unrelated to price." },
+            { ch: 3, q: "A broker-dealer simply arranges a trade between a buyer and a seller who are both outside parties, charging a commission for facilitating the transaction rather than trading from its own account. In this transaction, the firm acted as:", opts: ["A principal", "A custodian", "A transfer agent", "An agent"], c: 3, exp: "Arranging a trade for a commission, rather than trading from the firm's own account, is acting as an agent. Acting as principal would instead involve trading from the firm's own inventory. A custodian and transfer agent both describe unrelated roles, not trade execution capacity." },
+            { ch: 3, q: "An investor buys 100 shares of stock outright, paying the full purchase price in cash. In the worst case, if the company goes bankrupt and the stock becomes worthless, the investor's maximum loss is:", opts: ["The amount originally invested", "Unlimited, since stock ownership carries no cap on loss", "Double the amount invested, due to margin rules", "Zero, since cash accounts are fully insured against loss"], c: 0, exp: "A long position's maximum loss is capped at the amount originally invested, since a stock can only fall to zero. There's no unlimited downside for a long position (that describes short selling instead). There's no such doubling rule, and cash accounts aren't insured against ordinary investment losses." },
+            { ch: 3, q: "A company sets a dividend record date of Friday, with standard T+1 settlement. An investor who wants to receive the dividend must purchase the stock no later than:", opts: ["Friday", "Thursday", "Saturday", "The following Monday"], c: 1, exp: "With T+1 settlement, a Thursday trade settles Friday, making the buyer the owner of record on the Friday record date. Buying on Friday itself would be the ex-dividend date, too late. Saturday and the following Monday are both after the record date entirely." },
+            { ch: 3, q: "An investor sells shares for $8,000 that were originally purchased for $5,500. To calculate the taxable gain on this sale, the investor needs to know the shares':", opts: ["Current dividend yield", "Par value", "Cost basis", "Beta relative to the market"], c: 2, exp: "Cost basis — what was originally paid, adjusted as needed — is the figure used to calculate a taxable gain or loss on sale. Dividend yield, par value, and beta are all unrelated to this specific gain/loss calculation." },
+            { ch: 3, q: "A bond's yield moves from 4.25% to 4.40%, a change a trader describes precisely as an increase of 15 basis points. One basis point equals:", opts: ["1%", "0.1%", "10%", "0.01%"], c: 3, exp: "One basis point equals 0.01% (1/100th of a percent), consistent with a 15 basis point move equaling 0.15%. The other figures all significantly overstate the size of a single basis point." },
+            { ch: 3, q: "A trader executes a corporate bond trade on a Tuesday. Under standard settlement rules for most bond trades today, this trade typically settles on:", opts: ["Wednesday", "Tuesday, the same day", "Friday", "The following Tuesday"], c: 0, exp: "Standard T+1 settlement means one business day after the trade date, so a Tuesday trade settles Wednesday. Same-day settlement isn't the standard cycle. Friday and the following Tuesday are both far later than the standard one-business-day cycle." },
+            { ch: 3, q: "A company uses excess cash to repurchase its own shares on the open market, subsequently retiring those shares. All else equal, this action:", opts: ["Increases the total number of shares outstanding", "Reduces the total number of shares outstanding", "Has no effect on shares outstanding", "Automatically triggers a stock split"], c: 1, exp: "A buyback reduces the total shares outstanding as repurchased shares are retired. It doesn't increase share count (the opposite direction) and has a clear effect on shares outstanding, not none. A buyback also doesn't automatically trigger a separate stock split action." },
+            { ch: 3, q: "Company A acquires Company B, and under the merger agreement, each share of Company B stock is automatically converted into 0.75 shares of Company A stock. This is best described as a:", opts: ["Tender offer for cash", "Rights offering", "Merger/acquisition with a share conversion", "Reverse stock split"], c: 2, exp: "This is exactly a merger/acquisition with a share conversion feature. A cash tender offer would pay cash instead of converting shares into a different company's stock. A rights offering lets existing shareholders buy new shares from their own company. A reverse split changes one company's own share count, unrelated to a merger." },
+            { ch: 3, q: "A customer's account requires full payment for every securities purchase, with no ability to borrow any portion of the purchase price from the firm. This is a:", opts: ["Margin account", "Discretionary account", "Options account", "Cash account"], c: 3, exp: "A cash account requires full payment with no borrowing allowed, exactly as described. A margin account allows borrowing instead, the opposite. A discretionary account concerns trading authority, unrelated to payment terms. An options account concerns options-specific approval, also unrelated here." },
+            { ch: 3, q: "A client insists on approving every single trade individually before it's placed, giving the representative no independent authority to act on the account's behalf. This account is:", opts: ["Non-discretionary", "Discretionary", "Fee-based", "Custodial"], c: 0, exp: "Requiring individual approval for every trade is the definition of a non-discretionary account. Discretionary is the opposite — the rep can act without prior approval. Fee-based concerns billing structure, unrelated to trading authority. Custodial concerns ownership for a minor, also unrelated." },
+            { ch: 3, q: "Two business partners open a joint account structured so that if one dies, their share passes to their own estate rather than automatically to the surviving partner. This structure is:", opts: ["Joint tenants with rights of survivorship", "Tenants in common", "A revocable trust", "A custodial account"], c: 1, exp: "Tenants in common passes a deceased owner's share to their own estate, exactly as described. Joint tenants with rights of survivorship would instead pass the share automatically to the surviving owner, the opposite. A revocable trust and custodial account are entirely different registration types, not joint ownership structures." },
+            { ch: 3, q: "A custodial account was opened for a minor under UTMA. Control of the account passes fully to the former minor once they:", opts: ["Complete high school", "Turn 16", "Reach the age of majority as defined by state law", "Get married, regardless of age"], c: 2, exp: "UTMA control transfers when the beneficiary reaches the age of majority as defined by state law. Completing high school, turning 16 specifically, and marital status are all unrelated milestones that don't govern this transfer under UTMA rules." },
+            { ch: 3, q: "A client with a Traditional IRA reaches the applicable age for required minimum distributions but chooses not to withdraw anything that year. This decision most likely results in:", opts: ["No consequence, since RMDs are optional", "The account automatically converting to a Roth IRA", "A permanent freeze on all future contributions", "A potential penalty for failing to take the required distribution"], c: 3, exp: "Failing to take a required minimum distribution once required generally triggers a penalty — RMDs aren't optional once the applicable age is reached. There's no automatic Roth conversion, and skipping an RMD doesn't freeze future contributions, which is a separate, unrelated matter." },
+            { ch: 3, q: "Cash obtained through illegal activity is first deposited into the financial system, often broken into smaller amounts to avoid detection. This initial stage of money laundering is called:", opts: ["Placement", "Layering", "Integration", "Structuring exclusively, a separate process from all three stages"], c: 0, exp: "Placement is the initial stage where illegally obtained cash first enters the financial system, exactly as described. Layering and integration are later stages. Structuring is a specific tactic used within the placement stage, not a separate fourth stage of its own." },
+            { ch: 3, q: "After filing a Suspicious Activity Report about a customer's account, a firm employee mentions to the customer that a report was filed. This disclosure is:", opts: ["Required, since customers have a right to know", "A violation — SAR filings must remain confidential, and tipping off the customer is prohibited", "Permitted only with compliance approval", "Irrelevant, since SARs aren't confidential documents"], c: 1, exp: "SAR filings must remain confidential, and tipping off the customer is specifically prohibited, regardless of any purported \"right to know,\" compliance sign-off, or the mistaken belief that SARs aren't confidential — they very much are." },
+            { ch: 3, q: "A brokerage firm is required to provide customers with a document explaining what nonpublic personal information is collected and how it's used and protected. This requirement comes from:", opts: ["The AML compliance program", "The Options Disclosure Document", "Regulation S-P", "FINRA's suitability rule"], c: 2, exp: "Regulation S-P governs privacy notifications and safeguards for nonpublic personal information, exactly as described. The AML program addresses money laundering, a different concern. The ODD addresses options risk disclosure. FINRA's suitability rule concerns recommendations, unrelated to this privacy requirement." },
+            { ch: 3, q: "A customer going on an extended trip asks their brokerage firm to hold their mail until they return, rather than have it sent to their home address. Under firm policy and applicable rules, this request:", opts: ["Can never be honored under any circumstances", "Must always be honored with no conditions", "Is handled the same as a privacy notification requirement", "May be honored, but only under specific conditions set by firm policy and applicable rules"], c: 3, exp: "Mail holding is permitted under specific conditions, neither an absolute prohibition nor an unconditional guarantee. It's also a distinct obligation from the general Regulation S-P privacy notification requirement, not the same thing handled identically." },
+            { ch: 3, q: "A representative posts general commentary about broad market trends on the firm's public blog, without naming any specific security or suggesting any particular trade. Under suitability rules, this content is best characterized as:", opts: ["General commentary, not a specific recommendation triggering suitability obligations", "A solicited recommendation requiring full suitability review", "A private securities transaction", "A reportable outside business activity"], c: 0, exp: "Suitability obligations attach specifically to recommendations involving a particular security, not broad, unnamed market commentary. This content doesn't rise to a solicited recommendation, isn't a private securities transaction, and isn't a reportable outside business activity — it's simply general commentary." },
+            { ch: 3, q: "A representative repeatedly buys and sells securities in a client's account far more often than the client's goals would reasonably justify, primarily to generate commissions for himself. This practice is called:", opts: ["Front running", "Churning (excessive trading)", "Backing away", "Marking the open"], c: 1, exp: "Excessive trading in a customer's account primarily to generate commissions is churning, exactly as described. Front running involves trading ahead of a known pending order. Backing away is a market maker failing to honor its quote. Marking the open manipulates the opening price — none match this account-churning scenario." },
+            { ch: 3, q: "A trader deliberately spreads a false rumor online that a company is about to be acquired, hoping to drive up the stock price before selling shares he already owns. Spreading this false information is best classified as:", opts: ["Legitimate market commentary protected as free speech", "Backing away", "Market manipulation through false rumors", "A permitted trading strategy if the rumor later becomes true"], c: 2, exp: "Deliberately spreading false information to move a security's price is market manipulation, regardless of free-speech framing. It's unrelated to backing away, and the practice isn't excused even if the rumor coincidentally turns out to be true later — the deceptive intent at the time is what matters." },
+            { ch: 3, q: "A representative proposes splitting any trading profits and losses in a client's account with the client directly, in exchange for actively managing the account more aggressively. Under industry rules, this arrangement is:", opts: ["Permitted with written client consent alone", "Permitted if the split is 50/50", "Permitted only for accredited investor clients", "Generally prohibited — sharing in a customer's account is restricted"], c: 3, exp: "Sharing in a customer's account profits and losses is generally restricted, regardless of written consent, the specific split ratio, or whether the client happens to be an accredited investor — none of those factors create an exception to this general prohibition." },
+
+            { ch: 4, q: "A candidate has passed all required exams but has not yet had a FINRA member firm file the necessary registration paperwork on their behalf through the appropriate electronic filing system. Until this filing occurs, the candidate is:", opts: ["Not yet a registered representative", "Automatically registered after 30 days regardless", "Registered, but only for proprietary trading", "Registered only in their home state"], c: 0, exp: "Registration isn't complete until a sponsoring firm files on the candidate's behalf — exam passage alone doesn't create registered status. There's no automatic 30-day registration, no proprietary-trading-only status, and no state-only registration created simply by passing exams." },
+            { ch: 4, q: "An unregistered clerical employee at a broker-dealer processes paperwork and answers general administrative questions, but never discusses specific securities or takes customer orders. This employee's activities are:", opts: ["A violation regardless of the specific tasks performed", "Permitted, since these are back-office/administrative functions, not solicitation or order-taking", "Permitted only if the employee is studying for the SIE", "A violation unless a commission is paid"], c: 1, exp: "Unregistered persons can perform clerical/back-office functions — the restriction specifically concerns soliciting customers or taking orders, neither of which is happening here. There's no requirement to be studying for the SIE, and commission payment isn't the relevant factor in this scenario." },
+            { ch: 4, q: "Every registered representative in the industry, regardless of which firm they work for, completes the same standardized set of FINRA-administered training covering general rules and ethics on a set schedule. This is the:", opts: ["Firm Element", "State blue-sky requirement", "Regulatory Element", "Statutory disqualification review"], c: 2, exp: "The Regulatory Element is standardized, FINRA-administered CE content identical across the industry, exactly as described. The Firm Element is firm-specific instead, not standardized. Blue-sky requirements concern state registration. Statutory disqualification concerns eligibility, not recurring training." },
+            { ch: 4, q: "A representative omits a material disclosure event from her Form U4 application, and the omission is later discovered by regulators. This omission is treated as:", opts: ["A minor administrative matter with no real consequence", "Acceptable as long as it's corrected within five years", "Relevant only if a client specifically complains about it", "A serious violation, separate from whatever the underlying omitted event was"], c: 3, exp: "Filing misleading or incomplete information on Form U4 is itself a serious violation, independent of the underlying omitted event. There's no five-year grace period for correction, it isn't merely a minor administrative matter, and it isn't contingent on a client happening to complain." },
+            { ch: 4, q: "A firm discovers new, material information about a former representative's conduct after already filing that representative's Form U5 upon termination. Under industry rules, the firm is expected to:", opts: ["File an amendment to the previously submitted Form U5", "Do nothing, since Form U5 cannot be amended once filed", "Wait for the former representative's new firm to handle it", "File a brand-new Form U4 instead"], c: 0, exp: "Form U5 can and should be amended when material new information arises after the original filing. This obligation belongs to the firm that filed it, not a future employer to handle instead. Form U4 is a different registration document entirely, not a substitute for amending U5." },
+            { ch: 4, q: "A representative takes a client to a reasonably priced business dinner to discuss the client's portfolio, distinct from giving the client a standalone holiday gift. Under industry rules, this dinner is best evaluated under the standards for:", opts: ["Gifts and gratuities limits specifically", "Business entertainment, a related but distinct category from gifts", "Non-cash compensation from a product sponsor", "Outside business activity disclosure"], c: 1, exp: "Business entertainment is treated as its own category — reasonable, business-related, and not overly lavish — distinct from the standalone gifts and gratuities dollar cap. It also isn't governed by the non-cash compensation rules for product sponsors, and it isn't an outside business activity disclosure matter." },
+            { ch: 4, q: "A registered representative personally files for bankruptcy during his time at a firm. Under industry rules regarding Form U4, this event:", opts: ["Never needs to be disclosed, since bankruptcy is a private financial matter", "Only needs disclosure if it directly involves client funds", "Must generally be disclosed as a reportable event", "Is disclosed only to the IRS, not on Form U4"], c: 2, exp: "Personal bankruptcy is specifically among the reportable events disclosed on Form U4. It isn't exempted as purely private, isn't limited to cases directly involving client funds, and isn't simply an IRS-only matter separate from the Form U4 disclosure obligation." }
+        ];
+
+        const CH_NAMES = { 1: "Capital Markets", 2: "Products & Risks", 3: "Trading & Accounts", 4: "Regulatory Framework" };
+        const CH_COLORS = { 1: "#8C6423", 2: "#1E6F5C", 3: "#8B3A2F", 4: "#3A5A8C" };
+
+        let examQuestions = [];
+        let answers = [];
+        let currentIndex = 0;
+        let timerInterval = null;
+        let secondsLeft = 105 * 60;
+
+        function shuffle(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function buildExam() {
+            const shuffledQs = shuffle(RAW_QUESTIONS);
+            examQuestions = shuffledQs.map(q => {
+                const optObjs = q.opts.map((text, i) => ({ text, isCorrect: i === q.c }));
+                const shuffledOpts = shuffle(optObjs);
+                const correctIdx = shuffledOpts.findIndex(o => o.isCorrect);
+                return {
+                    ch: q.ch,
+                    q: q.q,
+                    opts: shuffledOpts.map(o => o.text),
+                    correct: correctIdx,
+                    exp: q.exp
+                };
+            });
+            answers = examQuestions.map(() => ({ selected: null, flagged: false }));
+            currentIndex = 0;
+            secondsLeft = 105 * 60;
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('qgrid');
+            grid.innerHTML = '';
+            examQuestions.forEach((_, i) => {
+                const cell = document.createElement('button');
+                cell.className = 'qcell';
+                if (answers[i].selected !== null) cell.classList.add('answered');
+                if (answers[i].flagged) cell.classList.add('flagged');
+                if (i === currentIndex) cell.classList.add('current');
+                cell.textContent = i + 1;
+                cell.onclick = () => { currentIndex = i; renderQuestion(); renderGrid(); };
+                grid.appendChild(cell);
+            });
+            const answeredCount = answers.filter(a => a.selected !== null).length;
+            document.getElementById('progressPill').textContent = answeredCount + ' / 75 answered';
+        }
+
+        function renderQuestion() {
+            const q = examQuestions[currentIndex];
+            document.getElementById('qmeta').textContent = 'Question ' + (currentIndex + 1) + ' of 75';
+            document.getElementById('qstem').textContent = q.q;
+            const optsDiv = document.getElementById('options');
+            optsDiv.innerHTML = '';
+            const letters = ['A', 'B', 'C', 'D'];
+            q.opts.forEach((opt, i) => {
+                const el = document.createElement('div');
+                el.className = 'option' + (answers[currentIndex].selected === i ? ' selected' : '');
+                el.innerHTML = '<span class="letter">' + letters[i] + '</span><span class="otext"></span>';
+                el.querySelector('.otext').textContent = opt;
+                el.onclick = () => {
+                    answers[currentIndex].selected = i;
+                    renderQuestion();
+                    renderGrid();
+                };
+                optsDiv.appendChild(el);
+            });
+            const flagBtn = document.getElementById('flagBtn');
+            flagBtn.textContent = answers[currentIndex].flagged ? '🚩 Flagged' : '🚩 Flag';
+            flagBtn.classList.toggle('flagged', answers[currentIndex].flagged);
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+        }
+
+        function startTimer() {
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                secondsLeft--;
+                updateTimerDisplay();
+                if (secondsLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitExam();
+                }
+            }, 1000);
+        }
+        function updateTimerDisplay() {
+            const h = Math.floor(secondsLeft / 3600);
+            const m = Math.floor((secondsLeft % 3600) / 60);
+            const s = secondsLeft % 60;
+            const el = document.getElementById('timer');
+            el.textContent = h + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+            el.classList.toggle('low', secondsLeft < 300);
+        }
+
+        document.getElementById('startBtn').onclick = () => {
+            buildExam();
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('globalNav').style.display = 'none';
+            document.getElementById('exam').classList.add('active');
+            renderQuestion();
+            renderGrid();
+            startTimer();
+        };
+
+        document.getElementById('prevBtn').onclick = () => { if (currentIndex > 0) { currentIndex--; renderQuestion(); renderGrid(); } };
+        document.getElementById('nextBtn').onclick = () => { if (currentIndex < 74) { currentIndex++; renderQuestion(); renderGrid(); } };
+        document.getElementById('flagBtn').onclick = () => { answers[currentIndex].flagged = !answers[currentIndex].flagged; renderQuestion(); renderGrid(); };
+
+        function openSubmitModal() {
+            const unanswered = answers.filter(a => a.selected === null).length;
+            const flagged = answers.filter(a => a.flagged).length;
+            document.getElementById('modalUnanswered').textContent = unanswered + ' question(s) left unanswered.';
+            document.getElementById('modalFlagged').textContent = flagged + ' question(s) still flagged for review.';
+            document.getElementById('modalBackdrop').classList.add('active');
+        }
+        document.getElementById('submitBtn').onclick = openSubmitModal;
+        document.getElementById('sbSubmitBtn').onclick = openSubmitModal;
+        document.getElementById('modalCancel').onclick = () => document.getElementById('modalBackdrop').classList.remove('active');
+        document.getElementById('modalConfirm').onclick = () => { document.getElementById('modalBackdrop').classList.remove('active'); submitExam(); };
+
+        function submitExam() {
+            if (timerInterval) clearInterval(timerInterval);
+            document.getElementById('exam').classList.remove('active');
+            document.getElementById('results').classList.add('active');
+            document.getElementById('globalNav').style.display = 'flex';
+
+            let correctCount = 0;
+            const chStats = { 1: { correct: 0, total: 0 }, 2: { correct: 0, total: 0 }, 3: { correct: 0, total: 0 }, 4: { correct: 0, total: 0 } };
+            examQuestions.forEach((q, i) => {
+                chStats[q.ch].total++;
+                if (answers[i].selected === q.correct) { correctCount++; chStats[q.ch].correct++; }
+            });
+
+            const pct = Math.round((correctCount / 75) * 100);
+            document.getElementById('scoreBig').textContent = pct + '%';
+            document.getElementById('scoreFrac').textContent = correctCount + ' / 75 correct';
+            const badge = document.getElementById('scoreBadge');
+            if (pct >= 70) { badge.textContent = 'PASS'; badge.className = 'badge pass'; }
+            else { badge.textContent = 'NOT YET PASSING'; badge.className = 'badge fail'; }
+
+            const barContainer = document.getElementById('sbarContainer');
+            barContainer.innerHTML = '';
+            let weakestCh = null, weakestPct = 101;
+            [1, 2, 3, 4].forEach(ch => {
+                const s = chStats[ch];
+                const p = s.total ? Math.round((s.correct / s.total) * 100) : 0;
+                if (p < weakestPct) { weakestPct = p; weakestCh = ch; }
+                const row = document.createElement('div');
+                row.className = 'sbar-row';
+                row.innerHTML = '<div class="sbar-label"><span>' + CH_NAMES[ch] + '</span><b>' + s.correct + ' / ' + s.total + ' (' + p + '%)</b></div><div class="sbar-track"><div class="sbar-fill" style="width:' + p + '%; background:' + CH_COLORS[ch] + ';"></div></div>';
+                barContainer.appendChild(row);
+            });
+            document.getElementById('weakCallout').innerHTML = '<b>Weakest area: ' + CH_NAMES[weakestCh] + '</b> at ' + weakestPct + '% — that\'s the chapter worth reviewing first before your next attempt.';
+
+            renderReview('all');
+            document.querySelectorAll('.filters button').forEach(b => {
+                b.onclick = () => {
+                    document.querySelectorAll('.filters button').forEach(x => x.classList.remove('active'));
+                    b.classList.add('active');
+                    renderReview(b.dataset.filter);
+                };
+            });
+
+            window.scrollTo(0, 0);
+        }
+
+        function renderReview(filter) {
+            const list = document.getElementById('reviewList');
+            list.innerHTML = '';
+            examQuestions.forEach((q, i) => {
+                const userSel = answers[i].selected;
+                const isCorrect = userSel === q.correct;
+                if (filter === 'wrong' && isCorrect) return;
+                if (filter === 'flagged' && !answers[i].flagged) return;
+                const letters = ['A', 'B', 'C', 'D'];
+                const item = document.createElement('div');
+                item.className = 'review-item';
+                const yourAnsText = userSel === null ? 'Not answered' : letters[userSel] + ') ' + q.opts[userSel];
+                const correctText = letters[q.correct] + ') ' + q.opts[q.correct];
+                item.innerHTML =
+                    '<div class="rtag">Q' + (i + 1) + ' · ' + CH_NAMES[q.ch] + (answers[i].flagged ? ' · 🚩 flagged' : '') + '</div>' +
+                    '<div class="rstem"></div>' +
+                    '<div class="ans-line ' + (isCorrect ? 'right' : 'wrong') + '">Your answer: </div>' +
+                    (isCorrect ? '' : '<div class="ans-line right">Correct answer: </div>') +
+                    '<div class="rexp"></div>';
+                item.querySelector('.rstem').textContent = q.q;
+                const ansLines = item.querySelectorAll('.ans-line');
+                ansLines[0].textContent = 'Your answer: ' + yourAnsText;
+                if (!isCorrect) { ansLines[1].textContent = 'Correct answer: ' + correctText; }
+                item.querySelector('.rexp').textContent = q.exp;
+                list.appendChild(item);
+            });
+            if (list.innerHTML === '') {
+                list.innerHTML = '<p style="color:var(--muted);">Nothing to show for this filter.</p>';
+            }
+        }
+
+        document.getElementById('retakeBtn').onclick = () => {
+            document.getElementById('results').classList.remove('active');
+            document.getElementById('intro').style.display = 'block';
+            window.scrollTo(0, 0);
+        };
+    </script>
+</body>
+
+</html>

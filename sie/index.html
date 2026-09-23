@@ -278,6 +278,7 @@
     /* Features */
     .features {
       padding: 120px 0;
+      background: var(--surface);
     }
 
     .section-header {
@@ -304,7 +305,7 @@
     }
 
     .feature-card {
-      background: var(--surface);
+      background: var(--bg);
       border: 1px solid var(--border);
       padding: 40px;
       border-radius: var(--radius-xl);
@@ -474,6 +475,76 @@
       color: #fff;
     }
 
+    /* ===== MOCK EXAMS ===== */
+    .mocktests-sec {
+      padding: 80px 0;
+      background: var(--bg);
+    }
+
+    .mock-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+      max-width: auto;
+      margin: 0 auto;
+    }
+
+    .mock-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px 32px;
+      transition: var(--transition);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .mock-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    .mock-card .mock-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+
+    .mock-card:hover .mock-icon {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .mock-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+      transition: color 0.2s;
+    }
+
+    .mock-card:hover h3 {
+      color: var(--primary);
+    }
+
+    .mock-card p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
     /* CTA Section */
     .cta {
       padding: 120px 0;
@@ -562,7 +633,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KE6HDDH2F"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-4KE6HDDH2F');
   </script>
@@ -587,6 +658,7 @@
       <nav class="nav-links">
         <a href="#features">Features</a>
         <a href="#curriculum">Curriculum</a>
+        <a href="#mocktests">Mock Exams</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#pricing">Pricing</a>
       </nav>
@@ -604,8 +676,9 @@
       <p>Master the architecture of the market, products, and regulations with our beautifully designed, interactive
         learning platform. No boring PDFs, just clear concepts.</p>
       <div class="hero-actions">
-        <a href="#curriculum" class="btn btn-primary" style="padding: 16px 32px; font-size: 16px;">Explore
-          Curriculum</a>
+        <a href="#curriculum" class="btn btn-primary" style="padding: 16px 32px; font-size: 16px;">Start Learning</a>
+        <a href="#mocktests" class="btn btn-primary" style="padding: 16px 32px; font-size: 16px;">Practice with Mock
+          Test</a>
         <a href="#features" class="btn btn-outline" style="padding: 16px 32px; font-size: 16px;">See How It Works</a>
       </div>
     </div>
@@ -614,69 +687,20 @@
   <!-- Stats -->
   <section class="stats">
     <div class="container stats-grid">
-      <div class="stat-item">
-        <h3>95%</h3>
-        <p>First-Try Pass Rate</p>
-      </div>
+
       <div class="stat-item">
         <h3>4</h3>
         <p>Comprehensive Modules</p>
       </div>
       <div class="stat-item">
+        <h3>5</h3>
+        <p>Full Length Mock Tests</p>
+      </div>
+      <div class="stat-item">
         <h3>75+</h3>
         <p>Interactive Diagrams</p>
       </div>
-      <div class="stat-item">
-        <h3>10k+</h3>
-        <p>Students Certified</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- Features -->
-  <section id="features" class="features container">
-    <div class="section-header">
-      <h2>Why choose HexaPrep?</h2>
-      <p>We rebuilt exam prep from the ground up to make studying less of a chore and more of an intuitive experience.
-      </p>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M12 20h9"></path>
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-          </svg>
-        </div>
-        <h3>Bite-Sized Lessons</h3>
-        <p>Complex topics are broken down into easy-to-digest chapters, focusing strictly on what FINRA actually tests.
-          No fluff.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-          </svg>
-        </div>
-        <h3>Visual Learning</h3>
-        <p>Stop staring at walls of text. We use high-quality diagrams and visual mental models to explain market
-          architecture and trade lifecycles.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-          </svg>
-        </div>
-        <h3>Knowledge Checks</h3>
-        <p>Active recall is built into every chapter with interactive quick-check quizzes to ensure you're retaining the
-          material.</p>
-      </div>
     </div>
   </section>
 
@@ -691,7 +715,8 @@
       <div class="course-grid">
 
         <!-- Chapter 1 -->
-        <a href="ch1.html" class="chapter-card" onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 1' });">
+        <a href="ch1.html" class="chapter-card"
+          onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 1' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 01</div>
             <div class="ch-stats">
@@ -717,7 +742,8 @@
         </a>
 
         <!-- Chapter 2 -->
-        <a href="ch2.html" class="chapter-card" onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 2' });">
+        <a href="ch2.html" class="chapter-card"
+          onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 2' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 02</div>
             <div class="ch-stats">
@@ -742,7 +768,8 @@
         </a>
 
         <!-- Chapter 3 -->
-        <a href="ch3.html" class="chapter-card" onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 3' });">
+        <a href="ch3.html" class="chapter-card"
+          onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 3' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 03</div>
             <div class="ch-stats">
@@ -767,7 +794,8 @@
         </a>
 
         <!-- Chapter 4 -->
-        <a href="ch4.html" class="chapter-card" onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 4' });">
+        <a href="ch4.html" class="chapter-card"
+          onclick="gtag('event', 'chapter_started', { course_name: 'SIE', chapter_name: 'Chapter 4' });">
           <div class="chapter-meta">
             <div class="ch-label">Chapter 04</div>
             <div class="ch-stats">
@@ -791,7 +819,151 @@
           </div>
         </a>
 
+      </div>
     </div>
+  </section>
+
+  <!-- Mock Tests -->
+  <section id="mocktests" class="mocktests-sec">
+    <div class="container">
+      <div class="section-header">
+        <h2>Mock Exams</h2>
+        <p>Put your knowledge to the test with our full-length, timed mock exams.</p>
+      </div>
+
+      <div class="mock-grid">
+        <!-- Test 1 -->
+        <a href="test1.html" class="mock-card"
+          onclick="gtag('event', 'mock_test_started', { course_name: 'SIE', test_name: 'Test 1' });">
+          <div class="mock-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </div>
+          <h3>SIE Mock Exam 1</h3>
+          <p>A full-length, timed practice run built to feel like the real thing.</p>
+          <span class="btn btn-outline" style="margin-top: 8px;">Start Exam</span>
+        </a>
+
+        <!-- Test 2 -->
+        <a href="test2.html" class="mock-card"
+          onclick="gtag('event', 'mock_test_started', { course_name: 'SIE', test_name: 'Test 2' });">
+          <div class="mock-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </div>
+          <h3>SIE Mock Exam 2</h3>
+          <p>A second full-length practice run with a completely unique set of questions.</p>
+          <span class="btn btn-outline" style="margin-top: 8px;">Start Exam</span>
+        </a>
+
+        <!-- Test 3 -->
+        <a href="test3.html" class="mock-card"
+          onclick="gtag('event', 'mock_test_started', { course_name: 'SIE', test_name: 'Test 3' });">
+          <div class="mock-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </div>
+          <h3>SIE Mock Exam 3</h3>
+          <p>A third full-length practice run with a completely unique set of questions.</p>
+          <span class="btn btn-outline" style="margin-top: 8px;">Start Exam</span>
+        </a>
+
+
+
+        <!-- Test 4 -->
+        <a href="test4.html" class="mock-card"
+          onclick="gtag('event', 'mock_test_started', { course_name: 'SIE', test_name: 'Test 4' });">
+          <div class="mock-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </div>
+          <h3>SIE Mock Exam 4</h3>
+          <p>A fourth full-length practice run with a completely unique set of questions.</p>
+          <span class="btn btn-outline" style="margin-top: 8px;">Start Exam</span>
+        </a>
+        <!-- Test 5 -->
+        <a href="test5.html" class="mock-card"
+          onclick="gtag('event', 'mock_test_started', { course_name: 'SIE', test_name: 'Test 5' });">
+          <div class="mock-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </div>
+          <h3>SIE Mock Exam 5</h3>
+          <p>A fifth full-length practice run with a completely unique set of questions.</p>
+          <span class="btn btn-outline" style="margin-top: 8px;">Start Exam</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why choose HexaPrep?</h2>
+        <p>We rebuilt exam prep from the ground up to make studying less of a chore and more of an intuitive experience.
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+          </div>
+          <h3>Bite-Sized Lessons</h3>
+          <p>Complex topics are broken down into easy-to-digest chapters, focusing strictly on what FINRA actually
+            tests.
+            No fluff.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+              <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+            </svg>
+          </div>
+          <h3>Visual Learning</h3>
+          <p>Stop staring at walls of text. We use high-quality diagrams and visual mental models to explain market
+            architecture and trade lifecycles.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h3>Knowledge Checks</h3>
+          <p>Active recall is built into every chapter with interactive quick-check quizzes to ensure you're retaining
+            the
+            material.</p>
+        </div>
+      </div>
     </div>
   </section>
 
