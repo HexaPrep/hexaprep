@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 4A — Personal Lines Automobile: OAP 1 &amp; Mandatory Coverages | RIBO Level 1</title>
+<style>
+  :root{
+    --ink:#16273D;
+    --ink-soft:#2C4058;
+    --paper:#F7F6F3;
+    --paper-raised:#FFFFFF;
+    --rule:#DAD5C9;
+    --rule-soft:#E9E6DD;
+    --gold:#B8873A;
+    --gold-soft:#F1E4C9;
+    --slate:#3E5C76;
+    --slate-soft:#E3EAF0;
+    --green:#3F6B4E;
+    --green-soft:#E4EEE6;
+    --red:#8C3B32;
+    --red-soft:#F4E3E0;
+    --text:#242A31;
+    --text-mute:#5B6470;
+    --serif: Iowan Old Style, "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", "Cascadia Code", Consolas, monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--slate);}
+
+  /* ===== Layout shell ===== */
+  .shell{
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    min-height:100vh;
+  }
+
+  /* ===== Sidebar ===== */
+  .sidebar{
+    background:var(--ink);
+    color:#D9DFE6;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+    padding:28px 0 40px;
+    border-right:1px solid #0E1A28;
+  }
+  .sidebar::-webkit-scrollbar{width:8px;}
+  .sidebar::-webkit-scrollbar-thumb{background:#2C4058;border-radius:4px;}
+
+  .sidebar-brand{
+    padding:0 24px 20px;
+    border-bottom:1px solid #263A52;
+    margin-bottom:8px;
+  }
+  .sidebar-brand .kicker{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.04em;
+    color:#8FA3B8;
+  }
+  .sidebar-brand h1{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:600;
+    margin:6px 0 2px;
+    color:#F4F1E8;
+    line-height:1.3;
+  }
+  .sidebar-brand .sub{
+    font-size:12.5px;
+    color:#9AACBE;
+  }
+
+  .toc{padding:8px 0;}
+  .toc-chapter{
+    display:block;
+    padding:10px 24px;
+    font-family:var(--serif);
+    font-size:14px;
+    font-weight:600;
+    color:#F4F1E8;
+    text-decoration:none;
+    border-left:3px solid transparent;
+  }
+  .toc-section{
+    display:block;
+    padding:6px 24px 6px 32px;
+    font-size:13px;
+    color:#B7C4D2;
+    text-decoration:none;
+    border-left:3px solid transparent;
+    transition:background .12s ease, color .12s ease;
+  }
+  .toc-section:hover{background:#1D3049;color:#F4F1E8;}
+  .toc-section.active{
+    background:#22354D;
+    color:#F1D9A8;
+    border-left-color:var(--gold);
+    font-weight:600;
+  }
+  .toc-progress{
+    margin:14px 24px 4px;
+    padding-top:14px;
+    border-top:1px solid #263A52;
+  }
+  .toc-progress .label{
+    font-size:11px;
+    color:#8FA3B8;
+    font-family:var(--mono);
+    letter-spacing:.03em;
+    margin-bottom:6px;
+  }
+  .bar-track{
+    height:6px;
+    background:#1D3049;
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background:linear-gradient(90deg,var(--gold),#D9AE6A);
+    width:0%;
+    transition:width .25s ease;
+  }
+
+  /* ===== Main content ===== */
+  main{
+    padding:0;
+    max-width:900px;
+  }
+  .content-inner{
+    padding:48px 56px 120px;
+  }
+
+  .chapter-head{
+    margin-bottom:40px;
+    padding-bottom:28px;
+    border-bottom:2px solid var(--ink);
+  }
+  .chapter-head .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--gold);
+    background:var(--gold-soft);
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:3px;
+    margin-bottom:14px;
+  }
+  .chapter-head h1{
+    font-family:var(--serif);
+    font-size:38px;
+    line-height:1.2;
+    margin:0 0 12px;
+    color:var(--ink);
+  }
+  .chapter-head .dek{
+    font-size:16px;
+    color:var(--text-mute);
+    max-width:70ch;
+  }
+  .comp-tags{
+    margin-top:18px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .comp-tag{
+    font-size:12px;
+    font-family:var(--mono);
+    background:var(--slate-soft);
+    color:var(--slate);
+    padding:4px 10px;
+    border-radius:3px;
+    border:1px solid #C9D6E2;
+  }
+
+  .notice-box{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink-soft);
+    padding:16px 20px;
+    margin:0 0 40px;
+    font-size:14px;
+    color:var(--text-mute);
+  }
+  .notice-box strong{color:var(--ink);}
+
+  section.topic{
+    margin-bottom:56px;
+    scroll-margin-top:24px;
+  }
+  section.topic > h2{
+    font-family:var(--serif);
+    font-size:28px;
+    color:var(--ink);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:10px;
+    margin:0 0 20px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  section.topic > h2 .num{
+    font-family:var(--mono);
+    font-size:16px;
+    color:var(--gold);
+    font-weight:600;
+  }
+
+  article.subtopic{
+    margin-bottom:38px;
+    scroll-margin-top:24px;
+  }
+  article.subtopic > h3{
+    font-family:var(--serif);
+    font-size:21px;
+    color:var(--ink-soft);
+    margin:0 0 6px;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+  article.subtopic > h3 .num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-mute);
+    font-weight:400;
+  }
+  article.subtopic .lede{
+    font-size:14px;
+    color:var(--text-mute);
+    font-style:italic;
+    margin:0 0 16px;
+  }
+
+  h4.microhead{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:none;
+    color:var(--slate);
+    font-weight:700;
+    margin:20px 0 8px;
+    padding-top:2px;
+  }
+
+  p{margin:0 0 14px;font-size:15.5px;}
+  ul,ol{margin:0 0 14px;padding-left:22px;font-size:15.5px;}
+  li{margin-bottom:5px;}
+
+  .term{
+    font-weight:600;
+    color:var(--ink);
+    border-bottom:1px dotted var(--gold);
+    cursor:help;
+  }
+
+  /* ===== Callouts ===== */
+  .callout{
+    border-radius:4px;
+    padding:16px 18px 16px 52px;
+    margin:18px 0;
+    position:relative;
+    font-size:14.5px;
+    border:1px solid;
+  }
+  .callout::before{
+    position:absolute;
+    left:16px;
+    top:15px;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.03em;
+  }
+  .callout .callout-title{
+    font-weight:700;
+    display:block;
+    margin-bottom:4px;
+    font-family:var(--sans);
+    font-size:13px;
+  }
+  .callout.important{background:var(--slate-soft);border-color:#C9D6E2;}
+  .callout.important::before{content:"i";color:var(--slate);font-style:italic;font-size:16px;left:19px;top:13px;}
+  .callout.important .callout-title{color:var(--slate);}
+
+  .callout.remember{background:var(--green-soft);border-color:#CBE0D1;}
+  .callout.remember::before{content:"✓";color:var(--green);font-size:15px;}
+  .callout.remember .callout-title{color:var(--green);}
+
+  .callout.warning{background:#FBF0E4;border-color:#EAD2AE;}
+  .callout.warning::before{content:"!";color:#A8681E;font-size:15px;left:20px;}
+  .callout.warning .callout-title{color:#A8681E;}
+
+  .callout.examtip{background:var(--gold-soft);border-color:#E4CE97;}
+  .callout.examtip::before{content:"★";color:var(--gold);font-size:14px;}
+  .callout.examtip .callout-title{color:#8A6323;}
+
+  .callout.example{background:#EFF0F6;border-color:#D2D5E8;}
+  .callout.example::before{content:"E";color:#4B4F8C;font-family:var(--serif);font-style:italic;font-size:15px;left:20px;}
+  .callout.example .callout-title{color:#4B4F8C;}
+
+  .callout.trap{background:var(--red-soft);border-color:#E5C3BD;}
+  .callout.trap::before{content:"✕";color:var(--red);font-size:13px;}
+  .callout.trap .callout-title{color:var(--red);}
+
+  /* ===== Tables ===== */
+  .table-wrap{
+    overflow-x:auto;
+    margin:18px 0;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--paper-raised);
+    font-size:14px;
+  }
+  th{
+    background:var(--ink);
+    color:#F0EEE6;
+    text-align:left;
+    padding:10px 14px;
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:12.5px;
+    letter-spacing:.02em;
+  }
+  td{
+    padding:10px 14px;
+    border-top:1px solid var(--rule-soft);
+    vertical-align:top;
+  }
+  tr:nth-child(even) td{background:#FBFAF7;}
+
+  /* ===== Accordion (collapsible) ===== */
+  .accordion{
+    border:1px solid var(--rule);
+    border-radius:4px;
+    margin:14px 0;
+    background:var(--paper-raised);
+    overflow:hidden;
+  }
+  .accordion + .accordion{margin-top:10px;}
+  .accordion-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 18px;
+    cursor:pointer;
+    font-weight:600;
+    color:var(--ink);
+    font-size:14.5px;
+    user-select:none;
+  }
+  .accordion-head:hover{background:#FBFAF7;}
+  .accordion-head .chev{
+    font-family:var(--mono);
+    color:var(--gold);
+    transition:transform .2s ease;
+    font-size:13px;
+  }
+  .accordion.open .accordion-head .chev{transform:rotate(90deg);}
+  .accordion-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+    padding:0 18px;
+    border-top:0 solid var(--rule-soft);
+  }
+  .accordion.open .accordion-body{
+    padding:4px 18px 16px;
+    border-top:1px solid var(--rule-soft);
+  }
+  .accordion-body p:last-child{margin-bottom:0;}
+
+  /* ===== Click to reveal ===== */
+  .reveal{
+    border:1px dashed #C9C2AE;
+    border-radius:4px;
+    padding:14px 16px;
+    margin:14px 0;
+    background:#FCFBF8;
+  }
+  .reveal-prompt{
+    cursor:pointer;
+    font-weight:600;
+    color:var(--slate);
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .reveal-prompt::before{
+    content:"▸";
+    color:var(--gold);
+    transition:transform .2s ease;
+  }
+  .reveal.open .reveal-prompt::before{transform:rotate(90deg);}
+  .reveal-answer{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-soft);font-size:14.5px;}
+  .reveal.open .reveal-answer{display:block;}
+
+  /* ===== Tabs ===== */
+  .tabs{margin:18px 0;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--paper-raised);}
+  .tab-bar{display:flex;background:#F1EEE5;border-bottom:1px solid var(--rule);flex-wrap:wrap;}
+  .tab-btn{
+    padding:11px 18px;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--text-mute);
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    font-family:var(--sans);
+  }
+  .tab-btn.active{color:var(--ink);border-bottom-color:var(--gold);background:var(--paper-raised);}
+  .tab-panel{display:none;padding:18px 20px;}
+  .tab-panel.active{display:block;}
+  .tab-panel p:last-child{margin-bottom:0;}
+
+  /* ===== Process flow diagram ===== */
+  .flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    align-items:stretch;
+    margin:20px 0;
+  }
+  .flow-step{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 14px;
+    flex:1 1 120px;
+    min-width:110px;
+    cursor:pointer;
+    position:relative;
+    text-align:center;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    transition:background .15s ease, border-color .15s;
+  }
+  .flow-step:hover, .flow-step.active{background:var(--slate-soft);border-color:var(--slate);color:var(--slate);}
+  .flow-arrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 6px;
+    color:var(--gold);
+    font-size:16px;
+    flex:0 0 auto;
+  }
+  .flow-detail{
+    background:var(--slate-soft);
+    border:1px solid #C9D6E2;
+    border-radius:4px;
+    padding:14px 16px;
+    margin-top:12px;
+    font-size:14px;
+    display:none;
+  }
+  .flow-detail.visible{display:block;}
+
+  /* ===== Knowledge check ===== */
+  .kc{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:20px 22px;
+    margin:18px 0;
+  }
+  .kc-q{font-weight:600;color:var(--ink);margin-bottom:12px;font-size:15px;}
+  .kc-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+  .kc-opt{
+    text-align:left;
+    padding:10px 14px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--paper);
+    cursor:pointer;
+    font-size:14px;
+    font-family:var(--sans);
+    color:var(--text);
+    transition:background .12s ease;
+  }
+  .kc-opt:hover{background:var(--slate-soft);}
+  .kc-opt.correct{background:var(--green-soft);border-color:var(--green);color:#234731;font-weight:600;}
+  .kc-opt.incorrect{background:var(--red-soft);border-color:var(--red);color:#5E241C;}
+  .kc-feedback{
+    font-size:13.5px;
+    padding:10px 12px;
+    border-radius:4px;
+    display:none;
+    background:#F1EEE5;
+    color:var(--text-mute);
+  }
+  .kc-feedback.visible{display:block;}
+
+  /* ===== Calc demo ===== */
+  .calc-box{
+    background:#FBFAF7;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:18px 20px;
+    margin:18px 0;
+  }
+  .calc-row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap;}
+  .calc-row label{font-size:13px;font-weight:600;color:var(--ink-soft);min-width:170px;}
+  .calc-row input{
+    padding:7px 10px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    font-size:14px;
+    font-family:var(--mono);
+    width:130px;
+  }
+  .calc-result{
+    margin-top:12px;
+    padding:12px 14px;
+    background:var(--gold-soft);
+    border:1px solid #E4CE97;
+    border-radius:4px;
+    font-size:14.5px;
+  }
+  .calc-result .big{font-family:var(--mono);font-size:20px;font-weight:700;color:#8A6323;}
+  .calc-formula{
+    font-family:var(--mono);
+    background:var(--ink);
+    color:#EFEAD9;
+    padding:12px 16px;
+    border-radius:4px;
+    font-size:13.5px;
+    margin-bottom:12px;
+    overflow-x:auto;
+  }
+
+  /* ===== Scenario What-would-you-do ===== */
+  .scenario{
+    background:#FBFAF7;
+    border:1px solid var(--rule);
+    border-left:4px solid var(--slate);
+    border-radius:4px;
+    padding:18px 20px;
+    margin:18px 0;
+  }
+  .scenario .stitle{font-weight:700;color:var(--slate);font-size:13px;margin-bottom:8px;font-family:var(--sans);letter-spacing:.01em;}
+  .scenario-choices{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+  .scenario-choice{
+    text-align:left;
+    padding:10px 14px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--paper-raised);
+    cursor:pointer;
+    font-size:14px;
+  }
+  .scenario-choice:hover{background:var(--slate-soft);}
+  .scenario-result{
+    display:none;
+    margin-top:12px;
+    padding:12px 14px;
+    border-radius:4px;
+    font-size:14px;
+  }
+  .scenario-result.visible{display:block;}
+  .scenario-result.good{background:var(--green-soft);color:#234731;border:1px solid #CBE0D1;}
+  .scenario-result.bad{background:var(--red-soft);color:#5E241C;border:1px solid #E5C3BD;}
+
+  /* ===== Glossary strip ===== */
+  .glossary{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 24px;
+    margin:16px 0;
+  }
+  @media(max-width:640px){.glossary{grid-template-columns:1fr;}}
+  .gterm{
+    border-bottom:1px solid var(--rule-soft);
+    padding-bottom:8px;
+  }
+  .gterm dt{font-weight:700;color:var(--ink);font-size:14px;}
+  .gterm dd{margin:2px 0 0;color:var(--text-mute);font-size:13.5px;}
+
+  /* ===== Back to top / end matter ===== */
+  .endmatter{
+    border-top:3px solid var(--ink);
+    margin-top:60px;
+    padding-top:30px;
+  }
+  .endmatter h2{
+    font-family:var(--serif);
+    color:var(--ink);
+    font-size:26px;
+    margin-bottom:16px;
+  }
+
+  .quickref-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:14px;
+    margin:16px 0;
+  }
+  .qr-card{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+  }
+  .qr-card h4{margin:0 0 8px;font-size:13px;color:var(--slate);font-family:var(--sans);}
+  .qr-card ul{margin:0;padding-left:18px;font-size:13.5px;}
+
+  .pq{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    margin-bottom:14px;
+    background:var(--paper-raised);
+    overflow:hidden;
+  }
+  .pq-q{padding:16px 18px;font-weight:600;color:var(--ink);font-size:14.5px;}
+  .pq-tag{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--text-mute);
+    display:block;
+    margin-bottom:6px;
+    letter-spacing:.02em;
+  }
+  .pq-opts{padding:0 18px 6px;display:flex;flex-direction:column;gap:6px;}
+  .pq-explain{
+    display:none;
+    padding:14px 18px;
+    background:#F7F6F3;
+    border-top:1px solid var(--rule-soft);
+    font-size:13.5px;
+  }
+  .pq-explain.visible{display:block;}
+
+  .back-to-top{
+    position:fixed;
+    bottom:28px;
+    right:28px;
+    background:var(--ink);
+    color:#F4F1E8;
+    border:none;
+    border-radius:50%;
+    width:44px;
+    height:44px;
+    cursor:pointer;
+    font-size:18px;
+    box-shadow:0 3px 10px rgba(0,0,0,.25);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+  }
+  .back-to-top.visible{display:flex;}
+
+  @media(max-width:880px){
+    .shell{grid-template-columns:1fr;}
+    .sidebar{
+      position:relative;
+      height:auto;
+      max-height:60vh;
+    }
+    .content-inner{padding:32px 20px 100px;}
+    .chapter-head h1{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="kicker">RIBO LEVEL 1 · ENTRY-LEVEL BROKER</div>
+      <h1>Chapter 4A</h1>
+      <div class="sub">Personal Lines Automobile — OAP 1 &amp; Mandatory Coverages</div>
+    </div>
+    <div class="toc" id="toc">
+      <!-- populated below, static links -->
+      <a href="#top" class="toc-chapter">Chapter Overview</a>
+
+      <a href="#s4-1" class="toc-section" data-sec="s4-1">4.1 Ontario Auto Insurance Framework</a>
+      <a href="#s4-2" class="toc-section" data-sec="s4-2">4.2 OAP 1</a>
+      <a href="#s4-3" class="toc-section" data-sec="s4-3">4.3 Mandatory Automobile Coverage</a>
+      <a href="#s4-4" class="toc-section" data-sec="s4-4">4.4 Liability Coverage</a>
+      <a href="#s4-5" class="toc-section" data-sec="s4-5">4.5 OPCF 44</a>
+      <a href="#s4-6" class="toc-section" data-sec="s4-6">4.6 Accident Benefits</a>
+      <a href="#s4-7" class="toc-section" data-sec="s4-7">4.7 DCPD</a>
+      <a href="#s4-8" class="toc-section" data-sec="s4-8">4.8 Uninsured Automobile</a>
+      <a href="#s4-9" class="toc-section" data-sec="s4-9">4.9 Physical Damage Coverage</a>
+      <a href="#s4-10" class="toc-section" data-sec="s4-10">4.10 Fault Determination</a>
+
+      <a href="#endmatter" class="toc-section" data-sec="endmatter" style="margin-top:6px;border-top:1px solid #263A52;padding-top:12px;">Part A Review &amp; Practice</a>
+    </div>
+    <div style="padding:10px 24px 0;font-size:11.5px;color:#8FA3B8;font-family:var(--mono);border-top:1px solid #263A52;margin-top:6px;">
+      Continues in Chapter 4B: Endorsements (OPCF 5–49), Statutory Conditions, Usage &amp; Specialty Vehicles
+    </div>
+    <div class="toc-progress">
+      <div class="label">CHAPTER PROGRESS</div>
+      <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="content-inner" id="top">
+
+      <div class="chapter-head">
+        <span class="kicker">CHAPTER 4A OF 13 (PART 1 OF 2)</span>
+        <h1>Personal Lines Automobile — OAP 1 &amp; Mandatory Coverages</h1>
+        <p class="dek">The most heavily weighted single line of business on the exam. This part covers the Ontario Automobile Policy (OAP 1) itself, the four mandatory coverages every Ontario auto policy must include, liability and accident benefits in depth, DCPD, uninsured automobile coverage, physical damage coverage, and fault determination. Endorsements and specialty/usage topics continue in Chapter 4B.</p>
+        <div class="comp-tags">
+          <span class="comp-tag">Competency 3 — Insurance Product &amp; Industry Knowledge</span>
+          <span class="comp-tag">Competency 4 — Risk Identification &amp; Assessment</span>
+          <span class="comp-tag">Competency 5 — Consulting &amp; Advising</span>
+          <span class="comp-tag">Content Domain — Personal Lines Automobile (25%)</span>
+        </div>
+      </div>
+
+      <div class="notice-box">
+        <strong>About this chapter.</strong> This is a self-study structure built from the RIBO Level 1 Master Syllabus. Chapter numbering here is a study sequence, not RIBO's official numbering. The <strong>official RIBO Competency Profile — Entry Level Broker</strong> remains the controlling reference; where this chapter states a regulatory rule, treat it as a study explanation and verify current requirements against RIBO, FSRA, and the Ontario Insurance Act before relying on it professionally or for exam sitting.
+      </div>
+
+      <!-- CONTENT SECTIONS WILL BE INSERTED HERE -->
+      <section class="topic" id="s4-1">
+  <h2><span class="num">4.1</span> Ontario Automobile Insurance Framework</h2>
+
+  <article class="subtopic">
+    <h3>Why automobile insurance is compulsory in Ontario</h3>
+    <p>Ontario requires every vehicle owner/operator to carry automobile insurance. This isn't just an insurer product decision — it's a legal requirement built into several layers of provincial law and regulatory oversight.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:26%">Source</th><th>Role in the framework</th></tr>
+        <tr><td><strong>Ontario Insurance Act</strong></td><td>The broad provincial statute establishing the general legal framework for insurance contracts in Ontario, including automobile insurance requirements (see 1.5).</td></tr>
+        <tr><td><strong>Compulsory Automobile Insurance Act</strong></td><td>The specific Ontario statute that makes carrying automobile insurance a legal requirement to operate a motor vehicle in the province, and sets out the minimum mandatory coverage.</td></tr>
+        <tr><td><strong>FSRA</strong></td><td>The regulator with direct oversight of the auto insurance market — approving rates and underwriting rules (see 1.5).</td></tr>
+        <tr><td><strong>Motor Vehicle Accident Claims Act</strong></td><td>Provides a fund and legal mechanism for compensating victims of accidents involving uninsured or unidentified (hit-and-run) motorists, functioning as a backstop when no applicable insurance responds directly.</td></tr>
+        <tr><td><strong>Ontario Motorist Protection Plan</strong></td><td>An earlier no-fault accident benefits framework in Ontario's auto insurance history; referenced here as part of the regulatory lineage that shaped today's accident benefits structure.</td></tr>
+        <tr><td><strong>OAP 1</strong></td><td>The standard Ontario Automobile Policy form used to actually deliver these mandatory (and optional) coverages to individual policyholders (see 4.2).</td></tr>
+      </table>
+    </div>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      <span style="font-weight:700;">VERIFY CURRENT VERSION BEFORE EXAM.</span> Automobile minimum limits, mandatory coverage amounts, and specific regulatory requirements are periodically updated by FSRA/the province. Learn the structure and relationships here; verify current numeric minimums against current FSRA/RIBO material before relying on them.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s4-2">
+  <h2><span class="num">4.2</span> OAP 1</h2>
+
+  <article class="subtopic">
+    <h3>Structure and purpose of the Ontario Automobile Policy</h3>
+    <p>OAP 1 is the standard policy form used for private passenger automobile insurance in Ontario. Like any policy (see 3.10), it has declarations, insuring agreements, definitions, conditions, exclusions, and limits — but it is also built around a specific numbered section structure unique to Ontario auto insurance.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:16%">Section</th><th>What it covers</th></tr>
+        <tr><td><strong>Section 1</strong></td><td>Third-party liability (see 4.4)</td></tr>
+        <tr><td><strong>Section 2</strong></td><td>Accident benefits (see 4.6)</td></tr>
+        <tr><td><strong>Section 3</strong></td><td>Uninsured automobile coverage (see 4.8)</td></tr>
+        <tr><td><strong>Section 4</strong></td><td>Loss of/damage to your own automobile — physical damage coverage (see 4.9)</td></tr>
+        <tr><td><strong>Section 5</strong></td><td>(Where applicable) transportation replacement/loss of use type provisions, depending on the specific policy edition and endorsements attached.</td></tr>
+        <tr><td><strong>Section 6 &amp; 7</strong></td><td>Statutory conditions and general policy conditions/provisions (see 4.12; also referenced for calculation content in 11.2).</td></tr>
+      </table>
+    </div>
+
+    <h4 class="microhead">WHO IS INSURED</h4>
+    <p>OAP 1 defines who qualifies as an insured person — typically including the named insured, their spouse, and other listed/qualifying drivers, subject to the policy's own definitions. Precisely who is insured for which section can differ (e.g., liability coverage may extend more broadly to permitted drivers than accident benefits eligibility does) — this is why the "who is insured?" step of the interpretation checklist (3.11) matters so much in auto claims.</p>
+
+    <h4 class="microhead">WHAT IS INSURED</h4>
+    <p>The described automobile(s) listed in the declarations, subject to the policy's definitions of what qualifies as an "automobile" under the policy.</p>
+
+    <h4 class="microhead">WHERE/WHEN COVERAGE APPLIES</h4>
+    <p>OAP 1 generally provides coverage while the vehicle is used or operated within Canada and the United States, subject to specific policy wording — coverage in other jurisdictions may be limited or require specific arrangements. Policy periods are defined in the declarations, with the policy renewing or expiring at the end of each term.</p>
+
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      OAP 1 is a <strong>modular</strong> policy — the mandatory sections apply to essentially every policy, but numerous optional endorsements (OPCFs — see Chapter 4B) can add, remove, or modify coverage for an individual policyholder. Never assume a specific policy matches the "standard" form exactly without checking the declarations and attached endorsements.
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s4-3">
+  <h2><span class="num">4.3</span> Mandatory Automobile Coverage</h2>
+
+  <article class="subtopic">
+    <h3>The four pillars every Ontario auto policy must include</h3>
+    <p class="lede">These four coverages form the compulsory minimum every Ontario automobile policy must contain — each is developed in full detail in its own subtopic (4.4, 4.6, 4.7, 4.8). This section is the map of how they relate.</p>
+
+    <div class="tabs">
+      <div class="tab-bar">
+        <button class="tab-btn active" data-target="tab-m1">Third-Party Liability</button>
+        <button class="tab-btn" data-target="tab-m2">Accident Benefits</button>
+        <button class="tab-btn" data-target="tab-m3">Uninsured Auto</button>
+        <button class="tab-btn" data-target="tab-m4">DCPD</button>
+      </div>
+      <div class="tab-panel active" id="tab-m1">
+        <p><strong>Purpose:</strong> Responds when the insured is legally liable for bodily injury or property damage to <em>others</em> arising from an automobile accident. This protects the insured's own assets from a lawsuit and compensates injured third parties. Covered in full at 4.4.</p>
+      </div>
+      <div class="tab-panel" id="tab-m2">
+        <p><strong>Purpose:</strong> Provides no-fault benefits (medical, rehabilitation, income replacement, and related benefits) to the insured and eligible occupants regardless of who caused the accident. Covered in full at 4.6.</p>
+      </div>
+      <div class="tab-panel" id="tab-m3">
+        <p><strong>Purpose:</strong> Responds when the insured is injured or their vehicle is damaged by an identified uninsured motorist or an unidentified (hit-and-run) motorist. Covered in full at 4.8.</p>
+      </div>
+      <div class="tab-panel" id="tab-m4">
+        <p><strong>Purpose:</strong> Direct Compensation for Property Damage — allows an not-at-fault (or partially not-at-fault) insured to claim directly against their <em>own</em> insurer for vehicle damage, rather than pursuing the other driver's insurer. Covered in full at 4.7.</p>
+      </div>
+    </div>
+
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      All four of these are <strong>mandatory minimums</strong> under Ontario law — a policy cannot be issued without them (subject to policy-specific minor variations in structure). Physical damage coverage for the insured's own vehicle beyond DCPD circumstances (collision/comprehensive — see 4.9) is generally optional, not mandatory.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s4-4">
+  <h2><span class="num">4.4</span> Liability Coverage</h2>
+
+  <article class="subtopic">
+    <h3>Third-party liability in depth</h3>
+    <p>Third-party liability coverage (Section 1 of OAP 1) responds when the insured is found legally liable for causing bodily injury or property damage to someone else through the use or operation of an automobile.</p>
+
+    <div class="glossary">
+      <div class="gterm"><dt>Bodily injury liability</dt><dd>Covers amounts the insured is legally liable to pay because of injury or death to another person.</dd></div>
+      <div class="gterm"><dt>Property damage liability</dt><dd>Covers amounts the insured is legally liable to pay because of damage to another person's property (typically their vehicle, but can include other property, e.g., a fence or building struck in an accident).</dd></div>
+      <div class="gterm"><dt>Legal liability</dt><dd>The underlying requirement that coverage responds only where the insured is actually found responsible in law for the loss — liability coverage does not simply pay out for any accident the insured is involved in.</dd></div>
+      <div class="gterm"><dt>Limits</dt><dd>The maximum the insurer will pay for a covered liability claim; Ontario mandates a minimum limit, though most insureds purchase higher limits given the potential severity of liability claims.</dd></div>
+      <div class="gterm"><dt>Defence</dt><dd>The insurer generally has both the right and the duty to defend the insured against a covered liability claim, including providing legal defence, as part of the liability insuring agreement.</dd></div>
+      <div class="gterm"><dt>Settlement</dt><dd>The insurer typically also holds the right to settle a claim within policy limits on the insured's behalf, which is a standard feature of how liability coverage operates.</dd></div>
+    </div>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      <span style="font-weight:700;">VERIFY CURRENT VERSION BEFORE EXAM</span> — Ontario's minimum mandatory liability limit is periodically reviewed by the province/FSRA. Know that a minimum exists and that it's commonly set well below what most brokers would actually recommend a client carry, but confirm the current specific dollar figure against up-to-date FSRA/RIBO material rather than relying on a memorized number that may be outdated.
+    </div>
+
+    <h4 class="microhead">RELATIONSHIP TO OPCF 44</h4>
+    <p>Standard liability coverage protects the insured when <em>they</em> are at fault and someone else is hurt. But what happens when someone else is at fault and doesn't carry enough liability insurance to fully compensate your own injured client? That gap is addressed by OPCF 44 — Family Protection Coverage, covered in full at 4.5.</p>
+
+    <div class="scenario">
+      <div class="stitle">WHAT WOULD YOU DO?</div>
+      <p>Your client is sued after an accident where they were found 70% at fault. The other driver's damages total $85,000. Your client carries the province's minimum mandatory liability limit.</p>
+      <div class="scenario-choices">
+        <button class="scenario-choice" data-result="l1a">Tell the client not to worry — liability coverage always fully covers whatever a court awards.</button>
+        <button class="scenario-choice" data-result="l1b">Explain that liability coverage responds up to the policy limit, and if the awarded amount at the client's share of fault exceeds that limit, the client could be personally responsible for the difference — and discuss whether higher limits make sense going forward.</button>
+      </div>
+      <div class="scenario-result" id="l1a"><strong>Not accurate.</strong> Liability coverage responds only up to the policy's limit. If the client's fault-adjusted liability exceeds that limit, the client can be personally exposed for the excess — this is precisely why many brokers recommend limits well above the mandatory minimum.</div>
+      <div class="scenario-result good" id="l1b"><strong>Correct approach.</strong> This is an accurate, transparent explanation of how limits work, and it opens a legitimate advisory conversation about whether the client's current limit is adequate for their actual risk exposure (see Chapter 9's consulting/advising framework).</div>
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s4-5">
+  <h2><span class="num">4.5</span> OPCF 44 — Family Protection Coverage</h2>
+
+  <article class="subtopic">
+    <h3>Purpose and mechanics</h3>
+    <p><strong>OPCF 44 (Family Protection Coverage)</strong> is one of the most commonly recommended optional endorsements in Ontario auto insurance, and is treated in depth here because of its close relationship to liability coverage (4.4).</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:20%">Element</th><th>Detail</th></tr>
+        <tr><td><strong>What it is</strong></td><td>Underinsured/uninsured motorist protection for bodily injury, extending to the insured, their spouse, and dependent relatives listed as insured persons under the policy.</td></tr>
+        <tr><td><strong>When it responds</strong></td><td>When an insured person is injured by an at-fault driver who has liability insurance, but that driver's liability limit is lower than the injured insured's own OPCF 44 limit — or in some uninsured-motorist scenarios.</td></tr>
+        <tr><td><strong>Purpose</strong></td><td>Closes the gap between what an underinsured at-fault driver's policy can pay and what the injured party's own damages actually total.</td></tr>
+        <tr><td><strong>Limits</strong></td><td>Typically matches the insured's own liability limit (this is a common recommendation — matching OPCF 44 to the liability limit purchased) so the insured's own protection isn't capped lower than what they've chosen to carry for their own liability exposure.</td></tr>
+      </table>
+    </div>
+
+    <h4 class="microhead">EXAMPLE SCENARIO</h4>
+    <div class="callout example">
+      <span class="callout-title">Example</span>
+      Your client is seriously injured by an at-fault driver who carries only the minimum mandatory liability limit. Your client's damages (medical costs, lost income, pain and suffering) total far more than that at-fault driver's available liability limit can pay. If your client carries OPCF 44 with an adequate limit, it can respond to make up the difference between what the at-fault driver's insurer pays and your client's own OPCF 44 limit.
+    </div>
+
+    <div class="callout trap">
+      <span class="callout-title">RIBO Exam Trap</span>
+      OPCF 44 is <strong>optional</strong>, not mandatory — despite being one of the most broker-recommended endorsements in practice. Don't confuse "commonly recommended" with "legally required." It's also worth distinguishing from DCPD (4.7) and standard accident benefits (4.6): OPCF 44 specifically addresses a liability shortfall from an underinsured/uninsured at-fault party, not first-party no-fault benefits or your own vehicle's physical damage.
+    </div>
+
+    <div class="reveal">
+      <div class="reveal-prompt">Quick check: why is matching OPCF 44 to your own liability limit a common recommendation?</div>
+      <div class="reveal-answer">
+        <p>If your OPCF 44 limit is lower than your own liability limit, you're effectively offering more protection to others (via your liability coverage) than you've secured for your own family in the reverse situation. Matching the limits ensures consistent protection whichever side of an accident your client ends up on.</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s4-6">
+  <h2><span class="num">4.6</span> Accident Benefits</h2>
+
+  <article class="subtopic">
+    <h3>Standard accident benefits — no-fault, first-party coverage</h3>
+    <p>Accident benefits (Section 2 of OAP 1) are <strong>no-fault</strong> — they respond regardless of who caused the accident, paid directly to the insured/eligible occupants by their own insurer. This distinguishes accident benefits fundamentally from liability coverage (4.4), which depends entirely on a fault/legal-liability finding.</p>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Medical and rehabilitation benefits</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Covers reasonable and necessary medical and rehabilitation expenses arising from injuries in the accident, subject to policy limits and, in Ontario's system, subject to interaction with provincial health coverage (OHIP) for certain costs.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Attendant care benefits</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Covers the cost of a person (professional or family member, depending on the specific benefit structure) to provide personal care and assistance to a severely injured insured who needs help with daily activities as a result of the accident.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Income replacement benefits</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Replaces a portion of lost income for an insured who cannot work due to accident-related injuries, subject to eligibility criteria and policy limits.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Caregiver benefits</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Available to an insured who was the primary caregiver for another person and can no longer provide that care due to accident-related injury — this benefit helps fund the cost of substitute care.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Housekeeping / home maintenance benefits</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Covers the reasonable cost of hiring someone to perform housekeeping and home maintenance tasks the insured can no longer perform themselves due to accident-related injury.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Death and funeral benefits</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Provides a benefit to eligible survivors/dependents when an insured dies as a result of the accident, and a separate benefit toward funeral expenses.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Optional accident benefit enhancements</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Insureds can typically purchase enhanced/optional benefit levels above the standard benefits — increasing limits on medical/rehabilitation, attendant care, income replacement, or other benefit categories for additional premium.</p>
+      </div>
+    </div>
+
+    <h4 class="microhead">ELIGIBILITY AND BASIC OPERATION</h4>
+    <p>Eligibility generally extends to the named insured, listed drivers, and certain occupants/dependents as defined by the policy and applicable regulation. Because these benefits are no-fault, they can respond even in a single-vehicle accident that was entirely the insured's own fault — the mechanism is deliberately fault-independent.</p>
+
+    <div class="callout trap">
+      <span class="callout-title">RIBO Exam Trap</span>
+      Do not confuse accident benefits (no-fault, pays regardless of fault, covers injury-related costs) with liability coverage (fault-based, pays third parties, covers legal liability) or with DCPD (fault-based determination process, but for property damage, not injury — see 4.7). These three respond to different questions: "was I hurt?" (accident benefits), "am I legally responsible for someone else's harm?" (liability), and "whose insurer pays for vehicle damage?" (DCPD).
+    </div>
+
+    <div class="kc">
+      <div class="kc-q">Quick check: Your client, driving alone, loses control and crashes into a guardrail — no other vehicle involved, and it was entirely their own driving error. Can they still receive accident benefits for their own injuries?</div>
+      <div class="kc-opts">
+        <button class="kc-opt" data-correct="true">Yes — accident benefits are no-fault and can respond even in a single-vehicle, self-caused accident</button>
+        <button class="kc-opt" data-correct="false">No — accident benefits only respond when another driver is at fault</button>
+      </div>
+      <div class="kc-feedback">Correct: <strong>Yes.</strong> Because accident benefits are no-fault, fault is irrelevant to eligibility — this is exactly what distinguishes them from liability coverage.</div>
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s4-7">
+  <h2><span class="num">4.7</span> Direct Compensation for Property Damage (DCPD)</h2>
+
+  <article class="subtopic">
+    <h3>What DCPD means, and why it exists</h3>
+    <p>DCPD allows an insured who is <strong>not at fault, or only partially at fault</strong>, for an accident to claim directly against their <em>own</em> insurer for damage to their vehicle (and certain contents), rather than having to pursue the at-fault driver's insurer directly.</p>
+    <p><strong>Why it exists:</strong> Before this kind of system, a not-at-fault driver would have to make a claim against the other driver's insurer, which is often slower and more adversarial. DCPD lets Ontario insureds deal with their own insurer — the company they already have a relationship with — while the two insurers sort out reimbursement between themselves behind the scenes.</p>
+
+    <h4 class="microhead">ELIGIBILITY AND CONDITIONS</h4>
+    <p>DCPD generally applies when:</p>
+    <ul>
+      <li>The accident involved another identified, insured motorist (DCPD depends on there being another insured party to allocate fault against).</li>
+      <li>The accident occurred in Ontario (DCPD is a made-in-Ontario inter-insurer agreement system).</li>
+      <li>The insured is not 100% at fault for the accident — DCPD responds on a fault-percentage basis.</li>
+    </ul>
+
+    <h4 class="microhead">FAULT DETERMINATION AND DCPD</h4>
+    <p>DCPD payments are calculated based on the insured's degree of fault as determined under Ontario's fault determination rules (see 4.10) — a not-at-fault driver (0% fault) generally has their own insurer pay their full covered damage without impact to their own claims history in the way an at-fault claim might, while a partially-at-fault driver's DCPD payment reflects their fault percentage.</p>
+
+    <h4 class="microhead">EXCEPTIONS — WHEN DCPD DOESN'T APPLY</h4>
+    <ul>
+      <li>Single-vehicle accidents (no other insured motorist to allocate fault against) — these are typically handled under the insured's own collision coverage instead, if purchased.</li>
+      <li>Accidents involving an out-of-province or uninsured motorist — DCPD depends on the inter-insurer arrangement that only works between participating Ontario-regulated insurers; an uninsured motorist scenario instead engages uninsured automobile coverage (4.8).</li>
+      <li>The insured is found 100% at fault — in that case there's no "other party's share" for DCPD to allocate; the insured's own collision coverage (if purchased) would respond instead.</li>
+    </ul>
+
+    <h4 class="microhead">RELATIONSHIP TO COLLISION COVERAGE</h4>
+    <p>DCPD and collision coverage (4.9) can overlap in practical effect (both can pay for damage to the insured's own vehicle) but are legally and structurally distinct: DCPD is a mandatory, fault-percentage-based coverage tied to accidents with another identified insured motorist; collision coverage is an optional coverage that responds to the insured's own vehicle damage from a collision, including single-vehicle accidents, generally subject to a deductible DCPD may not require in the same way.</p>
+
+    <div class="callout trap">
+      <span class="callout-title">RIBO Exam Trap — DCPD vs. Collision</span>
+      This is a named comparison pair on the official exam trap list. Remember: <strong>DCPD</strong> = claims against your own insurer when another identified motorist shares fault, calculated by fault percentage. <strong>Collision</strong> = optional first-party coverage for damage to your own vehicle from a collision, including single-vehicle accidents, generally subject to your own deductible regardless of fault.
+    </div>
+
+    <h4 class="microhead">CLAIM EXAMPLE</h4>
+    <div class="callout example">
+      <span class="callout-title">Example</span>
+      Your client is rear-ended at a red light by another identified, insured driver. Your client is found 0% at fault. Under DCPD, your client's own insurer pays for the vehicle damage in full (their being not at fault means no deductible applies in this scenario), and your client's insurer separately seeks reimbursement from the at-fault driver's insurer — a process your client doesn't need to be directly involved in.
+    </div>
+
+    <h4 class="microhead">COMMON MISUNDERSTANDINGS</h4>
+    <p>Clients often assume "not at fault" means "no insurance involvement at all" or that DCPD is somehow optional coverage they can decline — in fact DCPD is a mandatory component of every Ontario auto policy, and understanding it helps set correct expectations about which insurer a client will actually deal with after an accident.</p>
+  </article>
+</section>
+
+<section class="topic" id="s4-8">
+  <h2><span class="num">4.8</span> Uninsured Automobile</h2>
+
+  <article class="subtopic">
+    <h3>Coverage when the other party has no insurance</h3>
+    <p><strong>Uninsured automobile coverage</strong> (Section 3 of OAP 1) responds when the insured is injured, or their vehicle is damaged, by a motorist who has no automobile insurance at all, or by an unidentified motorist (a hit-and-run situation).</p>
+
+    <h4 class="microhead">COVERAGE RESPONSE</h4>
+    <p>This coverage fills the gap that would otherwise leave an insured with no recovery at all, since there's no other insurer to pursue and (in a hit-and-run) potentially no identifiable at-fault party to hold liable directly.</p>
+
+    <h4 class="microhead">UNINSURED DRIVERS AND HIT-AND-RUN — BASIC PRINCIPLES</h4>
+    <ul>
+      <li>Applies where the at-fault party is confirmed to carry no valid insurance.</li>
+      <li>Applies in hit-and-run situations where the at-fault driver cannot be identified, subject to policy conditions (e.g., timely reporting to police).</li>
+      <li>Connects to the Motor Vehicle Accident Claims Act (4.1) as a broader backstop mechanism in the Ontario system for situations involving uninsured motorists.</li>
+    </ul>
+
+    <div class="callout trap">
+      <span class="callout-title">RIBO Exam Trap</span>
+      Uninsured automobile coverage is <strong>distinct</strong> from DCPD (4.7) and from OPCF 44 (4.5). DCPD requires another <em>insured, identified</em> motorist. OPCF 44 responds to an <em>underinsured</em> (not uninsured) at-fault motorist's liability shortfall. Uninsured automobile coverage specifically addresses a motorist with <em>no insurance at all</em>, or an unidentified hit-and-run driver.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:24%">Situation</th><th>Coverage that typically responds</th></tr>
+        <tr><td>Other driver identified, insured, shares fault</td><td>DCPD (property damage) / standard liability process</td></tr>
+        <tr><td>Other driver identified, has insurance, but limits too low</td><td>OPCF 44 (if purchased)</td></tr>
+        <tr><td>Other driver has no insurance at all</td><td>Uninsured automobile coverage</td></tr>
+        <tr><td>Other driver unidentified (hit-and-run)</td><td>Uninsured automobile coverage, subject to conditions</td></tr>
+      </table>
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s4-9">
+  <h2><span class="num">4.9</span> Physical Damage Coverage</h2>
+
+  <article class="subtopic">
+    <h3>Optional coverage for your own vehicle</h3>
+    <p>Section 4 of OAP 1 covers physical loss or damage to the insured's own automobile. Unlike the four mandatory coverages (4.3), physical damage coverage is generally optional — though lenders often require it as a condition of a vehicle loan or lease.</p>
+
+    <div class="tabs">
+      <div class="tab-bar">
+        <button class="tab-btn active" data-target="tab-pd1">Collision</button>
+        <button class="tab-btn" data-target="tab-pd2">Comprehensive</button>
+        <button class="tab-btn" data-target="tab-pd3">Specified Perils</button>
+        <button class="tab-btn" data-target="tab-pd4">All Perils</button>
+      </div>
+      <div class="tab-panel active" id="tab-pd1">
+        <p><strong>Collision</strong> covers damage to the insured's vehicle resulting from a collision with another object or vehicle, or from upset (rollover) — regardless of fault, subject to the policy's deductible. This includes single-vehicle accidents that DCPD would not cover (see 4.7).</p>
+      </div>
+      <div class="tab-panel" id="tab-pd2">
+        <p><strong>Comprehensive</strong> covers loss or damage from a broad range of perils <em>other than</em> collision or upset — typically theft, vandalism, fire, falling objects, and weather-related events like hail. Comprehensive is an "all perils except those specifically excluded or written as collision" style of coverage.</p>
+      </div>
+      <div class="tab-panel" id="tab-pd3">
+        <p><strong>Specified perils</strong> is a narrower coverage that lists only the specific named perils covered (e.g., fire, theft, lightning) rather than the broader comprehensive approach — anything not on the specified list is not covered.</p>
+      </div>
+      <div class="tab-panel" id="tab-pd4">
+        <p><strong>All perils</strong> combines collision and comprehensive into a single broader coverage, covering both collision-type losses and the wider range of comprehensive perils under one combined coverage — often with a single deductible structure rather than separate ones.</p>
+      </div>
+    </div>
+
+    <div class="callout trap">
+      <span class="callout-title">RIBO Exam Trap — Comprehensive vs. Specified Perils</span>
+      This is a named comparison pair on the official exam trap list. <strong>Comprehensive</strong> = broad coverage for perils other than collision, with specific exclusions listed. <strong>Specified perils</strong> = narrow coverage listing only the perils that ARE covered — anything not listed is excluded. Comprehensive is "covered unless excluded"; specified perils is "excluded unless listed."
+    </div>
+
+    <h4 class="microhead">DEDUCTIBLES AND EXCLUSIONS</h4>
+    <p>Each physical damage coverage type carries its own deductible (often selectable by the client, with higher deductibles reducing premium). Common exclusions include wear and tear, mechanical breakdown (not caused by a covered peril), and damage arising from an excluded use of the vehicle (see 4.14-4.15 in Chapter 4B for usage-related coverage gaps).</p>
+  </article>
+</section>
+
+<section class="topic" id="s4-10">
+  <h2><span class="num">4.10</span> Fault Determination</h2>
+
+  <article class="subtopic">
+    <h3>How fault is determined, and why it matters</h3>
+    <p>Ontario uses a <strong>Fault Determination Rules</strong> framework (a regulation under the Insurance Act) that assigns fault percentages based on common accident scenarios, rather than leaving every case to an open-ended negotiation between insurers.</p>
+
+    <h4 class="microhead">WHY A RULES-BASED SYSTEM</h4>
+    <p>Standardized fault charts allow insurers to process DCPD claims (4.7) quickly and consistently, since fault can usually be determined from the accident's basic fact pattern (e.g., "rear-end collision," "left-turn collision") without a lengthy individualized dispute in most routine cases.</p>
+
+    <h4 class="microhead">HOW FAULT AFFECTS CLAIMS</h4>
+    <ul>
+      <li><strong>DCPD payout</strong> — the insured's own insurer pays based on the insured's fault percentage (0% fault = full payment from own insurer under DCPD; higher fault percentage = proportionally reduced DCPD payment, if any).</li>
+      <li><strong>Claims history/rating impact</strong> — being found at-fault (even partially) can affect future rating and premium, whereas a 0%-at-fault claim generally should not be treated as an at-fault claim for rating purposes.</li>
+      <li><strong>Liability exposure</strong> — fault percentage also feeds into how liability claims (4.4) from injured third parties are ultimately resolved.</li>
+    </ul>
+
+    <div class="scenario">
+      <div class="stitle">CLIENT EXAMPLE — APPLYING A FAULT CHART CONCEPT</div>
+      <p>Your client was making a left turn at an intersection when they were struck by an oncoming vehicle going straight through on a stale green light. Under Ontario's typical fault determination approach for this fact pattern, the left-turning driver is usually assigned most or all of the fault, since a left-turning vehicle generally must yield to oncoming through-traffic.</p>
+      <div class="scenario-choices">
+        <button class="scenario-choice" data-result="f1a">Tell the client they were definitely not at fault since the other driver "should have been paying more attention."</button>
+        <button class="scenario-choice" data-result="f1b">Explain that under the applicable fault determination approach, a left-turning driver is typically assigned significant fault for failing to yield to oncoming traffic, and that this will likely affect their DCPD payment and claims history — while noting the insurer makes the final determination based on the specific facts.</button>
+      </div>
+      <div class="scenario-result" id="f1a"><strong>Not accurate or appropriate.</strong> This sets an incorrect expectation. Fault determination rules are based on established, fact-pattern-driven rules, not a subjective assessment of which driver was "more careless" in the broker's own opinion.</div>
+      <div class="scenario-result good" id="f1b"><strong>Correct approach.</strong> This gives the client an accurate, honest expectation grounded in how the fault determination framework actually works for this type of accident, while correctly noting that the insurer — not the broker — makes the actual determination based on the specific facts.</div>
+    </div>
+
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      A broker's role in fault determination is to help the client understand the general framework and manage expectations — brokers do not adjust claims or make binding fault determinations themselves (see the broker's role in claims, 10.7).
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s4a-check">
+  <h2><span class="num">✓</span> Chapter 4A Knowledge Checks</h2>
+  <p class="lede" style="font-style:italic;color:var(--text-mute);margin-bottom:18px;">Quick checks across this part's core concepts. Select an answer to see feedback.</p>
+
+  <div class="kc">
+    <div class="kc-q">1. Which of the following is NOT one of the four mandatory automobile coverages in Ontario?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">Third-party liability</button>
+      <button class="kc-opt" data-correct="false">Accident benefits</button>
+      <button class="kc-opt" data-correct="true">Collision coverage</button>
+      <button class="kc-opt" data-correct="false">DCPD</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>Collision coverage.</strong> The four mandatory coverages are third-party liability, accident benefits, uninsured automobile, and DCPD. Collision coverage (physical damage to your own vehicle) is optional, though often required by a lender.</div>
+  </div>
+
+  <div class="kc">
+    <div class="kc-q">2. A client is injured by an at-fault driver whose liability limit is too low to cover the client's full damages. Which coverage is specifically designed to address this gap?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">DCPD</button>
+      <button class="kc-opt" data-correct="true">OPCF 44 — Family Protection Coverage</button>
+      <button class="kc-opt" data-correct="false">Collision coverage</button>
+      <button class="kc-opt" data-correct="false">Comprehensive coverage</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>OPCF 44.</strong> It specifically responds when an at-fault driver's own liability limit is insufficient to cover the injured insured's damages.</div>
+  </div>
+
+  <div class="kc">
+    <div class="kc-q">3. Which statement correctly distinguishes DCPD from collision coverage?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">They are the same coverage under different names</button>
+      <button class="kc-opt" data-correct="true">DCPD applies when another identified insured motorist shares fault and pays by fault percentage; collision is optional first-party coverage that applies even in single-vehicle accidents</button>
+      <button class="kc-opt" data-correct="false">Collision is mandatory and DCPD is optional</button>
+      <button class="kc-opt" data-correct="false">DCPD only applies to single-vehicle accidents</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>The second option.</strong> DCPD is mandatory and fault-percentage based, requiring another identified insured motorist. Collision is optional and applies even without another vehicle involved.</div>
+  </div>
+</section>
+
+
+<div class="endmatter" id="endmatter">
+  <h2>Key Takeaways</h2>
+  <ul>
+    <li>Ontario's compulsory auto insurance framework is built from the Insurance Act, the Compulsory Automobile Insurance Act, FSRA oversight, the Motor Vehicle Accident Claims Act, and delivered via the OAP 1 policy form.</li>
+    <li>OAP 1 is structured in numbered sections: Section 1 (liability), Section 2 (accident benefits), Section 3 (uninsured automobile), Section 4 (physical damage), with statutory/general conditions in later sections.</li>
+    <li>The four mandatory coverages are third-party liability, accident benefits, uninsured automobile, and DCPD — each answers a different question about who pays and why.</li>
+    <li>Liability coverage is fault-based and protects the insured against claims from injured third parties, up to the policy limit; amounts above the limit can expose the insured personally.</li>
+    <li>OPCF 44 addresses the gap left when an at-fault driver's own liability coverage is insufficient (underinsured, not uninsured) — commonly matched to the insured's own liability limit.</li>
+    <li>Accident benefits are no-fault and respond regardless of who caused the accident, covering medical/rehabilitation, attendant care, income replacement, caregiver, housekeeping/home maintenance, and death/funeral benefits.</li>
+    <li>DCPD lets a not-(or partially-)at-fault insured claim against their own insurer for vehicle damage when another identified, insured motorist shares fault — calculated by fault percentage, and distinct from collision coverage.</li>
+    <li>Uninsured automobile coverage responds specifically when the at-fault party has no insurance at all, or is an unidentified hit-and-run driver.</li>
+    <li>Physical damage coverage (collision, comprehensive, specified perils, all perils) is generally optional coverage for the insured's own vehicle, each with distinct scope and deductible structures.</li>
+    <li>Fault determination rules provide a standardized, fact-pattern-based approach to assigning fault, directly affecting DCPD payouts and claims/rating history.</li>
+  </ul>
+
+  <h2>Must-Know Terms</h2>
+  <div class="glossary">
+    <div class="gterm"><dt>OAP 1</dt><dd>The standard Ontario Automobile Policy form.</dd></div>
+    <div class="gterm"><dt>Third-party liability</dt><dd>Fault-based coverage for the insured's legal liability to others for bodily injury/property damage.</dd></div>
+    <div class="gterm"><dt>Accident benefits</dt><dd>No-fault benefits for the insured's own injury-related costs, regardless of fault.</dd></div>
+    <div class="gterm"><dt>OPCF 44</dt><dd>Family Protection Coverage — responds to an underinsured at-fault motorist's liability shortfall.</dd></div>
+    <div class="gterm"><dt>DCPD</dt><dd>Direct Compensation for Property Damage — claim against your own insurer, by fault percentage, when another identified insured motorist shares fault.</dd></div>
+    <div class="gterm"><dt>Uninsured automobile coverage</dt><dd>Responds when the at-fault party has no insurance, or is an unidentified hit-and-run driver.</dd></div>
+    <div class="gterm"><dt>Collision / Comprehensive / Specified perils / All perils</dt><dd>Optional physical damage coverage types for the insured's own vehicle, each with different scope.</dd></div>
+    <div class="gterm"><dt>Fault Determination Rules</dt><dd>A standardized, regulation-based framework assigning fault percentages for common accident scenarios.</dd></div>
+  </div>
+
+  <h2>Quick Reference</h2>
+  <div class="quickref-grid">
+    <div class="qr-card">
+      <h4>OAP 1 Section Map</h4>
+      <ul>
+        <li>Section 1 — Liability</li>
+        <li>Section 2 — Accident Benefits</li>
+        <li>Section 3 — Uninsured Automobile</li>
+        <li>Section 4 — Physical Damage</li>
+        <li>Sections 6-7 — Statutory/General Conditions</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Which Coverage Responds?</h4>
+      <ul>
+        <li>Other driver identified/insured, shares fault → DCPD</li>
+        <li>Other driver identified, underinsured → OPCF 44</li>
+        <li>Other driver uninsured/unidentified → Uninsured Auto</li>
+        <li>Own fault, single vehicle → Collision (if purchased)</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Fault vs. No-Fault</h4>
+      <ul>
+        <li>Fault-based: Liability, DCPD, OPCF 44</li>
+        <li>No-fault: Accident Benefits</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Physical Damage Types</h4>
+      <ul>
+        <li>Collision — collision/upset, any fault</li>
+        <li>Comprehensive — broad, non-collision perils</li>
+        <li>Specified perils — narrow, named only</li>
+        <li>All perils — collision + comprehensive combined</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Common Exam Traps</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th style="width:32%">Confusion Pair</th><th>The distinction that matters</th></tr>
+      <tr><td>DCPD vs. Collision</td><td>DCPD = mandatory, fault-percentage-based, requires another identified insured motorist. Collision = optional, applies even to single-vehicle accidents.</td></tr>
+      <tr><td>Comprehensive vs. Specified Perils</td><td>Comprehensive = broad, covered unless excluded. Specified perils = narrow, covered only if specifically listed.</td></tr>
+      <tr><td>Uninsured Automobile vs. OPCF 44</td><td>Uninsured Auto = other party has NO insurance (or is unidentified). OPCF 44 = other party HAS insurance but limits are too low.</td></tr>
+      <tr><td>Accident Benefits vs. Liability</td><td>Accident Benefits = no-fault, pays the insured's own injury costs. Liability = fault-based, pays third parties the insured harmed.</td></tr>
+      <tr><td>Mandatory vs. Optional Auto Coverage</td><td>Mandatory: liability, accident benefits, uninsured auto, DCPD. Optional: collision, comprehensive, specified perils, all perils, OPCF 44, and other endorsements (Chapter 4B).</td></tr>
+    </table>
+  </div>
+
+  <h2>Practice Questions</h2>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">KNOWLEDGE · DEFINITION · EASY</span>1. Which OAP 1 section covers third-party liability?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="true">A. Section 1</button>
+      <button class="pq-opt" data-correct="false">B. Section 2</button>
+      <button class="pq-opt" data-correct="false">C. Section 3</button>
+      <button class="pq-opt" data-correct="false">D. Section 4</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: A.</strong> Section 1 of OAP 1 covers third-party liability. Section 2 is accident benefits, Section 3 is uninsured automobile, and Section 4 is physical damage to the insured's own vehicle.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">COMPREHENSION · COMPARISON · MODERATE</span>2. A client asks why their accident benefits claim was approved even though they were 100% at fault for a single-vehicle accident. What is the best explanation?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. The insurer made an administrative error</button>
+      <button class="pq-opt" data-correct="true">B. Accident benefits are no-fault, so eligibility does not depend on who caused the accident</button>
+      <button class="pq-opt" data-correct="false">C. Accident benefits only apply to single-vehicle accidents</button>
+      <button class="pq-opt" data-correct="false">D. The client must have also had DCPD coverage</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> Accident benefits are fundamentally no-fault — this is the defining feature that distinguishes them from liability coverage and DCPD, both of which depend on fault determination.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">APPLICATION · SCENARIO · MODERATE</span>3. Your client is hit by a driver who fled the scene and cannot be identified. Which coverage is most directly relevant?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. DCPD</button>
+      <button class="pq-opt" data-correct="false">B. OPCF 44</button>
+      <button class="pq-opt" data-correct="true">C. Uninsured automobile coverage</button>
+      <button class="pq-opt" data-correct="false">D. Comprehensive coverage only</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: C.</strong> A hit-and-run (unidentified motorist) scenario is specifically addressed by uninsured automobile coverage, subject to policy conditions like timely reporting. DCPD requires an identified, insured other motorist, which isn't available here.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">APPLICATION · CALCULATION/CONCEPT · DIFFICULT</span>4. A client is found 30% at fault in a two-vehicle accident with another identified, insured driver, resulting in $10,000 of damage to the client's own vehicle. Under DCPD, approximately how would this typically be handled?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. The client's insurer pays nothing since the client was partially at fault</button>
+      <button class="pq-opt" data-correct="true">B. The client's own insurer pays DCPD based on the client's fault percentage, meaning the client would generally bear responsibility for their own 30% share (subject to policy specifics and any deductible)</button>
+      <button class="pq-opt" data-correct="false">C. The other driver's insurer pays 100% directly to the client</button>
+      <button class="pq-opt" data-correct="false">D. The client must choose between DCPD and collision coverage before any payment is made</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> DCPD calculates payment based on the insured's own fault percentage — a partially at-fault insured generally bears responsibility proportional to their own fault share, with their own insurer (not the other driver's) handling the claim.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">KNOWLEDGE · COMPARISON · EASY</span>5. Which of the following best distinguishes comprehensive coverage from specified perils coverage?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. Comprehensive only covers theft</button>
+      <button class="pq-opt" data-correct="true">B. Comprehensive covers a broad range of non-collision perils subject to specific exclusions; specified perils covers only the perils explicitly listed</button>
+      <button class="pq-opt" data-correct="false">C. Specified perils is broader than comprehensive</button>
+      <button class="pq-opt" data-correct="false">D. They are identical coverage types with different names</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> Comprehensive operates on a "covered unless excluded" basis for non-collision perils; specified perils operates on a "covered only if listed" basis, making it the narrower of the two.
+    </div>
+  </div>
+
+  <div class="callout important" style="margin-top:30px;">
+    <span class="callout-title">Continue to Chapter 4B</span>
+    Chapter 4B covers the 17 named OPCF endorsements in full detail (OPCF 5 through Conviction Protector), statutory conditions, auto exclusions and extensions, usage and classification, the sharing economy, specialty vehicles, and provincial differences — completing the Personal Lines Automobile content domain.
+  </div>
+</div>
+
+
+    </div>
+  </main>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script>
+// ===== Scrollspy =====
+const sections = document.querySelectorAll('section.topic, div#endmatter');
+const tocLinks = document.querySelectorAll('.toc-section');
+const barFill = document.getElementById('barFill');
+
+function onScroll(){
+  let current = null;
+  const scrollPos = window.scrollY + 140;
+  sections.forEach(sec=>{
+    if(sec.offsetTop <= scrollPos) current = sec.id;
+  });
+  tocLinks.forEach(l=>{
+    l.classList.toggle('active', l.dataset.sec === current);
+  });
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? Math.min(100, (window.scrollY/docHeight)*100) : 0;
+  barFill.style.width = pct+'%';
+
+  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 600);
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
+
+document.getElementById('backToTop').addEventListener('click', ()=>{
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+// ===== Accordion =====
+document.addEventListener('click', (e)=>{
+  const head = e.target.closest('.accordion-head');
+  if(head){
+    const acc = head.closest('.accordion');
+    const body = acc.querySelector('.accordion-body');
+    const isOpen = acc.classList.contains('open');
+    if(isOpen){
+      acc.classList.remove('open');
+      body.style.maxHeight = null;
+    } else {
+      acc.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 40 + 'px';
+    }
+  }
+});
+
+// ===== Reveal =====
+document.addEventListener('click', (e)=>{
+  const prompt = e.target.closest('.reveal-prompt');
+  if(prompt){
+    prompt.closest('.reveal').classList.toggle('open');
+  }
+});
+
+// ===== Tabs =====
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.tab-btn');
+  if(btn){
+    const tabs = btn.closest('.tabs');
+    tabs.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    tabs.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    tabs.querySelector('#'+btn.dataset.target).classList.add('active');
+  }
+});
+
+// ===== Flow diagram =====
+document.addEventListener('click', (e)=>{
+  const step = e.target.closest('.flow-step');
+  if(step){
+    const flowWrap = step.closest('.flow-wrap');
+    flowWrap.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));
+    step.classList.add('active');
+    const detailId = step.dataset.detail;
+    flowWrap.querySelectorAll('.flow-detail').forEach(d=>d.classList.remove('visible'));
+    document.getElementById(detailId).classList.add('visible');
+  }
+});
+
+// ===== Knowledge check =====
+document.addEventListener('click', (e)=>{
+  const opt = e.target.closest('.kc-opt');
+  if(opt){
+    const kc = opt.closest('.kc');
+    if(kc.dataset.answered === 'true') return;
+    kc.dataset.answered = 'true';
+    const correct = opt.dataset.correct === 'true';
+    kc.querySelectorAll('.kc-opt').forEach(o=>{
+      if(o.dataset.correct === 'true') o.classList.add('correct');
+      else if(o===opt) o.classList.add('incorrect');
+    });
+    const fb = kc.querySelector('.kc-feedback');
+    fb.classList.add('visible');
+  }
+});
+
+// ===== Scenario choices =====
+document.addEventListener('click', (e)=>{
+  const choice = e.target.closest('.scenario-choice');
+  if(choice){
+    const scenario = choice.closest('.scenario');
+    if(scenario.dataset.answered === 'true') return;
+    scenario.dataset.answered = 'true';
+    const resultId = choice.dataset.result;
+    scenario.querySelectorAll('.scenario-result').forEach(r=>r.classList.remove('visible'));
+    document.getElementById(resultId).classList.add('visible');
+  }
+});
+
+// ===== Practice question toggle =====
+document.addEventListener('click', (e)=>{
+  const pqq = e.target.closest('.pq-opt');
+  if(pqq){
+    const pq = pqq.closest('.pq');
+    if(pq.dataset.answered === 'true') return;
+    pq.dataset.answered = 'true';
+    pq.querySelectorAll('.pq-opt').forEach(o=>{
+      if(o.dataset.correct === 'true') o.classList.add('correct');
+      else if(o===pqq) o.classList.add('incorrect');
+    });
+    pq.querySelector('.pq-explain').classList.add('visible');
+  }
+});
+
+</script>
+</body>
+</html>

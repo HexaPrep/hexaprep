@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 2 — Professionalism, Ethics, Privacy &amp; Consumer Protection | RIBO Level 1</title>
+<style>
+  :root{
+    --ink:#16273D;
+    --ink-soft:#2C4058;
+    --paper:#F7F6F3;
+    --paper-raised:#FFFFFF;
+    --rule:#DAD5C9;
+    --rule-soft:#E9E6DD;
+    --gold:#B8873A;
+    --gold-soft:#F1E4C9;
+    --slate:#3E5C76;
+    --slate-soft:#E3EAF0;
+    --green:#3F6B4E;
+    --green-soft:#E4EEE6;
+    --red:#8C3B32;
+    --red-soft:#F4E3E0;
+    --text:#242A31;
+    --text-mute:#5B6470;
+    --serif: Iowan Old Style, "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", "Cascadia Code", Consolas, monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--slate);}
+
+  /* ===== Layout shell ===== */
+  .shell{
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    min-height:100vh;
+  }
+
+  /* ===== Sidebar ===== */
+  .sidebar{
+    background:var(--ink);
+    color:#D9DFE6;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+    padding:28px 0 40px;
+    border-right:1px solid #0E1A28;
+  }
+  .sidebar::-webkit-scrollbar{width:8px;}
+  .sidebar::-webkit-scrollbar-thumb{background:#2C4058;border-radius:4px;}
+
+  .sidebar-brand{
+    padding:0 24px 20px;
+    border-bottom:1px solid #263A52;
+    margin-bottom:8px;
+  }
+  .sidebar-brand .kicker{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.04em;
+    color:#8FA3B8;
+  }
+  .sidebar-brand h1{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:600;
+    margin:6px 0 2px;
+    color:#F4F1E8;
+    line-height:1.3;
+  }
+  .sidebar-brand .sub{
+    font-size:12.5px;
+    color:#9AACBE;
+  }
+
+  .toc{padding:8px 0;}
+  .toc-chapter{
+    display:block;
+    padding:10px 24px;
+    font-family:var(--serif);
+    font-size:14px;
+    font-weight:600;
+    color:#F4F1E8;
+    text-decoration:none;
+    border-left:3px solid transparent;
+  }
+  .toc-section{
+    display:block;
+    padding:6px 24px 6px 32px;
+    font-size:13px;
+    color:#B7C4D2;
+    text-decoration:none;
+    border-left:3px solid transparent;
+    transition:background .12s ease, color .12s ease;
+  }
+  .toc-section:hover{background:#1D3049;color:#F4F1E8;}
+  .toc-section.active{
+    background:#22354D;
+    color:#F1D9A8;
+    border-left-color:var(--gold);
+    font-weight:600;
+  }
+  .toc-progress{
+    margin:14px 24px 4px;
+    padding-top:14px;
+    border-top:1px solid #263A52;
+  }
+  .toc-progress .label{
+    font-size:11px;
+    color:#8FA3B8;
+    font-family:var(--mono);
+    letter-spacing:.03em;
+    margin-bottom:6px;
+  }
+  .bar-track{
+    height:6px;
+    background:#1D3049;
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background:linear-gradient(90deg,var(--gold),#D9AE6A);
+    width:0%;
+    transition:width .25s ease;
+  }
+
+  /* ===== Main content ===== */
+  main{
+    padding:0;
+    max-width:900px;
+  }
+  .content-inner{
+    padding:48px 56px 120px;
+  }
+
+  .chapter-head{
+    margin-bottom:40px;
+    padding-bottom:28px;
+    border-bottom:2px solid var(--ink);
+  }
+  .chapter-head .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--gold);
+    background:var(--gold-soft);
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:3px;
+    margin-bottom:14px;
+  }
+  .chapter-head h1{
+    font-family:var(--serif);
+    font-size:38px;
+    line-height:1.2;
+    margin:0 0 12px;
+    color:var(--ink);
+  }
+  .chapter-head .dek{
+    font-size:16px;
+    color:var(--text-mute);
+    max-width:70ch;
+  }
+  .comp-tags{
+    margin-top:18px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .comp-tag{
+    font-size:12px;
+    font-family:var(--mono);
+    background:var(--slate-soft);
+    color:var(--slate);
+    padding:4px 10px;
+    border-radius:3px;
+    border:1px solid #C9D6E2;
+  }
+
+  .notice-box{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink-soft);
+    padding:16px 20px;
+    margin:0 0 40px;
+    font-size:14px;
+    color:var(--text-mute);
+  }
+  .notice-box strong{color:var(--ink);}
+
+  section.topic{
+    margin-bottom:56px;
+    scroll-margin-top:24px;
+  }
+  section.topic > h2{
+    font-family:var(--serif);
+    font-size:28px;
+    color:var(--ink);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:10px;
+    margin:0 0 20px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  section.topic > h2 .num{
+    font-family:var(--mono);
+    font-size:16px;
+    color:var(--gold);
+    font-weight:600;
+  }
+
+  article.subtopic{
+    margin-bottom:38px;
+    scroll-margin-top:24px;
+  }
+  article.subtopic > h3{
+    font-family:var(--serif);
+    font-size:21px;
+    color:var(--ink-soft);
+    margin:0 0 6px;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+  article.subtopic > h3 .num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-mute);
+    font-weight:400;
+  }
+  article.subtopic .lede{
+    font-size:14px;
+    color:var(--text-mute);
+    font-style:italic;
+    margin:0 0 16px;
+  }
+
+  h4.microhead{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:none;
+    color:var(--slate);
+    font-weight:700;
+    margin:20px 0 8px;
+    padding-top:2px;
+  }
+
+  p{margin:0 0 14px;font-size:15.5px;}
+  ul,ol{margin:0 0 14px;padding-left:22px;font-size:15.5px;}
+  li{margin-bottom:5px;}
+
+  .term{
+    font-weight:600;
+    color:var(--ink);
+    border-bottom:1px dotted var(--gold);
+    cursor:help;
+  }
+
+  /* ===== Callouts ===== */
+  .callout{
+    border-radius:4px;
+    padding:16px 18px 16px 52px;
+    margin:18px 0;
+    position:relative;
+    font-size:14.5px;
+    border:1px solid;
+  }
+  .callout::before{
+    position:absolute;
+    left:16px;
+    top:15px;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.03em;
+  }
+  .callout .callout-title{
+    font-weight:700;
+    display:block;
+    margin-bottom:4px;
+    font-family:var(--sans);
+    font-size:13px;
+  }
+  .callout.important{background:var(--slate-soft);border-color:#C9D6E2;}
+  .callout.important::before{content:"i";color:var(--slate);font-style:italic;font-size:16px;left:19px;top:13px;}
+  .callout.important .callout-title{color:var(--slate);}
+
+  .callout.remember{background:var(--green-soft);border-color:#CBE0D1;}
+  .callout.remember::before{content:"✓";color:var(--green);font-size:15px;}
+  .callout.remember .callout-title{color:var(--green);}
+
+  .callout.warning{background:#FBF0E4;border-color:#EAD2AE;}
+  .callout.warning::before{content:"!";color:#A8681E;font-size:15px;left:20px;}
+  .callout.warning .callout-title{color:#A8681E;}
+
+  .callout.examtip{background:var(--gold-soft);border-color:#E4CE97;}
+  .callout.examtip::before{content:"★";color:var(--gold);font-size:14px;}
+  .callout.examtip .callout-title{color:#8A6323;}
+
+  .callout.example{background:#EFF0F6;border-color:#D2D5E8;}
+  .callout.example::before{content:"E";color:#4B4F8C;font-family:var(--serif);font-style:italic;font-size:15px;left:20px;}
+  .callout.example .callout-title{color:#4B4F8C;}
+
+  .callout.trap{background:var(--red-soft);border-color:#E5C3BD;}
+  .callout.trap::before{content:"✕";color:var(--red);font-size:13px;}
+  .callout.trap .callout-title{color:var(--red);}
+
+  /* ===== Tables ===== */
+  .table-wrap{
+    overflow-x:auto;
+    margin:18px 0;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--paper-raised);
+    font-size:14px;
+  }
+  th{
+    background:var(--ink);
+    color:#F0EEE6;
+    text-align:left;
+    padding:10px 14px;
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:12.5px;
+    letter-spacing:.02em;
+  }
+  td{
+    padding:10px 14px;
+    border-top:1px solid var(--rule-soft);
+    vertical-align:top;
+  }
+  tr:nth-child(even) td{background:#FBFAF7;}
+
+  /* ===== Accordion (collapsible) ===== */
+  .accordion{
+    border:1px solid var(--rule);
+    border-radius:4px;
+    margin:14px 0;
+    background:var(--paper-raised);
+    overflow:hidden;
+  }
+  .accordion + .accordion{margin-top:10px;}
+  .accordion-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 18px;
+    cursor:pointer;
+    font-weight:600;
+    color:var(--ink);
+    font-size:14.5px;
+    user-select:none;
+  }
+  .accordion-head:hover{background:#FBFAF7;}
+  .accordion-head .chev{
+    font-family:var(--mono);
+    color:var(--gold);
+    transition:transform .2s ease;
+    font-size:13px;
+  }
+  .accordion.open .accordion-head .chev{transform:rotate(90deg);}
+  .accordion-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+    padding:0 18px;
+    border-top:0 solid var(--rule-soft);
+  }
+  .accordion.open .accordion-body{
+    padding:4px 18px 16px;
+    border-top:1px solid var(--rule-soft);
+  }
+  .accordion-body p:last-child{margin-bottom:0;}
+
+  /* ===== Click to reveal ===== */
+  .reveal{
+    border:1px dashed #C9C2AE;
+    border-radius:4px;
+    padding:14px 16px;
+    margin:14px 0;
+    background:#FCFBF8;
+  }
+  .reveal-prompt{
+    cursor:pointer;
+    font-weight:600;
+    color:var(--slate);
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .reveal-prompt::before{
+    content:"▸";
+    color:var(--gold);
+    transition:transform .2s ease;
+  }
+  .reveal.open .reveal-prompt::before{transform:rotate(90deg);}
+  .reveal-answer{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-soft);font-size:14.5px;}
+  .reveal.open .reveal-answer{display:block;}
+
+  /* ===== Tabs ===== */
+  .tabs{margin:18px 0;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--paper-raised);}
+  .tab-bar{display:flex;background:#F1EEE5;border-bottom:1px solid var(--rule);flex-wrap:wrap;}
+  .tab-btn{
+    padding:11px 18px;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--text-mute);
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    font-family:var(--sans);
+  }
+  .tab-btn.active{color:var(--ink);border-bottom-color:var(--gold);background:var(--paper-raised);}
+  .tab-panel{display:none;padding:18px 20px;}
+  .tab-panel.active{display:block;}
+  .tab-panel p:last-child{margin-bottom:0;}
+
+  /* ===== Process flow diagram ===== */
+  .flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    align-items:stretch;
+    margin:20px 0;
+  }
+  .flow-step{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 14px;
+    flex:1 1 120px;
+    min-width:110px;
+    cursor:pointer;
+    position:relative;
+    text-align:center;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    transition:background .15s ease, border-color .15s;
+  }
+  .flow-step:hover, .flow-step.active{background:var(--slate-soft);border-color:var(--slate);color:var(--slate);}
+  .flow-arrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 6px;
+    color:var(--gold);
+    font-size:16px;
+    flex:0 0 auto;
+  }
+  .flow-detail{
+    background:var(--slate-soft);
+    border:1px solid #C9D6E2;
+    border-radius:4px;
+    padding:14px 16px;
+    margin-top:12px;
+    font-size:14px;
+    display:none;
+  }
+  .flow-detail.visible{display:block;}
+
+  /* ===== Knowledge check ===== */
+  .kc{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:20px 22px;
+    margin:18px 0;
+  }
+  .kc-q{font-weight:600;color:var(--ink);margin-bottom:12px;font-size:15px;}
+  .kc-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+  .kc-opt{
+    text-align:left;
+    padding:10px 14px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--paper);
+    cursor:pointer;
+    font-size:14px;
+    font-family:var(--sans);
+    color:var(--text);
+    transition:background .12s ease;
+  }
+  .kc-opt:hover{background:var(--slate-soft);}
+  .kc-opt.correct{background:var(--green-soft);border-color:var(--green);color:#234731;font-weight:600;}
+  .kc-opt.incorrect{background:var(--red-soft);border-color:var(--red);color:#5E241C;}
+  .kc-feedback{
+    font-size:13.5px;
+    padding:10px 12px;
+    border-radius:4px;
+    display:none;
+    background:#F1EEE5;
+    color:var(--text-mute);
+  }
+  .kc-feedback.visible{display:block;}
+
+  /* ===== Calc demo ===== */
+  .calc-box{
+    background:#FBFAF7;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:18px 20px;
+    margin:18px 0;
+  }
+  .calc-row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap;}
+  .calc-row label{font-size:13px;font-weight:600;color:var(--ink-soft);min-width:170px;}
+  .calc-row input{
+    padding:7px 10px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    font-size:14px;
+    font-family:var(--mono);
+    width:130px;
+  }
+  .calc-result{
+    margin-top:12px;
+    padding:12px 14px;
+    background:var(--gold-soft);
+    border:1px solid #E4CE97;
+    border-radius:4px;
+    font-size:14.5px;
+  }
+  .calc-result .big{font-family:var(--mono);font-size:20px;font-weight:700;color:#8A6323;}
+  .calc-formula{
+    font-family:var(--mono);
+    background:var(--ink);
+    color:#EFEAD9;
+    padding:12px 16px;
+    border-radius:4px;
+    font-size:13.5px;
+    margin-bottom:12px;
+    overflow-x:auto;
+  }
+
+  /* ===== Scenario What-would-you-do ===== */
+  .scenario{
+    background:#FBFAF7;
+    border:1px solid var(--rule);
+    border-left:4px solid var(--slate);
+    border-radius:4px;
+    padding:18px 20px;
+    margin:18px 0;
+  }
+  .scenario .stitle{font-weight:700;color:var(--slate);font-size:13px;margin-bottom:8px;font-family:var(--sans);letter-spacing:.01em;}
+  .scenario-choices{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+  .scenario-choice{
+    text-align:left;
+    padding:10px 14px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--paper-raised);
+    cursor:pointer;
+    font-size:14px;
+  }
+  .scenario-choice:hover{background:var(--slate-soft);}
+  .scenario-result{
+    display:none;
+    margin-top:12px;
+    padding:12px 14px;
+    border-radius:4px;
+    font-size:14px;
+  }
+  .scenario-result.visible{display:block;}
+  .scenario-result.good{background:var(--green-soft);color:#234731;border:1px solid #CBE0D1;}
+  .scenario-result.bad{background:var(--red-soft);color:#5E241C;border:1px solid #E5C3BD;}
+
+  /* ===== Glossary strip ===== */
+  .glossary{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 24px;
+    margin:16px 0;
+  }
+  @media(max-width:640px){.glossary{grid-template-columns:1fr;}}
+  .gterm{
+    border-bottom:1px solid var(--rule-soft);
+    padding-bottom:8px;
+  }
+  .gterm dt{font-weight:700;color:var(--ink);font-size:14px;}
+  .gterm dd{margin:2px 0 0;color:var(--text-mute);font-size:13.5px;}
+
+  /* ===== Back to top / end matter ===== */
+  .endmatter{
+    border-top:3px solid var(--ink);
+    margin-top:60px;
+    padding-top:30px;
+  }
+  .endmatter h2{
+    font-family:var(--serif);
+    color:var(--ink);
+    font-size:26px;
+    margin-bottom:16px;
+  }
+
+  .quickref-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:14px;
+    margin:16px 0;
+  }
+  .qr-card{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+  }
+  .qr-card h4{margin:0 0 8px;font-size:13px;color:var(--slate);font-family:var(--sans);}
+  .qr-card ul{margin:0;padding-left:18px;font-size:13.5px;}
+
+  .pq{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    margin-bottom:14px;
+    background:var(--paper-raised);
+    overflow:hidden;
+  }
+  .pq-q{padding:16px 18px;font-weight:600;color:var(--ink);font-size:14.5px;}
+  .pq-tag{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--text-mute);
+    display:block;
+    margin-bottom:6px;
+    letter-spacing:.02em;
+  }
+  .pq-opts{padding:0 18px 6px;display:flex;flex-direction:column;gap:6px;}
+  .pq-explain{
+    display:none;
+    padding:14px 18px;
+    background:#F7F6F3;
+    border-top:1px solid var(--rule-soft);
+    font-size:13.5px;
+  }
+  .pq-explain.visible{display:block;}
+
+  .back-to-top{
+    position:fixed;
+    bottom:28px;
+    right:28px;
+    background:var(--ink);
+    color:#F4F1E8;
+    border:none;
+    border-radius:50%;
+    width:44px;
+    height:44px;
+    cursor:pointer;
+    font-size:18px;
+    box-shadow:0 3px 10px rgba(0,0,0,.25);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+  }
+  .back-to-top.visible{display:flex;}
+
+  @media(max-width:880px){
+    .shell{grid-template-columns:1fr;}
+    .sidebar{
+      position:relative;
+      height:auto;
+      max-height:60vh;
+    }
+    .content-inner{padding:32px 20px 100px;}
+    .chapter-head h1{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="kicker">RIBO LEVEL 1 · ENTRY-LEVEL BROKER</div>
+      <h1>Chapter 2</h1>
+      <div class="sub">Professionalism, Ethics, Privacy &amp; Consumer Protection</div>
+    </div>
+    <div class="toc" id="toc">
+      <!-- populated below, static links -->
+      <a href="#top" class="toc-chapter">Chapter Overview</a>
+
+      <a href="#s2-1" class="toc-section" data-sec="s2-1">2.1 Professionalism</a>
+      <a href="#s2-2" class="toc-section" data-sec="s2-2">2.2 RIBO Code of Conduct</a>
+      <a href="#s2-3" class="toc-section" data-sec="s2-3">2.3 Fair Treatment of Consumers</a>
+      <a href="#s2-4" class="toc-section" data-sec="s2-4">2.4 CISRO Code of Conduct</a>
+      <a href="#s2-5" class="toc-section" data-sec="s2-5">2.5 Conflicts of Interest</a>
+      <a href="#s2-6" class="toc-section" data-sec="s2-6">2.6 Disclosure</a>
+      <a href="#s2-7" class="toc-section" data-sec="s2-7">2.7 Referral Fees</a>
+      <a href="#s2-8" class="toc-section" data-sec="s2-8">2.8 Consent</a>
+      <a href="#s2-9" class="toc-section" data-sec="s2-9">2.9 Negative Billing</a>
+      <a href="#s2-10" class="toc-section" data-sec="s2-10">2.10 Privacy (PIPEDA)</a>
+      <a href="#s2-11" class="toc-section" data-sec="s2-11">2.11 CASL</a>
+      <a href="#s2-12" class="toc-section" data-sec="s2-12">2.12 Ethical Decision-Making</a>
+
+      <a href="#endmatter" class="toc-section" data-sec="endmatter" style="margin-top:6px;border-top:1px solid #263A52;padding-top:12px;">Chapter Review &amp; Practice</a>
+    </div>
+    <div class="toc-progress">
+      <div class="label">CHAPTER PROGRESS</div>
+      <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="content-inner" id="top">
+
+      <div class="chapter-head">
+        <span class="kicker">CHAPTER 2 OF 13</span>
+        <h1>Professionalism, Ethics, Privacy &amp; Consumer Protection</h1>
+        <p class="dek">What it actually means to act as a licensed professional in Ontario: the RIBO and CISRO conduct standards, how to handle conflicts of interest and disclosure honestly, the rules around consent and referral fees, and the privacy law (PIPEDA) and anti-spam law (CASL) that govern how brokers handle client information and communication.</p>
+        <div class="comp-tags">
+          <span class="comp-tag">Competency 2 — Professionalism, Integrity &amp; Ethics</span>
+          <span class="comp-tag">Content Domain — General Insurance (25%)</span>
+        </div>
+      </div>
+
+      <div class="notice-box">
+        <strong>About this chapter.</strong> This is a self-study structure built from the RIBO Level 1 Master Syllabus. Chapter numbering here is a study sequence, not RIBO's official numbering. The <strong>official RIBO Competency Profile — Entry Level Broker</strong> remains the controlling reference; where this chapter states a regulatory rule, treat it as a study explanation and verify current requirements against RIBO, FSRA, and the Ontario Insurance Act before relying on it professionally or for exam sitting.
+      </div>
+
+      <!-- CONTENT SECTIONS WILL BE INSERTED HERE -->
+      <section class="topic" id="s2-1">
+  <h2><span class="num">2.1</span> Professionalism</h2>
+
+  <article class="subtopic">
+    <h3>What professionalism means for a broker</h3>
+    <p>Professionalism is the standard of conduct expected of someone who holds a position of trust and expertise that clients rely on for decisions with real financial consequences. For a RIBO-licensed broker, professionalism is not a soft or optional quality — it is the practical expression of the legal and ethical duties the licence carries.</p>
+    <p>The core components brokers are expected to demonstrate:</p>
+    <div class="glossary">
+      <div class="gterm"><dt>Accountability</dt><dd>Owning the outcomes of your advice and actions, including mistakes.</dd></div>
+      <div class="gterm"><dt>Competence</dt><dd>Only providing advice and service within your actual knowledge and licensing scope.</dd></div>
+      <div class="gterm"><dt>Honesty &amp; integrity</dt><dd>Representing facts, coverage, and limitations truthfully, even when it's inconvenient.</dd></div>
+      <div class="gterm"><dt>Fairness &amp; respect</dt><dd>Treating every client equitably regardless of the size of their business or premium.</dd></div>
+    </div>
+
+    <h4 class="microhead">WORKING UNDER SUPERVISION</h4>
+    <p>As an entry-level broker, you practise under a defined period of <strong>supervision</strong> by your Principal Broker or a designated supervisor (see 1.6). This is not a formality — it means your work is subject to review, and part of professionalism at this stage is knowing when to escalate a question rather than guessing. Recognizing the limits of your own competence and consulting your supervisor is itself a professional obligation, not a weakness.</p>
+
+    <div class="callout remember">
+      <span class="callout-title">Remember</span>
+      "I didn't know" is rarely a full defence for a professional. Professionalism includes knowing what you don't know, and asking before acting rather than after a client is harmed.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s2-2">
+  <h2><span class="num">2.2</span> RIBO Code of Conduct</h2>
+
+  <article class="subtopic">
+    <h3>Core principles and professional obligations</h3>
+    <p>The RIBO Code of Conduct sets out the professional obligations every licensed broker must follow in dealing with clients, insurers, and the public. It builds directly on the Principles of Conduct introduced in Chapter 1 (see 1.8) and translates them into specific, practical expectations.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:22%">Principle</th><th>What it requires in practice</th></tr>
+        <tr><td>Honesty &amp; integrity</td><td>Accurate representation of coverage, limitations, and facts — no exaggeration, no omission designed to close a sale.</td></tr>
+        <tr><td>Disclosure</td><td>Proactively telling clients what they need to know to make an informed decision, including conflicts and compensation (see 2.5, 2.6).</td></tr>
+        <tr><td>Confidentiality</td><td>Protecting client information from unauthorized use or disclosure (this connects directly to PIPEDA — see 2.10).</td></tr>
+        <tr><td>Competence</td><td>Acting only within your actual knowledge, training, and licence category; escalating when a matter exceeds your competence.</td></tr>
+        <tr><td>Conflicts of interest</td><td>Identifying and properly disclosing situations where your interests could compete with the client's (see 2.5).</td></tr>
+        <tr><td>Compliance</td><td>Following RIBO's Regulations, By-Laws, and all applicable law in the course of practice.</td></tr>
+      </table>
+    </div>
+
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      The RIBO Code of Conduct is not aspirational language — a breach of these principles is the basis for RIBO complaints, investigations, and discipline (see 1.6). Client treatment, honesty, and disclosure failures are among the most common sources of RIBO complaints against entry-level licensees.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s2-3">
+  <h2><span class="num">2.3</span> Fair Treatment of Consumers</h2>
+
+  <article class="subtopic">
+    <h3>What "fair treatment" requires</h3>
+    <p>Fair treatment of consumers is a specific, structured expectation — not just general politeness. It means genuinely centering the client's interests through:</p>
+    <ul>
+      <li><strong>Clear communication</strong> — explaining coverage, cost, and process in language the client actually understands, not just technically accurate jargon.</li>
+      <li><strong>Appropriate advice</strong> — recommendations that fit the client's actual needs and risk profile, not the easiest sale.</li>
+      <li><strong>Transparency</strong> — being upfront about what a policy does and does not do, including limitations that might make a client hesitant.</li>
+      <li><strong>Avoiding misleading information</strong> — never allowing a client to reasonably believe something about their coverage that isn't true.</li>
+      <li><strong>Accessibility</strong> — ensuring communication and service are genuinely accessible to the client, adapting as needed.</li>
+    </ul>
+
+    <h4 class="microhead">CONSUMER VULNERABILITY</h4>
+    <p>Some clients — due to age, health, language barriers, financial stress, or unfamiliarity with insurance — are more vulnerable to being misled, overwhelmed, or pressured. Fair treatment obligations apply with heightened care in these situations: a broker should slow down, confirm understanding more deliberately, and avoid any appearance of exploiting a client's vulnerability to close a sale or avoid a difficult conversation.</p>
+
+    <div class="scenario">
+      <div class="stitle">WHAT WOULD YOU DO?</div>
+      <p>An elderly client, clearly confused about the difference between two policy options, tells you "just pick whichever one is easier for you to set up." One option pays you a slightly higher commission.</p>
+      <div class="scenario-choices">
+        <button class="scenario-choice" data-result="r1a">Select the higher-commission option, since the client gave you permission to decide.</button>
+        <button class="scenario-choice" data-result="r1b">Take the time to explain the practical difference between the two options in plain terms, and let the client make an informed choice — regardless of which pays more.</button>
+        <button class="scenario-choice" data-result="r1c">Pick whichever is faster to process, since the client said "easier."</button>
+      </div>
+      <div class="scenario-result" id="r1a"><strong>Not appropriate.</strong> A vague "you decide" from a confused client is not informed consent — it's a sign the client needs a clearer explanation, not an invitation to prioritize your own compensation.</div>
+      <div class="scenario-result good" id="r1b"><strong>Correct approach.</strong> Fair treatment requires ensuring the client actually understands their options before a decision is made on their behalf — especially with a vulnerable client. The broker's compensation must never influence which option is recommended or selected.</div>
+      <div class="scenario-result" id="r1c"><strong>Not appropriate.</strong> Optimizing for the broker's convenience rather than the client's actual needs is the opposite of fair treatment, even if no dishonesty is directly involved.</div>
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s2-4">
+  <h2><span class="num">2.4</span> CISRO Code of Conduct for Insurance Intermediaries</h2>
+
+  <article class="subtopic">
+    <h3>Purpose and key principles</h3>
+    <p>The CISRO Code of Conduct for Insurance Intermediaries is a harmonized set of conduct standards developed by CISRO (see 1.7) for use by member regulators — including RIBO — in setting expectations for licensed intermediaries across Canada.</p>
+    <p><strong>Purpose:</strong> to provide consistent baseline conduct expectations for insurance intermediaries regardless of province, supporting public confidence in the intermediary channel nationally.</p>
+    <p><strong>Key principles</strong> largely mirror and reinforce what the RIBO Code of Conduct already requires of Ontario brokers:</p>
+    <ul>
+      <li><strong>Intermediary responsibilities</strong> — acting with skill, care, and diligence appropriate to a licensed professional.</li>
+      <li><strong>Fair treatment</strong> — the same consumer-centered standard covered in 2.3.</li>
+      <li><strong>Conflicts</strong> — identifying and appropriately managing conflicts of interest.</li>
+      <li><strong>Disclosure</strong> — proactive, honest disclosure to clients of information relevant to their decision.</li>
+      <li><strong>Professional conduct</strong> — maintaining the reputation and integrity of the profession in all client and public interactions.</li>
+    </ul>
+
+    <div class="callout important">
+      <span class="callout-title">Important — how CISRO relates to RIBO</span>
+      CISRO does not license or discipline individual Ontario brokers — that remains RIBO's role. CISRO's Code functions as a harmonizing reference point that informs and aligns with RIBO's own standards. Think of it as the national-level conduct framework that RIBO's Ontario-specific Code of Conduct reflects and builds on.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s2-5">
+  <h2><span class="num">2.5</span> Conflicts of Interest</h2>
+
+  <article class="subtopic">
+    <h3>Common conflict types</h3>
+    <p class="lede">For each conflict type below: identify the conflict, understand why it matters, and know what disclosure and conduct is required.</p>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Fees and commissions</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p><strong>The conflict:</strong> A broker may be paid differently depending on which insurer or product is selected, creating a financial incentive that may not align with the client's best option.</p>
+        <p><strong>Why it matters:</strong> A client trusts the broker's recommendation to be about their needs, not the broker's compensation.</p>
+        <p><strong>Disclosure requirement:</strong> Clients should understand that the broker is compensated (typically via commission) and, where a conflict genuinely exists, that fact should be disclosed.</p>
+        <p><strong>Appropriate conduct:</strong> Recommendations must be driven by client needs and suitability, not the size of the commission.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Ownership interests</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p><strong>The conflict:</strong> A broker or brokerage with an ownership stake in an insurer, MGA, or related business has a financial incentive to direct business there.</p>
+        <p><strong>Why it matters:</strong> The client may not know the "recommendation" also benefits the broker's own ownership position.</p>
+        <p><strong>Disclosure requirement:</strong> Any ownership relationship that could reasonably affect the recommendation must be disclosed to the client.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Referral arrangements</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p><strong>The conflict:</strong> A broker who refers a client to, or receives referrals from, another business may have a financial incentive tied to the referral rather than the client's interest (see also 2.7).</p>
+        <p><strong>Disclosure requirement:</strong> Referral relationships and any associated compensation must be disclosed.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Personal interests</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p><strong>The conflict:</strong> A personal relationship with a client (family, friend) or a personal stake in the outcome can cloud objective advice.</p>
+        <p><strong>Appropriate conduct:</strong> Recognize when a personal relationship could affect judgment, disclose it, and maintain the same professional standard regardless of the relationship.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Insurer relationships</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p><strong>The conflict:</strong> A brokerage's volume-based contracts or closer relationships with certain insurers can create pressure to place business with a "preferred" market even when it isn't the best fit for the client.</p>
+        <p><strong>Appropriate conduct:</strong> Market access relationships should never override a genuine best-fit analysis for the client.</p>
+      </div>
+    </div>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      Exam scenarios often test whether you can tell the difference between an <strong>actual conflict</strong> (a real, current competing interest) and a <strong>potential conflict</strong> (a situation that could become a conflict depending on circumstances). Both generally require disclosure — the point of the question is usually whether you correctly identify that a conflict exists at all, not whether it's already caused harm.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s2-6">
+  <h2><span class="num">2.6</span> Disclosure</h2>
+
+  <article class="subtopic">
+    <h3>What must be disclosed, and when</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:22%">Category</th><th>What must be disclosed</th></tr>
+        <tr><td>Fees</td><td>Any fees charged to the client beyond standard premium (e.g., broker fees where applicable).</td></tr>
+        <tr><td>Compensation</td><td>That the broker is compensated (commission structure) for placing business, especially where it could reasonably influence a recommendation.</td></tr>
+        <tr><td>Conflicts</td><td>Any actual or potential conflict of interest, as covered in 2.5.</td></tr>
+        <tr><td>Material information</td><td>Coverage limitations, exclusions, and anything that would affect the client's decision to proceed.</td></tr>
+      </table>
+    </div>
+    <p><strong>When disclosure is required:</strong> Generally, disclosure should happen before or at the point a client is making a decision — not after the fact, and not only if the client happens to ask.</p>
+    <p><strong>Client understanding:</strong> Disclosure is not satisfied merely by providing information — the broker should take reasonable steps to confirm the client actually understood what was disclosed, particularly for complex or consequential information.</p>
+    <p><strong>Documentation:</strong> Disclosures made (and the client's acknowledgment where applicable) should be documented in the client file — this protects both the client's ability to make an informed decision and the broker's own E&amp;O position (see 8.6, 9.14).</p>
+
+    <div class="callout warning">
+      <span class="callout-title">Warning</span>
+      Disclosure buried in fine print or a document the client is unlikely to read does not meet the spirit of the disclosure obligation. The standard is genuine, practical understanding — not technical compliance.
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s2-7">
+  <h2><span class="num">2.7</span> Referral Fees</h2>
+
+  <article class="subtopic">
+    <h3>Referral arrangements and their rules</h3>
+    <p>A referral fee is compensation paid for directing a client to another business or professional (or received for a client referred to you). Referral arrangements are common in practice — a broker might refer a client to a mortgage professional, or receive client referrals from a car dealership — but they carry specific disclosure and regulatory considerations.</p>
+    <ul>
+      <li><strong>Who may/may not receive referral fees:</strong> Whether a referral fee can be paid or received depends on the nature of the arrangement and applicable regulatory requirements; not every party in a referral relationship is necessarily eligible to receive compensation for it.</li>
+      <li><strong>Disclosure requirements:</strong> A client should be told when a referral fee arrangement exists that is relevant to the service they're receiving, so they understand any potential influence on the recommendation.</li>
+      <li><strong>Regulatory considerations:</strong> Referral arrangements must not function as a way to circumvent licensing requirements (e.g., an unlicensed party effectively acting as an insurance intermediary through a referral fee structure).</li>
+      <li><strong>Ethical considerations:</strong> A referral should be made because it's genuinely useful to the client, not solely because it generates a fee.</li>
+    </ul>
+
+    <div class="callout trap">
+      <span class="callout-title">RIBO Exam Trap</span>
+      Referral fees are easy to confuse with ordinary commission. A referral fee is compensation for the <em>introduction</em>, not for placing or servicing the insurance itself — but it still triggers the same disclosure principle: the client should know about compensation arrangements that could affect the advice or relationship they're receiving.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s2-8">
+  <h2><span class="num">2.8</span> Consent</h2>
+
+  <article class="subtopic">
+    <h3>Express vs. implied consent</h3>
+    <div class="tabs">
+      <div class="tab-bar">
+        <button class="tab-btn active" data-target="tab-express">Express Consent</button>
+        <button class="tab-btn" data-target="tab-implied">Implied Consent</button>
+      </div>
+      <div class="tab-panel active" id="tab-express">
+        <p><strong>Express consent</strong> is clearly and affirmatively given — verbally, in writing, or electronically — leaving no ambiguity that the client agreed. Example: a client signs a form explicitly agreeing to a policy change, or clicks "I agree" to receive electronic communications.</p>
+      </div>
+      <div class="tab-panel" id="tab-implied">
+        <p><strong>Implied consent</strong> is inferred from the circumstances and conduct of the relationship rather than a direct statement — for example, a client who has an existing business relationship with the brokerage may be understood to consent to certain related communications, within reasonable and limited bounds. Implied consent has real limits and cannot be stretched to cover everything a broker might want to do.</p>
+      </div>
+    </div>
+
+    <h4 class="microhead">WHEN CONSENT IS REQUIRED</h4>
+    <p>Consent is required, among other situations, for: collecting and using personal information beyond what's necessary for the immediate transaction (PIPEDA — see 2.10); sending certain electronic communications (CASL — see 2.11); and making certain policy changes or actions on the client's behalf.</p>
+
+    <h4 class="microhead">DOCUMENTATION AND WITHDRAWAL</h4>
+    <p>Consent obtained should be documented in the client file. Clients also generally have the right to <strong>withdraw consent</strong> — for example, unsubscribing from electronic marketing, or revoking consent for a particular use of their personal information — and a broker must respect that withdrawal going forward.</p>
+
+    <div class="reveal">
+      <div class="reveal-prompt">Quick check: can implied consent be used to justify adding a client to a marketing email list they never asked about?</div>
+      <div class="reveal-answer">
+        <p>Generally no — this stretches implied consent beyond its reasonable bounds. Electronic marketing communications are specifically governed by CASL (see 2.11), which has its own, stricter consent framework. An existing business relationship does not automatically imply consent to unrelated marketing communications.</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s2-9">
+  <h2><span class="num">2.9</span> Negative Billing</h2>
+
+  <article class="subtopic">
+    <h3>What it is and why it matters</h3>
+    <p><strong>Negative billing</strong> refers to the practice of automatically renewing, adding, or changing a client's coverage (and billing them for it) without the client's clear, affirmative consent — placing the burden on the client to actively opt out rather than requiring them to opt in.</p>
+    <p><strong>Example:</strong> A brokerage automatically adds an optional coverage enhancement to a renewal and bills the client for it, expecting the client to notice and object if they don't want it, rather than confirming the addition with the client first.</p>
+
+    <h4 class="microhead">CONSUMER IMPLICATIONS</h4>
+    <p>Negative billing shifts the burden of decision-making away from the client and undermines informed consent — a client may pay for coverage they never actually agreed to, simply because they didn't notice or object in time.</p>
+
+    <h4 class="microhead">REGULATORY CONSIDERATIONS</h4>
+    <p>Negative billing practices sit in tension with the fair treatment and disclosure/consent obligations covered throughout this chapter. A broker should ensure clients are actively informed of, and agree to, changes that affect their coverage and premium — not simply notified after the fact with an opt-out option buried in a renewal package.</p>
+
+    <div class="callout warning">
+      <span class="callout-title">Warning</span>
+      Even where a practice is not absolutely prohibited in every circumstance, negative billing is a significant fair-treatment and consent risk area. When in doubt, confirm affirmatively with the client rather than relying on their silence as agreement.
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s2-10">
+  <h2><span class="num">2.10</span> Privacy (PIPEDA)</h2>
+
+  <article class="subtopic">
+    <h3>What PIPEDA governs</h3>
+    <p>The <strong>Personal Information Protection and Electronic Documents Act (PIPEDA)</strong> is the federal law governing how private-sector organizations — including insurance brokerages — collect, use, and disclose personal information in the course of commercial activity. Because a broker's business inherently involves handling sensitive personal and financial information, PIPEDA principles run through nearly every client interaction.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:20%">Principle</th><th>What it requires</th></tr>
+        <tr><td><strong>Collection</strong></td><td>Only collect personal information that is genuinely necessary for the identified purpose (e.g., underwriting, policy servicing) — not information collected "just in case."</td></tr>
+        <tr><td><strong>Use</strong></td><td>Use personal information only for the purpose it was collected for, unless further consent is obtained.</td></tr>
+        <tr><td><strong>Disclosure</strong></td><td>Only disclose personal information to third parties (e.g., an insurer, another broker) as necessary and with appropriate consent/authority.</td></tr>
+        <tr><td><strong>Consent</strong></td><td>Individuals must generally consent to the collection, use, and disclosure of their personal information, with the type of consent (express/implied) appropriate to the sensitivity of the information.</td></tr>
+        <tr><td><strong>Storage &amp; security</strong></td><td>Personal information must be stored securely, with appropriate safeguards against unauthorized access.</td></tr>
+        <tr><td><strong>Access</strong></td><td>Individuals generally have the right to access the personal information an organization holds about them.</td></tr>
+        <tr><td><strong>Accuracy</strong></td><td>Personal information used to make decisions about an individual should be kept accurate and up to date.</td></tr>
+        <tr><td><strong>Retention</strong></td><td>Personal information should not be kept indefinitely — only as long as necessary for the purpose it was collected, subject to other legal/regulatory retention requirements (e.g., RIBO record-keeping — see 11.5).</td></tr>
+        <tr><td><strong>Breach / accidental disclosure</strong></td><td>Organizations must have processes to detect, respond to, and where required, report breaches or accidental disclosures of personal information.</td></tr>
+      </table>
+    </div>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      PIPEDA questions often test whether you recognize a violation pattern: collecting more information than needed, using it for an unrelated purpose without new consent, or disclosing it to a third party without authority. Look for the specific principle being violated rather than just "this seems like a privacy problem."
+    </div>
+
+    <div class="scenario">
+      <div class="stitle">WHAT WOULD YOU DO?</div>
+      <p>A colleague at another brokerage — a personal friend — asks you to look up a mutual acquaintance's policy details "just out of curiosity," with no business reason.</p>
+      <div class="scenario-choices">
+        <button class="scenario-choice" data-result="p1a">Share the general details since it's a personal friend and seems harmless.</button>
+        <button class="scenario-choice" data-result="p1b">Decline — there is no legitimate business purpose or client consent for this disclosure, so it would violate PIPEDA and client confidentiality obligations.</button>
+      </div>
+      <div class="scenario-result" id="p1a"><strong>Not appropriate.</strong> "Harmless curiosity" is not a lawful purpose under PIPEDA, and there is no client consent for this disclosure. This is exactly the kind of casual, well-intentioned request that leads to real privacy breaches.</div>
+      <div class="scenario-result good" id="p1b"><strong>Correct approach.</strong> Personal information can only be used or disclosed for the purpose it was collected for, with appropriate consent. Personal curiosity from a friend, even without malicious intent, is not a lawful basis for disclosure.</div>
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s2-11">
+  <h2><span class="num">2.11</span> CASL</h2>
+
+  <article class="subtopic">
+    <h3>Canada's Anti-Spam Legislation</h3>
+    <p><strong>CASL</strong> regulates the sending of <strong>commercial electronic messages (CEMs)</strong> — emails, texts, and other electronic messages that encourage participation in a commercial activity, including marketing and promotional communications from a brokerage to clients or prospects.</p>
+
+    <h4 class="microhead">CONSENT UNDER CASL</h4>
+    <p>CASL generally requires consent (express or, in narrower circumstances, implied) before sending a commercial electronic message. Express consent is the stronger and more broadly reliable basis; implied consent under CASL is narrower and more time-limited than the general implied-consent concept discussed in 2.8 — it typically depends on an existing, recent business relationship, and does not last indefinitely.</p>
+
+    <h4 class="microhead">UNSUBSCRIBE REQUIREMENTS</h4>
+    <p>Every commercial electronic message sent under CASL must include a functioning, easy-to-use <strong>unsubscribe mechanism</strong>, and any unsubscribe request must be honoured promptly.</p>
+
+    <h4 class="microhead">ELECTRONIC MARKETING AND BROKER/CLIENT COMMUNICATION</h4>
+    <p>Not every message a broker sends is a "commercial electronic message" under CASL — routine service communications about an existing client's own policy (a renewal notice, a claims update) are generally treated differently from marketing communications promoting new products or services. Brokers need to distinguish between the two, since CASL's consent and unsubscribe requirements are specifically aimed at the marketing/promotional category.</p>
+
+    <div class="callout important">
+      <span class="callout-title">Important — CASL vs. PIPEDA</span>
+      These are related but distinct laws. <strong>PIPEDA</strong> governs the collection, use, and disclosure of personal information generally. <strong>CASL</strong> specifically governs sending commercial electronic messages. A broker can be fully PIPEDA-compliant in how they store a client's email address, and still violate CASL by sending marketing messages without proper consent or an unsubscribe option.
+    </div>
+
+    <div class="reveal">
+      <div class="reveal-prompt">Quick check: does a renewal reminder for a client's existing policy require CASL marketing consent?</div>
+      <div class="reveal-answer">
+        <p>Generally, a routine service communication tied to a client's existing policy (like a renewal reminder) is treated differently from promotional marketing content, and would not typically require the same CASL marketing consent. However, if that same message also promotes a new, unrelated product, the promotional portion may bring CASL's requirements into play. When communications combine service and marketing content, treat the stricter marketing rules as the safer standard to follow.</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s2-12">
+  <h2><span class="num">2.12</span> Ethical Decision-Making</h2>
+
+  <article class="subtopic">
+    <h3>Handling ethical scenarios systematically</h3>
+    <p>Entry-level brokers will face situations involving conflicts of interest, privacy questions, misrepresentation, pressure from a client or employer, suspected fraud, incomplete information, or a possible regulatory violation. The exam tests whether you can identify the right response pattern — not just recite rules in isolation.</p>
+
+    <h4 class="microhead">A GENERAL APPROACH</h4>
+    <ol>
+      <li>Identify exactly what the ethical issue is (a conflict? a disclosure gap? potential fraud?).</li>
+      <li>Consider your obligations to the client, the insurer, and the regulator — these don't always point the same direction, and part of professionalism is recognizing the tension.</li>
+      <li>Determine whether you have the authority and competence to resolve it yourself, or whether it needs escalation.</li>
+      <li>Escalate appropriately — to a supervisor, the Principal Broker, your employer, or, where warranted, RIBO, FSRA, or another appropriate authority.</li>
+      <li>Document what happened and how it was handled.</li>
+    </ol>
+
+    <h4 class="microhead">WHO TO ESCALATE TO, AND WHEN</h4>
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:26%">Situation</th><th>Typical escalation path</th></tr>
+        <tr><td>Uncertain how to handle a client situation within normal practice</td><td>Supervisor or Principal Broker</td></tr>
+        <tr><td>Suspected internal misconduct or employer pressure to act improperly</td><td>Principal Broker (or, if the Principal Broker is implicated, directly to RIBO)</td></tr>
+        <tr><td>Suspected client or third-party fraud</td><td>Supervisor/Principal Broker, insurer, and potentially RIBO depending on severity</td></tr>
+        <tr><td>Suspected regulatory violation at the brokerage level</td><td>RIBO, and FSRA if it involves market conduct or auto insurance regulatory matters</td></tr>
+      </table>
+    </div>
+
+    <div class="callout trap">
+      <span class="callout-title">RIBO Exam Trap</span>
+      Exam scenarios frequently include "employer pressure" as a distractor — the correct answer is almost never to comply with an instruction that would violate your professional or regulatory obligations, even when it comes from a supervisor or the Principal Broker. Your licence and professional obligations are personal to you.
+    </div>
+  </article>
+
+  <article class="subtopic">
+    <h3>Applied scenario</h3>
+    <div class="scenario">
+      <div class="stitle">WHAT WOULD YOU DO?</div>
+      <p>Your supervisor tells you to leave a client's prior claims history off a new application "since it happened a long time ago and probably won't matter." You're not sure this is correct.</p>
+      <div class="scenario-choices">
+        <button class="scenario-choice" data-result="e1a">Follow the instruction since your supervisor has more experience and authority than you.</button>
+        <button class="scenario-choice" data-result="e1b">Raise your concern directly, explain that omitting material claims history is a disclosure/misrepresentation issue regardless of how long ago it occurred, and escalate further (e.g., to the Principal Broker or RIBO) if the instruction persists.</button>
+        <button class="scenario-choice" data-result="e1c">Quietly include the claims history yourself without saying anything to your supervisor, to avoid conflict.</button>
+      </div>
+      <div class="scenario-result" id="e1a"><strong>Not appropriate.</strong> Supervisory authority does not override your own professional and regulatory obligations. Prior claims history is generally a material fact regardless of age, and omitting it is a disclosure/misrepresentation problem (see 1.2, 1.10, 8.8) that exposes both you and the client.</div>
+      <div class="scenario-result good" id="e1b"><strong>Correct approach.</strong> Voice the concern directly and explain the regulatory basis for it. If the instruction persists despite a reasonable, professional explanation, escalate further — this is exactly the kind of situation the escalation chain (Principal Broker, RIBO) exists for.</div>
+      <div class="scenario-result" id="e1c"><strong>Partially better, but incomplete.</strong> Quietly correcting the problem without addressing it directly avoids an immediate conflict, but it doesn't address the underlying issue — your supervisor may repeat the same instruction with the next client, and the concern should still be raised and documented.</div>
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s2-check">
+  <h2><span class="num">✓</span> Chapter 2 Knowledge Checks</h2>
+  <p class="lede" style="font-style:italic;color:var(--text-mute);margin-bottom:18px;">Quick checks across this chapter's core concepts. Select an answer to see feedback.</p>
+
+  <div class="kc">
+    <div class="kc-q">1. A broker is compensated more for placing a client with Insurer A than Insurer B, but Insurer B is the better fit for the client. What is the correct course of action?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">Recommend Insurer A, since higher compensation reflects a better product</button>
+      <button class="kc-opt" data-correct="true">Recommend Insurer B based on client fit, and disclose the compensation difference if it's a relevant conflict</button>
+      <button class="kc-opt" data-correct="false">Let the client choose without mentioning either insurer's suitability</button>
+      <button class="kc-opt" data-correct="false">Recommend whichever insurer processes applications fastest</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>Recommend Insurer B and disclose the compensation difference.</strong> Recommendations must be driven by client suitability, not broker compensation — and a genuine conflict of interest should be disclosed.</div>
+  </div>
+
+  <div class="kc">
+    <div class="kc-q">2. Under PIPEDA, which of the following is generally true about personal information collection?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">A brokerage may collect any information that could someday be useful</button>
+      <button class="kc-opt" data-correct="true">A brokerage should only collect personal information necessary for the identified purpose</button>
+      <button class="kc-opt" data-correct="false">Consent is never required if the client is an existing customer</button>
+      <button class="kc-opt" data-correct="false">Personal information can be kept indefinitely once collected</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>Only collect what's necessary for the identified purpose.</strong> PIPEDA's collection principle limits gathering information to what is genuinely needed, and also imposes retention limits — information shouldn't be kept indefinitely.</div>
+  </div>
+
+  <div class="kc">
+    <div class="kc-q">3. A brokerage automatically adds an optional coverage to a client's renewal and bills for it without prior confirmation. This is best described as:</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">Standard practice, as long as the client can opt out</button>
+      <button class="kc-opt" data-correct="true">Negative billing — a fair treatment and consent concern</button>
+      <button class="kc-opt" data-correct="false">A CASL violation</button>
+      <button class="kc-opt" data-correct="false">A required disclosure under the RIBO Code of Conduct</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>Negative billing.</strong> Billing a client for a change they didn't affirmatively agree to — relying on their silence as consent — is a fair-treatment and consent problem, distinct from CASL (which governs electronic marketing messages specifically).</div>
+  </div>
+</section>
+
+
+<div class="endmatter" id="endmatter">
+  <h2>Key Takeaways</h2>
+  <ul>
+    <li>Professionalism translates a broker's legal and ethical duties into daily practice: accountability, competence, honesty, fairness, and recognizing the limits of your own knowledge while under supervision.</li>
+    <li>The RIBO Code of Conduct and the CISRO Code of Conduct reinforce the same core principles — honesty, disclosure, confidentiality, competence, conflicts of interest, and compliance — with CISRO providing a harmonized national reference point.</li>
+    <li>Fair treatment of consumers means genuinely centering client understanding and interests, with extra care for vulnerable clients.</li>
+    <li>Conflicts of interest (fees/commissions, ownership, referrals, personal interests, insurer relationships) require identification and disclosure — both actual and potential conflicts matter.</li>
+    <li>Disclosure must produce genuine client understanding, not just technical delivery of information, and should be documented.</li>
+    <li>Referral fees require disclosure and must not be used to circumvent licensing requirements.</li>
+    <li>Express consent is clear and affirmative; implied consent is narrower and context-dependent — CASL's implied consent is even narrower than general implied consent.</li>
+    <li>Negative billing (auto-adding/billing coverage without affirmative client agreement) is a fair-treatment and consent risk.</li>
+    <li>PIPEDA governs personal information collection, use, disclosure, storage, access, accuracy, retention, and breach response.</li>
+    <li>CASL specifically governs commercial electronic messages — consent and mandatory unsubscribe mechanisms — and is distinct from PIPEDA.</li>
+    <li>Ethical decision-making follows a structured approach: identify the issue, weigh competing obligations, determine your authority to resolve it, escalate appropriately, and document. Supervisory or employer pressure never overrides your own regulatory obligations.</li>
+  </ul>
+
+  <h2>Must-Know Terms</h2>
+  <div class="glossary">
+    <div class="gterm"><dt>RIBO Code of Conduct</dt><dd>Ontario-specific professional obligations for licensed brokers: honesty, disclosure, confidentiality, competence, conflicts, compliance.</dd></div>
+    <div class="gterm"><dt>CISRO Code of Conduct</dt><dd>Harmonized national conduct standard for insurance intermediaries across Canada.</dd></div>
+    <div class="gterm"><dt>Fair treatment of consumers</dt><dd>Clear communication, appropriate advice, transparency, and accessibility, centered on client interests.</dd></div>
+    <div class="gterm"><dt>Conflict of interest (actual/potential)</dt><dd>A situation where broker interests could compete with client interests; both types generally require disclosure.</dd></div>
+    <div class="gterm"><dt>Referral fee</dt><dd>Compensation for an introduction/referral, distinct from commission for placing insurance; requires disclosure.</dd></div>
+    <div class="gterm"><dt>Express consent / Implied consent</dt><dd>Clearly and affirmatively given consent / consent inferred from context and relationship, with real limits.</dd></div>
+    <div class="gterm"><dt>Negative billing</dt><dd>Billing for added/changed coverage without the client's affirmative agreement.</dd></div>
+    <div class="gterm"><dt>PIPEDA</dt><dd>Federal law governing collection, use, disclosure, security, access, accuracy, and retention of personal information.</dd></div>
+    <div class="gterm"><dt>CASL</dt><dd>Federal anti-spam law governing commercial electronic messages: consent and mandatory unsubscribe mechanisms.</dd></div>
+    <div class="gterm"><dt>Commercial electronic message (CEM)</dt><dd>An electronic message that encourages participation in commercial activity — the category CASL regulates.</dd></div>
+  </div>
+
+  <h2>Quick Reference</h2>
+  <div class="quickref-grid">
+    <div class="qr-card">
+      <h4>RIBO Code of Conduct — Core Principles</h4>
+      <ul>
+        <li>Honesty &amp; integrity</li>
+        <li>Disclosure</li>
+        <li>Confidentiality</li>
+        <li>Competence</li>
+        <li>Conflicts of interest</li>
+        <li>Compliance</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Ethical Decision Sequence</h4>
+      <ul>
+        <li>1. Identify the issue</li>
+        <li>2. Weigh competing obligations</li>
+        <li>3. Assess your own authority</li>
+        <li>4. Escalate appropriately</li>
+        <li>5. Document</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>PIPEDA Principles</h4>
+      <ul>
+        <li>Collection — only what's necessary</li>
+        <li>Use — only for stated purpose</li>
+        <li>Disclosure — only with authority/consent</li>
+        <li>Storage/security, access, accuracy, retention</li>
+        <li>Breach response</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>CASL Essentials</h4>
+      <ul>
+        <li>Applies to commercial electronic messages</li>
+        <li>Requires consent (express or narrow implied)</li>
+        <li>Mandatory, functioning unsubscribe mechanism</li>
+        <li>Distinct from routine service communications</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Common Exam Traps</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th style="width:32%">Confusion Pair</th><th>The distinction that matters</th></tr>
+      <tr><td>Express consent vs. Implied consent</td><td>Express = clear, affirmative statement. Implied = inferred from context/relationship, narrower and more limited — especially under CASL.</td></tr>
+      <tr><td>PIPEDA vs. CASL</td><td>PIPEDA = personal information handling generally. CASL = specifically commercial electronic messages, consent, and unsubscribe rules.</td></tr>
+      <tr><td>Actual conflict vs. Potential conflict</td><td>Actual = a real, current competing interest. Potential = could become a conflict depending on circumstances. Both generally require disclosure.</td></tr>
+      <tr><td>Referral fee vs. Commission</td><td>Referral fee = compensation for an introduction. Commission = compensation for placing/servicing the insurance itself. Both require disclosure.</td></tr>
+      <tr><td>RIBO Code of Conduct vs. CISRO Code of Conduct</td><td>RIBO = Ontario-specific, enforceable by RIBO. CISRO = harmonized national reference standard that informs provincial regulators' codes.</td></tr>
+      <tr><td>Negative billing vs. Standard renewal</td><td>Negative billing bills for a change without affirmative client agreement. A standard renewal at existing terms is not the same as adding new billed coverage without consent.</td></tr>
+    </table>
+  </div>
+
+  <h2>Practice Questions</h2>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">KNOWLEDGE · DEFINITION · EASY</span>1. Which federal law specifically governs the sending of commercial electronic messages, including consent and unsubscribe requirements?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. PIPEDA</button>
+      <button class="pq-opt" data-correct="true">B. CASL</button>
+      <button class="pq-opt" data-correct="false">C. The Ontario Insurance Act</button>
+      <button class="pq-opt" data-correct="false">D. The Registered Insurance Brokers Act</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> CASL (Canada's Anti-Spam Legislation) specifically regulates commercial electronic messages. PIPEDA governs personal information handling more broadly, and the other two options are Ontario-specific insurance statutes unrelated to electronic messaging.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">COMPREHENSION · ETHICS · MODERATE</span>2. A broker discloses to a client that they receive a commission for placing insurance, but does not mention that one particular insurer pays a notably higher commission rate than others. Is this adequate disclosure?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. Yes, because general commission disclosure covers all compensation arrangements</button>
+      <button class="pq-opt" data-correct="true">B. Not necessarily — if the differential compensation could reasonably influence the recommendation, it is a conflict that should be specifically disclosed</button>
+      <button class="pq-opt" data-correct="false">C. Yes, because commission rates are confidential business information</button>
+      <button class="pq-opt" data-correct="false">D. No disclosure is required for commission at all</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> General commission disclosure is a good start, but a conflict of interest requires disclosure specific enough for the client to actually understand what could influence the recommendation — a meaningfully higher payout from one insurer is exactly this kind of conflict.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">APPLICATION · SCENARIO · DIFFICULT</span>3. A client's information was accidentally emailed to the wrong recipient by a brokerage employee. What does this situation primarily engage?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. CASL's unsubscribe requirements</button>
+      <button class="pq-opt" data-correct="true">B. PIPEDA's breach/accidental disclosure obligations</button>
+      <button class="pq-opt" data-correct="false">C. The Take All Comers Rule</button>
+      <button class="pq-opt" data-correct="false">D. Tied selling prohibitions</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> An accidental disclosure of personal information directly engages PIPEDA's breach/accidental disclosure principle, which requires organizations to have processes to detect, respond to, and where required, report such incidents. The other options are unrelated to this fact pattern.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">APPLICATION · ETHICS · DIFFICULT</span>4. Your Principal Broker instructs you to omit a client's material claims history from a new application. You've already raised the concern once and been told to proceed anyway. What is the most appropriate next step?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. Comply, since the Principal Broker holds ultimate authority at the brokerage</button>
+      <button class="pq-opt" data-correct="false">B. Quietly resign without explanation</button>
+      <button class="pq-opt" data-correct="true">C. Escalate further, including to RIBO if necessary, since your own professional and regulatory obligations are not overridden by internal instructions</button>
+      <button class="pq-opt" data-correct="false">D. Proceed as instructed, but keep a private note in case questions arise later</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: C.</strong> Your RIBO licence and professional obligations are personal to you and are not overridden by an employer or supervisor's instruction — even the Principal Broker. Where an internal escalation has already failed to resolve a clear misrepresentation/disclosure problem, escalating externally (to RIBO) is the appropriate next step.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">KNOWLEDGE · COMPARISON · EASY</span>5. What distinguishes negative billing from a standard policy renewal at existing terms?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. Negative billing only applies to automobile policies</button>
+      <button class="pq-opt" data-correct="true">B. Negative billing involves billing for an added or changed coverage without the client's affirmative agreement</button>
+      <button class="pq-opt" data-correct="false">C. Standard renewals always require new express consent for every term</button>
+      <button class="pq-opt" data-correct="false">D. There is no meaningful distinction</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> Negative billing specifically involves a change (added coverage, increased cost) billed without the client's clear agreement — placing the burden on the client to notice and object, rather than requiring an opt-in.
+    </div>
+  </div>
+
+  <div class="callout important" style="margin-top:30px;">
+    <span class="callout-title">Before moving to Chapter 3</span>
+    Chapter 3 shifts from conduct and ethics into the structure of the insurance industry itself — distribution methods, company structures, Lloyd's, the Facility Association, the insurance lifecycle, binding authority, and how to read and interpret a policy. The disclosure and consent principles from this chapter continue to apply throughout every stage of that lifecycle.
+  </div>
+</div>
+
+
+    </div>
+  </main>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script>
+// ===== Scrollspy =====
+const sections = document.querySelectorAll('section.topic, div#endmatter');
+const tocLinks = document.querySelectorAll('.toc-section');
+const barFill = document.getElementById('barFill');
+
+function onScroll(){
+  let current = null;
+  const scrollPos = window.scrollY + 140;
+  sections.forEach(sec=>{
+    if(sec.offsetTop <= scrollPos) current = sec.id;
+  });
+  tocLinks.forEach(l=>{
+    l.classList.toggle('active', l.dataset.sec === current);
+  });
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? Math.min(100, (window.scrollY/docHeight)*100) : 0;
+  barFill.style.width = pct+'%';
+
+  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 600);
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
+
+document.getElementById('backToTop').addEventListener('click', ()=>{
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+// ===== Accordion =====
+document.addEventListener('click', (e)=>{
+  const head = e.target.closest('.accordion-head');
+  if(head){
+    const acc = head.closest('.accordion');
+    const body = acc.querySelector('.accordion-body');
+    const isOpen = acc.classList.contains('open');
+    if(isOpen){
+      acc.classList.remove('open');
+      body.style.maxHeight = null;
+    } else {
+      acc.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 40 + 'px';
+    }
+  }
+});
+
+// ===== Reveal =====
+document.addEventListener('click', (e)=>{
+  const prompt = e.target.closest('.reveal-prompt');
+  if(prompt){
+    prompt.closest('.reveal').classList.toggle('open');
+  }
+});
+
+// ===== Tabs =====
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.tab-btn');
+  if(btn){
+    const tabs = btn.closest('.tabs');
+    tabs.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    tabs.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    tabs.querySelector('#'+btn.dataset.target).classList.add('active');
+  }
+});
+
+// ===== Flow diagram =====
+document.addEventListener('click', (e)=>{
+  const step = e.target.closest('.flow-step');
+  if(step){
+    const flowWrap = step.closest('.flow-wrap');
+    flowWrap.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));
+    step.classList.add('active');
+    const detailId = step.dataset.detail;
+    flowWrap.querySelectorAll('.flow-detail').forEach(d=>d.classList.remove('visible'));
+    document.getElementById(detailId).classList.add('visible');
+  }
+});
+
+// ===== Knowledge check =====
+document.addEventListener('click', (e)=>{
+  const opt = e.target.closest('.kc-opt');
+  if(opt){
+    const kc = opt.closest('.kc');
+    if(kc.dataset.answered === 'true') return;
+    kc.dataset.answered = 'true';
+    const correct = opt.dataset.correct === 'true';
+    kc.querySelectorAll('.kc-opt').forEach(o=>{
+      if(o.dataset.correct === 'true') o.classList.add('correct');
+      else if(o===opt) o.classList.add('incorrect');
+    });
+    const fb = kc.querySelector('.kc-feedback');
+    fb.classList.add('visible');
+  }
+});
+
+// ===== Scenario choices =====
+document.addEventListener('click', (e)=>{
+  const choice = e.target.closest('.scenario-choice');
+  if(choice){
+    const scenario = choice.closest('.scenario');
+    if(scenario.dataset.answered === 'true') return;
+    scenario.dataset.answered = 'true';
+    const resultId = choice.dataset.result;
+    scenario.querySelectorAll('.scenario-result').forEach(r=>r.classList.remove('visible'));
+    document.getElementById(resultId).classList.add('visible');
+  }
+});
+
+// ===== Practice question toggle =====
+document.addEventListener('click', (e)=>{
+  const pqq = e.target.closest('.pq-opt');
+  if(pqq){
+    const pq = pqq.closest('.pq');
+    if(pq.dataset.answered === 'true') return;
+    pq.dataset.answered = 'true';
+    pq.querySelectorAll('.pq-opt').forEach(o=>{
+      if(o.dataset.correct === 'true') o.classList.add('correct');
+      else if(o===pqq) o.classList.add('incorrect');
+    });
+    pq.querySelector('.pq-explain').classList.add('visible');
+  }
+});
+
+</script>
+</body>
+</html>

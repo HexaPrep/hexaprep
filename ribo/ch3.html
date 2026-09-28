@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 3 — Insurance Industry, Products, Markets &amp; Policy Structure | RIBO Level 1</title>
+<style>
+  :root{
+    --ink:#16273D;
+    --ink-soft:#2C4058;
+    --paper:#F7F6F3;
+    --paper-raised:#FFFFFF;
+    --rule:#DAD5C9;
+    --rule-soft:#E9E6DD;
+    --gold:#B8873A;
+    --gold-soft:#F1E4C9;
+    --slate:#3E5C76;
+    --slate-soft:#E3EAF0;
+    --green:#3F6B4E;
+    --green-soft:#E4EEE6;
+    --red:#8C3B32;
+    --red-soft:#F4E3E0;
+    --text:#242A31;
+    --text-mute:#5B6470;
+    --serif: Iowan Old Style, "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", "Cascadia Code", Consolas, monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--slate);}
+
+  /* ===== Layout shell ===== */
+  .shell{
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    min-height:100vh;
+  }
+
+  /* ===== Sidebar ===== */
+  .sidebar{
+    background:var(--ink);
+    color:#D9DFE6;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+    padding:28px 0 40px;
+    border-right:1px solid #0E1A28;
+  }
+  .sidebar::-webkit-scrollbar{width:8px;}
+  .sidebar::-webkit-scrollbar-thumb{background:#2C4058;border-radius:4px;}
+
+  .sidebar-brand{
+    padding:0 24px 20px;
+    border-bottom:1px solid #263A52;
+    margin-bottom:8px;
+  }
+  .sidebar-brand .kicker{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.04em;
+    color:#8FA3B8;
+  }
+  .sidebar-brand h1{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:600;
+    margin:6px 0 2px;
+    color:#F4F1E8;
+    line-height:1.3;
+  }
+  .sidebar-brand .sub{
+    font-size:12.5px;
+    color:#9AACBE;
+  }
+
+  .toc{padding:8px 0;}
+  .toc-chapter{
+    display:block;
+    padding:10px 24px;
+    font-family:var(--serif);
+    font-size:14px;
+    font-weight:600;
+    color:#F4F1E8;
+    text-decoration:none;
+    border-left:3px solid transparent;
+  }
+  .toc-section{
+    display:block;
+    padding:6px 24px 6px 32px;
+    font-size:13px;
+    color:#B7C4D2;
+    text-decoration:none;
+    border-left:3px solid transparent;
+    transition:background .12s ease, color .12s ease;
+  }
+  .toc-section:hover{background:#1D3049;color:#F4F1E8;}
+  .toc-section.active{
+    background:#22354D;
+    color:#F1D9A8;
+    border-left-color:var(--gold);
+    font-weight:600;
+  }
+  .toc-progress{
+    margin:14px 24px 4px;
+    padding-top:14px;
+    border-top:1px solid #263A52;
+  }
+  .toc-progress .label{
+    font-size:11px;
+    color:#8FA3B8;
+    font-family:var(--mono);
+    letter-spacing:.03em;
+    margin-bottom:6px;
+  }
+  .bar-track{
+    height:6px;
+    background:#1D3049;
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background:linear-gradient(90deg,var(--gold),#D9AE6A);
+    width:0%;
+    transition:width .25s ease;
+  }
+
+  /* ===== Main content ===== */
+  main{
+    padding:0;
+    max-width:900px;
+  }
+  .content-inner{
+    padding:48px 56px 120px;
+  }
+
+  .chapter-head{
+    margin-bottom:40px;
+    padding-bottom:28px;
+    border-bottom:2px solid var(--ink);
+  }
+  .chapter-head .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--gold);
+    background:var(--gold-soft);
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:3px;
+    margin-bottom:14px;
+  }
+  .chapter-head h1{
+    font-family:var(--serif);
+    font-size:38px;
+    line-height:1.2;
+    margin:0 0 12px;
+    color:var(--ink);
+  }
+  .chapter-head .dek{
+    font-size:16px;
+    color:var(--text-mute);
+    max-width:70ch;
+  }
+  .comp-tags{
+    margin-top:18px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .comp-tag{
+    font-size:12px;
+    font-family:var(--mono);
+    background:var(--slate-soft);
+    color:var(--slate);
+    padding:4px 10px;
+    border-radius:3px;
+    border:1px solid #C9D6E2;
+  }
+
+  .notice-box{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink-soft);
+    padding:16px 20px;
+    margin:0 0 40px;
+    font-size:14px;
+    color:var(--text-mute);
+  }
+  .notice-box strong{color:var(--ink);}
+
+  section.topic{
+    margin-bottom:56px;
+    scroll-margin-top:24px;
+  }
+  section.topic > h2{
+    font-family:var(--serif);
+    font-size:28px;
+    color:var(--ink);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:10px;
+    margin:0 0 20px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  section.topic > h2 .num{
+    font-family:var(--mono);
+    font-size:16px;
+    color:var(--gold);
+    font-weight:600;
+  }
+
+  article.subtopic{
+    margin-bottom:38px;
+    scroll-margin-top:24px;
+  }
+  article.subtopic > h3{
+    font-family:var(--serif);
+    font-size:21px;
+    color:var(--ink-soft);
+    margin:0 0 6px;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+  article.subtopic > h3 .num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-mute);
+    font-weight:400;
+  }
+  article.subtopic .lede{
+    font-size:14px;
+    color:var(--text-mute);
+    font-style:italic;
+    margin:0 0 16px;
+  }
+
+  h4.microhead{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:none;
+    color:var(--slate);
+    font-weight:700;
+    margin:20px 0 8px;
+    padding-top:2px;
+  }
+
+  p{margin:0 0 14px;font-size:15.5px;}
+  ul,ol{margin:0 0 14px;padding-left:22px;font-size:15.5px;}
+  li{margin-bottom:5px;}
+
+  .term{
+    font-weight:600;
+    color:var(--ink);
+    border-bottom:1px dotted var(--gold);
+    cursor:help;
+  }
+
+  /* ===== Callouts ===== */
+  .callout{
+    border-radius:4px;
+    padding:16px 18px 16px 52px;
+    margin:18px 0;
+    position:relative;
+    font-size:14.5px;
+    border:1px solid;
+  }
+  .callout::before{
+    position:absolute;
+    left:16px;
+    top:15px;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.03em;
+  }
+  .callout .callout-title{
+    font-weight:700;
+    display:block;
+    margin-bottom:4px;
+    font-family:var(--sans);
+    font-size:13px;
+  }
+  .callout.important{background:var(--slate-soft);border-color:#C9D6E2;}
+  .callout.important::before{content:"i";color:var(--slate);font-style:italic;font-size:16px;left:19px;top:13px;}
+  .callout.important .callout-title{color:var(--slate);}
+
+  .callout.remember{background:var(--green-soft);border-color:#CBE0D1;}
+  .callout.remember::before{content:"✓";color:var(--green);font-size:15px;}
+  .callout.remember .callout-title{color:var(--green);}
+
+  .callout.warning{background:#FBF0E4;border-color:#EAD2AE;}
+  .callout.warning::before{content:"!";color:#A8681E;font-size:15px;left:20px;}
+  .callout.warning .callout-title{color:#A8681E;}
+
+  .callout.examtip{background:var(--gold-soft);border-color:#E4CE97;}
+  .callout.examtip::before{content:"★";color:var(--gold);font-size:14px;}
+  .callout.examtip .callout-title{color:#8A6323;}
+
+  .callout.example{background:#EFF0F6;border-color:#D2D5E8;}
+  .callout.example::before{content:"E";color:#4B4F8C;font-family:var(--serif);font-style:italic;font-size:15px;left:20px;}
+  .callout.example .callout-title{color:#4B4F8C;}
+
+  .callout.trap{background:var(--red-soft);border-color:#E5C3BD;}
+  .callout.trap::before{content:"✕";color:var(--red);font-size:13px;}
+  .callout.trap .callout-title{color:var(--red);}
+
+  /* ===== Tables ===== */
+  .table-wrap{
+    overflow-x:auto;
+    margin:18px 0;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--paper-raised);
+    font-size:14px;
+  }
+  th{
+    background:var(--ink);
+    color:#F0EEE6;
+    text-align:left;
+    padding:10px 14px;
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:12.5px;
+    letter-spacing:.02em;
+  }
+  td{
+    padding:10px 14px;
+    border-top:1px solid var(--rule-soft);
+    vertical-align:top;
+  }
+  tr:nth-child(even) td{background:#FBFAF7;}
+
+  /* ===== Accordion (collapsible) ===== */
+  .accordion{
+    border:1px solid var(--rule);
+    border-radius:4px;
+    margin:14px 0;
+    background:var(--paper-raised);
+    overflow:hidden;
+  }
+  .accordion + .accordion{margin-top:10px;}
+  .accordion-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 18px;
+    cursor:pointer;
+    font-weight:600;
+    color:var(--ink);
+    font-size:14.5px;
+    user-select:none;
+  }
+  .accordion-head:hover{background:#FBFAF7;}
+  .accordion-head .chev{
+    font-family:var(--mono);
+    color:var(--gold);
+    transition:transform .2s ease;
+    font-size:13px;
+  }
+  .accordion.open .accordion-head .chev{transform:rotate(90deg);}
+  .accordion-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+    padding:0 18px;
+    border-top:0 solid var(--rule-soft);
+  }
+  .accordion.open .accordion-body{
+    padding:4px 18px 16px;
+    border-top:1px solid var(--rule-soft);
+  }
+  .accordion-body p:last-child{margin-bottom:0;}
+
+  /* ===== Click to reveal ===== */
+  .reveal{
+    border:1px dashed #C9C2AE;
+    border-radius:4px;
+    padding:14px 16px;
+    margin:14px 0;
+    background:#FCFBF8;
+  }
+  .reveal-prompt{
+    cursor:pointer;
+    font-weight:600;
+    color:var(--slate);
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .reveal-prompt::before{
+    content:"▸";
+    color:var(--gold);
+    transition:transform .2s ease;
+  }
+  .reveal.open .reveal-prompt::before{transform:rotate(90deg);}
+  .reveal-answer{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-soft);font-size:14.5px;}
+  .reveal.open .reveal-answer{display:block;}
+
+  /* ===== Tabs ===== */
+  .tabs{margin:18px 0;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--paper-raised);}
+  .tab-bar{display:flex;background:#F1EEE5;border-bottom:1px solid var(--rule);flex-wrap:wrap;}
+  .tab-btn{
+    padding:11px 18px;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--text-mute);
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    font-family:var(--sans);
+  }
+  .tab-btn.active{color:var(--ink);border-bottom-color:var(--gold);background:var(--paper-raised);}
+  .tab-panel{display:none;padding:18px 20px;}
+  .tab-panel.active{display:block;}
+  .tab-panel p:last-child{margin-bottom:0;}
+
+  /* ===== Process flow diagram ===== */
+  .flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    align-items:stretch;
+    margin:20px 0;
+  }
+  .flow-step{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 14px;
+    flex:1 1 120px;
+    min-width:110px;
+    cursor:pointer;
+    position:relative;
+    text-align:center;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    transition:background .15s ease, border-color .15s;
+  }
+  .flow-step:hover, .flow-step.active{background:var(--slate-soft);border-color:var(--slate);color:var(--slate);}
+  .flow-arrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 6px;
+    color:var(--gold);
+    font-size:16px;
+    flex:0 0 auto;
+  }
+  .flow-detail{
+    background:var(--slate-soft);
+    border:1px solid #C9D6E2;
+    border-radius:4px;
+    padding:14px 16px;
+    margin-top:12px;
+    font-size:14px;
+    display:none;
+  }
+  .flow-detail.visible{display:block;}
+
+  /* ===== Knowledge check ===== */
+  .kc{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:20px 22px;
+    margin:18px 0;
+  }
+  .kc-q{font-weight:600;color:var(--ink);margin-bottom:12px;font-size:15px;}
+  .kc-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+  .kc-opt{
+    text-align:left;
+    padding:10px 14px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--paper);
+    cursor:pointer;
+    font-size:14px;
+    font-family:var(--sans);
+    color:var(--text);
+    transition:background .12s ease;
+  }
+  .kc-opt:hover{background:var(--slate-soft);}
+  .kc-opt.correct{background:var(--green-soft);border-color:var(--green);color:#234731;font-weight:600;}
+  .kc-opt.incorrect{background:var(--red-soft);border-color:var(--red);color:#5E241C;}
+  .kc-feedback{
+    font-size:13.5px;
+    padding:10px 12px;
+    border-radius:4px;
+    display:none;
+    background:#F1EEE5;
+    color:var(--text-mute);
+  }
+  .kc-feedback.visible{display:block;}
+
+  /* ===== Calc demo ===== */
+  .calc-box{
+    background:#FBFAF7;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:18px 20px;
+    margin:18px 0;
+  }
+  .calc-row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap;}
+  .calc-row label{font-size:13px;font-weight:600;color:var(--ink-soft);min-width:170px;}
+  .calc-row input{
+    padding:7px 10px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    font-size:14px;
+    font-family:var(--mono);
+    width:130px;
+  }
+  .calc-result{
+    margin-top:12px;
+    padding:12px 14px;
+    background:var(--gold-soft);
+    border:1px solid #E4CE97;
+    border-radius:4px;
+    font-size:14.5px;
+  }
+  .calc-result .big{font-family:var(--mono);font-size:20px;font-weight:700;color:#8A6323;}
+  .calc-formula{
+    font-family:var(--mono);
+    background:var(--ink);
+    color:#EFEAD9;
+    padding:12px 16px;
+    border-radius:4px;
+    font-size:13.5px;
+    margin-bottom:12px;
+    overflow-x:auto;
+  }
+
+  /* ===== Scenario What-would-you-do ===== */
+  .scenario{
+    background:#FBFAF7;
+    border:1px solid var(--rule);
+    border-left:4px solid var(--slate);
+    border-radius:4px;
+    padding:18px 20px;
+    margin:18px 0;
+  }
+  .scenario .stitle{font-weight:700;color:var(--slate);font-size:13px;margin-bottom:8px;font-family:var(--sans);letter-spacing:.01em;}
+  .scenario-choices{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+  .scenario-choice{
+    text-align:left;
+    padding:10px 14px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--paper-raised);
+    cursor:pointer;
+    font-size:14px;
+  }
+  .scenario-choice:hover{background:var(--slate-soft);}
+  .scenario-result{
+    display:none;
+    margin-top:12px;
+    padding:12px 14px;
+    border-radius:4px;
+    font-size:14px;
+  }
+  .scenario-result.visible{display:block;}
+  .scenario-result.good{background:var(--green-soft);color:#234731;border:1px solid #CBE0D1;}
+  .scenario-result.bad{background:var(--red-soft);color:#5E241C;border:1px solid #E5C3BD;}
+
+  /* ===== Glossary strip ===== */
+  .glossary{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 24px;
+    margin:16px 0;
+  }
+  @media(max-width:640px){.glossary{grid-template-columns:1fr;}}
+  .gterm{
+    border-bottom:1px solid var(--rule-soft);
+    padding-bottom:8px;
+  }
+  .gterm dt{font-weight:700;color:var(--ink);font-size:14px;}
+  .gterm dd{margin:2px 0 0;color:var(--text-mute);font-size:13.5px;}
+
+  /* ===== Back to top / end matter ===== */
+  .endmatter{
+    border-top:3px solid var(--ink);
+    margin-top:60px;
+    padding-top:30px;
+  }
+  .endmatter h2{
+    font-family:var(--serif);
+    color:var(--ink);
+    font-size:26px;
+    margin-bottom:16px;
+  }
+
+  .quickref-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:14px;
+    margin:16px 0;
+  }
+  .qr-card{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+  }
+  .qr-card h4{margin:0 0 8px;font-size:13px;color:var(--slate);font-family:var(--sans);}
+  .qr-card ul{margin:0;padding-left:18px;font-size:13.5px;}
+
+  .pq{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    margin-bottom:14px;
+    background:var(--paper-raised);
+    overflow:hidden;
+  }
+  .pq-q{padding:16px 18px;font-weight:600;color:var(--ink);font-size:14.5px;}
+  .pq-tag{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--text-mute);
+    display:block;
+    margin-bottom:6px;
+    letter-spacing:.02em;
+  }
+  .pq-opts{padding:0 18px 6px;display:flex;flex-direction:column;gap:6px;}
+  .pq-explain{
+    display:none;
+    padding:14px 18px;
+    background:#F7F6F3;
+    border-top:1px solid var(--rule-soft);
+    font-size:13.5px;
+  }
+  .pq-explain.visible{display:block;}
+
+  .back-to-top{
+    position:fixed;
+    bottom:28px;
+    right:28px;
+    background:var(--ink);
+    color:#F4F1E8;
+    border:none;
+    border-radius:50%;
+    width:44px;
+    height:44px;
+    cursor:pointer;
+    font-size:18px;
+    box-shadow:0 3px 10px rgba(0,0,0,.25);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+  }
+  .back-to-top.visible{display:flex;}
+
+  @media(max-width:880px){
+    .shell{grid-template-columns:1fr;}
+    .sidebar{
+      position:relative;
+      height:auto;
+      max-height:60vh;
+    }
+    .content-inner{padding:32px 20px 100px;}
+    .chapter-head h1{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="kicker">RIBO LEVEL 1 · ENTRY-LEVEL BROKER</div>
+      <h1>Chapter 3</h1>
+      <div class="sub">Insurance Industry, Products, Markets &amp; Policy Structure</div>
+    </div>
+    <div class="toc" id="toc">
+      <!-- populated below, static links -->
+      <a href="#top" class="toc-chapter">Chapter Overview</a>
+
+      <a href="#s3-1" class="toc-section" data-sec="s3-1">3.1 Insurance Industry Structure</a>
+      <a href="#s3-2" class="toc-section" data-sec="s3-2">3.2 Distribution Methods</a>
+      <a href="#s3-3" class="toc-section" data-sec="s3-3">3.3 Insurance Company Structures</a>
+      <a href="#s3-4" class="toc-section" data-sec="s3-4">3.4 Lloyd's of London</a>
+      <a href="#s3-5" class="toc-section" data-sec="s3-5">3.5 Facility Association</a>
+      <a href="#s3-6" class="toc-section" data-sec="s3-6">3.6 Insurance Lifecycle</a>
+      <a href="#s3-7" class="toc-section" data-sec="s3-7">3.7 Binding Authority</a>
+      <a href="#s3-8" class="toc-section" data-sec="s3-8">3.8 Loss Ratio</a>
+      <a href="#s3-9" class="toc-section" data-sec="s3-9">3.9 Insurance Pricing</a>
+      <a href="#s3-10" class="toc-section" data-sec="s3-10">3.10 Policy Structure</a>
+      <a href="#s3-11" class="toc-section" data-sec="s3-11">3.11 Policy Interpretation</a>
+      <a href="#s3-12" class="toc-section" data-sec="s3-12">3.12 Insurance Resources</a>
+
+      <a href="#endmatter" class="toc-section" data-sec="endmatter" style="margin-top:6px;border-top:1px solid #263A52;padding-top:12px;">Chapter Review &amp; Practice</a>
+    </div>
+    <div class="toc-progress">
+      <div class="label">CHAPTER PROGRESS</div>
+      <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="content-inner" id="top">
+
+      <div class="chapter-head">
+        <span class="kicker">CHAPTER 3 OF 13</span>
+        <h1>Insurance Industry, Products, Markets &amp; Policy Structure</h1>
+        <p class="dek">How the insurance industry is actually organized: who the players are, how products reach a client, what Lloyd's and the Facility Association do, the full lifecycle of a policy from risk to settlement, binding authority, how insurers price risk, and how to read and interpret a policy document.</p>
+        <div class="comp-tags">
+          <span class="comp-tag">Competency 3 — Insurance Product &amp; Industry Knowledge</span>
+          <span class="comp-tag">Content Domain — General Insurance (25%)</span>
+        </div>
+      </div>
+
+      <div class="notice-box">
+        <strong>About this chapter.</strong> This is a self-study structure built from the RIBO Level 1 Master Syllabus. Chapter numbering here is a study sequence, not RIBO's official numbering. The <strong>official RIBO Competency Profile — Entry Level Broker</strong> remains the controlling reference; where this chapter states a regulatory rule, treat it as a study explanation and verify current requirements against RIBO, FSRA, and the Ontario Insurance Act before relying on it professionally or for exam sitting.
+      </div>
+
+      <!-- CONTENT SECTIONS WILL BE INSERTED HERE -->
+      <section class="topic" id="s3-1">
+  <h2><span class="num">3.1</span> Insurance Industry Structure</h2>
+
+  <article class="subtopic">
+    <h3>Who the players are</h3>
+    <p>Before a broker can explain a policy or a claim, it helps to know who does what across the industry. Each role below has a distinct function, even though clients often lump them all together as "the insurance company."</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:20%">Role</th><th>Function</th></tr>
+        <tr><td><strong>Insurers</strong></td><td>The companies that actually accept risk, collect premium, and pay claims. They design products, set rates (subject to regulatory approval where applicable), and hold the financial responsibility for covered losses.</td></tr>
+        <tr><td><strong>Brokers</strong></td><td>RIBO-licensed intermediaries who represent the <em>client</em>, can access multiple insurers, and advise on coverage suited to the client's needs (see 3.2 for the full distribution comparison).</td></tr>
+        <tr><td><strong>Agents</strong></td><td>Intermediaries who typically represent one insurer (or a limited set) rather than shopping the broader market on the client's behalf.</td></tr>
+        <tr><td><strong>Direct writers</strong></td><td>Insurers that sell directly to the public without an independent broker or agent intermediary — the insurer's own employees or online channel serve the client directly.</td></tr>
+        <tr><td><strong>Managing General Agents (MGAs)</strong></td><td>Specialized intermediary organizations that insurers delegate certain underwriting, binding, or program-management authority to — often used to access specialty or harder-to-place markets. Brokers may interact with MGAs as a route into markets not otherwise directly accessible.</td></tr>
+        <tr><td><strong>Underwriters</strong></td><td>The insurer professionals who evaluate risk, decide whether to accept it, and determine pricing and terms.</td></tr>
+        <tr><td><strong>Claims adjusters</strong></td><td>The professionals (insurer staff or independent) who investigate and evaluate claims and determine the amount payable under the policy.</td></tr>
+        <tr><td><strong>Clients/insureds</strong></td><td>The individuals or businesses who purchase coverage and are protected by the policy.</td></tr>
+        <tr><td><strong>Regulators</strong></td><td>RIBO, FSRA, and other bodies covered in Chapter 1, overseeing licensing, market conduct, and compliance.</td></tr>
+        <tr><td><strong>Industry associations</strong></td><td>Organizations such as IBAO (Insurance Brokers Association of Ontario) that support, represent, and provide resources to the broker community (see 3.12, 12.4).</td></tr>
+      </table>
+    </div>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      A common exam pattern names a role in a scenario ("the person who evaluates your claim and determines the payout is the ___") and asks you to identify it. Know the function of each role well enough to identify it from a description, not just from its name.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s3-2">
+  <h2><span class="num">3.2</span> Distribution Methods</h2>
+
+  <article class="subtopic">
+    <h3>Broker vs. agent vs. direct insurer</h3>
+    <p class="lede">This comparison is one of the most heavily tested distinctions in the general insurance content domain.</p>
+
+    <div class="tabs">
+      <div class="tab-bar">
+        <button class="tab-btn active" data-target="tab-broker">Broker</button>
+        <button class="tab-btn" data-target="tab-agent">Agent</button>
+        <button class="tab-btn" data-target="tab-direct">Direct Insurer</button>
+      </div>
+      <div class="tab-panel active" id="tab-broker">
+        <p><strong>Who they represent:</strong> the client. A broker owes duties of advice and advocacy to the person buying the insurance.</p>
+        <p><strong>Market access:</strong> typically able to place business with multiple insurers, allowing genuine comparison shopping and market-fit selection.</p>
+        <p><strong>Client relationship:</strong> ongoing, advisory — the broker is expected to identify needs, compare markets, and recommend appropriate coverage (see Chapter 9).</p>
+        <p><strong>Compensation:</strong> generally commission-based, paid by the insurer, though this can create the conflict-of-interest considerations covered in Chapter 2.</p>
+        <p><strong>Responsibilities:</strong> licensed and regulated by RIBO in Ontario; carries the professional duty of care and E&amp;O exposure discussed in 1.3 and 8.6-8.7.</p>
+      </div>
+      <div class="tab-panel" id="tab-agent">
+        <p><strong>Who they represent:</strong> typically the insurer (or a specific, limited set of insurers) rather than the client broadly.</p>
+        <p><strong>Market access:</strong> generally limited to the insurer(s) they're appointed to represent.</p>
+        <p><strong>Client relationship:</strong> can still be advisory, but within the bounds of what their appointing insurer(s) offer.</p>
+        <p><strong>Responsibilities:</strong> subject to applicable licensing requirements for their role, distinct from a broker's RIBO licence and multi-market obligations.</p>
+      </div>
+      <div class="tab-panel" id="tab-direct">
+        <p><strong>Who they represent:</strong> the insurer itself — there is no independent intermediary in the relationship.</p>
+        <p><strong>Market access:</strong> the client only accesses that one insurer's products, with no market comparison built into the transaction.</p>
+        <p><strong>Client relationship:</strong> often more transactional/self-directed (e.g., online purchase), without the same individualized advisory relationship a broker provides.</p>
+      </div>
+    </div>
+
+    <div class="callout trap">
+      <span class="callout-title">RIBO Exam Trap</span>
+      "Broker vs. agent" is a named confusion pair in the official exam trap list. The core distinction to hold onto: a <strong>broker represents the client</strong> and can typically access multiple markets; an <strong>agent typically represents the insurer</strong> and is limited to what that insurer offers.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s3-3">
+  <h2><span class="num">3.3</span> Insurance Company Structures</h2>
+
+  <article class="subtopic">
+    <h3>How insurers themselves are organized</h3>
+    <div class="glossary">
+      <div class="gterm"><dt>Stock (company) insurers</dt><dd>Owned by shareholders, who share in profits; the insurer operates to generate a return for its shareholders in addition to paying claims.</dd></div>
+      <div class="gterm"><dt>Mutual insurers</dt><dd>Owned by their policyholders rather than outside shareholders; profits/surplus generally benefit the policyholder-owners rather than external investors.</dd></div>
+      <div class="gterm"><dt>MGAs</dt><dd>Not insurers themselves, but delegated underwriting/program managers acting on an insurer's behalf (see 3.1) — included here because they're a recurring structural feature of how certain markets are accessed.</dd></div>
+      <div class="gterm"><dt>Lloyd's</dt><dd>A marketplace of syndicates rather than a single insurance company (see 3.4 for full treatment).</dd></div>
+      <div class="gterm"><dt>Syndicates</dt><dd>Groups of underwriting members that come together within the Lloyd's marketplace to underwrite specific risks.</dd></div>
+    </div>
+
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      A stock insurer and a mutual insurer can offer functionally similar policies to a client — the difference is in <em>ownership and governance</em>, not necessarily in coverage quality. Don't assume one structure is inherently "better" for the client; the structural distinction is a knowledge-level exam point, not a client-advisory recommendation.
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s3-4">
+  <h2><span class="num">3.4</span> Lloyd's of London</h2>
+
+  <article class="subtopic">
+    <h3>What Lloyd's is</h3>
+    <p>Lloyd's of London is not a single insurance company — it is a <strong>marketplace</strong> where multiple underwriting <strong>syndicates</strong> come together to underwrite risk. Each syndicate is made up of underwriting members who provide capital and share in the risk (and potential profit) of the policies the syndicate writes.</p>
+
+    <h4 class="microhead">HOW IT WORKS</h4>
+    <p>A risk brought to Lloyd's is typically presented through a broker with access to the Lloyd's market. One or more syndicates may agree to underwrite portions of that risk — meaning a single Lloyd's policy can actually be backed by several different syndicates sharing the exposure, similar in concept to the subscription policies covered in Chapter 6.</p>
+
+    <h4 class="microhead">SPECIALTY RISKS</h4>
+    <p>Lloyd's is particularly known for underwriting unusual, large, or highly specialized risks that standard markets may not have the appetite or expertise to write — historically including marine, aviation, and other niche or emerging risk categories.</p>
+
+    <h4 class="microhead">BROKER INTERACTION</h4>
+    <p>An Ontario broker does not typically access Lloyd's directly — access is usually arranged through a broker with specific Lloyd's market access or through an MGA/wholesale relationship, given the specialized nature of the marketplace.</p>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      The key knowledge-level fact to retain: Lloyd's is a <strong>marketplace of syndicates</strong>, not a single insurer. If an exam question asks "which of the following best describes Lloyd's of London," resist any answer that frames it as a single traditional insurance company.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s3-5">
+  <h2><span class="num">3.5</span> Facility Association</h2>
+
+  <article class="subtopic">
+    <h3>Purpose and why it exists</h3>
+    <p>The <strong>Facility Association</strong> is a residual market mechanism for automobile insurance in Ontario (and other provinces). It exists specifically because automobile insurance is compulsory (see 1.9, 4.1) — every eligible driver needs a route to coverage, even those whose risk profile falls outside what standard insurers are willing to write on a voluntary basis.</p>
+
+    <h4 class="microhead">ELIGIBILITY AND HOW IT OPERATES</h4>
+    <p>Drivers who cannot obtain standard automobile insurance in the voluntary market — due to factors like driving record, claims history, or other underwriting concerns — may be eligible for coverage through the Facility Association. Member insurers share in the results (premiums and losses) of this residual pool, rather than any single insurer bearing the full cost of insuring higher-risk drivers alone.</p>
+
+    <h4 class="microhead">RELATIONSHIP TO THE TAKE ALL COMERS RULE</h4>
+    <p>The Facility Association is the practical mechanism that makes the Take All Comers Rule (see 1.9) workable in practice: rather than forcing every individual insurer to accept every risk on standard terms, drivers outside standard market appetite have a designated residual market path to compulsory coverage.</p>
+
+    <div class="reveal">
+      <div class="reveal-prompt">Quick check: does the Facility Association replace the Take All Comers Rule?</div>
+      <div class="reveal-answer">
+        <p>No — they work together. The Take All Comers Rule requires insurers to accept qualified applicants within their own approved underwriting criteria. For drivers who fall outside <em>any</em> standard insurer's appetite, the Facility Association provides the residual-market path to obtaining the compulsory coverage Ontario law requires.</p>
+      </div>
+    </div>
+
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      A broker's role when a client doesn't fit standard markets is to identify the appropriate market path — which may include Facility Association access — rather than simply declining to help or, worse, misrepresenting information to force a standard-market fit (see the Chapter 1 scenario on this same issue).
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s3-6">
+  <h2><span class="num">3.6</span> Insurance Lifecycle</h2>
+
+  <article class="subtopic">
+    <h3>From risk to settlement</h3>
+    <p class="lede">Click each stage to see the role each party plays. This sequence is the backbone of nearly every later chapter — needs analysis, binding, claims, and renewals all sit somewhere on this timeline.</p>
+
+    <div class="flow-wrap">
+      <div class="flow" style="flex-wrap:wrap;">
+        <div class="flow-step active" data-detail="lc-1">Risk</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" data-detail="lc-2">Application</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" data-detail="lc-3">Underwriting</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" data-detail="lc-4">Quote</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" data-detail="lc-5">Binding</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" data-detail="lc-6">Policy Issuance</div>
+      </div>
+      <div class="flow" style="flex-wrap:wrap;margin-top:0;">
+        <div class="flow-step" data-detail="lc-7">Service</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" data-detail="lc-8">Renewal</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" data-detail="lc-9">Claim</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" data-detail="lc-10">Settlement</div>
+      </div>
+
+      <div class="flow-detail visible" id="lc-1">
+        <strong>Risk.</strong> The starting point — an exposure exists (a person, property, vehicle, or business activity) that could suffer a loss. <em>Broker's role:</em> identify and understand the risk through information gathering (see 8.1-8.2). <em>Client's role:</em> provide accurate information about their situation.
+      </div>
+      <div class="flow-detail" id="lc-2">
+        <strong>Application.</strong> The client's formal request for coverage, capturing the information the insurer needs to evaluate the risk. <em>Broker's role:</em> complete the application accurately and completely, ensuring the client understands why each piece of information matters (see 9.13). <em>Client's role:</em> answer truthfully and completely (utmost good faith — see 1.2).
+      </div>
+      <div class="flow-detail" id="lc-3">
+        <strong>Underwriting.</strong> The insurer's underwriter evaluates the risk against the insurer's risk appetite and rating criteria (see 8.3), deciding whether to accept the risk and on what terms. <em>Broker's role:</em> present the risk accurately and respond to underwriter requests for clarification.
+      </div>
+      <div class="flow-detail" id="lc-4">
+        <strong>Quote.</strong> The insurer provides pricing and proposed terms based on the underwriting assessment. <em>Broker's role:</em> verify the quote against the information provided, compare across markets where appropriate, and explain premium factors to the client (see 9.10).
+      </div>
+      <div class="flow-detail" id="lc-5">
+        <strong>Binding.</strong> Coverage formally takes effect — the point at which the insurer is on risk. <em>Broker's role:</em> confirm binding authority, effective date/time, and required information before confirming coverage is in place (see 3.7, 9.11).
+      </div>
+      <div class="flow-detail" id="lc-6">
+        <strong>Policy Issuance.</strong> The insurer produces the formal policy document reflecting the agreed terms. <em>Broker's role:</em> review the issued policy against what was quoted/bound and deliver it to the client, explaining key terms (see 9.5, 9.12).
+      </div>
+      <div class="flow-detail" id="lc-7">
+        <strong>Service.</strong> The ongoing relationship during the policy period — mid-term changes, questions, endorsements, and updates as the client's circumstances evolve (see 9.2, 9.3). <em>Broker's role:</em> respond to service requests and identify material changes that need reporting to the insurer.
+      </div>
+      <div class="flow-detail" id="lc-8">
+        <strong>Renewal.</strong> The policy comes up for its next term — information is reviewed and updated, and the client re-confirms or adjusts coverage (see 9.16). <em>Broker's role:</em> proactively review the account rather than treating renewal as automatic.
+      </div>
+      <div class="flow-detail" id="lc-9">
+        <strong>Claim.</strong> A loss occurs and the client reports it. <em>Broker's role:</em> assist with first notice of loss, explain the process, and manage expectations without overstepping into the insurer's adjusting role (see 10.6-10.7).
+      </div>
+      <div class="flow-detail" id="lc-10">
+        <strong>Settlement.</strong> The claim is resolved — paid, denied, or disputed, based on the coverage evaluation. <em>Broker's role:</em> help the client understand the outcome and, where a dispute arises, understand the appropriate resolution path (see 10.12).
+      </div>
+    </div>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      Scenario questions often describe an event ("the underwriter requests additional information about the roof age") and ask which lifecycle stage it belongs to. Practice identifying the stage from a described activity, not just reciting the stage names in order.
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s3-7">
+  <h2><span class="num">3.7</span> Binding Authority</h2>
+
+  <article class="subtopic">
+    <h3>What binding means and why it matters</h3>
+    <p><strong>Binding</strong> is the moment coverage takes legal effect — the insurer is officially on risk from the bound date/time forward, even before the formal policy document is issued. Understanding binding authority matters because acting outside it can leave a client mistakenly believing they have coverage when they don't.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:24%">Concept</th><th>What it means</th></tr>
+        <tr><td><strong>Broker authority</strong></td><td>The scope within which a broker can commit an insurer to coverage without needing case-by-case insurer approval — this varies by insurer, broker relationship, and type of risk.</td></tr>
+        <tr><td><strong>Insurer authority</strong></td><td>Ultimately, the insurer defines the limits of what a broker (or MGA) can bind on its behalf — brokers cannot create coverage the insurer hasn't authorized.</td></tr>
+        <tr><td><strong>Conditions</strong></td><td>Binding is often conditional — e.g., subject to receipt of a satisfactory application, inspection, or specific underwriting information; coverage can be conditional pending confirmation of those requirements.</td></tr>
+        <tr><td><strong>Differences between markets</strong></td><td>Binding authority is not uniform — some markets grant brokers broad authority to bind directly; others (e.g., certain specialty or Lloyd's-accessed risks) require insurer/underwriter confirmation before binding is effective.</td></tr>
+      </table>
+    </div>
+
+    <div class="callout warning">
+      <span class="callout-title">Warning — exceeding binding authority</span>
+      If a broker tells a client "you're covered" when the broker did not actually have the authority to bind that risk (or a required condition wasn't met), the client may believe they have coverage that doesn't actually exist. This is a serious E&amp;O exposure (see 8.6) — confirm binding authority and conditions before confirming coverage to a client.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s3-8">
+  <h2><span class="num">3.8</span> Loss Ratio</h2>
+
+  <article class="subtopic">
+    <h3>Definition and calculation</h3>
+    <p>The <strong>loss ratio</strong> is a core metric insurers use to monitor the profitability and sustainability of a book of business. It compares claims paid against premium collected.</p>
+
+    <div class="calc-box">
+      <div class="calc-formula">Loss Ratio = (Incurred Losses ÷ Earned Premium) × 100%</div>
+      <div class="calc-row">
+        <label for="lr-losses">Incurred Losses ($)</label>
+        <input type="number" id="lr-losses" placeholder="e.g. 650000">
+      </div>
+      <div class="calc-row">
+        <label for="lr-premium">Earned Premium ($)</label>
+        <input type="number" id="lr-premium" placeholder="e.g. 1000000">
+      </div>
+      <button type="button" onclick="calcLossRatio()" style="padding:8px 16px;background:var(--ink);color:#F4F1E8;border:none;border-radius:4px;cursor:pointer;font-size:13.5px;font-weight:600;">Calculate</button>
+      <div class="calc-result" id="lr-result"><em>Enter both values to calculate.</em></div>
+    </div>
+
+    <h4 class="microhead">WHY INSURERS MONITOR IT</h4>
+    <p>A loss ratio tells an insurer roughly how much of every premium dollar is going back out in claims. A loss ratio consistently above what the insurer's pricing assumed signals the book of business is unprofitable at current rates.</p>
+
+    <h4 class="microhead">RELATIONSHIP TO PRICING AND UNDERWRITING</h4>
+    <p>A high or worsening loss ratio in a particular line, territory, or class of business typically leads insurers to raise rates, tighten underwriting criteria, or reduce their appetite for that class — directly affecting what's available to brokers and clients in that market going forward (see 3.9).</p>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      Loss ratio calculation questions are common. Keep the formula simple: losses ÷ premium, expressed as a percentage. A loss ratio over 100% means the insurer paid out more in claims than it collected in premium for that period — an unsustainable result if it continues.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s3-9">
+  <h2><span class="num">3.9</span> Insurance Pricing</h2>
+
+  <article class="subtopic">
+    <h3>Factors affecting availability and pricing</h3>
+    <p>Insurance pricing and market availability respond to a wide range of factors, many of which are outside any individual broker's or client's control. Understanding these helps a broker explain rate changes to clients in an informed, non-defensive way.</p>
+
+    <div class="glossary">
+      <div class="gterm"><dt>Inflation &amp; building costs</dt><dd>Rising costs to repair or rebuild property directly increase the cost of claims, which feeds into pricing.</dd></div>
+      <div class="gterm"><dt>Claims frequency &amp; severity</dt><dd>How often claims occur, and how large they are on average, both drive loss ratios and pricing.</dd></div>
+      <div class="gterm"><dt>Climate change &amp; water losses</dt><dd>Increasing frequency of severe weather and water-related claims has materially affected habitational pricing and availability in recent years (see 5.8).</dd></div>
+      <div class="gterm"><dt>Natural disasters &amp; secondary perils</dt><dd>Large-scale catastrophic events affect insurer capital and reinsurance costs, which flow through to pricing broadly.</dd></div>
+      <div class="gterm"><dt>Global events</dt><dd>Economic, geopolitical, and supply-chain events can affect claims costs (e.g., parts availability for auto claims) and reinsurance markets.</dd></div>
+      <div class="gterm"><dt>Technology</dt><dd>Can both increase costs (e.g., complex vehicle repair technology) and create efficiencies that offset some cost pressure.</dd></div>
+      <div class="gterm"><dt>Fraud</dt><dd>Fraudulent claims directly increase claims costs across the pool, raising premiums for all policyholders (see 1.10, 8.11).</dd></div>
+      <div class="gterm"><dt>Reinsurance environment</dt><dd>The cost insurers themselves pay to transfer part of their risk to reinsurers affects what insurers must charge policyholders.</dd></div>
+      <div class="gterm"><dt>Risk characteristics</dt><dd>The specific attributes of an individual risk (construction, location, driving record, claims history) remain the most direct pricing factor at the individual policy level.</dd></div>
+    </div>
+
+    <div class="callout remember">
+      <span class="callout-title">Remember</span>
+      When a client is frustrated by a rate increase, being able to explain the broader pricing environment (not just "the insurer decided this") helps set realistic expectations and preserves trust — this connects directly to the difficult-conversations skills in Chapter 10.
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s3-10">
+  <h2><span class="num">3.10</span> Policy Structure</h2>
+
+  <article class="subtopic">
+    <h3>How to read a policy</h3>
+    <p class="lede">Every insurance policy — auto, home, or commercial — is built from the same structural components. Learning to locate each one is a foundational broker skill tested throughout the exam.</p>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Declarations</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>The page(s) at the front of the policy identifying the specific details of <em>this</em> policy: named insured, policy period, described property/vehicle, limits selected, deductibles, premium, and the specific coverages and endorsements that apply to this particular policyholder.</p>
+        <p><strong>Where to find information:</strong> Always start here to confirm who is insured, what is insured, and the policy period before looking anywhere else.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Insuring agreements</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>The core promise of the policy — the section stating what the insurer agrees to do (e.g., "we will pay for direct physical loss to covered property caused by a covered peril"). This is where coverage is affirmatively granted.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Definitions</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Policies define key terms precisely, and those definitions often differ from everyday usage. A word like "insured," "residence premises," or "accident" can have a specific, sometimes narrower or broader, meaning within the policy than in ordinary conversation — always check the definitions section rather than assuming plain-English meaning applies.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Conditions</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Requirements the insured must meet for coverage to apply or continue — such as duties after a loss, cooperation requirements, or premium payment terms (see also statutory conditions, 4.12).</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Exclusions</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Specific causes, situations, or types of loss the policy states are <em>not</em> covered, even though they might otherwise seem to fall within the insuring agreement.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Extensions</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Provisions built into the base policy that extend coverage slightly beyond the main insuring agreement — often with their own, smaller sub-limits.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Endorsements</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Separate documents attached to the policy that modify its original terms — adding, removing, or changing coverage from what the base policy provides.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Limits and deductibles</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Found in the declarations for the specific policy, but the underlying rules for how they apply (per occurrence, aggregate, per item) are often detailed further within the policy wording itself.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-head"><span>Statutory conditions (where applicable)</span><span class="chev">▸</span></div>
+      <div class="accordion-body">
+        <p>Certain policy types (notably automobile — see 4.12) are required by law to include specific statutory conditions, which cannot be removed or weakened by the insurer even if not restated verbatim in every policy document.</p>
+      </div>
+    </div>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      A recurring question format gives you a short policy excerpt and asks you to identify which structural component it represents (declarations vs. insuring agreement vs. exclusion, etc.). Practice this pattern-recognition skill directly — see the Policy Wording Exercise in the end matter below.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s3-11">
+  <h2><span class="num">3.11</span> Policy Interpretation</h2>
+
+  <article class="subtopic">
+    <h3>The interpretation checklist</h3>
+    <p>Reading a policy structurally (3.10) is the first step. Applying it to an actual claim or coverage question requires working through a consistent set of questions, in order:</p>
+
+    <ol>
+      <li><strong>Who is insured?</strong> Check the declarations and definitions — is this specific person/entity actually a named insured, an additional insured, or not insured at all under this policy (see 9.4)?</li>
+      <li><strong>What property is insured?</strong> Confirm the specific property, vehicle, or exposure actually described falls within what the policy covers.</li>
+      <li><strong>What peril caused the loss?</strong> Identify the actual cause of loss (see 1.1) before assessing coverage.</li>
+      <li><strong>Is the loss covered?</strong> Check whether that peril falls within the insuring agreement.</li>
+      <li><strong>Is there an exclusion?</strong> Check whether an exclusion removes what would otherwise be covered.</li>
+      <li><strong>Is there an endorsement?</strong> Check whether an endorsement changes the standard exclusion or coverage position for this specific policy.</li>
+      <li><strong>What limit applies?</strong> Confirm the maximum payable for this type of loss.</li>
+      <li><strong>What deductible applies?</strong> Confirm what the insured must absorb before payment.</li>
+      <li><strong>What conditions apply?</strong> Confirm the insured has met (or can still meet) required conditions, such as timely notice.</li>
+    </ol>
+
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      This is the same sequence introduced in 1.1 for how insurance responds to a loss — 3.11 is where you formally practise applying it as a repeatable skill, rather than treating each step as a one-off fact.
+    </div>
+
+    <h4 class="microhead">APPLIED EXAMPLE</h4>
+    <div class="callout example">
+      <span class="callout-title">Example</span>
+      A tenant's policy covers their personal property against named perils including fire and theft. A guest's phone (not the tenant's own property) is stolen from the tenant's apartment. Working through the checklist: Who is insured? The tenant, under their own policy — the guest is not an insured. What property is insured? The tenant's own personal property, not a guest's belongings (unless a specific extension applies). Result: without a specific endorsement extending coverage to guests' property, this loss likely falls outside the tenant's own coverage, regardless of the fact that theft is a covered peril for the tenant's own belongings.
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s3-12">
+  <h2><span class="num">3.12</span> Insurance Resources</h2>
+
+  <article class="subtopic">
+    <h3>Tools brokers rely on daily</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:26%">Resource</th><th>How brokers use it</th></tr>
+        <tr><td><strong>Insurer portals</strong></td><td>Online systems for quoting, binding, servicing policies, and accessing insurer-specific documentation directly.</td></tr>
+        <tr><td><strong>Policy wordings</strong></td><td>The authoritative source for what a specific policy actually says — always the final reference point when a coverage question arises (see 3.10-3.11).</td></tr>
+        <tr><td><strong>Underwriting manuals</strong></td><td>Insurer guidance on what risks are eligible, how they're classified, and what underwriting rules apply.</td></tr>
+        <tr><td><strong>Rate manuals</strong></td><td>Insurer documentation on how premiums are calculated for a given risk and class of business.</td></tr>
+        <tr><td><strong>Insurer memos / broker bulletins</strong></td><td>Ongoing communications from insurers about changes to products, underwriting rules, or procedures — critical for staying current (see 12.2, 12.4).</td></tr>
+        <tr><td><strong>Insurance Institute resources</strong></td><td>Educational and professional-development materials, including designation coursework (see 12.5).</td></tr>
+        <tr><td><strong>IBAO</strong></td><td>The Insurance Brokers Association of Ontario — provides advocacy, resources, and support for Ontario brokers.</td></tr>
+        <tr><td><strong>CCIR / RIBO / FSRA</strong></td><td>Regulatory sources for current rules, guidelines, and requirements (see Chapter 1) — always the first place to verify time-sensitive regulatory information.</td></tr>
+      </table>
+    </div>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      When a coverage question and a policy wording seem to conflict, the <strong>policy wording for that specific policy</strong> always governs over general guidance, manuals, or an underwriter's informal comment — those other resources inform your understanding, but the actual issued policy document is the controlling contract.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s3-check">
+  <h2><span class="num">✓</span> Chapter 3 Knowledge Checks</h2>
+  <p class="lede" style="font-style:italic;color:var(--text-mute);margin-bottom:18px;">Quick checks across this chapter's core concepts. Select an answer to see feedback.</p>
+
+  <div class="kc">
+    <div class="kc-q">1. A client wants to compare quotes from several different insurers through one relationship. Which distribution channel are they most likely using?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">A direct writer</button>
+      <button class="kc-opt" data-correct="false">An agent appointed to one insurer</button>
+      <button class="kc-opt" data-correct="true">A broker</button>
+      <button class="kc-opt" data-correct="false">An underwriter</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>A broker.</strong> Brokers represent the client and typically have access to multiple insurers, enabling genuine market comparison — unlike an agent (typically tied to one insurer) or a direct writer (only their own products).</div>
+  </div>
+
+  <div class="kc">
+    <div class="kc-q">2. An insurer's incurred losses for the year are $720,000 and earned premium is $900,000. What is the loss ratio?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">72%</button>
+      <button class="kc-opt" data-correct="true">80%</button>
+      <button class="kc-opt" data-correct="false">125%</button>
+      <button class="kc-opt" data-correct="false">90%</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>80%.</strong> ($720,000 ÷ $900,000) × 100% = 80%.</div>
+  </div>
+
+  <div class="kc">
+    <div class="kc-q">3. A homeowner's policy excludes "water damage" generally, but an endorsement has been added extending coverage for sewer backup. A sewer backup loss occurs. Which policy structure component determines the actual outcome?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">The declarations page alone</button>
+      <button class="kc-opt" data-correct="true">The endorsement, since it specifically modifies the base exclusion for this policy</button>
+      <button class="kc-opt" data-correct="false">The definitions section alone</button>
+      <button class="kc-opt" data-correct="false">The base insuring agreement, ignoring the endorsement</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>The endorsement.</strong> Endorsements modify the base policy's terms — here, adding back coverage the base exclusion would otherwise remove. Interpretation requires checking whether an endorsement changes the standard position (step 6 of the interpretation checklist).</div>
+  </div>
+</section>
+
+
+<div class="endmatter" id="endmatter">
+  <h2>Key Takeaways</h2>
+  <ul>
+    <li>The industry involves distinct roles — insurers, brokers, agents, direct writers, MGAs, underwriters, adjusters, clients, regulators, and industry associations — each with a specific function.</li>
+    <li>Brokers represent the client and typically access multiple insurers; agents typically represent one insurer; direct writers sell without an intermediary at all.</li>
+    <li>Insurers are structured as stock companies (shareholder-owned) or mutuals (policyholder-owned); Lloyd's is a marketplace of syndicates, not a single company.</li>
+    <li>The Facility Association is the residual market mechanism that makes compulsory auto insurance and the Take All Comers Rule workable for drivers outside standard market appetite.</li>
+    <li>The insurance lifecycle runs Risk → Application → Underwriting → Quote → Binding → Policy Issuance → Service → Renewal → Claim → Settlement, with defined broker, insurer, underwriter, adjuster, and client roles at each stage.</li>
+    <li>Binding authority varies by insurer and market — brokers must know the limits of their own authority and any conditions attached to binding before confirming coverage to a client.</li>
+    <li>Loss ratio (incurred losses ÷ earned premium) is a core profitability metric that directly drives pricing and underwriting appetite changes.</li>
+    <li>Pricing responds to inflation, claims frequency/severity, climate change, natural disasters, global events, technology, fraud, the reinsurance environment, and individual risk characteristics.</li>
+    <li>Every policy shares the same structural components: declarations, insuring agreements, definitions, conditions, exclusions, extensions, endorsements, limits, deductibles, and (where applicable) statutory conditions.</li>
+    <li>Policy interpretation follows a repeatable sequence: who's insured → what's insured → what peril → is it covered → exclusions → endorsements → limit → deductible → conditions.</li>
+    <li>Brokers rely on insurer portals, policy wordings, underwriting/rate manuals, bulletins, the Insurance Institute, IBAO, and regulators — but the actual issued policy wording always governs over general guidance.</li>
+  </ul>
+
+  <h2>Must-Know Terms</h2>
+  <div class="glossary">
+    <div class="gterm"><dt>MGA (Managing General Agent)</dt><dd>Delegated underwriting/program manager acting on an insurer's behalf, often providing access to specialty markets.</dd></div>
+    <div class="gterm"><dt>Stock insurer / Mutual insurer</dt><dd>Shareholder-owned / policyholder-owned insurer structures.</dd></div>
+    <div class="gterm"><dt>Lloyd's syndicate</dt><dd>A group of underwriting members that jointly underwrites risk within the Lloyd's marketplace.</dd></div>
+    <div class="gterm"><dt>Facility Association</dt><dd>Residual market mechanism providing auto coverage access for drivers outside standard market appetite.</dd></div>
+    <div class="gterm"><dt>Binding</dt><dd>The moment coverage legally takes effect, before formal policy issuance.</dd></div>
+    <div class="gterm"><dt>Loss ratio</dt><dd>Incurred losses ÷ earned premium — a core insurer profitability and pricing metric.</dd></div>
+    <div class="gterm"><dt>Declarations</dt><dd>The policy section identifying the specific insured, property, period, limits, and premium for this policy.</dd></div>
+    <div class="gterm"><dt>Insuring agreement</dt><dd>The core promise of what the insurer agrees to pay for.</dd></div>
+    <div class="gterm"><dt>Endorsement vs. Extension</dt><dd>A separate document modifying the base policy / a built-in provision slightly broadening base coverage.</dd></div>
+  </div>
+
+  <h2>Quick Reference</h2>
+  <div class="quickref-grid">
+    <div class="qr-card">
+      <h4>Distribution Methods at a Glance</h4>
+      <ul>
+        <li>Broker — represents client, multi-market</li>
+        <li>Agent — represents insurer(s), limited market</li>
+        <li>Direct writer — no intermediary at all</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Insurance Lifecycle</h4>
+      <ul>
+        <li>Risk → Application → Underwriting</li>
+        <li>→ Quote → Binding → Policy Issuance</li>
+        <li>→ Service → Renewal → Claim → Settlement</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Loss Ratio Formula</h4>
+      <ul>
+        <li>(Incurred Losses ÷ Earned Premium) × 100%</li>
+        <li>Above 100% = paid more in claims than collected in premium</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Policy Interpretation Sequence</h4>
+      <ul>
+        <li>1. Who's insured? 2. What's insured?</li>
+        <li>3. What peril? 4. Covered? 5. Exclusion?</li>
+        <li>6. Endorsement? 7. Limit? 8. Deductible? 9. Conditions?</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Common Exam Traps</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th style="width:32%">Confusion Pair</th><th>The distinction that matters</th></tr>
+      <tr><td>Broker vs. Agent</td><td>Broker represents the client, multi-market access. Agent typically represents one insurer, limited market access.</td></tr>
+      <tr><td>Endorsement vs. Extension</td><td>Endorsement = separate attached document modifying the policy. Extension = built into the base policy, usually with its own small sub-limit.</td></tr>
+      <tr><td>Exclusion vs. Condition</td><td>Exclusion = states what is NOT covered. Condition = a requirement the insured must meet for coverage to apply/continue.</td></tr>
+      <tr><td>Stock insurer vs. Mutual insurer</td><td>Stock = owned by shareholders. Mutual = owned by policyholders. A structural/ownership distinction, not a coverage-quality distinction.</td></tr>
+      <tr><td>Take All Comers Rule vs. Facility Association</td><td>Take All Comers = insurers must accept qualified applicants within their own approved criteria. Facility Association = the residual market for drivers outside any standard insurer's appetite.</td></tr>
+      <tr><td>Binding vs. Policy Issuance</td><td>Binding = the moment coverage legally takes effect. Policy issuance = the formal document reflecting those terms, which can follow binding.</td></tr>
+    </table>
+  </div>
+
+  <h2>Practice Questions</h2>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">KNOWLEDGE · DEFINITION · EASY</span>1. Which best describes Lloyd's of London?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. A single large stock insurance company</button>
+      <button class="pq-opt" data-correct="true">B. A marketplace of underwriting syndicates</button>
+      <button class="pq-opt" data-correct="false">C. A Canadian government reinsurer</button>
+      <button class="pq-opt" data-correct="false">D. A residual market for automobile insurance</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> Lloyd's is a marketplace where multiple underwriting syndicates come together to underwrite risk — not a single traditional insurance company. Option D describes the Facility Association, a distinct concept.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">COMPREHENSION · CALCULATION · MODERATE</span>2. An insurer had $2,400,000 in earned premium and $1,560,000 in incurred losses for the year. What is the loss ratio, and what does it suggest?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. 154% — the book is highly profitable</button>
+      <button class="pq-opt" data-correct="true">B. 65% — the insurer paid out 65 cents in claims for every premium dollar collected</button>
+      <button class="pq-opt" data-correct="false">C. 65% — this automatically means rates will decrease</button>
+      <button class="pq-opt" data-correct="false">D. Cannot be calculated without deductible information</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> ($1,560,000 ÷ $2,400,000) × 100% = 65%. This is the correct calculation and interpretation. Option C overreaches — a loss ratio alone doesn't automatically dictate a rate decrease, since expenses and other factors also affect pricing decisions.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">APPLICATION · SCENARIO · MODERATE</span>3. A broker confirms coverage is bound for a commercial risk that actually required underwriter sign-off before binding — sign-off that was never obtained. A loss occurs before sign-off is received. What is the most accurate description of this situation?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. Coverage is automatically valid because the broker confirmed it verbally</button>
+      <button class="pq-opt" data-correct="true">B. The broker exceeded their binding authority, creating a significant E&amp;O exposure and uncertainty about whether coverage actually attached</button>
+      <button class="pq-opt" data-correct="false">C. This is a normal part of the insurance lifecycle and requires no further action</button>
+      <button class="pq-opt" data-correct="false">D. The client bears full responsibility since they should have asked for written confirmation</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> Binding authority has real limits, and exceeding it — confirming coverage that wasn't actually authorized — creates serious E&amp;O exposure and leaves genuine doubt about whether coverage was in force at the time of loss. This is squarely the broker's responsibility to get right, not the client's.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">APPLICATION · POLICY INTERPRETATION · DIFFICULT</span>4. A named insured's policy covers "the described dwelling." Their adult child, who does not live in the home and is not listed in the declarations, asks whether damage to their own separate apartment would be covered under the parent's homeowners policy. Applying the interpretation checklist, what is the correct first question to resolve this?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. What deductible applies?</button>
+      <button class="pq-opt" data-correct="false">B. What peril caused the loss?</button>
+      <button class="pq-opt" data-correct="true">C. Who is insured, and what property is insured, under this specific policy?</button>
+      <button class="pq-opt" data-correct="false">D. Is there an applicable endorsement?</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: C.</strong> The interpretation checklist starts with confirming who is insured and what property is actually insured. Here, the adult child's separate apartment is neither the named insured's described dwelling nor (based on the facts given) covered property — this threshold question resolves the issue before reaching peril, exclusions, or endorsements.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">KNOWLEDGE · COMPARISON · EASY</span>5. Which distribution channel typically allows a client to compare products from multiple insurers through a single advisory relationship?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. Direct writer</button>
+      <button class="pq-opt" data-correct="false">B. MGA acting alone with the public</button>
+      <button class="pq-opt" data-correct="true">C. Broker</button>
+      <button class="pq-opt" data-correct="false">D. Claims adjuster</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: C.</strong> A broker represents the client and typically has multi-insurer market access, enabling comparison shopping within one advisory relationship — the defining feature that distinguishes brokers from agents and direct writers.
+    </div>
+  </div>
+
+  <div class="callout important" style="margin-top:30px;">
+    <span class="callout-title">Before moving to Chapter 4</span>
+    Chapter 4 applies everything from this chapter's policy-structure and interpretation framework to a single, heavily-weighted line of business: Personal Lines Automobile. You'll use the same declarations/insuring agreement/exclusion/endorsement structure — and the same interpretation checklist — to work through OAP 1 in detail.
+  </div>
+</div>
+
+
+    </div>
+  </main>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script>
+// ===== Scrollspy =====
+const sections = document.querySelectorAll('section.topic, div#endmatter');
+const tocLinks = document.querySelectorAll('.toc-section');
+const barFill = document.getElementById('barFill');
+
+function onScroll(){
+  let current = null;
+  const scrollPos = window.scrollY + 140;
+  sections.forEach(sec=>{
+    if(sec.offsetTop <= scrollPos) current = sec.id;
+  });
+  tocLinks.forEach(l=>{
+    l.classList.toggle('active', l.dataset.sec === current);
+  });
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? Math.min(100, (window.scrollY/docHeight)*100) : 0;
+  barFill.style.width = pct+'%';
+
+  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 600);
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
+
+document.getElementById('backToTop').addEventListener('click', ()=>{
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+// ===== Accordion =====
+document.addEventListener('click', (e)=>{
+  const head = e.target.closest('.accordion-head');
+  if(head){
+    const acc = head.closest('.accordion');
+    const body = acc.querySelector('.accordion-body');
+    const isOpen = acc.classList.contains('open');
+    if(isOpen){
+      acc.classList.remove('open');
+      body.style.maxHeight = null;
+    } else {
+      acc.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 40 + 'px';
+    }
+  }
+});
+
+// ===== Reveal =====
+document.addEventListener('click', (e)=>{
+  const prompt = e.target.closest('.reveal-prompt');
+  if(prompt){
+    prompt.closest('.reveal').classList.toggle('open');
+  }
+});
+
+// ===== Tabs =====
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.tab-btn');
+  if(btn){
+    const tabs = btn.closest('.tabs');
+    tabs.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    tabs.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    tabs.querySelector('#'+btn.dataset.target).classList.add('active');
+  }
+});
+
+// ===== Flow diagram =====
+document.addEventListener('click', (e)=>{
+  const step = e.target.closest('.flow-step');
+  if(step){
+    const flowWrap = step.closest('.flow-wrap');
+    flowWrap.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));
+    step.classList.add('active');
+    const detailId = step.dataset.detail;
+    flowWrap.querySelectorAll('.flow-detail').forEach(d=>d.classList.remove('visible'));
+    document.getElementById(detailId).classList.add('visible');
+  }
+});
+
+// ===== Knowledge check =====
+document.addEventListener('click', (e)=>{
+  const opt = e.target.closest('.kc-opt');
+  if(opt){
+    const kc = opt.closest('.kc');
+    if(kc.dataset.answered === 'true') return;
+    kc.dataset.answered = 'true';
+    const correct = opt.dataset.correct === 'true';
+    kc.querySelectorAll('.kc-opt').forEach(o=>{
+      if(o.dataset.correct === 'true') o.classList.add('correct');
+      else if(o===opt) o.classList.add('incorrect');
+    });
+    const fb = kc.querySelector('.kc-feedback');
+    fb.classList.add('visible');
+  }
+});
+
+// ===== Scenario choices =====
+document.addEventListener('click', (e)=>{
+  const choice = e.target.closest('.scenario-choice');
+  if(choice){
+    const scenario = choice.closest('.scenario');
+    if(scenario.dataset.answered === 'true') return;
+    scenario.dataset.answered = 'true';
+    const resultId = choice.dataset.result;
+    scenario.querySelectorAll('.scenario-result').forEach(r=>r.classList.remove('visible'));
+    document.getElementById(resultId).classList.add('visible');
+  }
+});
+
+// ===== Practice question toggle =====
+document.addEventListener('click', (e)=>{
+  const pqq = e.target.closest('.pq-opt');
+  if(pqq){
+    const pq = pqq.closest('.pq');
+    if(pq.dataset.answered === 'true') return;
+    pq.dataset.answered = 'true';
+    pq.querySelectorAll('.pq-opt').forEach(o=>{
+      if(o.dataset.correct === 'true') o.classList.add('correct');
+      else if(o===pqq) o.classList.add('incorrect');
+    });
+    pq.querySelector('.pq-explain').classList.add('visible');
+  }
+});
+
+// ===== Loss ratio calculator =====
+function calcLossRatio(){
+  const losses = parseFloat(document.getElementById('lr-losses').value);
+  const premium = parseFloat(document.getElementById('lr-premium').value);
+  const resultBox = document.getElementById('lr-result');
+  if(isNaN(losses) || isNaN(premium) || premium<=0){
+    resultBox.innerHTML = '<em>Enter both values to calculate.</em>';
+    return;
+  }
+  const ratio = (losses/premium)*100;
+  let note = '';
+  if(ratio > 100) note = 'Above 100% — losses exceeded premium collected for this period.';
+  else if(ratio > 70) note = 'A relatively high loss ratio — may prompt rate or underwriting review.';
+  else note = 'A relatively low loss ratio for this period.';
+  resultBox.innerHTML =
+    '<div>Loss ratio: <span class="big">'+ratio.toFixed(1)+'%</span></div>'+
+    '<div style="margin-top:6px;font-size:13px;color:#5B6470;">($'+losses.toLocaleString()+' ÷ $'+premium.toLocaleString()+') × 100% — '+note+'</div>';
+}
+</script>
+</body>
+</html>

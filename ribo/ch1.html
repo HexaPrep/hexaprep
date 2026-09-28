@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 1 — Insurance Foundations, Legal Concepts &amp; Ontario Regulatory Framework | RIBO Level 1</title>
+<style>
+  :root{
+    --ink:#16273D;
+    --ink-soft:#2C4058;
+    --paper:#F7F6F3;
+    --paper-raised:#FFFFFF;
+    --rule:#DAD5C9;
+    --rule-soft:#E9E6DD;
+    --gold:#B8873A;
+    --gold-soft:#F1E4C9;
+    --slate:#3E5C76;
+    --slate-soft:#E3EAF0;
+    --green:#3F6B4E;
+    --green-soft:#E4EEE6;
+    --red:#8C3B32;
+    --red-soft:#F4E3E0;
+    --text:#242A31;
+    --text-mute:#5B6470;
+    --serif: Iowan Old Style, "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", "Cascadia Code", Consolas, monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--slate);}
+
+  /* ===== Layout shell ===== */
+  .shell{
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    min-height:100vh;
+  }
+
+  /* ===== Sidebar ===== */
+  .sidebar{
+    background:var(--ink);
+    color:#D9DFE6;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+    padding:28px 0 40px;
+    border-right:1px solid #0E1A28;
+  }
+  .sidebar::-webkit-scrollbar{width:8px;}
+  .sidebar::-webkit-scrollbar-thumb{background:#2C4058;border-radius:4px;}
+
+  .sidebar-brand{
+    padding:0 24px 20px;
+    border-bottom:1px solid #263A52;
+    margin-bottom:8px;
+  }
+  .sidebar-brand .kicker{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.04em;
+    color:#8FA3B8;
+  }
+  .sidebar-brand h1{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:600;
+    margin:6px 0 2px;
+    color:#F4F1E8;
+    line-height:1.3;
+  }
+  .sidebar-brand .sub{
+    font-size:12.5px;
+    color:#9AACBE;
+  }
+
+  .toc{padding:8px 0;}
+  .toc-chapter{
+    display:block;
+    padding:10px 24px;
+    font-family:var(--serif);
+    font-size:14px;
+    font-weight:600;
+    color:#F4F1E8;
+    text-decoration:none;
+    border-left:3px solid transparent;
+  }
+  .toc-section{
+    display:block;
+    padding:6px 24px 6px 32px;
+    font-size:13px;
+    color:#B7C4D2;
+    text-decoration:none;
+    border-left:3px solid transparent;
+    transition:background .12s ease, color .12s ease;
+  }
+  .toc-section:hover{background:#1D3049;color:#F4F1E8;}
+  .toc-section.active{
+    background:#22354D;
+    color:#F1D9A8;
+    border-left-color:var(--gold);
+    font-weight:600;
+  }
+  .toc-progress{
+    margin:14px 24px 4px;
+    padding-top:14px;
+    border-top:1px solid #263A52;
+  }
+  .toc-progress .label{
+    font-size:11px;
+    color:#8FA3B8;
+    font-family:var(--mono);
+    letter-spacing:.03em;
+    margin-bottom:6px;
+  }
+  .bar-track{
+    height:6px;
+    background:#1D3049;
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background:linear-gradient(90deg,var(--gold),#D9AE6A);
+    width:0%;
+    transition:width .25s ease;
+  }
+
+  /* ===== Main content ===== */
+  main{
+    padding:0;
+    max-width:900px;
+  }
+  .content-inner{
+    padding:48px 56px 120px;
+  }
+
+  .chapter-head{
+    margin-bottom:40px;
+    padding-bottom:28px;
+    border-bottom:2px solid var(--ink);
+  }
+  .chapter-head .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--gold);
+    background:var(--gold-soft);
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:3px;
+    margin-bottom:14px;
+  }
+  .chapter-head h1{
+    font-family:var(--serif);
+    font-size:38px;
+    line-height:1.2;
+    margin:0 0 12px;
+    color:var(--ink);
+  }
+  .chapter-head .dek{
+    font-size:16px;
+    color:var(--text-mute);
+    max-width:70ch;
+  }
+  .comp-tags{
+    margin-top:18px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .comp-tag{
+    font-size:12px;
+    font-family:var(--mono);
+    background:var(--slate-soft);
+    color:var(--slate);
+    padding:4px 10px;
+    border-radius:3px;
+    border:1px solid #C9D6E2;
+  }
+
+  .notice-box{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink-soft);
+    padding:16px 20px;
+    margin:0 0 40px;
+    font-size:14px;
+    color:var(--text-mute);
+  }
+  .notice-box strong{color:var(--ink);}
+
+  section.topic{
+    margin-bottom:56px;
+    scroll-margin-top:24px;
+  }
+  section.topic > h2{
+    font-family:var(--serif);
+    font-size:28px;
+    color:var(--ink);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:10px;
+    margin:0 0 20px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  section.topic > h2 .num{
+    font-family:var(--mono);
+    font-size:16px;
+    color:var(--gold);
+    font-weight:600;
+  }
+
+  article.subtopic{
+    margin-bottom:38px;
+    scroll-margin-top:24px;
+  }
+  article.subtopic > h3{
+    font-family:var(--serif);
+    font-size:21px;
+    color:var(--ink-soft);
+    margin:0 0 6px;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+  article.subtopic > h3 .num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-mute);
+    font-weight:400;
+  }
+  article.subtopic .lede{
+    font-size:14px;
+    color:var(--text-mute);
+    font-style:italic;
+    margin:0 0 16px;
+  }
+
+  h4.microhead{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:none;
+    color:var(--slate);
+    font-weight:700;
+    margin:20px 0 8px;
+    padding-top:2px;
+  }
+
+  p{margin:0 0 14px;font-size:15.5px;}
+  ul,ol{margin:0 0 14px;padding-left:22px;font-size:15.5px;}
+  li{margin-bottom:5px;}
+
+  .term{
+    font-weight:600;
+    color:var(--ink);
+    border-bottom:1px dotted var(--gold);
+    cursor:help;
+  }
+
+  /* ===== Callouts ===== */
+  .callout{
+    border-radius:4px;
+    padding:16px 18px 16px 52px;
+    margin:18px 0;
+    position:relative;
+    font-size:14.5px;
+    border:1px solid;
+  }
+  .callout::before{
+    position:absolute;
+    left:16px;
+    top:15px;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.03em;
+  }
+  .callout .callout-title{
+    font-weight:700;
+    display:block;
+    margin-bottom:4px;
+    font-family:var(--sans);
+    font-size:13px;
+  }
+  .callout.important{background:var(--slate-soft);border-color:#C9D6E2;}
+  .callout.important::before{content:"i";color:var(--slate);font-style:italic;font-size:16px;left:19px;top:13px;}
+  .callout.important .callout-title{color:var(--slate);}
+
+  .callout.remember{background:var(--green-soft);border-color:#CBE0D1;}
+  .callout.remember::before{content:"✓";color:var(--green);font-size:15px;}
+  .callout.remember .callout-title{color:var(--green);}
+
+  .callout.warning{background:#FBF0E4;border-color:#EAD2AE;}
+  .callout.warning::before{content:"!";color:#A8681E;font-size:15px;left:20px;}
+  .callout.warning .callout-title{color:#A8681E;}
+
+  .callout.examtip{background:var(--gold-soft);border-color:#E4CE97;}
+  .callout.examtip::before{content:"★";color:var(--gold);font-size:14px;}
+  .callout.examtip .callout-title{color:#8A6323;}
+
+  .callout.example{background:#EFF0F6;border-color:#D2D5E8;}
+  .callout.example::before{content:"E";color:#4B4F8C;font-family:var(--serif);font-style:italic;font-size:15px;left:20px;}
+  .callout.example .callout-title{color:#4B4F8C;}
+
+  .callout.trap{background:var(--red-soft);border-color:#E5C3BD;}
+  .callout.trap::before{content:"✕";color:var(--red);font-size:13px;}
+  .callout.trap .callout-title{color:var(--red);}
+
+  /* ===== Tables ===== */
+  .table-wrap{
+    overflow-x:auto;
+    margin:18px 0;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--paper-raised);
+    font-size:14px;
+  }
+  th{
+    background:var(--ink);
+    color:#F0EEE6;
+    text-align:left;
+    padding:10px 14px;
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:12.5px;
+    letter-spacing:.02em;
+  }
+  td{
+    padding:10px 14px;
+    border-top:1px solid var(--rule-soft);
+    vertical-align:top;
+  }
+  tr:nth-child(even) td{background:#FBFAF7;}
+
+  /* ===== Accordion (collapsible) ===== */
+  .accordion{
+    border:1px solid var(--rule);
+    border-radius:4px;
+    margin:14px 0;
+    background:var(--paper-raised);
+    overflow:hidden;
+  }
+  .accordion + .accordion{margin-top:10px;}
+  .accordion-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 18px;
+    cursor:pointer;
+    font-weight:600;
+    color:var(--ink);
+    font-size:14.5px;
+    user-select:none;
+  }
+  .accordion-head:hover{background:#FBFAF7;}
+  .accordion-head .chev{
+    font-family:var(--mono);
+    color:var(--gold);
+    transition:transform .2s ease;
+    font-size:13px;
+  }
+  .accordion.open .accordion-head .chev{transform:rotate(90deg);}
+  .accordion-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+    padding:0 18px;
+    border-top:0 solid var(--rule-soft);
+  }
+  .accordion.open .accordion-body{
+    padding:4px 18px 16px;
+    border-top:1px solid var(--rule-soft);
+  }
+  .accordion-body p:last-child{margin-bottom:0;}
+
+  /* ===== Click to reveal ===== */
+  .reveal{
+    border:1px dashed #C9C2AE;
+    border-radius:4px;
+    padding:14px 16px;
+    margin:14px 0;
+    background:#FCFBF8;
+  }
+  .reveal-prompt{
+    cursor:pointer;
+    font-weight:600;
+    color:var(--slate);
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .reveal-prompt::before{
+    content:"▸";
+    color:var(--gold);
+    transition:transform .2s ease;
+  }
+  .reveal.open .reveal-prompt::before{transform:rotate(90deg);}
+  .reveal-answer{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-soft);font-size:14.5px;}
+  .reveal.open .reveal-answer{display:block;}
+
+  /* ===== Tabs ===== */
+  .tabs{margin:18px 0;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--paper-raised);}
+  .tab-bar{display:flex;background:#F1EEE5;border-bottom:1px solid var(--rule);flex-wrap:wrap;}
+  .tab-btn{
+    padding:11px 18px;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--text-mute);
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    font-family:var(--sans);
+  }
+  .tab-btn.active{color:var(--ink);border-bottom-color:var(--gold);background:var(--paper-raised);}
+  .tab-panel{display:none;padding:18px 20px;}
+  .tab-panel.active{display:block;}
+  .tab-panel p:last-child{margin-bottom:0;}
+
+  /* ===== Process flow diagram ===== */
+  .flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    align-items:stretch;
+    margin:20px 0;
+  }
+  .flow-step{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 14px;
+    flex:1 1 120px;
+    min-width:110px;
+    cursor:pointer;
+    position:relative;
+    text-align:center;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    transition:background .15s ease, border-color .15s;
+  }
+  .flow-step:hover, .flow-step.active{background:var(--slate-soft);border-color:var(--slate);color:var(--slate);}
+  .flow-arrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 6px;
+    color:var(--gold);
+    font-size:16px;
+    flex:0 0 auto;
+  }
+  .flow-detail{
+    background:var(--slate-soft);
+    border:1px solid #C9D6E2;
+    border-radius:4px;
+    padding:14px 16px;
+    margin-top:12px;
+    font-size:14px;
+    display:none;
+  }
+  .flow-detail.visible{display:block;}
+
+  /* ===== Knowledge check ===== */
+  .kc{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:20px 22px;
+    margin:18px 0;
+  }
+  .kc-q{font-weight:600;color:var(--ink);margin-bottom:12px;font-size:15px;}
+  .kc-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+  .kc-opt{
+    text-align:left;
+    padding:10px 14px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--paper);
+    cursor:pointer;
+    font-size:14px;
+    font-family:var(--sans);
+    color:var(--text);
+    transition:background .12s ease;
+  }
+  .kc-opt:hover{background:var(--slate-soft);}
+  .kc-opt.correct{background:var(--green-soft);border-color:var(--green);color:#234731;font-weight:600;}
+  .kc-opt.incorrect{background:var(--red-soft);border-color:var(--red);color:#5E241C;}
+  .kc-feedback{
+    font-size:13.5px;
+    padding:10px 12px;
+    border-radius:4px;
+    display:none;
+    background:#F1EEE5;
+    color:var(--text-mute);
+  }
+  .kc-feedback.visible{display:block;}
+
+  /* ===== Calc demo ===== */
+  .calc-box{
+    background:#FBFAF7;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:18px 20px;
+    margin:18px 0;
+  }
+  .calc-row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap;}
+  .calc-row label{font-size:13px;font-weight:600;color:var(--ink-soft);min-width:170px;}
+  .calc-row input{
+    padding:7px 10px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    font-size:14px;
+    font-family:var(--mono);
+    width:130px;
+  }
+  .calc-result{
+    margin-top:12px;
+    padding:12px 14px;
+    background:var(--gold-soft);
+    border:1px solid #E4CE97;
+    border-radius:4px;
+    font-size:14.5px;
+  }
+  .calc-result .big{font-family:var(--mono);font-size:20px;font-weight:700;color:#8A6323;}
+  .calc-formula{
+    font-family:var(--mono);
+    background:var(--ink);
+    color:#EFEAD9;
+    padding:12px 16px;
+    border-radius:4px;
+    font-size:13.5px;
+    margin-bottom:12px;
+    overflow-x:auto;
+  }
+
+  /* ===== Scenario What-would-you-do ===== */
+  .scenario{
+    background:#FBFAF7;
+    border:1px solid var(--rule);
+    border-left:4px solid var(--slate);
+    border-radius:4px;
+    padding:18px 20px;
+    margin:18px 0;
+  }
+  .scenario .stitle{font-weight:700;color:var(--slate);font-size:13px;margin-bottom:8px;font-family:var(--sans);letter-spacing:.01em;}
+  .scenario-choices{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+  .scenario-choice{
+    text-align:left;
+    padding:10px 14px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--paper-raised);
+    cursor:pointer;
+    font-size:14px;
+  }
+  .scenario-choice:hover{background:var(--slate-soft);}
+  .scenario-result{
+    display:none;
+    margin-top:12px;
+    padding:12px 14px;
+    border-radius:4px;
+    font-size:14px;
+  }
+  .scenario-result.visible{display:block;}
+  .scenario-result.good{background:var(--green-soft);color:#234731;border:1px solid #CBE0D1;}
+  .scenario-result.bad{background:var(--red-soft);color:#5E241C;border:1px solid #E5C3BD;}
+
+  /* ===== Glossary strip ===== */
+  .glossary{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 24px;
+    margin:16px 0;
+  }
+  @media(max-width:640px){.glossary{grid-template-columns:1fr;}}
+  .gterm{
+    border-bottom:1px solid var(--rule-soft);
+    padding-bottom:8px;
+  }
+  .gterm dt{font-weight:700;color:var(--ink);font-size:14px;}
+  .gterm dd{margin:2px 0 0;color:var(--text-mute);font-size:13.5px;}
+
+  /* ===== Back to top / end matter ===== */
+  .endmatter{
+    border-top:3px solid var(--ink);
+    margin-top:60px;
+    padding-top:30px;
+  }
+  .endmatter h2{
+    font-family:var(--serif);
+    color:var(--ink);
+    font-size:26px;
+    margin-bottom:16px;
+  }
+
+  .quickref-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:14px;
+    margin:16px 0;
+  }
+  .qr-card{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+  }
+  .qr-card h4{margin:0 0 8px;font-size:13px;color:var(--slate);font-family:var(--sans);}
+  .qr-card ul{margin:0;padding-left:18px;font-size:13.5px;}
+
+  .pq{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    margin-bottom:14px;
+    background:var(--paper-raised);
+    overflow:hidden;
+  }
+  .pq-q{padding:16px 18px;font-weight:600;color:var(--ink);font-size:14.5px;}
+  .pq-tag{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--text-mute);
+    display:block;
+    margin-bottom:6px;
+    letter-spacing:.02em;
+  }
+  .pq-opts{padding:0 18px 6px;display:flex;flex-direction:column;gap:6px;}
+  .pq-explain{
+    display:none;
+    padding:14px 18px;
+    background:#F7F6F3;
+    border-top:1px solid var(--rule-soft);
+    font-size:13.5px;
+  }
+  .pq-explain.visible{display:block;}
+
+  .back-to-top{
+    position:fixed;
+    bottom:28px;
+    right:28px;
+    background:var(--ink);
+    color:#F4F1E8;
+    border:none;
+    border-radius:50%;
+    width:44px;
+    height:44px;
+    cursor:pointer;
+    font-size:18px;
+    box-shadow:0 3px 10px rgba(0,0,0,.25);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+  }
+  .back-to-top.visible{display:flex;}
+
+  @media(max-width:880px){
+    .shell{grid-template-columns:1fr;}
+    .sidebar{
+      position:relative;
+      height:auto;
+      max-height:60vh;
+    }
+    .content-inner{padding:32px 20px 100px;}
+    .chapter-head h1{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="kicker">RIBO LEVEL 1 · ENTRY-LEVEL BROKER</div>
+      <h1>Chapter 1</h1>
+      <div class="sub">Insurance Foundations, Legal Concepts &amp; Ontario Regulatory Framework</div>
+    </div>
+    <div class="toc" id="toc">
+      <!-- populated below, static links -->
+      <a href="#top" class="toc-chapter">Chapter Overview</a>
+
+      <a href="#s1-1" class="toc-section" data-sec="s1-1">1.1 Foundations of Insurance</a>
+      <a href="#s1-2" class="toc-section" data-sec="s1-2">1.2 Fundamental Insurance Concepts</a>
+      <a href="#s1-3" class="toc-section" data-sec="s1-3">1.3 Legal Concepts Relevant to Brokers</a>
+      <a href="#s1-4" class="toc-section" data-sec="s1-4">1.4 Canadian Legal Systems</a>
+      <a href="#s1-5" class="toc-section" data-sec="s1-5">1.5 Ontario Insurance Regulatory Framework</a>
+      <a href="#s1-6" class="toc-section" data-sec="s1-6">1.6 RIBO</a>
+      <a href="#s1-7" class="toc-section" data-sec="s1-7">1.7 Other Regulatory Bodies</a>
+      <a href="#s1-8" class="toc-section" data-sec="s1-8">1.8 RIBO Guidelines</a>
+      <a href="#s1-9" class="toc-section" data-sec="s1-9">1.9 Take All Comers Rule</a>
+      <a href="#s1-10" class="toc-section" data-sec="s1-10">1.10 Fraud &amp; Legal Responsibilities</a>
+      <a href="#s1-11" class="toc-section" data-sec="s1-11">1.11 Unlicensed Insurers</a>
+      <a href="#s1-12" class="toc-section" data-sec="s1-12">1.12 Licensing &amp; Jurisdiction</a>
+
+      <a href="#endmatter" class="toc-section" data-sec="endmatter" style="margin-top:6px;border-top:1px solid #263A52;padding-top:12px;">Chapter Review &amp; Practice</a>
+    </div>
+    <div class="toc-progress">
+      <div class="label">CHAPTER PROGRESS</div>
+      <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="content-inner" id="top">
+
+      <div class="chapter-head">
+        <span class="kicker">CHAPTER 1 OF 13</span>
+        <h1>Insurance Foundations, Legal Concepts &amp; Ontario Regulatory Framework</h1>
+        <p class="dek">The building blocks every entry-level broker needs before touching a policy: what insurance is and why it exists, the legal concepts that shape a broker's obligations, and the regulatory chain — RIBO, FSRA, CCIR, CISRO — that governs how you may practise in Ontario.</p>
+        <div class="comp-tags">
+          <span class="comp-tag">Competency 1 — Legal &amp; Regulatory Compliance</span>
+          <span class="comp-tag">Competency 3 — Insurance Product &amp; Industry Knowledge</span>
+          <span class="comp-tag">Content Domain — General Insurance (25%)</span>
+        </div>
+      </div>
+
+      <div class="notice-box">
+        <strong>About this chapter.</strong> This is a self-study structure built from the RIBO Level 1 Master Syllabus. Chapter numbering here is a study sequence, not RIBO's official numbering. The <strong>official RIBO Competency Profile — Entry Level Broker</strong> remains the controlling reference; where this chapter states a regulatory rule, treat it as a study explanation and verify current requirements against RIBO, FSRA, and the Ontario Insurance Act before relying on it professionally or for exam sitting.
+      </div>
+
+      <!-- CONTENT SECTIONS WILL BE INSERTED HERE -->
+      <section class="topic" id="s1-1">
+  <h2><span class="num">1.1</span> Foundations of Insurance</h2>
+
+  <article class="subtopic">
+    <h3><span class="num"></span>Why insurance exists</h3>
+    <p>Every individual and business faces the possibility of an unexpected financial loss — a house fire, a car accident, a lawsuit. Insurance exists to deal with that uncertainty. Instead of each person bearing the full financial shock of a loss alone, insurance is a mechanism for <span class="term" title="Moving the financial consequence of a loss from one party to another.">risk transfer</span>: the person exposed to the risk (the insured) pays a relatively small, known amount (the premium) to an insurer, who agrees to pay for a defined loss if it happens.</p>
+    <p>This only works because of <span class="term" title="Combining many similar exposures so that the losses of the few are paid for by the premiums of the many.">risk pooling</span>. An insurer collects premiums from a large group of people facing similar risks. Most of them will never file a claim in a given year, but a predictable number will. The pooled premiums of the many fund the claims of the few. This is why insurance depends on large numbers — the bigger and more diverse the pool, the more predictable (and fairly priced) the losses become.</p>
+
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      Insurance does not prevent loss. It provides <strong>financial protection</strong> against loss — it restores the insured to a defined financial position after an insured event, it does not undo the event itself.
+    </div>
+
+    <h4 class="microhead">INSURANCE AS A CONTRACT</h4>
+    <p>Insurance is fundamentally a legal contract between the insurer and the insured. Like any contract, it creates enforceable rights and obligations on both sides: the insured must pay premium, provide accurate information, and follow the policy's conditions; the insurer must pay covered losses according to the terms it wrote. Because this contract is used to protect people from a broad society-wide problem (unpredictable loss), insurance also plays a broader <strong>role in society</strong> — it allows individuals to buy homes, businesses to operate, and lenders to extend credit, because the underlying risk is manageable rather than catastrophic to any one party.</p>
+  </article>
+
+  <article class="subtopic">
+    <h3>Core building-block terms</h3>
+    <p class="lede">These terms recur constantly through every later chapter. Getting the distinctions exactly right now prevents confusion in auto, habitational, and commercial coverage later.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:18%">Term</th><th>What it means</th></tr>
+        <tr><td><strong>Insurable risk</strong></td><td>A risk an insurer is willing to accept, generally because it is <em>fortuitous</em> (accidental, not certain), definite in time/place, financially measurable, and not so catastrophic that it defeats pooling (e.g., not affecting everyone in the pool simultaneously).</td></tr>
+        <tr><td><strong>Insurable interest</strong></td><td>A financial or legal relationship with the subject of the insurance such that the insured would suffer a genuine loss if the insured event occurred. You cannot insure something you have no stake in — this prevents insurance being used as a wager.</td></tr>
+        <tr><td><strong>Peril</strong></td><td>The actual cause of loss — the event itself. Examples: fire, theft, windstorm, collision.</td></tr>
+        <tr><td><strong>Hazard</strong></td><td>A condition that increases the likelihood or severity of a peril occurring. A hazard does not cause the loss directly — it makes the peril more likely or worse.</td></tr>
+        <tr><td><strong>Loss</strong></td><td>The financial or physical harm that results when a peril strikes an exposure.</td></tr>
+        <tr><td><strong>Exposure</strong></td><td>Anything that could be affected by a loss — a building, a vehicle, a person's income, a business's liability position.</td></tr>
+        <tr><td><strong>Deductible</strong></td><td>The portion of a loss the insured must pay before the insurer's payment begins.</td></tr>
+        <tr><td><strong>Limit</strong></td><td>The maximum amount the insurer will pay for a covered loss.</td></tr>
+        <tr><td><strong>Exclusion</strong></td><td>A specific cause, condition, or type of loss the policy states is <em>not</em> covered.</td></tr>
+        <tr><td><strong>Endorsement</strong></td><td>A document attached to the policy that changes its original terms — it can add, remove, or modify coverage.</td></tr>
+        <tr><td><strong>Extension</strong></td><td>A provision, usually built into the base policy, that extends coverage slightly beyond the main insuring agreement (e.g., a small amount of coverage for a peril or item not otherwise itemized).</td></tr>
+        <tr><td><strong>Condition</strong></td><td>A requirement the insured must meet for coverage to apply or continue — e.g., a duty to notify the insurer promptly of a loss.</td></tr>
+      </table>
+    </div>
+
+    <div class="reveal">
+      <div class="reveal-prompt">Peril vs. hazard — why does the exam draw this line so often?</div>
+      <div class="reveal-answer">
+        <p>A <strong>peril</strong> is the event that directly causes damage — fire, theft, a collision. A <strong>hazard</strong> is a condition that sits in the background and makes that event more likely or worse when it happens. Frayed electrical wiring is a hazard; the resulting fire is the peril. A homeowner who never shovels an icy walkway creates a hazard; a slip-and-fall is the resulting loss event.</p>
+        <p>Exam questions often describe a situation (icy stairs, a space heater left running, a poorly lit stairwell) and ask you to identify whether it is a peril or a hazard. The situation described is almost always the <strong>hazard</strong>; the loss that could result from it is the <strong>peril</strong>.</p>
+      </div>
+    </div>
+
+    <h4 class="microhead">WHY INSURERS EXCLUDE CERTAIN RISKS, AND WHY LIMITS AND DEDUCTIBLES EXIST</h4>
+    <p>Exclusions exist for several practical reasons: some risks are uninsurable in the pool (too catastrophic, too certain, or not fortuitous — e.g., intentional acts); some risks are better handled by a specialized policy (flood, earthquake); and some exclusions prevent moral hazard (see 8.10) by not rewarding negligence or intentional misconduct.</p>
+    <p>Deductibles exist to eliminate small, high-frequency claims from the pool (which are expensive to administer relative to their size), to keep premiums lower, and to keep the insured financially interested in loss prevention. Limits exist because insurers must price and reserve for a known maximum exposure — without a limit, an insurer could not calculate a sustainable premium.</p>
+  </article>
+
+  <article class="subtopic">
+    <h3>How insurance responds to an insured loss</h3>
+    <p>When a loss occurs, the sequence a broker should be able to explain to a client is: (1) confirm a policy was in force at the time of loss, (2) identify the peril that caused the loss, (3) confirm the peril is insured under the policy (named perils vs. all perils — see Chapter 5), (4) check for any applicable exclusion, (5) check whether any endorsement modifies coverage, (6) apply the deductible, and (7) apply the limit. Only after all of these steps does a dollar figure emerge for what the insurer will pay.</p>
+  </article>
+</section>
+
+<section class="topic" id="s1-2">
+  <h2><span class="num">1.2</span> Fundamental Insurance Concepts</h2>
+  <p>These are the doctrines that underpin how insurance contracts are interpreted and how claims are adjusted. Each has a plain definition, a purpose, and a direct claims consequence — all three matter for the exam.</p>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>Indemnity</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Definition:</strong> The principle that insurance restores the insured to the same financial position they were in immediately before the loss — no better, no worse.</p>
+      <p><strong>Purpose:</strong> Prevents insurance from becoming a source of profit, which would create an incentive to cause or exaggerate losses.</p>
+      <p><strong>Broker application:</strong> Explain to clients that a payout is designed to make them financially whole, not to enrich them — this shapes expectations at claim time.</p>
+      <p><strong>Claims implication:</strong> Adjusters value a claim against the actual loss suffered, subject to the valuation method used (actual cash value or replacement cost — see below).</p>
+      <p><strong>Common exam confusion:</strong> Students confuse indemnity with the *amount* paid — indemnity is a principle, not a dollar figure or a coverage type.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>Insurable interest</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Definition:</strong> A legally recognized financial stake in the subject matter of the insurance, such that the policyholder would genuinely suffer if a loss occurred.</p>
+      <p><strong>Purpose:</strong> Prevents insurance being used to bet on someone else's loss (e.g., insuring a stranger's house hoping it burns down).</p>
+      <p><strong>Broker application:</strong> Confirm the applicant actually has a financial stake in what they're insuring — ownership, a mortgage interest, a lease obligation, etc.</p>
+      <p><strong>Claims implication:</strong> A claim can be denied, and the policy may be void, if insurable interest did not exist at the relevant time.</p>
+      <p><strong>Common exam confusion:</strong> When insurable interest must exist varies by policy type — for property, generally at the time of loss; for life insurance, generally at inception (not tested at depth here, but the distinction is a common trap).</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>Utmost good faith (uberrima fides)</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Definition:</strong> Both parties to an insurance contract must deal honestly and disclose all material facts — a higher duty of honesty than most ordinary commercial contracts.</p>
+      <p><strong>Purpose:</strong> The insurer cannot inspect every risk directly; it relies on the applicant's honesty to price and accept the risk fairly.</p>
+      <p><strong>Broker application:</strong> Brokers must ask complete, accurate questions and ensure clients understand the duty to disclose everything relevant, not just what is directly asked.</p>
+      <p><strong>Claims implication:</strong> A breach (via non-disclosure or misrepresentation) can void coverage or void the policy entirely, even if unrelated to the actual loss.</p>
+      <p><strong>Common exam confusion:</strong> Utmost good faith applies to <em>both</em> insurer and insured — not just the applicant.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>Material facts, disclosure, misrepresentation, and non-disclosure</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Material fact:</strong> Any fact that would influence an insurer's decision to accept a risk or determine its price — e.g., a prior loss history, a home business, a criminal conviction relevant to the risk.</p>
+      <p><strong>Disclosure:</strong> The affirmative duty to reveal material facts to the insurer.</p>
+      <p><strong>Misrepresentation:</strong> Providing false information, whether intentional or not.</p>
+      <p><strong>Non-disclosure:</strong> Failing to reveal a material fact, whether intentional or not.</p>
+      <p><strong>Material change:</strong> A change occurring <em>during</em> the policy period that alters the risk (e.g., starting a home business, a new driver in the household) — insureds have an ongoing duty to report these.</p>
+      <p><strong>Claims implication:</strong> Depending on materiality and intent, the insurer may deny a claim, void the policy, or adjust terms retroactively.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>Subrogation</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Definition:</strong> After paying a claim, the insurer inherits the insured's legal right to recover the loss from the party actually at fault.</p>
+      <p><strong>Purpose:</strong> Preserves indemnity (the insured is made whole quickly by their own insurer) while still holding the responsible party financially accountable.</p>
+      <p><strong>Example:</strong> Your insurer pays for collision damage caused by another driver, then pursues that driver's insurer to recover what it paid.</p>
+      <p><strong>Common exam confusion:</strong> Subrogation is the <em>insurer's</em> right, not the insured's — an insured generally cannot independently sue the at-fault party for something the insurer already paid, and cannot do anything to prejudice the insurer's subrogation rights.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>Contribution</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Definition:</strong> When more than one policy covers the same loss, the insurers share the payment proportionately rather than the insured collecting the full amount from each.</p>
+      <p><strong>Purpose:</strong> Preserves indemnity — the insured should not profit from having multiple policies covering the same risk.</p>
+      <p><strong>Broker application:</strong> Always ask about other existing insurance on the same property or risk, since it directly affects how a claim will be paid.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>Proximate cause</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Definition:</strong> The dominant, effective cause of a loss — used to determine coverage when a chain of events leads to damage.</p>
+      <p><strong>Example:</strong> A windstorm (covered peril) damages a roof, allowing rain to enter and cause water damage. The proximate cause of the water damage is the windstorm, so the loss is typically covered even though water itself might otherwise be excluded in isolation.</p>
+      <p><strong>Common exam confusion:</strong> Students often look only at the final, most visible damage rather than tracing back to the first dominant cause in the chain.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>Actual cash value (ACV) vs. replacement cost</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Actual cash value:</strong> Replacement cost minus depreciation — what the item is actually worth today, accounting for age, wear, and condition.</p>
+      <p><strong>Replacement cost:</strong> The cost to replace damaged property with new property of similar kind and quality, without a deduction for depreciation.</p>
+      <p><strong>Broker application:</strong> Confirm which valuation basis a client's policy uses — this materially changes the claim payout and is a frequent source of client confusion and complaints.</p>
+      <p><strong>Claims implication:</strong> Many replacement-cost policies still require the insured to actually repair or replace the property to receive the full replacement cost; otherwise ACV may be paid.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>Liability, negligence, and duty of care</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Liability:</strong> Legal responsibility for harm caused to another person or their property.</p>
+      <p><strong>Negligence:</strong> A failure to exercise the standard of care a reasonable person would exercise in similar circumstances, resulting in harm.</p>
+      <p><strong>Duty of care:</strong> A legal obligation to take reasonable care to avoid causing foreseeable harm to others.</p>
+      <p><strong>Broker application:</strong> These concepts underlie all liability insurance (auto, home, commercial general liability) — coverage responds when the insured is legally liable for harm they negligently caused.</p>
+    </div>
+  </div>
+
+  <div class="callout examtip">
+    <span class="callout-title">Exam Tip</span>
+    Expect scenario questions that describe a claim situation and ask which principle applies. Practice identifying the single best-fit concept — many scenarios are written to look like they involve two principles at once (e.g., subrogation vs. contribution), and the correct answer depends on whether one insurer or multiple insurers are involved.
+  </div>
+</section>
+
+<section class="topic" id="s1-3">
+  <h2><span class="num">1.3</span> Legal Concepts Relevant to Brokers</h2>
+
+  <article class="subtopic">
+    <h3>Contracts and their elements</h3>
+    <p>An insurance policy is a legal contract, so it must contain the same elements as any enforceable contract:</p>
+    <div class="glossary">
+      <div class="gterm"><dt>Offer</dt><dd>One party proposes specific terms (e.g., the completed application).</dd></div>
+      <div class="gterm"><dt>Acceptance</dt><dd>The other party agrees to those exact terms (e.g., the insurer agrees to bind coverage).</dd></div>
+      <div class="gterm"><dt>Consideration</dt><dd>Something of value exchanged by each side — the premium from the insured, the promise to pay covered losses from the insurer.</dd></div>
+      <div class="gterm"><dt>Capacity</dt><dd>Both parties must be legally capable of entering a contract (e.g., of age, of sound mind, properly authorized).</dd></div>
+      <div class="gterm"><dt>Legal purpose</dt><dd>The contract's purpose must be lawful — you cannot insure an illegal activity or outcome.</dd></div>
+    </div>
+    <p>A <span class="term" title="A failure by one party to perform an obligation required by the contract.">breach of contract</span> occurs when either party fails to meet an obligation the contract requires — e.g., the insurer fails to pay a valid covered claim, or the insured fails to pay premium.</p>
+  </article>
+
+  <article class="subtopic">
+    <h3>Broker liability exposures</h3>
+    <p class="lede">Brokers are professionals who owe legal duties to their clients. Three liability concepts matter specifically to a broker's own professional exposure.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:22%">Exposure</th><th>What it means for a broker</th></tr>
+        <tr><td><strong>Legal liability</strong></td><td>General responsibility for harm the broker's own actions or omissions cause to another party.</td></tr>
+        <tr><td><strong>Premises liability</strong></td><td>Liability arising from injuries or damage occurring at the brokerage's physical premises (e.g., a client slips in the office).</td></tr>
+        <tr><td><strong>Errors and omissions (E&amp;O)</strong></td><td>Professional liability specific to mistakes in the broker's professional advice or service — e.g., failing to procure requested coverage, giving incorrect advice, or failing to process a policy change. This is the most significant liability exposure for a broker professionally (see 8.6 for a full treatment).</td></tr>
+      </table>
+    </div>
+
+    <div class="callout warning">
+      <span class="callout-title">Warning</span>
+      E&amp;O is not the same as general commercial liability. E&amp;O responds to financial loss caused by professional mistakes in advice or service — not to bodily injury or property damage on the premises, which would fall under general/premises liability instead.
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s1-4">
+  <h2><span class="num">1.4</span> Canadian Legal Systems</h2>
+
+  <article class="subtopic">
+    <h3>Common law vs. civil law</h3>
+    <p>Canada operates under two parallel legal traditions. Every province and territory except Quebec follows <span class="term" title="A legal system built on judicial precedent — past court decisions guide future rulings.">common law</span>, inherited from English legal tradition. Quebec follows a <span class="term" title="A legal system built on a comprehensive written code of laws rather than primarily on precedent.">civil law</span> system, codified in the Civil Code of Québec, inherited from French legal tradition.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:20%"></th><th>Common Law</th><th>Civil Law</th></tr>
+        <tr><td><strong>Foundation</strong></td><td>Judicial precedent (case law) built up over time</td><td>A comprehensive written code</td></tr>
+        <tr><td><strong>Where used</strong></td><td>Ontario and all other provinces/territories except Quebec</td><td>Quebec (private law matters)</td></tr>
+        <tr><td><strong>How disputes are resolved</strong></td><td>Courts look to how similar past cases were decided</td><td>Courts apply the written code directly to the facts</td></tr>
+      </table>
+    </div>
+
+    <p><strong>Ontario's legal environment</strong> operates under common law. This matters to a broker because insurance contract interpretation, negligence principles, and liability standards in Ontario are shaped by accumulated case law, not solely by a single written code.</p>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      You are not expected to know case names or detailed civil-code provisions. The exam-relevant point is simply: Ontario = common law; Quebec = civil law; and a broker needs basic awareness of which system applies because it affects how contracts and liability are interpreted, and because <strong>licensing and coverage rules are jurisdiction-specific</strong> — a policy or licence valid in Ontario does not automatically extend to another province.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s1-5">
+  <h2><span class="num">1.5</span> Ontario Insurance Regulatory Framework</h2>
+
+  <article class="subtopic">
+    <h3>The Ontario Insurance Act</h3>
+    <p>The <strong>Ontario Insurance Act</strong> is the foundational provincial statute governing insurance in Ontario. It establishes the legal framework for how insurance contracts operate, sets out mandatory contract provisions and statutory conditions (see 4.12), governs licensing of insurers, and provides consumer protection requirements. It underpins compulsory automobile insurance requirements in the province and the general regulatory structure brokers, agents, and insurers operate within.</p>
+    <p><strong>Broker implications:</strong> The Insurance Act shapes what a policy must legally contain, what disclosures are required, and what consumer protections a broker must respect when placing and servicing coverage.</p>
+  </article>
+
+  <article class="subtopic">
+    <h3>FSRA — Financial Services Regulatory Authority of Ontario</h3>
+    <p>FSRA is the provincial regulator responsible for overseeing the insurance sector (along with other regulated financial sectors) in Ontario.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:26%">Function</th><th>Detail</th></tr>
+        <tr><td>Role</td><td>Regulates insurers, and — in the automobile insurance sector specifically — plays a direct hands-on regulatory role.</td></tr>
+        <tr><td>Rate approval</td><td>FSRA approves automobile insurance rates and rating programs before insurers may use them in Ontario.</td></tr>
+        <tr><td>Underwriting-rule approval</td><td>FSRA approves the underwriting rules insurers use to classify and rate automobile risks.</td></tr>
+        <tr><td>Relationship with brokers</td><td>FSRA does not license individual brokers (that is RIBO's role) but regulates the insurance industry and automobile insurance market brokers operate within.</td></tr>
+      </table>
+    </div>
+
+    <div class="callout important">
+      <span class="callout-title">Important — FSRA vs. RIBO</span>
+      This distinction is one of the most heavily tested points in this chapter. <strong>FSRA regulates the auto insurance market itself</strong> — insurers, rates, and underwriting rules. <strong>RIBO regulates individual brokers and brokerages</strong> — licensing, conduct, and discipline. A broker is licensed by RIBO, not FSRA.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s1-6">
+  <h2><span class="num">1.6</span> RIBO</h2>
+
+  <article class="subtopic">
+    <h3>The Registered Insurance Brokers Act and RIBO's role</h3>
+    <p>The <strong>Registered Insurance Brokers Act</strong> is the Ontario statute that creates RIBO and gives it authority to regulate insurance brokers in the province. Under this Act, RIBO maintains:</p>
+    <ul>
+      <li><strong>RIBO Regulations</strong> — detailed rules made under the authority of the Act.</li>
+      <li><strong>RIBO By-Laws</strong> — RIBO's own governing rules for its operation and for licensees.</li>
+    </ul>
+    <p>Together, these form the legal basis for broker <strong>licensing</strong>, ongoing <strong>compliance obligations</strong>, and the <strong>entry-level broker framework</strong> — the structured supervision period new brokers operate within before qualifying for full, unsupervised licensing.</p>
+  </article>
+
+  <article class="subtopic">
+    <h3>Principal Broker and supervision</h3>
+    <p>Every RIBO-licensed brokerage must designate a <strong>Principal Broker</strong>, who holds overall responsibility for the brokerage's compliance with RIBO's requirements — including supervision of entry-level and other licensees, ensuring proper trust accounting, and ensuring the brokerage meets its regulatory obligations.</p>
+    <p>An entry-level broker practises under a defined period of <strong>supervision</strong>, which exists precisely because the entry-level broker has not yet demonstrated the full competency profile RIBO requires for unsupervised practice.</p>
+  </article>
+
+  <article class="subtopic">
+    <h3>Complaints, investigations, discipline, and fines</h3>
+    <p>RIBO has authority to receive and investigate <strong>complaints</strong> against licensees, conduct formal <strong>investigations</strong>, and impose <strong>discipline</strong> — which can range from remedial requirements up to licence suspension or revocation — as well as <strong>fines</strong> for regulatory breaches.</p>
+
+    <div class="callout remember">
+      <span class="callout-title">Remember</span>
+      RIBO's authority comes directly from the Registered Insurance Brokers Act — it is not a voluntary industry association. Compliance with RIBO Regulations and By-Laws is a legal requirement of holding a broker licence in Ontario, not a best-practice suggestion.
+    </div>
+
+    <div class="reveal">
+      <div class="reveal-prompt">Quick check: who licenses individual insurance brokers in Ontario?</div>
+      <div class="reveal-answer">
+        <p><strong>RIBO</strong> (the Registered Insurance Brokers of Ontario), under authority granted by the Registered Insurance Brokers Act. FSRA regulates the broader insurance market and, specifically, automobile insurance rates and underwriting rules — but it does not license individual brokers.</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s1-7">
+  <h2><span class="num">1.7</span> Other Regulatory Bodies</h2>
+
+  <article class="subtopic">
+    <h3>CCIR and CISRO</h3>
+    <p>Beyond RIBO and FSRA, two national coordinating bodies shape the broader regulatory landscape.</p>
+
+    <div class="tabs">
+      <div class="tab-bar">
+        <button class="tab-btn active" data-target="tab-ccir">CCIR</button>
+        <button class="tab-btn" data-target="tab-cisro">CISRO</button>
+      </div>
+      <div class="tab-panel active" id="tab-ccir">
+        <p><strong>Canadian Council of Insurance Regulators.</strong> CCIR is an umbrella organization of insurance regulators from across Canada's provinces and territories (including FSRA). Its role is <strong>regulatory coordination</strong> — harmonizing approaches, sharing information, and developing common regulatory positions across jurisdictions so that insurance regulation is more consistent nationally, even though insurance regulation itself remains a provincial responsibility.</p>
+      </div>
+      <div class="tab-panel" id="tab-cisro">
+        <p><strong>Canadian Insurance Services Regulatory Organizations.</strong> CISRO is a coordinating association of the regulators responsible for licensing insurance intermediaries (including bodies like RIBO) across Canada. CISRO's central contribution is the <strong>CISRO Code of Conduct for Insurance Intermediaries</strong> — a set of harmonized conduct standards and insurance-intermediary practice principles that member regulators reference when setting expectations for licensees (see 2.4).</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="subtopic">
+    <h3>How the pieces connect</h3>
+    <p class="lede">Click each stage below to see how authority flows from the individual broker up through the regulatory chain.</p>
+
+    <div class="flow-wrap">
+      <div class="flow">
+        <div class="flow-step active" data-detail="fd-ribo">RIBO</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" data-detail="fd-fsra">FSRA</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" data-detail="fd-ccir">CCIR</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" data-detail="fd-cisro">CISRO</div>
+      </div>
+      <div class="flow-detail visible" id="fd-ribo">
+        <strong>RIBO</strong> licenses and directly regulates individual insurance brokers and brokerages in Ontario under the Registered Insurance Brokers Act — this is the level where an entry-level broker's own conduct, licensing, and discipline sit.
+      </div>
+      <div class="flow-detail" id="fd-fsra">
+        <strong>FSRA</strong> regulates Ontario's broader financial-services and insurance sector, including auto insurance rate and underwriting-rule approval. FSRA sits above the individual-broker level and oversees the insurer/market side more than the individual-licensee side.
+      </div>
+      <div class="flow-detail" id="fd-ccir">
+        <strong>CCIR</strong> coordinates insurance regulators (including FSRA) across Canada's provinces and territories, working toward harmonized national regulatory approaches — insurance regulation itself stays provincial, but CCIR reduces inconsistency between provinces.
+      </div>
+      <div class="flow-detail" id="fd-cisro">
+        <strong>CISRO</strong> coordinates the regulators (including RIBO) responsible specifically for licensing insurance intermediaries, and produces the harmonized Code of Conduct that shapes intermediary conduct expectations nationally.
+      </div>
+    </div>
+
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      This is a coordination chain, not a strict chain of command — RIBO does not report to FSRA in a corporate-hierarchy sense, and FSRA does not report to CCIR. Each body has its own statutory authority within its own scope. What connects them is coordination and harmonization of standards, not direct supervisory control.
+    </div>
+
+    <div class="callout warning">
+      <span class="callout-title">Warning</span>
+      Guidelines issued by these bodies may or may not be directly enforceable depending on the jurisdiction and context. A RIBO Guideline, for example, may carry regulatory significance even where it is framed as guidance rather than a strict legal rule — always assess the specific guideline and context rather than assuming "guideline" automatically means "optional."
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s1-8">
+  <h2><span class="num">1.8</span> RIBO Guidelines</h2>
+
+  <article class="subtopic">
+    <h3>Principles of Conduct and the RIBO Fact Sheet</h3>
+    <p>RIBO publishes guidance material that sits alongside its formal Regulations and By-Laws:</p>
+    <ul>
+      <li><strong>Principles of Conduct</strong> — the foundational statement of the standards RIBO expects of its licensees, covering integrity, competence, and treatment of clients (these connect directly to the RIBO Code of Conduct covered in Chapter 2).</li>
+      <li><strong>RIBO Fact Sheet</strong> — a consumer-facing disclosure document. Brokers have obligations related to ensuring clients receive and understand this kind of disclosure material as part of transparent, fair dealing.</li>
+      <li><strong>Applicable RIBO guidelines</strong> — additional topic-specific guidance RIBO issues to clarify expectations on particular practice issues.</li>
+    </ul>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      <span style="font-weight:700;">VERIFY CURRENT VERSION BEFORE EXAM.</span> RIBO guidance documents are updated periodically. The concepts tested (broker obligations, consumer-facing disclosure requirements) are stable, but always confirm you are studying the current version of any named guideline or fact sheet before relying on specifics.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s1-9">
+  <h2><span class="num">1.9</span> Take All Comers Rule</h2>
+
+  <article class="subtopic">
+    <h3>What it means and why it exists</h3>
+    <p>The <strong>Take All Comers Rule</strong> applies to Ontario automobile insurance. In broad terms, it requires that an insurer offering automobile insurance in Ontario must accept any qualified applicant seeking a policy that the insurer is licensed to sell, without discriminating based on grounds unrelated to the objective risk classification the insurer is approved to use.</p>
+    <p><strong>Purpose:</strong> Because automobile insurance is compulsory in Ontario (see 4.1), the rule exists to ensure that eligible drivers can actually obtain the mandatory coverage the law requires them to carry — insurers cannot simply refuse to write business from applicants they'd prefer not to insure, provided the applicant fits within the insurer's approved market and rating criteria.</p>
+
+    <h4 class="microhead">BROKER RESPONSIBILITIES AND RESTRICTIONS</h4>
+    <p>Brokers need to understand which market an insurer is writing in and what the insurer's approved underwriting rules permit, since the Take All Comers Rule operates within the insurer's approved risk-classification system — it is not an unlimited obligation to write every possible risk under every possible rate.</p>
+
+    <div class="scenario">
+      <div class="stitle">WHAT WOULD YOU DO?</div>
+      <p>A client with several past at-fault claims and a lapsed licence approaches you for standard automobile insurance. Your appointed insurer's approved underwriting guidelines classify this driver as outside their standard market appetite.</p>
+      <div class="scenario-choices">
+        <button class="scenario-choice" data-result="res-a">Tell the client no insurer is required to cover them and end the conversation.</button>
+        <button class="scenario-choice" data-result="res-b">Explain that this insurer's approved risk criteria don't fit this driver, and look at other appropriate markets (including facility/residual markets where relevant) that may be designed for higher-risk drivers.</button>
+        <button class="scenario-choice" data-result="res-c">Place the client anyway, without accurately disclosing their claims history, so the standard insurer will accept them.</button>
+      </div>
+      <div class="scenario-result" id="res-a"><strong>Not the best answer.</strong> Ontario drivers who cannot obtain standard coverage still need a route to compulsory insurance — a broker should look for an appropriate market rather than simply turning the client away.</div>
+      <div class="scenario-result good" id="res-b"><strong>Correct approach.</strong> The Take All Comers Rule operates within an insurer's approved classification system — it does not force every insurer to accept every risk on standard terms. A broker's job is to find the market genuinely designed for this risk profile, which may include a higher-risk market or the Facility Association (see 3.5).</div>
+      <div class="scenario-result" id="res-c"><strong>Serious violation.</strong> This is misrepresentation and non-disclosure (see 1.2, 1.10) — it could void the policy, expose the client to a denied claim, and creates broker E&amp;O and disciplinary exposure.</div>
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s1-10">
+  <h2><span class="num">1.10</span> Fraud and Legal Responsibilities</h2>
+
+  <article class="subtopic">
+    <h3>Types of insurance fraud a broker will encounter</h3>
+    <div class="glossary">
+      <div class="gterm"><dt>Identity fraud</dt><dd>Using a false or stolen identity to obtain insurance or make a claim.</dd></div>
+      <div class="gterm"><dt>Address fraud</dt><dd>Misrepresenting where a vehicle is principally kept/garaged, or where a risk is located, typically to obtain a lower rate ("rate evasion").</dd></div>
+      <div class="gterm"><dt>Misrepresentation / false applications</dt><dd>Providing false information on an insurance application.</dd></div>
+      <div class="gterm"><dt>Fraudulent claims</dt><dd>Submitting a claim for a loss that did not occur, was exaggerated, or was intentionally caused.</dd></div>
+    </div>
+  </article>
+
+  <article class="subtopic">
+    <h3>Broker responsibility when fraud is suspected</h3>
+    <p>A broker who becomes aware of or suspects fraud has a professional and regulatory responsibility to act. This generally involves:</p>
+    <ol>
+      <li>Not participating in or facilitating the suspected fraudulent activity in any way.</li>
+      <li>Documenting the concern and the information that gave rise to it.</li>
+      <li>Escalating within the brokerage (to a supervisor or the Principal Broker) and, where appropriate, to the insurer.</li>
+      <li>Understanding that suspected fraud may ultimately require reporting to RIBO or other appropriate authorities, depending on the brokerage's procedures and the severity of the situation.</li>
+    </ol>
+
+    <div class="callout warning">
+      <span class="callout-title">Warning</span>
+      A broker who knowingly assists a client in misrepresenting information — even with good intentions, such as "helping" a client get a lower rate — is participating in fraud. This exposes the broker personally to RIBO discipline, and can void the client's own coverage.
+    </div>
+
+    <div class="callout trap">
+      <span class="callout-title">RIBO Exam Trap</span>
+      Watch for scenarios that frame fraud sympathetically (a client who "really needs" the lower rate, or claims a minor detail "doesn't matter"). The correct answer is always accurate disclosure and proper escalation — never quietly overlooking or adjusting information to help a client avoid detection.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s1-11">
+  <h2><span class="num">1.11</span> Unlicensed Insurers</h2>
+
+  <article class="subtopic">
+    <h3>Licensed vs. unlicensed insurers</h3>
+    <p>A <strong>licensed insurer</strong> is authorized by the relevant regulatory authority to sell insurance in a given jurisdiction, and is subject to solvency oversight, regulatory scrutiny, and consumer-protection requirements. An <strong>unlicensed insurer</strong> has no such authorization to transact insurance business in that jurisdiction.</p>
+    <p><strong>Why licensing matters:</strong> Licensing exists to protect consumers — it verifies an insurer meets minimum financial and operational standards and remains accountable to a regulator. Placing business with an unlicensed insurer removes these protections entirely.</p>
+
+    <div class="callout warning">
+      <span class="callout-title">Warning</span>
+      Dealing with an unlicensed insurer exposes the client to serious risk (no regulatory recourse, uncertain claims-paying ability) and exposes the broker to significant regulatory and professional liability consequences, including potential disciplinary action. Brokers must confirm an insurer's licensed status before placing business with it.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s1-12">
+  <h2><span class="num">1.12</span> Licensing and Jurisdiction</h2>
+
+  <article class="subtopic">
+    <h3>Ontario licensing and jurisdictional restrictions</h3>
+    <p>A RIBO licence authorizes a broker to transact insurance business specific to Ontario. Brokers must be attentive to jurisdiction in several recurring situations:</p>
+    <ul>
+      <li><strong>Serving Ontario customers</strong> — the core, unrestricted scope of a RIBO licence.</li>
+      <li><strong>Out-of-province customers</strong> — placing or servicing business for a client located in, or with risk located in, another province generally requires appropriate licensing in that other jurisdiction; an Ontario licence does not automatically extend broker authority elsewhere.</li>
+      <li><strong>Cross-provincial considerations</strong> — insurance regulation is provincial, so requirements, forms, and rules differ by province; a broker must not assume Ontario rules and products apply unchanged elsewhere.</li>
+    </ul>
+
+    <h4 class="microhead">TIED SELLING PROHIBITION</h4>
+    <p>Brokers are prohibited from <strong>tied selling</strong> — making the provision of one product or service conditional on the client purchasing another, unrelated product or service (e.g., requiring a client to buy a particular insurance product as a condition of obtaining an unrelated financial product). This protects client choice and prevents coercive sales practices.</p>
+
+    <div class="reveal">
+      <div class="reveal-prompt">Quick check: can an Ontario-licensed broker service a client who has moved their vehicle and residence to another province?</div>
+      <div class="reveal-answer">
+        <p>Not automatically. A RIBO licence authorizes Ontario business. If the client's risk (and residency) has genuinely moved to another province, the broker generally needs appropriate licensing in that province to continue placing or servicing that business — this is a jurisdictional restriction, not a matter of client convenience or existing relationship.</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s1-check">
+  <h2><span class="num">✓</span> Chapter 1 Knowledge Checks</h2>
+  <p class="lede" style="font-style:italic;color:var(--text-mute);margin-bottom:18px;">Quick checks distributed through the chapter's core concepts. Select an answer to see feedback.</p>
+
+  <div class="kc">
+    <div class="kc-q">1. A homeowner leaves a space heater running unattended near curtains, which later catch fire. What is the space heater's unattended operation an example of?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">The peril</button>
+      <button class="kc-opt" data-correct="true">A hazard</button>
+      <button class="kc-opt" data-correct="false">An exclusion</button>
+      <button class="kc-opt" data-correct="false">A material change</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>A hazard</strong>. The unattended heater is a condition that increases the likelihood of fire — the fire itself is the peril.</div>
+  </div>
+
+  <div class="kc">
+    <div class="kc-q">2. Which body directly licenses individual insurance brokers in Ontario?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">FSRA</button>
+      <button class="kc-opt" data-correct="false">CCIR</button>
+      <button class="kc-opt" data-correct="true">RIBO</button>
+      <button class="kc-opt" data-correct="false">CISRO</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>RIBO</strong>, under the Registered Insurance Brokers Act. FSRA regulates the broader insurance/auto market; CCIR and CISRO are national coordinating bodies.</div>
+  </div>
+
+  <div class="kc">
+    <div class="kc-q">3. After an insurer pays a client's collision claim caused by another driver, the insurer pursues that driver's insurer for reimbursement. This is an example of:</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">Contribution</button>
+      <button class="kc-opt" data-correct="true">Subrogation</button>
+      <button class="kc-opt" data-correct="false">Indemnity</button>
+      <button class="kc-opt" data-correct="false">Utmost good faith</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>Subrogation</strong> — the insurer inherits the insured's right to recover from the at-fault party after paying the claim. Contribution applies when multiple policies cover the same loss simultaneously.</div>
+  </div>
+</section>
+
+
+<div class="endmatter" id="endmatter">
+  <h2>Key Takeaways</h2>
+  <ul>
+    <li>Insurance exists to transfer and pool risk, providing financial protection against fortuitous loss — it does not prevent loss or make someone better off than before it.</li>
+    <li>Peril (the cause of loss) and hazard (a condition increasing likelihood/severity) are distinct and frequently tested together.</li>
+    <li>Indemnity, insurable interest, utmost good faith, disclosure, subrogation, contribution, proximate cause, ACV vs. replacement cost, and negligence/duty of care are the foundational doctrines behind every coverage decision in later chapters.</li>
+    <li>An insurance policy must satisfy the same legal elements as any contract: offer, acceptance, consideration, capacity, and legal purpose.</li>
+    <li>Ontario operates under common law (Quebec uses civil law) — this shapes how insurance contracts and liability are interpreted.</li>
+    <li>The Ontario Insurance Act is the foundational provincial statute; FSRA regulates the insurance market and auto insurance rates/underwriting rules; RIBO licenses and regulates individual brokers under the Registered Insurance Brokers Act; CCIR and CISRO coordinate standards nationally.</li>
+    <li>The Take All Comers Rule requires insurers to accept qualified Ontario auto applicants within their approved underwriting criteria — it does not force every insurer to write every risk on standard terms.</li>
+    <li>Brokers have an affirmative duty to avoid facilitating fraud, to deal only with licensed insurers, and to respect jurisdictional limits on their RIBO licence.</li>
+  </ul>
+
+  <h2>Must-Know Terms</h2>
+  <div class="glossary">
+    <div class="gterm"><dt>Risk transfer / risk pooling</dt><dd>Moving financial consequence of loss to an insurer; spreading cost of losses across many similar exposures.</dd></div>
+    <div class="gterm"><dt>Peril / Hazard</dt><dd>The cause of loss / a condition that increases likelihood or severity of a peril.</dd></div>
+    <div class="gterm"><dt>Insurable interest</dt><dd>A genuine financial stake in the insured subject matter.</dd></div>
+    <div class="gterm"><dt>Utmost good faith</dt><dd>Higher duty of honest disclosure owed by both parties to an insurance contract.</dd></div>
+    <div class="gterm"><dt>Material fact / Material change</dt><dd>A fact that would affect underwriting; a mid-term change that alters the risk.</dd></div>
+    <div class="gterm"><dt>Subrogation</dt><dd>Insurer's right to recover a paid claim from the party at fault.</dd></div>
+    <div class="gterm"><dt>Contribution</dt><dd>Multiple insurers sharing a loss proportionately when more than one policy applies.</dd></div>
+    <div class="gterm"><dt>Proximate cause</dt><dd>The dominant, effective cause of a loss in a chain of events.</dd></div>
+    <div class="gterm"><dt>ACV / Replacement cost</dt><dd>Depreciated value / cost to replace with new, of similar kind and quality.</dd></div>
+    <div class="gterm"><dt>E&amp;O (Errors and Omissions)</dt><dd>Professional liability for a broker's mistakes in advice or service.</dd></div>
+    <div class="gterm"><dt>RIBO</dt><dd>Licenses and regulates individual Ontario insurance brokers under the Registered Insurance Brokers Act.</dd></div>
+    <div class="gterm"><dt>FSRA</dt><dd>Regulates Ontario's insurance market; approves auto insurance rates and underwriting rules.</dd></div>
+    <div class="gterm"><dt>CCIR / CISRO</dt><dd>National coordinating bodies for insurance regulators / intermediary-licensing regulators.</dd></div>
+    <div class="gterm"><dt>Take All Comers Rule</dt><dd>Ontario auto insurers must accept qualified applicants within their approved underwriting criteria.</dd></div>
+    <div class="gterm"><dt>Tied selling</dt><dd>Prohibited practice of conditioning one product/service on the purchase of another.</dd></div>
+  </div>
+
+  <h2>Quick Reference</h2>
+  <div class="quickref-grid">
+    <div class="qr-card">
+      <h4>Regulatory Chain</h4>
+      <ul>
+        <li>RIBO → licenses individual Ontario brokers</li>
+        <li>FSRA → regulates insurance market, auto rates/underwriting rules</li>
+        <li>CCIR → coordinates provincial insurance regulators</li>
+        <li>CISRO → coordinates intermediary-licensing regulators; issues Code of Conduct</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Claims-Response Sequence</h4>
+      <ul>
+        <li>1. Policy in force at time of loss?</li>
+        <li>2. Identify the peril</li>
+        <li>3. Is the peril insured?</li>
+        <li>4. Check exclusions</li>
+        <li>5. Check endorsements</li>
+        <li>6. Apply deductible</li>
+        <li>7. Apply limit</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Contract Elements</h4>
+      <ul>
+        <li>Offer</li>
+        <li>Acceptance</li>
+        <li>Consideration</li>
+        <li>Capacity</li>
+        <li>Legal purpose</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Broker Liability Exposures</h4>
+      <ul>
+        <li>Legal liability — general harm from broker actions</li>
+        <li>Premises liability — harm at brokerage location</li>
+        <li>E&amp;O — professional mistakes in advice/service</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Common Exam Traps</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th style="width:32%">Confusion Pair</th><th>The distinction that matters</th></tr>
+      <tr><td>Peril vs. Hazard</td><td>Peril = the cause of loss itself. Hazard = a condition that makes the peril more likely or severe.</td></tr>
+      <tr><td>Subrogation vs. Contribution</td><td>Subrogation = one insurer recovers from the at-fault party after paying. Contribution = multiple insurers share one loss proportionately.</td></tr>
+      <tr><td>ACV vs. Replacement Cost</td><td>ACV deducts depreciation; replacement cost does not (often conditional on actual repair/replacement).</td></tr>
+      <tr><td>FSRA vs. RIBO</td><td>FSRA regulates the insurance market and auto rates/underwriting rules. RIBO licenses and disciplines individual brokers.</td></tr>
+      <tr><td>Broker vs. Agent</td><td>A broker (RIBO-licensed) can generally represent multiple insurers and act for the client; distribution-method distinctions are developed further in Chapter 3.</td></tr>
+      <tr><td>Disclosure vs. Misrepresentation vs. Non-disclosure</td><td>Disclosure = the duty to reveal. Misrepresentation = giving false information. Non-disclosure = failing to reveal a material fact.</td></tr>
+      <tr><td>Common law vs. Civil law</td><td>Ontario = common law (precedent-based). Quebec = civil law (code-based).</td></tr>
+    </table>
+  </div>
+
+  <h2>Practice Questions</h2>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">KNOWLEDGE · DEFINITION · EASY</span>1. Which of the following best defines "insurable interest"?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. A written agreement between insurer and insured</button>
+      <button class="pq-opt" data-correct="true">B. A genuine financial or legal stake in the subject matter such that the insured would suffer a real loss</button>
+      <button class="pq-opt" data-correct="false">C. The maximum amount an insurer will pay on a claim</button>
+      <button class="pq-opt" data-correct="false">D. The portion of a loss the insured must pay before coverage responds</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> Insurable interest requires a genuine stake in the insured subject matter, which prevents insurance from being used as a wager on someone else's loss. Option C describes a limit; option D describes a deductible.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">COMPREHENSION · REGULATORY · MODERATE</span>2. A client asks why their broker cannot simply help them get automobile coverage in another province using their existing Ontario licence. What is the best explanation?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. RIBO licences are valid across all of Canada automatically</button>
+      <button class="pq-opt" data-correct="true">B. A RIBO licence authorizes Ontario business; placing or servicing business in another province generally requires licensing in that jurisdiction</button>
+      <button class="pq-opt" data-correct="false">C. Only FSRA can approve out-of-province business</button>
+      <button class="pq-opt" data-correct="false">D. Tied selling rules prevent brokers from placing business outside Ontario</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> Insurance regulation is provincial. A RIBO licence is Ontario-specific, and jurisdictional/licensing requirements differ by province. This is unrelated to tied selling, which concerns bundling products.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">APPLICATION · SCENARIO · MODERATE</span>3. A windstorm damages a client's roof, and rain subsequently enters through the damaged roof, causing interior water damage. The policy excludes water damage generally but covers windstorm. How would proximate cause likely apply?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. The water damage is excluded regardless of cause, since "water damage" appears in the exclusions</button>
+      <button class="pq-opt" data-correct="true">B. The windstorm is the proximate (dominant, effective) cause of the loss, so the resulting water damage would likely be covered</button>
+      <button class="pq-opt" data-correct="false">C. Coverage depends solely on which peril caused more dollar value of damage</button>
+      <button class="pq-opt" data-correct="false">D. Proximate cause only applies to liability claims, not property claims</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> Proximate cause traces back to the dominant, effective cause in a chain of events. Since the windstorm (a covered peril) set the loss in motion, the resulting water damage is generally treated as flowing from the covered peril, despite a general water exclusion existing in isolation.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">APPLICATION · ETHICS/FRAUD · DIFFICULT</span>4. A client asks their broker to list a lower-risk garaging address than where the vehicle is actually kept, to reduce the premium. What should the broker do?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. Comply, since it is a minor administrative detail</button>
+      <button class="pq-opt" data-correct="false">B. Comply, but only note the real address internally for the broker's own file</button>
+      <button class="pq-opt" data-correct="true">C. Decline, explain that accurate garaging information is a material fact, and document the conversation</button>
+      <button class="pq-opt" data-correct="false">D. Ask the insurer whether it minds before deciding</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: C.</strong> Garaging address is a material fact affecting risk classification and rating; providing false information is misrepresentation/address fraud. The broker must decline, explain why accurate disclosure matters (including claims consequences), and document the interaction. This is not a matter to be resolved informally or by internal-only notes.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">KNOWLEDGE · REGULATORY · EASY</span>5. Which organization is primarily responsible for coordinating a harmonized Code of Conduct for insurance intermediaries across Canada?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. FSRA</button>
+      <button class="pq-opt" data-correct="false">B. CCIR</button>
+      <button class="pq-opt" data-correct="true">C. CISRO</button>
+      <button class="pq-opt" data-correct="false">D. RIBO</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: C.</strong> CISRO coordinates regulators responsible for licensing insurance intermediaries and produces the CISRO Code of Conduct for Insurance Intermediaries. CCIR coordinates insurance regulators more broadly; RIBO and FSRA are individual provincial regulators.
+    </div>
+  </div>
+
+  <div class="callout important" style="margin-top:30px;">
+    <span class="callout-title">Before moving to Chapter 2</span>
+    Chapter 2 builds directly on the ethics and disclosure concepts introduced here — particularly utmost good faith, material facts, and the RIBO/CISRO regulatory relationship — and applies them specifically to professionalism, the RIBO Code of Conduct, conflicts of interest, and privacy law (PIPEDA/CASL).
+  </div>
+</div>
+
+
+    </div>
+  </main>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script>
+// ===== Scrollspy =====
+const sections = document.querySelectorAll('section.topic, div#endmatter');
+const tocLinks = document.querySelectorAll('.toc-section');
+const barFill = document.getElementById('barFill');
+
+function onScroll(){
+  let current = null;
+  const scrollPos = window.scrollY + 140;
+  sections.forEach(sec=>{
+    if(sec.offsetTop <= scrollPos) current = sec.id;
+  });
+  tocLinks.forEach(l=>{
+    l.classList.toggle('active', l.dataset.sec === current);
+  });
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? Math.min(100, (window.scrollY/docHeight)*100) : 0;
+  barFill.style.width = pct+'%';
+
+  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 600);
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
+
+document.getElementById('backToTop').addEventListener('click', ()=>{
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+// ===== Accordion =====
+document.addEventListener('click', (e)=>{
+  const head = e.target.closest('.accordion-head');
+  if(head){
+    const acc = head.closest('.accordion');
+    const body = acc.querySelector('.accordion-body');
+    const isOpen = acc.classList.contains('open');
+    if(isOpen){
+      acc.classList.remove('open');
+      body.style.maxHeight = null;
+    } else {
+      acc.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 40 + 'px';
+    }
+  }
+});
+
+// ===== Reveal =====
+document.addEventListener('click', (e)=>{
+  const prompt = e.target.closest('.reveal-prompt');
+  if(prompt){
+    prompt.closest('.reveal').classList.toggle('open');
+  }
+});
+
+// ===== Tabs =====
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.tab-btn');
+  if(btn){
+    const tabs = btn.closest('.tabs');
+    tabs.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    tabs.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    tabs.querySelector('#'+btn.dataset.target).classList.add('active');
+  }
+});
+
+// ===== Flow diagram =====
+document.addEventListener('click', (e)=>{
+  const step = e.target.closest('.flow-step');
+  if(step){
+    const flowWrap = step.closest('.flow-wrap');
+    flowWrap.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));
+    step.classList.add('active');
+    const detailId = step.dataset.detail;
+    flowWrap.querySelectorAll('.flow-detail').forEach(d=>d.classList.remove('visible'));
+    document.getElementById(detailId).classList.add('visible');
+  }
+});
+
+// ===== Knowledge check =====
+document.addEventListener('click', (e)=>{
+  const opt = e.target.closest('.kc-opt');
+  if(opt){
+    const kc = opt.closest('.kc');
+    if(kc.dataset.answered === 'true') return;
+    kc.dataset.answered = 'true';
+    const correct = opt.dataset.correct === 'true';
+    kc.querySelectorAll('.kc-opt').forEach(o=>{
+      if(o.dataset.correct === 'true') o.classList.add('correct');
+      else if(o===opt) o.classList.add('incorrect');
+    });
+    const fb = kc.querySelector('.kc-feedback');
+    fb.classList.add('visible');
+  }
+});
+
+// ===== Scenario choices =====
+document.addEventListener('click', (e)=>{
+  const choice = e.target.closest('.scenario-choice');
+  if(choice){
+    const scenario = choice.closest('.scenario');
+    if(scenario.dataset.answered === 'true') return;
+    scenario.dataset.answered = 'true';
+    const resultId = choice.dataset.result;
+    scenario.querySelectorAll('.scenario-result').forEach(r=>r.classList.remove('visible'));
+    document.getElementById(resultId).classList.add('visible');
+  }
+});
+
+// ===== Practice question toggle =====
+document.addEventListener('click', (e)=>{
+  const pqq = e.target.closest('.pq-opt');
+  if(pqq){
+    const pq = pqq.closest('.pq');
+    if(pq.dataset.answered === 'true') return;
+    pq.dataset.answered = 'true';
+    pq.querySelectorAll('.pq-opt').forEach(o=>{
+      if(o.dataset.correct === 'true') o.classList.add('correct');
+      else if(o===pqq) o.classList.add('incorrect');
+    });
+    pq.querySelector('.pq-explain').classList.add('visible');
+  }
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 4B — Personal Lines Automobile: Endorsements, Statutory Conditions &amp; Specialty Topics | RIBO Level 1</title>
+<style>
+  :root{
+    --ink:#16273D;
+    --ink-soft:#2C4058;
+    --paper:#F7F6F3;
+    --paper-raised:#FFFFFF;
+    --rule:#DAD5C9;
+    --rule-soft:#E9E6DD;
+    --gold:#B8873A;
+    --gold-soft:#F1E4C9;
+    --slate:#3E5C76;
+    --slate-soft:#E3EAF0;
+    --green:#3F6B4E;
+    --green-soft:#E4EEE6;
+    --red:#8C3B32;
+    --red-soft:#F4E3E0;
+    --text:#242A31;
+    --text-mute:#5B6470;
+    --serif: Iowan Old Style, "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", "Cascadia Code", Consolas, monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--slate);}
+
+  /* ===== Layout shell ===== */
+  .shell{
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    min-height:100vh;
+  }
+
+  /* ===== Sidebar ===== */
+  .sidebar{
+    background:var(--ink);
+    color:#D9DFE6;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+    padding:28px 0 40px;
+    border-right:1px solid #0E1A28;
+  }
+  .sidebar::-webkit-scrollbar{width:8px;}
+  .sidebar::-webkit-scrollbar-thumb{background:#2C4058;border-radius:4px;}
+
+  .sidebar-brand{
+    padding:0 24px 20px;
+    border-bottom:1px solid #263A52;
+    margin-bottom:8px;
+  }
+  .sidebar-brand .kicker{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.04em;
+    color:#8FA3B8;
+  }
+  .sidebar-brand h1{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:600;
+    margin:6px 0 2px;
+    color:#F4F1E8;
+    line-height:1.3;
+  }
+  .sidebar-brand .sub{
+    font-size:12.5px;
+    color:#9AACBE;
+  }
+
+  .toc{padding:8px 0;}
+  .toc-chapter{
+    display:block;
+    padding:10px 24px;
+    font-family:var(--serif);
+    font-size:14px;
+    font-weight:600;
+    color:#F4F1E8;
+    text-decoration:none;
+    border-left:3px solid transparent;
+  }
+  .toc-section{
+    display:block;
+    padding:6px 24px 6px 32px;
+    font-size:13px;
+    color:#B7C4D2;
+    text-decoration:none;
+    border-left:3px solid transparent;
+    transition:background .12s ease, color .12s ease;
+  }
+  .toc-section:hover{background:#1D3049;color:#F4F1E8;}
+  .toc-section.active{
+    background:#22354D;
+    color:#F1D9A8;
+    border-left-color:var(--gold);
+    font-weight:600;
+  }
+  .toc-progress{
+    margin:14px 24px 4px;
+    padding-top:14px;
+    border-top:1px solid #263A52;
+  }
+  .toc-progress .label{
+    font-size:11px;
+    color:#8FA3B8;
+    font-family:var(--mono);
+    letter-spacing:.03em;
+    margin-bottom:6px;
+  }
+  .bar-track{
+    height:6px;
+    background:#1D3049;
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background:linear-gradient(90deg,var(--gold),#D9AE6A);
+    width:0%;
+    transition:width .25s ease;
+  }
+
+  /* ===== Main content ===== */
+  main{
+    padding:0;
+    max-width:900px;
+  }
+  .content-inner{
+    padding:48px 56px 120px;
+  }
+
+  .chapter-head{
+    margin-bottom:40px;
+    padding-bottom:28px;
+    border-bottom:2px solid var(--ink);
+  }
+  .chapter-head .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--gold);
+    background:var(--gold-soft);
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:3px;
+    margin-bottom:14px;
+  }
+  .chapter-head h1{
+    font-family:var(--serif);
+    font-size:38px;
+    line-height:1.2;
+    margin:0 0 12px;
+    color:var(--ink);
+  }
+  .chapter-head .dek{
+    font-size:16px;
+    color:var(--text-mute);
+    max-width:70ch;
+  }
+  .comp-tags{
+    margin-top:18px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .comp-tag{
+    font-size:12px;
+    font-family:var(--mono);
+    background:var(--slate-soft);
+    color:var(--slate);
+    padding:4px 10px;
+    border-radius:3px;
+    border:1px solid #C9D6E2;
+  }
+
+  .notice-box{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--ink-soft);
+    padding:16px 20px;
+    margin:0 0 40px;
+    font-size:14px;
+    color:var(--text-mute);
+  }
+  .notice-box strong{color:var(--ink);}
+
+  section.topic{
+    margin-bottom:56px;
+    scroll-margin-top:24px;
+  }
+  section.topic > h2{
+    font-family:var(--serif);
+    font-size:28px;
+    color:var(--ink);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:10px;
+    margin:0 0 20px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  section.topic > h2 .num{
+    font-family:var(--mono);
+    font-size:16px;
+    color:var(--gold);
+    font-weight:600;
+  }
+
+  article.subtopic{
+    margin-bottom:38px;
+    scroll-margin-top:24px;
+  }
+  article.subtopic > h3{
+    font-family:var(--serif);
+    font-size:21px;
+    color:var(--ink-soft);
+    margin:0 0 6px;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+  article.subtopic > h3 .num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-mute);
+    font-weight:400;
+  }
+  article.subtopic .lede{
+    font-size:14px;
+    color:var(--text-mute);
+    font-style:italic;
+    margin:0 0 16px;
+  }
+
+  h4.microhead{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:none;
+    color:var(--slate);
+    font-weight:700;
+    margin:20px 0 8px;
+    padding-top:2px;
+  }
+
+  p{margin:0 0 14px;font-size:15.5px;}
+  ul,ol{margin:0 0 14px;padding-left:22px;font-size:15.5px;}
+  li{margin-bottom:5px;}
+
+  .term{
+    font-weight:600;
+    color:var(--ink);
+    border-bottom:1px dotted var(--gold);
+    cursor:help;
+  }
+
+  /* ===== Callouts ===== */
+  .callout{
+    border-radius:4px;
+    padding:16px 18px 16px 52px;
+    margin:18px 0;
+    position:relative;
+    font-size:14.5px;
+    border:1px solid;
+  }
+  .callout::before{
+    position:absolute;
+    left:16px;
+    top:15px;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.03em;
+  }
+  .callout .callout-title{
+    font-weight:700;
+    display:block;
+    margin-bottom:4px;
+    font-family:var(--sans);
+    font-size:13px;
+  }
+  .callout.important{background:var(--slate-soft);border-color:#C9D6E2;}
+  .callout.important::before{content:"i";color:var(--slate);font-style:italic;font-size:16px;left:19px;top:13px;}
+  .callout.important .callout-title{color:var(--slate);}
+
+  .callout.remember{background:var(--green-soft);border-color:#CBE0D1;}
+  .callout.remember::before{content:"✓";color:var(--green);font-size:15px;}
+  .callout.remember .callout-title{color:var(--green);}
+
+  .callout.warning{background:#FBF0E4;border-color:#EAD2AE;}
+  .callout.warning::before{content:"!";color:#A8681E;font-size:15px;left:20px;}
+  .callout.warning .callout-title{color:#A8681E;}
+
+  .callout.examtip{background:var(--gold-soft);border-color:#E4CE97;}
+  .callout.examtip::before{content:"★";color:var(--gold);font-size:14px;}
+  .callout.examtip .callout-title{color:#8A6323;}
+
+  .callout.example{background:#EFF0F6;border-color:#D2D5E8;}
+  .callout.example::before{content:"E";color:#4B4F8C;font-family:var(--serif);font-style:italic;font-size:15px;left:20px;}
+  .callout.example .callout-title{color:#4B4F8C;}
+
+  .callout.trap{background:var(--red-soft);border-color:#E5C3BD;}
+  .callout.trap::before{content:"✕";color:var(--red);font-size:13px;}
+  .callout.trap .callout-title{color:var(--red);}
+
+  /* ===== Tables ===== */
+  .table-wrap{
+    overflow-x:auto;
+    margin:18px 0;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--paper-raised);
+    font-size:14px;
+  }
+  th{
+    background:var(--ink);
+    color:#F0EEE6;
+    text-align:left;
+    padding:10px 14px;
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:12.5px;
+    letter-spacing:.02em;
+  }
+  td{
+    padding:10px 14px;
+    border-top:1px solid var(--rule-soft);
+    vertical-align:top;
+  }
+  tr:nth-child(even) td{background:#FBFAF7;}
+
+  /* ===== Accordion (collapsible) ===== */
+  .accordion{
+    border:1px solid var(--rule);
+    border-radius:4px;
+    margin:14px 0;
+    background:var(--paper-raised);
+    overflow:hidden;
+  }
+  .accordion + .accordion{margin-top:10px;}
+  .accordion-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 18px;
+    cursor:pointer;
+    font-weight:600;
+    color:var(--ink);
+    font-size:14.5px;
+    user-select:none;
+  }
+  .accordion-head:hover{background:#FBFAF7;}
+  .accordion-head .chev{
+    font-family:var(--mono);
+    color:var(--gold);
+    transition:transform .2s ease;
+    font-size:13px;
+  }
+  .accordion.open .accordion-head .chev{transform:rotate(90deg);}
+  .accordion-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+    padding:0 18px;
+    border-top:0 solid var(--rule-soft);
+  }
+  .accordion.open .accordion-body{
+    padding:4px 18px 16px;
+    border-top:1px solid var(--rule-soft);
+  }
+  .accordion-body p:last-child{margin-bottom:0;}
+
+  /* ===== Click to reveal ===== */
+  .reveal{
+    border:1px dashed #C9C2AE;
+    border-radius:4px;
+    padding:14px 16px;
+    margin:14px 0;
+    background:#FCFBF8;
+  }
+  .reveal-prompt{
+    cursor:pointer;
+    font-weight:600;
+    color:var(--slate);
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .reveal-prompt::before{
+    content:"▸";
+    color:var(--gold);
+    transition:transform .2s ease;
+  }
+  .reveal.open .reveal-prompt::before{transform:rotate(90deg);}
+  .reveal-answer{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--rule-soft);font-size:14.5px;}
+  .reveal.open .reveal-answer{display:block;}
+
+  /* ===== Tabs ===== */
+  .tabs{margin:18px 0;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--paper-raised);}
+  .tab-bar{display:flex;background:#F1EEE5;border-bottom:1px solid var(--rule);flex-wrap:wrap;}
+  .tab-btn{
+    padding:11px 18px;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--text-mute);
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    font-family:var(--sans);
+  }
+  .tab-btn.active{color:var(--ink);border-bottom-color:var(--gold);background:var(--paper-raised);}
+  .tab-panel{display:none;padding:18px 20px;}
+  .tab-panel.active{display:block;}
+  .tab-panel p:last-child{margin-bottom:0;}
+
+  /* ===== Process flow diagram ===== */
+  .flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    align-items:stretch;
+    margin:20px 0;
+  }
+  .flow-step{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 14px;
+    flex:1 1 120px;
+    min-width:110px;
+    cursor:pointer;
+    position:relative;
+    text-align:center;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    transition:background .15s ease, border-color .15s;
+  }
+  .flow-step:hover, .flow-step.active{background:var(--slate-soft);border-color:var(--slate);color:var(--slate);}
+  .flow-arrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 6px;
+    color:var(--gold);
+    font-size:16px;
+    flex:0 0 auto;
+  }
+  .flow-detail{
+    background:var(--slate-soft);
+    border:1px solid #C9D6E2;
+    border-radius:4px;
+    padding:14px 16px;
+    margin-top:12px;
+    font-size:14px;
+    display:none;
+  }
+  .flow-detail.visible{display:block;}
+
+  /* ===== Knowledge check ===== */
+  .kc{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:20px 22px;
+    margin:18px 0;
+  }
+  .kc-q{font-weight:600;color:var(--ink);margin-bottom:12px;font-size:15px;}
+  .kc-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+  .kc-opt{
+    text-align:left;
+    padding:10px 14px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--paper);
+    cursor:pointer;
+    font-size:14px;
+    font-family:var(--sans);
+    color:var(--text);
+    transition:background .12s ease;
+  }
+  .kc-opt:hover{background:var(--slate-soft);}
+  .kc-opt.correct{background:var(--green-soft);border-color:var(--green);color:#234731;font-weight:600;}
+  .kc-opt.incorrect{background:var(--red-soft);border-color:var(--red);color:#5E241C;}
+  .kc-feedback{
+    font-size:13.5px;
+    padding:10px 12px;
+    border-radius:4px;
+    display:none;
+    background:#F1EEE5;
+    color:var(--text-mute);
+  }
+  .kc-feedback.visible{display:block;}
+
+  /* ===== Calc demo ===== */
+  .calc-box{
+    background:#FBFAF7;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:18px 20px;
+    margin:18px 0;
+  }
+  .calc-row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap;}
+  .calc-row label{font-size:13px;font-weight:600;color:var(--ink-soft);min-width:170px;}
+  .calc-row input{
+    padding:7px 10px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    font-size:14px;
+    font-family:var(--mono);
+    width:130px;
+  }
+  .calc-result{
+    margin-top:12px;
+    padding:12px 14px;
+    background:var(--gold-soft);
+    border:1px solid #E4CE97;
+    border-radius:4px;
+    font-size:14.5px;
+  }
+  .calc-result .big{font-family:var(--mono);font-size:20px;font-weight:700;color:#8A6323;}
+  .calc-formula{
+    font-family:var(--mono);
+    background:var(--ink);
+    color:#EFEAD9;
+    padding:12px 16px;
+    border-radius:4px;
+    font-size:13.5px;
+    margin-bottom:12px;
+    overflow-x:auto;
+  }
+
+  /* ===== Scenario What-would-you-do ===== */
+  .scenario{
+    background:#FBFAF7;
+    border:1px solid var(--rule);
+    border-left:4px solid var(--slate);
+    border-radius:4px;
+    padding:18px 20px;
+    margin:18px 0;
+  }
+  .scenario .stitle{font-weight:700;color:var(--slate);font-size:13px;margin-bottom:8px;font-family:var(--sans);letter-spacing:.01em;}
+  .scenario-choices{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+  .scenario-choice{
+    text-align:left;
+    padding:10px 14px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+    background:var(--paper-raised);
+    cursor:pointer;
+    font-size:14px;
+  }
+  .scenario-choice:hover{background:var(--slate-soft);}
+  .scenario-result{
+    display:none;
+    margin-top:12px;
+    padding:12px 14px;
+    border-radius:4px;
+    font-size:14px;
+  }
+  .scenario-result.visible{display:block;}
+  .scenario-result.good{background:var(--green-soft);color:#234731;border:1px solid #CBE0D1;}
+  .scenario-result.bad{background:var(--red-soft);color:#5E241C;border:1px solid #E5C3BD;}
+
+  /* ===== Glossary strip ===== */
+  .glossary{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 24px;
+    margin:16px 0;
+  }
+  @media(max-width:640px){.glossary{grid-template-columns:1fr;}}
+  .gterm{
+    border-bottom:1px solid var(--rule-soft);
+    padding-bottom:8px;
+  }
+  .gterm dt{font-weight:700;color:var(--ink);font-size:14px;}
+  .gterm dd{margin:2px 0 0;color:var(--text-mute);font-size:13.5px;}
+
+  /* ===== Back to top / end matter ===== */
+  .endmatter{
+    border-top:3px solid var(--ink);
+    margin-top:60px;
+    padding-top:30px;
+  }
+  .endmatter h2{
+    font-family:var(--serif);
+    color:var(--ink);
+    font-size:26px;
+    margin-bottom:16px;
+  }
+
+  .quickref-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:14px;
+    margin:16px 0;
+  }
+  .qr-card{
+    background:var(--paper-raised);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+  }
+  .qr-card h4{margin:0 0 8px;font-size:13px;color:var(--slate);font-family:var(--sans);}
+  .qr-card ul{margin:0;padding-left:18px;font-size:13.5px;}
+
+  .pq{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    margin-bottom:14px;
+    background:var(--paper-raised);
+    overflow:hidden;
+  }
+  .pq-q{padding:16px 18px;font-weight:600;color:var(--ink);font-size:14.5px;}
+  .pq-tag{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--text-mute);
+    display:block;
+    margin-bottom:6px;
+    letter-spacing:.02em;
+  }
+  .pq-opts{padding:0 18px 6px;display:flex;flex-direction:column;gap:6px;}
+  .pq-explain{
+    display:none;
+    padding:14px 18px;
+    background:#F7F6F3;
+    border-top:1px solid var(--rule-soft);
+    font-size:13.5px;
+  }
+  .pq-explain.visible{display:block;}
+
+  .back-to-top{
+    position:fixed;
+    bottom:28px;
+    right:28px;
+    background:var(--ink);
+    color:#F4F1E8;
+    border:none;
+    border-radius:50%;
+    width:44px;
+    height:44px;
+    cursor:pointer;
+    font-size:18px;
+    box-shadow:0 3px 10px rgba(0,0,0,.25);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+  }
+  .back-to-top.visible{display:flex;}
+
+  @media(max-width:880px){
+    .shell{grid-template-columns:1fr;}
+    .sidebar{
+      position:relative;
+      height:auto;
+      max-height:60vh;
+    }
+    .content-inner{padding:32px 20px 100px;}
+    .chapter-head h1{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="kicker">RIBO LEVEL 1 · ENTRY-LEVEL BROKER</div>
+      <h1>Chapter 4B</h1>
+      <div class="sub">Auto Endorsements, Statutory Conditions &amp; Specialty Topics</div>
+    </div>
+    <div class="toc" id="toc">
+      <!-- populated below, static links -->
+      <a href="#top" class="toc-chapter">Chapter Overview</a>
+
+      <a href="#s4-11" class="toc-section" data-sec="s4-11">4.11 Automobile Endorsements (OPCF)</a>
+      <a href="#s4-12" class="toc-section" data-sec="s4-12">4.12 Statutory Conditions</a>
+      <a href="#s4-13" class="toc-section" data-sec="s4-13">4.13 Auto Exclusions &amp; Extensions</a>
+      <a href="#s4-14" class="toc-section" data-sec="s4-14">4.14 Usage &amp; Classification</a>
+      <a href="#s4-15" class="toc-section" data-sec="s4-15">4.15 Sharing Economy</a>
+      <a href="#s4-16" class="toc-section" data-sec="s4-16">4.16 Specialty Vehicles</a>
+      <a href="#s4-17" class="toc-section" data-sec="s4-17">4.17 Provincial Differences</a>
+
+      <a href="#endmatter" class="toc-section" data-sec="endmatter" style="margin-top:6px;border-top:1px solid #263A52;padding-top:12px;">Chapter 4 Review &amp; Practice</a>
+    </div>
+    <div style="padding:10px 24px 0;font-size:11.5px;color:#8FA3B8;font-family:var(--mono);border-top:1px solid #263A52;margin-top:6px;">
+      Continued from Chapter 4A: OAP 1, Mandatory Coverages, Fault Determination
+    </div>
+    <div class="toc-progress">
+      <div class="label">CHAPTER PROGRESS</div>
+      <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="content-inner" id="top">
+
+      <div class="chapter-head">
+        <span class="kicker">CHAPTER 4B OF 13 (PART 2 OF 2)</span>
+        <h1>Auto Endorsements, Statutory Conditions &amp; Specialty Topics</h1>
+        <p class="dek">The full set of 17 named OPCF endorsements the exam requires you to know cold, plus statutory conditions, exclusions and extensions, vehicle usage and classification, sharing-economy coverage gaps, specialty vehicles, and how automobile insurance differs across provinces.</p>
+        <div class="comp-tags">
+          <span class="comp-tag">Competency 3 — Insurance Product &amp; Industry Knowledge</span>
+          <span class="comp-tag">Competency 4 — Risk Identification &amp; Assessment</span>
+          <span class="comp-tag">Competency 5 — Consulting &amp; Advising</span>
+          <span class="comp-tag">Content Domain — Personal Lines Automobile (25%)</span>
+        </div>
+      </div>
+
+      <div class="notice-box">
+        <strong>About this chapter.</strong> This is a self-study structure built from the RIBO Level 1 Master Syllabus. Chapter numbering here is a study sequence, not RIBO's official numbering. The <strong>official RIBO Competency Profile — Entry Level Broker</strong> remains the controlling reference; where this chapter states a regulatory rule, treat it as a study explanation and verify current requirements against RIBO, FSRA, and the Ontario Insurance Act before relying on it professionally or for exam sitting.
+      </div>
+
+      <!-- CONTENT SECTIONS WILL BE INSERTED HERE -->
+      <section class="topic" id="s4-11">
+  <h2><span class="num">4.11</span> Automobile Endorsements (OPCF)</h2>
+
+  <article class="subtopic">
+    <h3>What OPCFs are, and how to use this section</h3>
+    <p>OPCFs (Ontario Policy Change Forms) are standardized endorsements that modify the base OAP 1 policy — adding, removing, or changing coverage for an individual policyholder's specific needs. Each entry below follows the same eight-part structure: name, purpose, what it changes, who needs it, what it covers, exclusions/limitations, an example, and an exam trap.</p>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      <span style="font-weight:700;">VERIFY CURRENT VERSION BEFORE EXAM.</span> OPCF numbering, exact wording, and availability are maintained by industry filing bodies and can be revised. The concepts and typical purpose of each form below are stable study material; verify exact current wording against official policy forms before relying on specifics professionally.
+    </div>
+
+    <h4 class="microhead">QUICK REFERENCE — ALL 17 FORMS AT A GLANCE</h4>
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:14%">Form</th><th>Core Purpose</th></tr>
+        <tr><td><strong>OPCF 5</strong></td><td>Permission to rent or lease automobile to others</td></tr>
+        <tr><td><strong>OPCF 16</strong></td><td>Suspension of coverage while vehicle is in storage/not in use</td></tr>
+        <tr><td><strong>OPCF 17</strong></td><td>Amounts payable reduced by other valid insurance (non-owned vehicles)</td></tr>
+        <tr><td><strong>OPCF 19</strong></td><td>Excluding a driver from coverage entirely</td></tr>
+        <tr><td><strong>OPCF 19A</strong></td><td>Excluding a driver from coverage for a specific described vehicle</td></tr>
+        <tr><td><strong>OPCF 20</strong></td><td>Loss of use coverage (rental/transportation replacement)</td></tr>
+        <tr><td><strong>OPCF 23A</strong></td><td>Removal of depreciation deduction on total loss settlement (new vehicle)</td></tr>
+        <tr><td><strong>OPCF 27</strong></td><td>Liability coverage extended to a described non-owned vehicle</td></tr>
+        <tr><td><strong>OPCF 28</strong></td><td>Waiver of depreciation for glass repair/replacement</td></tr>
+        <tr><td><strong>OPCF 28A</strong></td><td>Reducing/limiting glass coverage</td></tr>
+        <tr><td><strong>OPCF 39</strong></td><td>Vehicles used for driver training/instruction</td></tr>
+        <tr><td><strong>OPCF 40</strong></td><td>Limiting/restricting coverage for a described automobile used for a specific purpose (e.g., commercial use limitation)</td></tr>
+        <tr><td><strong>OPCF 43</strong></td><td>Removal of a described automobile from a policy without cancelling the whole policy</td></tr>
+        <tr><td><strong>OPCF 44</strong></td><td>Family Protection — underinsured motorist gap coverage (full treatment in 4.5)</td></tr>
+        <tr><td><strong>OPCF 47</strong></td><td>Ensuring coverage stays primary/coordinating with other policies (e.g., ride-share hybrid situations)</td></tr>
+        <tr><td><strong>OPCF 49</strong></td><td>Coverage for damage to a non-owned vehicle used as a temporary substitute</td></tr>
+        <tr><td><strong>Conviction Protector</strong></td><td>Protects the insured's rating from the rating impact of a single minor conviction</td></tr>
+      </table>
+    </div>
+
+    <p class="lede">Expand each form below for its full detail.</p>
+  </article>
+</section>
+
+
+<section class="topic" id="s4-11-a">
+  <h2><span class="num"></span>Endorsements — Rental, Storage, Driver Exclusion</h2>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 5 — Permission to Rent or Lease Automobile to Others</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> The standard OAP 1 policy generally does not contemplate the insured regularly renting or leasing their vehicle out to others for compensation. OPCF 5 extends permission for this specific use.</p>
+      <p><strong>What it changes:</strong> Removes/modifies the standard restriction on renting/leasing the described automobile to third parties.</p>
+      <p><strong>Who needs it:</strong> An insured who rents or leases their personal vehicle to others (e.g., a peer-to-peer car rental arrangement) as a matter of course.</p>
+      <p><strong>What it covers:</strong> Extends the policy's coverage to contemplate this rental/lease use, subject to the endorsement's specific terms.</p>
+      <p><strong>Exclusions/limitations:</strong> Does not necessarily extend to every type of commercial use — a broker should confirm the specific rental/lease arrangement matches what the endorsement contemplates.</p>
+      <p><strong>Example:</strong> A client occasionally lends their car to a neighbour for a small fee on weekends — without OPCF 5, this activity could fall outside standard policy contemplation and create a coverage gap.</p>
+      <p><strong>Exam trap:</strong> Don't confuse this with rideshare/delivery platform coverage (see 4.15) — OPCF 5 is about renting/leasing the <em>vehicle itself</em> to another person to drive, not the insured driving for a platform.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 16 — Suspension of Coverage While Vehicle Is in Storage</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Allows a policyholder to suspend certain coverage (typically liability/certain sections) for a vehicle that is not being driven and is in storage, generally to reduce premium during a period of non-use, while often preserving some physical damage protection.</p>
+      <p><strong>What it changes:</strong> Temporarily modifies which sections of coverage remain active while the vehicle is off the road.</p>
+      <p><strong>Who needs it:</strong> An insured storing a seasonal vehicle (e.g., a car not driven over winter) who wants to reduce cost without fully cancelling the policy.</p>
+      <p><strong>What it covers:</strong> Specifics vary — often physical damage protection may continue while liability/use-related coverage is suspended, since the vehicle isn't being operated.</p>
+      <p><strong>Exclusions/limitations:</strong> If the vehicle is driven while nominally "in storage" under this endorsement, coverage gaps can result — the insured must genuinely not operate the vehicle during the suspension period.</p>
+      <p><strong>Example:</strong> A client stores a convertible for the winter months and uses OPCF 16 to reduce premium while it's undriven, rather than cancelling the policy outright and needing to re-apply in spring.</p>
+      <p><strong>Exam trap:</strong> Storage suspension is not the same as cancellation — the policy and certain coverages remain in force in modified form, which matters for continuous coverage history purposes.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 17 — Reduction in Amounts Payable Under This Policy</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Addresses situations involving non-owned automobiles, coordinating payment so the policy responds as excess rather than duplicating coverage already available elsewhere.</p>
+      <p><strong>What it changes:</strong> Reduces amounts otherwise payable under the policy by amounts recoverable under other valid insurance.</p>
+      <p><strong>Who needs it:</strong> Typically relevant to insureds who may have overlapping coverage through another source (e.g., an employer-provided policy on a non-owned vehicle) where coordination of benefits is appropriate.</p>
+      <p><strong>Exclusions/limitations:</strong> This is a coordination-of-benefits mechanism, not a broad coverage restriction — it specifically addresses double-recovery concerns.</p>
+      <p><strong>Example:</strong> An insured occasionally drives a non-owned vehicle that already carries its own insurance; OPCF 17 ensures the insured's own policy doesn't simply duplicate that other available coverage.</p>
+      <p><strong>Exam trap:</strong> Don't confuse this with an exclusion of coverage entirely — it's a reduction/coordination mechanism, not a denial of coverage.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 19 — Excluding Named Driver(s)</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Allows the complete exclusion of a specific driver from coverage under the entire policy — often used when a household member has a poor driving record that would otherwise significantly increase premium.</p>
+      <p><strong>What it changes:</strong> The named excluded driver has <em>no coverage</em> under the policy under any circumstance, for any vehicle on the policy.</p>
+      <p><strong>Who needs it:</strong> A policyholder with a household member who has a licence but a driving record the insured wants excluded from the policy's risk profile and premium calculation.</p>
+      <p><strong>What it covers:</strong> Nothing, for the excluded driver — that is precisely the point. Coverage continues normally for all other insured persons.</p>
+      <p><strong>Exclusions/limitations:</strong> If the excluded driver operates a described vehicle anyway, there is <strong>no coverage</strong> for that incident — a serious, absolute gap, not a reduced-limit scenario.</p>
+      <p><strong>Example:</strong> A parent excludes an adult child with multiple convictions living in the household from the family policy, understanding that child must obtain separate insurance if they wish to drive.</p>
+      <p><strong>Exam trap:</strong> This is a total exclusion of the person — <strong>not</strong> a vehicle-specific exclusion (that's OPCF 19A, below). Confusing the two is a classic error.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 19A — Excluding Named Driver(s) for Described Automobile</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> A narrower version of OPCF 19 — excludes a named driver from coverage only in relation to a <em>specific described vehicle</em> on the policy, rather than the entire policy.</p>
+      <p><strong>What it changes:</strong> The named driver has no coverage while operating the specific described automobile identified in the endorsement, but could still be covered under other vehicles/circumstances on the policy if the exclusion is genuinely limited to that one vehicle.</p>
+      <p><strong>Who needs it:</strong> A household with multiple vehicles where one driver should be excluded from a specific higher-value or higher-risk vehicle (e.g., a sports car) without being excluded from the household's other, more standard vehicle.</p>
+      <p><strong>Exclusions/limitations:</strong> Just like OPCF 19, if the excluded driver operates the specifically excluded vehicle, there is no coverage for that incident.</p>
+      <p><strong>Example:</strong> A family excludes a newly licensed teen driver from the parent's performance vehicle specifically, while the teen remains insured to drive the family's standard sedan.</p>
+      <p><strong>Exam trap:</strong> OPCF 19 = excluded from the <em>entire policy</em>. OPCF 19A = excluded from a <em>specific described vehicle only</em>. This exact pairing is a common exam question.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="topic" id="s4-11-b">
+  <h2><span class="num"></span>Endorsements — Loss of Use, Depreciation, Non-Owned Vehicles, Glass</h2>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 20 — Loss of Use</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Provides coverage for the cost of a substitute/rental vehicle while the insured's own vehicle is being repaired following a covered physical damage loss, or is unavailable due to a covered theft.</p>
+      <p><strong>What it changes:</strong> Adds a coverage that the base physical damage sections don't automatically include — the cost of transportation replacement is a separate, purchasable benefit.</p>
+      <p><strong>Who needs it:</strong> A client who depends on their vehicle daily and would face real hardship (or added cost) without a replacement vehicle during a repair period.</p>
+      <p><strong>What it covers:</strong> Rental/replacement transportation costs up to the endorsement's daily/aggregate limit while the insured's vehicle is out of service due to a covered loss.</p>
+      <p><strong>Exclusions/limitations:</strong> Typically capped at a daily rate and a maximum number of days/aggregate amount — it is not unlimited rental coverage.</p>
+      <p><strong>Example:</strong> A client's vehicle is stolen; while it's being located or replaced, OPCF 20 helps cover a rental car so the client isn't without transportation.</p>
+      <p><strong>Exam trap:</strong> This is an optional add-on, not automatically included in base physical damage coverage — don't assume "collision coverage" already includes a rental car benefit.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 23A — Waiver of Depreciation</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> On a total loss of a relatively new vehicle, a standard actual-cash-value settlement (see 1.2) deducts for depreciation. OPCF 23A removes that depreciation deduction, generally for a defined period after the vehicle was new.</p>
+      <p><strong>What it changes:</strong> The settlement basis on a covered total loss shifts from depreciated ACV toward something closer to what a new equivalent vehicle would cost, subject to the endorsement's specific terms and time limitations.</p>
+      <p><strong>Who needs it:</strong> An owner of a newer vehicle who wants protection against the immediate depreciation hit a brand-new vehicle experiences.</p>
+      <p><strong>Exclusions/limitations:</strong> Typically only available for a limited period from when the vehicle was new (commonly framed around the first one or two model years) — it is not a permanent waiver for the life of the vehicle.</p>
+      <p><strong>Example:</strong> A client's vehicle, purchased new eight months ago, is declared a total loss after a collision. OPCF 23A helps avoid a settlement reduced by the sharp early depreciation a new vehicle typically experiences.</p>
+      <p><strong>Exam trap:</strong> Don't confuse this with replacement cost coverage generally (1.2) — OPCF 23A specifically addresses depreciation on a total loss of a relatively new vehicle, within defined time limits, not an open-ended replacement cost guarantee.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 27 — Liability for Damage to Non-Owned Automobile(s)</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Extends the insured's own liability coverage to include legal liability for damage to a described non-owned automobile the insured regularly uses (e.g., a leased vehicle, a company car, or a vehicle borrowed on an ongoing basis).</p>
+      <p><strong>What it changes:</strong> Standard liability coverage focuses on the insured's own described vehicle; this endorsement extends that liability protection to a specific non-owned vehicle used regularly.</p>
+      <p><strong>Who needs it:</strong> An insured who regularly drives a vehicle they don't own — a leased car, a vehicle provided by an employer, or one borrowed on a long-term basis (also directly relevant to commercial non-owned automobile situations — see 6.15).</p>
+      <p><strong>Exclusions/limitations:</strong> Specific to the described non-owned vehicle identified in the endorsement — occasional, one-off use of a different borrowed vehicle would not automatically be covered by this same endorsement.</p>
+      <p><strong>Example:</strong> A client leases a vehicle and the lease agreement requires liability coverage extending to the leased vehicle; OPCF 27 provides that extension under the client's own policy.</p>
+      <p><strong>Exam trap:</strong> OPCF 27 is about non-owned <em>liability</em> exposure specifically — it should not be confused with physical damage coverage for a non-owned vehicle (see OPCF 49, below).</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 28 — Waiver of Depreciation (Glass)</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Removes any depreciation deduction specifically for glass repair or replacement claims (e.g., a windshield).</p>
+      <p><strong>What it changes:</strong> Ensures a glass claim is settled without a depreciation reduction, unlike how other physical damage claims might otherwise be adjusted.</p>
+      <p><strong>Who needs it:</strong> Any insured who wants full-value glass repair/replacement without a depreciation deduction complicating a relatively routine and common claim type.</p>
+      <p><strong>Example:</strong> A stone chip cracks a client's windshield; OPCF 28 ensures replacement is handled without a depreciation deduction applied to the glass specifically.</p>
+      <p><strong>Exam trap:</strong> This is narrowly about <em>glass</em> — don't confuse it with OPCF 23A's broader vehicle depreciation waiver on a total loss.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 28A — Limiting Glass Coverage</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> The reverse of OPCF 28 — this endorsement <em>reduces or restricts</em> glass coverage rather than enhancing it, sometimes used where a client wants to lower premium by limiting a specific coverage element.</p>
+      <p><strong>What it changes:</strong> Narrows the glass coverage otherwise available under the policy's comprehensive/all perils sections.</p>
+      <p><strong>Who needs it:</strong> A cost-conscious client willing to accept reduced glass coverage in exchange for a premium reduction, understanding the trade-off.</p>
+      <p><strong>Exclusions/limitations:</strong> By definition, this limits what would otherwise be covered — clients need clear disclosure of exactly what's being given up.</p>
+      <p><strong>Exam trap:</strong> OPCF 28 <em>enhances</em> glass coverage (removes depreciation); OPCF 28A <em>reduces</em> it. These two numerically similar forms move in opposite directions — a frequent point of confusion.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="topic" id="s4-11-c">
+  <h2><span class="num"></span>Endorsements — Restricted Use, Policy Changes, Coordination &amp; Conviction Protection</h2>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 39 — Vehicles Used for Driver Training</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Extends appropriate coverage for a vehicle used specifically for driver training/instruction purposes, which the standard policy may not otherwise fully contemplate given the increased exposure of a learner driver behind the wheel with an instructor.</p>
+      <p><strong>What it changes:</strong> Adjusts coverage terms to reflect the driver-training use of the described vehicle.</p>
+      <p><strong>Who needs it:</strong> A driving instructor or driving school using a personally-owned or specifically insured vehicle for lessons.</p>
+      <p><strong>Exclusions/limitations:</strong> Specific to the driver-training use described — not a general commercial-use endorsement for other business purposes.</p>
+      <p><strong>Example:</strong> A driving instructor's vehicle, used daily for lessons with learner drivers, is endorsed with OPCF 39 to properly reflect this specific use and exposure.</p>
+      <p><strong>Exam trap:</strong> This is specifically about driver-training use — not to be confused with a new/inexperienced driver simply being a listed driver under an ordinary personal policy.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 40 — Restricting Coverage for Described Automobile</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Used to limit or restrict coverage on a described automobile for a specific purpose or use — for example, confirming the vehicle will not be used for a particular commercial purpose, with coverage restricted accordingly.</p>
+      <p><strong>What it changes:</strong> Narrows the scope of coverage for the described vehicle relative to the unrestricted standard policy.</p>
+      <p><strong>Who needs it:</strong> An insurer/broker may use this where a client's use pattern needs a defined restriction as a condition of coverage or pricing.</p>
+      <p><strong>Exclusions/limitations:</strong> Anything falling within the restricted/excluded use would not be covered — the specific restriction language in the endorsement controls exactly what's excluded.</p>
+      <p><strong>Exam trap:</strong> OPCF 40 restricts coverage for a <em>vehicle's use</em>; this is distinct from OPCF 19/19A, which restrict coverage for a specific <em>driver</em>.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 43 — Removal of Described Automobile</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Allows a specific described vehicle to be removed from a multi-vehicle policy without cancelling the entire policy.</p>
+      <p><strong>What it changes:</strong> The policy continues in force for the remaining vehicle(s)/coverage, with the removed vehicle no longer insured under it.</p>
+      <p><strong>Who needs it:</strong> A client who sells or disposes of one vehicle from a household policy covering multiple vehicles, wanting to keep the rest of the policy intact.</p>
+      <p><strong>Example:</strong> A two-vehicle household sells their second car; OPCF 43 removes that vehicle from the policy while the remaining vehicle's coverage continues uninterrupted.</p>
+      <p><strong>Exam trap:</strong> This is a policy-change mechanism, not a claims or coverage-gap issue — it's a routine mid-term transaction type (see 9.3).</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 44 — Family Protection Coverage</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p>Fully treated in section 4.5. As a reminder: OPCF 44 provides underinsured/uninsured motorist bodily injury protection, closing the gap when an at-fault driver's own liability limit is insufficient to cover the injured insured's damages.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 47 — Ensuring Coverage Coordination</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Addresses how coverage under the policy coordinates or responds relative to other applicable insurance, ensuring appropriate primacy/excess relationships between policies rather than gaps or unintended overlaps.</p>
+      <p><strong>What it changes:</strong> Clarifies which policy responds first (primary) versus which responds only after the primary policy's limits are exhausted (excess), in situations where more than one policy could otherwise apply.</p>
+      <p><strong>Who needs it:</strong> Insureds in situations with potential overlapping coverage — for example, certain hybrid personal/commercial use situations (see also the sharing economy coverage discussion in 4.15) where coordination between a personal auto policy and another applicable policy needs to be clearly defined.</p>
+      <p><strong>Exclusions/limitations:</strong> This is a coordination mechanism, not a source of new/broader coverage on its own — it defines order of response between existing coverages.</p>
+      <p><strong>Exam trap:</strong> Don't confuse coordination-of-coverage endorsements like OPCF 47 with coverage-granting endorsements like OPCF 27 — coordination endorsements manage the relationship between policies rather than creating fresh protection.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>OPCF 49 — Coverage for Non-Owned Vehicle (Temporary Substitute)</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Extends physical damage coverage to a non-owned vehicle the insured is temporarily using as a substitute for their own (e.g., a loaner or replacement vehicle while their own is being serviced).</p>
+      <p><strong>What it changes:</strong> Physical damage protection normally tied to the insured's own described vehicle extends temporarily to the substitute non-owned vehicle.</p>
+      <p><strong>Who needs it:</strong> A client who is temporarily driving a substitute vehicle (e.g., a dealership loaner) and wants their own physical damage coverage to extend to it during that period.</p>
+      <p><strong>Exclusions/limitations:</strong> Specific to genuinely temporary substitute use — not a long-term or permanent non-owned vehicle arrangement (that broader liability scenario is addressed by OPCF 27, above).</p>
+      <p><strong>Example:</strong> While a client's vehicle is in for repairs, the dealership provides a loaner; OPCF 49 extends the client's own physical damage coverage to that loaner vehicle for the loan period.</p>
+      <p><strong>Exam trap:</strong> OPCF 49 is about <em>physical damage</em> to a temporary non-owned substitute; OPCF 27 is about extending <em>liability</em> coverage to a regularly-used non-owned vehicle. Different coverage type, different use pattern.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-head"><span>Conviction Protector</span><span class="chev">▸</span></div>
+    <div class="accordion-body">
+      <p><strong>Purpose:</strong> Protects an insured's premium/rating from the impact of a single minor conviction, so one minor infraction doesn't immediately trigger a significant rate increase.</p>
+      <p><strong>What it changes:</strong> Effectively "forgives" the rating impact of one qualifying minor conviction during the endorsement's coverage period.</p>
+      <p><strong>Who needs it:</strong> A client concerned about the rating consequences of a single minor moving violation, who wants some protection against a premium spike from one infraction.</p>
+      <p><strong>Exclusions/limitations:</strong> Generally limited to minor convictions (not major/serious convictions), and generally protects against only a single qualifying event, not a pattern of repeated violations.</p>
+      <p><strong>Example:</strong> A client receives one minor speeding conviction; with Conviction Protector in place, this single conviction does not trigger the rating increase it otherwise would.</p>
+      <p><strong>Exam trap:</strong> This does not mean the conviction "disappears" from the driver's record generally — it specifically protects the insurance rating impact of that one minor conviction under this policy, not the underlying driving record itself.</p>
+    </div>
+  </div>
+
+  <div class="callout examtip" style="margin-top:20px;">
+    <span class="callout-title">Exam Tip — Grouping Strategy</span>
+    Rather than memorizing 17 forms as an unordered list, group them by function: <strong>driver-related</strong> (19, 19A, Conviction Protector), <strong>vehicle-use related</strong> (5, 39, 40), <strong>non-owned vehicle related</strong> (27, 49, 17), <strong>valuation/depreciation related</strong> (23A, 28, 28A), <strong>policy administration</strong> (16, 43), <strong>gap/coordination coverage</strong> (44, 47), and <strong>loss of use</strong> (20). This grouping makes the numerically similar pairs (19/19A, 28/28A, 27/49) much easier to keep straight under exam pressure.
+  </div>
+</section>
+
+
+<section class="topic" id="s4-12">
+  <h2><span class="num">4.12</span> Statutory Conditions</h2>
+
+  <article class="subtopic">
+    <h3>Meaning and purpose</h3>
+    <p>Statutory conditions are conditions that Ontario law requires to be part of every automobile insurance policy — they cannot be removed or weakened by the insurer, regardless of what the rest of the policy wording says (see also 3.10, which introduces statutory conditions as a general policy-structure concept).</p>
+
+    <h4 class="microhead">DUTIES OF THE INSURED</h4>
+    <p>Statutory conditions impose specific duties the insured must meet for coverage to properly respond, including:</p>
+    <ul>
+      <li><strong>Material changes</strong> — the duty to notify the insurer of changes that materially affect the risk during the policy period (see 1.2 for the underlying material change concept).</li>
+      <li><strong>Misrepresentation</strong> — the consequences of providing false information at application or renewal (see 1.2, 8.8).</li>
+      <li><strong>Claims obligations</strong> — duties following a loss, including prompt notice to the insurer, providing requested information, and cooperating with the insurer's investigation.</li>
+      <li><strong>Cancellation</strong> — the conditions and process under which either party may cancel the policy.</li>
+    </ul>
+
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      Because statutory conditions are imposed by law rather than by individual insurer choice, they represent a baseline of consumer protection and insurer expectation that applies uniformly across the Ontario auto insurance market — a broker can rely on these duties existing regardless of which insurer's specific policy wording is in front of them.
+    </div>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      <span style="font-weight:700;">VERIFY CURRENT VERSION BEFORE EXAM.</span> The specific enumerated statutory conditions and their exact wording are set in regulation. Know the categories and purpose described here; verify precise current wording against official regulatory material.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s4-13">
+  <h2><span class="num">4.13</span> Auto Exclusions and Extensions</h2>
+
+  <article class="subtopic">
+    <h3>How exclusions, extensions, and special limits interact</h3>
+    <p>Just as with any policy (see 1.1, 3.10), an automobile policy contains base <strong>exclusions</strong> (specific situations not covered), built-in <strong>extensions</strong> (small amounts of coverage extended slightly beyond the core insuring agreement), and <strong>special limits</strong> (caps on specific categories, such as personal effects damaged in a covered loss).</p>
+
+    <h4 class="microhead">WHY EXCLUSIONS EXIST IN AUTO POLICIES SPECIFICALLY</h4>
+    <p>Common auto exclusions address situations like: use of the vehicle for an undisclosed commercial purpose, driving without a valid licence, intentional damage, and use outside the geographic territory contemplated by the policy — each excluded because it represents a materially different risk than what was underwritten and priced.</p>
+
+    <h4 class="microhead">INTERACTION WITH ENDORSEMENTS</h4>
+    <p>Many of the OPCF endorsements covered in 4.11 exist precisely to modify a standard exclusion for a specific situation — for example, a standard policy might not contemplate regular rental of the vehicle to others, and OPCF 5 specifically addresses that gap. Understanding the base exclusion first is what makes the corresponding endorsement's purpose clear.</p>
+
+    <div class="callout trap">
+      <span class="callout-title">RIBO Exam Trap — Exclusion vs. Condition</span>
+      This is a named comparison pair on the official exam trap list. An <strong>exclusion</strong> states what is <em>not covered</em> (a type of loss or situation). A <strong>condition</strong> is a <em>requirement the insured must meet</em> for coverage to apply or continue (like giving prompt notice of a loss). Confusing "the policy excludes this" with "the insured failed to meet a condition" leads to answering coverage questions incorrectly.
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s4-14">
+  <h2><span class="num">4.14</span> Usage and Classification</h2>
+
+  <article class="subtopic">
+    <h3>How vehicle use drives rating and eligibility</h3>
+    <p>Insurers classify risk partly based on <strong>class of use</strong> — how the vehicle is actually used — because use pattern is directly correlated with exposure. A vehicle driven daily to a workplace 40 km away has a different exposure profile than one driven occasionally for local errands.</p>
+
+    <div class="glossary">
+      <div class="gterm"><dt>Vehicle use / class of use</dt><dd>The underwriting classification of how a vehicle is actually used — pleasure, commuting, business, etc. — which materially affects rating.</dd></div>
+      <div class="gterm"><dt>Rate classification</dt><dd>The category a vehicle/driver combination falls into for pricing purposes, based on use, driver profile, and vehicle characteristics.</dd></div>
+      <div class="gterm"><dt>Changes in use</dt><dd>A shift in how the vehicle is actually used during the policy period (e.g., starting a new commute, beginning delivery work) — this is a material change requiring disclosure (see 4.12, 1.2).</dd></div>
+      <div class="gterm"><dt>New driver</dt><dd>Adding a newly licensed or newly added driver to a policy — affects rating and requires proper disclosure/addition to the policy.</dd></div>
+      <div class="gterm"><dt>New vehicle</dt><dd>Adding a newly acquired vehicle requires proper disclosure and rating as its own described automobile.</dd></div>
+      <div class="gterm"><dt>Commercial use / delivery use</dt><dd>Using a personal vehicle for business or delivery purposes typically falls outside standard personal auto policy contemplation and requires disclosure — connecting directly to the sharing economy coverage gap issues in 4.15.</dd></div>
+    </div>
+
+    <div class="callout warning">
+      <span class="callout-title">Warning</span>
+      Failing to disclose a change in use (e.g., a client who starts using their personal vehicle for food delivery without telling their broker/insurer) is a material change/non-disclosure issue that can jeopardize coverage exactly when the client needs it most — at claim time.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s4-15">
+  <h2><span class="num">4.15</span> Sharing Economy</h2>
+
+  <article class="subtopic">
+    <h3>Rideshare, delivery platforms, and coverage gaps</h3>
+    <p>Personal automobile policies are underwritten and priced based on personal, non-commercial use. When a client starts driving for a rideshare platform (e.g., Uber) or a food/goods delivery platform, this changes the risk in ways a standard personal policy may not contemplate or cover.</p>
+
+    <h4 class="microhead">THE COVERAGE GAP PROBLEM</h4>
+    <p>The core issue is that rideshare/delivery activity typically moves through <strong>phases</strong>:</p>
+    <ol>
+      <li><strong>Offline</strong> — the app is off; personal use rules apply normally.</li>
+      <li><strong>App on, waiting for a request</strong> — the driver is available but hasn't accepted a ride/delivery yet.</li>
+      <li><strong>En route to pickup</strong> — a request has been accepted.</li>
+      <li><strong>Passenger/goods in vehicle</strong> — the actual trip/delivery is underway.</li>
+    </ol>
+    <p>Depending on the specific platform's own commercial insurance (many platforms carry contingent commercial coverage that may apply during some of these phases) and the insured's own personal policy wording, there can be <strong>gaps</strong> — periods where neither the personal policy nor the platform's coverage clearly and fully responds, particularly in the "app on, waiting" phase.</p>
+
+    <h4 class="microhead">DISCLOSURE AND UNDERWRITING CONSIDERATIONS</h4>
+    <p>Brokers must ensure clients who engage in rideshare or delivery activity disclose this to their insurer, since it's a material change in use (see 4.14). Depending on the insurer and activity level, this may require:</p>
+    <ul>
+      <li>A specific rideshare/delivery endorsement designed to bridge the gap between personal coverage and the platform's commercial coverage.</li>
+      <li>A separate commercial policy if the activity is frequent/substantial enough to fall outside what any endorsement on a personal policy can accommodate.</li>
+    </ul>
+
+    <div class="scenario">
+      <div class="stitle">WHAT WOULD YOU DO?</div>
+      <p>A client mentions, almost in passing, that they've started driving for a rideshare app "just on weekends for extra cash," and asks if this affects anything.</p>
+      <div class="scenario-choices">
+        <button class="scenario-choice" data-result="s1a">Tell them it's fine since it's only occasional and part-time.</button>
+        <button class="scenario-choice" data-result="s1b">Explain that this is a material change in vehicle use requiring disclosure to the insurer, discuss the phase-based coverage gap issue, and help them explore an appropriate rideshare endorsement or coverage solution.</button>
+      </div>
+      <div class="scenario-result" id="s1a"><strong>Not appropriate.</strong> "Occasional" or "part-time" doesn't exempt a client from the disclosure duty — any regular commercial use activity is a material change that needs to be reported and properly addressed, regardless of frequency.</div>
+      <div class="scenario-result good" id="s1b"><strong>Correct approach.</strong> This properly identifies the material change, explains the real coverage-gap risk in plain language, and moves toward an appropriate solution — exactly the kind of proactive, informed advising Chapter 9's consulting framework calls for.</div>
+    </div>
+
+    <div class="callout trap">
+      <span class="callout-title">RIBO Exam Trap</span>
+      Do not assume a rideshare platform's own commercial insurance automatically covers a driver at all times the app is running. Coverage often varies significantly by phase (waiting vs. en route vs. trip in progress) — a broker who assumes blanket protection from the platform is likely to give a client dangerously inaccurate advice.
+    </div>
+  </article>
+</section>
+
+
+<section class="topic" id="s4-16">
+  <h2><span class="num">4.16</span> Specialty Vehicles</h2>
+
+  <article class="subtopic">
+    <h3>Motorcycles, snowmobiles, ATVs, and other specialty-purpose vehicles</h3>
+    <p>Vehicles outside the standard passenger automobile category often require distinct policies, forms, or endorsements — a standard OAP 1 personal auto policy is not generally designed to address these vehicle types directly.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th style="width:20%">Vehicle Type</th><th>Key considerations</th></tr>
+        <tr><td><strong>Motorcycles</strong></td><td>Typically insured under their own dedicated policy form (not standard OAP 1 for a passenger vehicle), reflecting different risk characteristics (exposure severity, seasonal use patterns).</td></tr>
+        <tr><td><strong>Snowmobiles</strong></td><td>Generally require specialty recreational vehicle coverage, reflecting off-road use, seasonal operation, and different liability/exposure considerations than road vehicles.</td></tr>
+        <tr><td><strong>ATVs</strong></td><td>Similarly require specialty coverage suited to off-road recreational use rather than standard automobile forms.</td></tr>
+        <tr><td><strong>Specialty-purpose automobiles</strong></td><td>Vehicles built or modified for a specific unusual purpose may require specific underwriting consideration and appropriate specialty coverage rather than a standard personal auto policy.</td></tr>
+      </table>
+    </div>
+
+    <div class="callout examtip">
+      <span class="callout-title">Exam Tip</span>
+      The knowledge-level point to retain: specialty vehicles generally require their <strong>own appropriate policy/coverage</strong> rather than being simply added to a standard personal auto policy as if they were an ordinary passenger vehicle. A broker's job is to recognize when a vehicle falls into this category and route it to appropriate coverage rather than forcing it into a standard auto policy framework.
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s4-17">
+  <h2><span class="num">4.17</span> Provincial Differences</h2>
+
+  <article class="subtopic">
+    <h3>Why jurisdiction matters for automobile insurance</h3>
+    <p>Automobile insurance regulation is provincial in Canada (see 1.4, 1.12) — each province sets its own compulsory minimums, benefit structures, and regulatory framework. Ontario's system (OAP 1, the specific accident benefits structure, DCPD, the Fault Determination Rules) is not identical to other provinces' systems.</p>
+
+    <h4 class="microhead">WHY THIS MATTERS TO A BROKER</h4>
+    <ul>
+      <li>A broker licensed in Ontario cannot simply apply Ontario rules, forms, or coverage assumptions to a client whose vehicle or residency is actually in another province (see 1.12's licensing/jurisdiction treatment).</li>
+      <li>Some provinces operate under different no-fault/tort system structures entirely (e.g., some provinces have government-run public auto insurance systems, unlike Ontario's private-insurer model).</li>
+      <li>Effective date and location considerations matter directly — a policy's terms are shaped by the jurisdiction where the vehicle is principally located/used, not simply where the client happens to be at a given moment.</li>
+    </ul>
+
+    <div class="callout important">
+      <span class="callout-title">Important</span>
+      This is a knowledge-level awareness point, not a requirement to master other provinces' specific systems in depth at the entry level — the exam-relevant takeaway is recognizing that Ontario's rules are not universal across Canada, and that jurisdiction genuinely changes both the applicable coverage framework and the broker's own licensing authority to place that business (see 1.12).
+    </div>
+  </article>
+</section>
+
+<section class="topic" id="s4b-check">
+  <h2><span class="num">✓</span> Chapter 4B Knowledge Checks</h2>
+  <p class="lede" style="font-style:italic;color:var(--text-mute);margin-bottom:18px;">Quick checks across the endorsements and specialty topics. Select an answer to see feedback.</p>
+
+  <div class="kc">
+    <div class="kc-q">1. A client wants to exclude their adult child from driving one specific sports car, while keeping the child insured for the family's other vehicle. Which endorsement applies?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">OPCF 19</button>
+      <button class="kc-opt" data-correct="true">OPCF 19A</button>
+      <button class="kc-opt" data-correct="false">OPCF 40</button>
+      <button class="kc-opt" data-correct="false">OPCF 43</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>OPCF 19A.</strong> It excludes a named driver from coverage for one specific described vehicle only, unlike OPCF 19 which excludes the driver from the entire policy.</div>
+  </div>
+
+  <div class="kc">
+    <div class="kc-q">2. A client's vehicle is stolen and they need a rental car while it's being replaced. Which endorsement specifically addresses this?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">OPCF 49</button>
+      <button class="kc-opt" data-correct="true">OPCF 20</button>
+      <button class="kc-opt" data-correct="false">OPCF 27</button>
+      <button class="kc-opt" data-correct="false">OPCF 17</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>OPCF 20 (Loss of Use).</strong> It provides for rental/replacement transportation costs while the insured's vehicle is being repaired or replaced following a covered loss.</div>
+  </div>
+
+  <div class="kc">
+    <div class="kc-q">3. A client starts driving for a food delivery platform several evenings a week without telling their broker. What is the primary risk this creates?</div>
+    <div class="kc-opts">
+      <button class="kc-opt" data-correct="false">None — personal auto policies automatically cover all delivery activity</button>
+      <button class="kc-opt" data-correct="true">A material change in use has gone undisclosed, creating a potential coverage gap exactly when a claim might arise</button>
+      <button class="kc-opt" data-correct="false">The policy is automatically cancelled the moment delivery work begins</button>
+      <button class="kc-opt" data-correct="false">This only matters if the client uses a different vehicle for deliveries</button>
+    </div>
+    <div class="kc-feedback">Correct answer: <strong>Undisclosed material change creating a coverage gap.</strong> Commercial delivery use is a material change requiring disclosure — without it, coverage at claim time is genuinely at risk, particularly for the phases not clearly covered by a platform's own commercial insurance.</div>
+  </div>
+</section>
+
+
+<div class="endmatter" id="endmatter">
+  <h2>Key Takeaways</h2>
+  <ul>
+    <li>17 named OPCF endorsements modify OAP 1 for individual policyholder needs — grouping them by function (driver-related, vehicle-use, non-owned vehicle, valuation, administration, gap coverage, loss of use) makes them far easier to retain than memorizing an unordered list.</li>
+    <li>The numerically similar pairs are the most tested distinctions: OPCF 19 (whole-policy driver exclusion) vs. 19A (vehicle-specific driver exclusion); OPCF 28 (glass depreciation waiver — enhances) vs. 28A (glass coverage limitation — reduces); OPCF 27 (non-owned liability extension) vs. 49 (non-owned physical damage, temporary substitute).</li>
+    <li>Statutory conditions are legally mandated and cannot be weakened by the insurer — they establish baseline duties (material change notice, claims cooperation, misrepresentation consequences, cancellation process) across every Ontario auto policy.</li>
+    <li>Exclusions state what isn't covered; conditions state what the insured must do for coverage to apply — a frequently tested distinction.</li>
+    <li>Vehicle use and classification directly drive rating; a change in use (new commute, commercial/delivery use) is a material change requiring disclosure.</li>
+    <li>Sharing economy (rideshare/delivery) activity creates phase-based coverage gaps between personal policies and platform commercial coverage — disclosure and an appropriate endorsement or commercial policy are essential.</li>
+    <li>Specialty vehicles (motorcycles, snowmobiles, ATVs, specialty-purpose automobiles) generally require their own dedicated coverage rather than being added to a standard personal auto policy.</li>
+    <li>Automobile insurance regulation is provincial — Ontario's specific framework (OAP 1, DCPD, Fault Determination Rules) does not automatically apply elsewhere, and a broker's licensing authority is similarly jurisdiction-specific.</li>
+  </ul>
+
+  <h2>Must-Know Terms</h2>
+  <div class="glossary">
+    <div class="gterm"><dt>OPCF 19 / 19A</dt><dd>Whole-policy driver exclusion / vehicle-specific driver exclusion.</dd></div>
+    <div class="gterm"><dt>OPCF 20</dt><dd>Loss of Use — rental/replacement transportation coverage during repair.</dd></div>
+    <div class="gterm"><dt>OPCF 23A</dt><dd>Waiver of depreciation on total loss of a relatively new vehicle, time-limited.</dd></div>
+    <div class="gterm"><dt>OPCF 27 / 49</dt><dd>Non-owned vehicle liability extension (regular use) / non-owned vehicle physical damage (temporary substitute).</dd></div>
+    <div class="gterm"><dt>OPCF 28 / 28A</dt><dd>Glass depreciation waiver (enhances) / glass coverage limitation (reduces).</dd></div>
+    <div class="gterm"><dt>OPCF 43</dt><dd>Removes a described vehicle from a multi-vehicle policy without cancelling the whole policy.</dd></div>
+    <div class="gterm"><dt>OPCF 47</dt><dd>Coordinates primary/excess relationship between overlapping policies.</dd></div>
+    <div class="gterm"><dt>Conviction Protector</dt><dd>Protects rating impact of a single minor conviction; does not erase the conviction itself.</dd></div>
+    <div class="gterm"><dt>Statutory conditions</dt><dd>Legally mandated policy conditions that cannot be removed or weakened by the insurer.</dd></div>
+    <div class="gterm"><dt>Class of use</dt><dd>Underwriting classification of how a vehicle is actually used, directly affecting rating.</dd></div>
+  </div>
+
+  <h2>Quick Reference</h2>
+  <div class="quickref-grid">
+    <div class="qr-card">
+      <h4>OPCF Grouping by Function</h4>
+      <ul>
+        <li>Driver-related: 19, 19A, Conviction Protector</li>
+        <li>Vehicle-use: 5, 39, 40</li>
+        <li>Non-owned vehicle: 27, 49, 17</li>
+        <li>Valuation/depreciation: 23A, 28, 28A</li>
+        <li>Administration: 16, 43</li>
+        <li>Gap/coordination: 44, 47</li>
+        <li>Loss of use: 20</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Sharing Economy Phases</h4>
+      <ul>
+        <li>1. Offline — personal coverage</li>
+        <li>2. App on, waiting — potential gap</li>
+        <li>3. En route to pickup — varies</li>
+        <li>4. Trip/delivery in progress — platform coverage typically active</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Statutory Condition Duties</h4>
+      <ul>
+        <li>Report material changes</li>
+        <li>Avoid misrepresentation</li>
+        <li>Cooperate with claims process</li>
+        <li>Follow cancellation procedures</li>
+      </ul>
+    </div>
+    <div class="qr-card">
+      <h4>Specialty Vehicles</h4>
+      <ul>
+        <li>Motorcycles — dedicated policy form</li>
+        <li>Snowmobiles/ATVs — specialty recreational coverage</li>
+        <li>Specialty-purpose autos — specific underwriting</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Common Exam Traps</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th style="width:32%">Confusion Pair</th><th>The distinction that matters</th></tr>
+      <tr><td>OPCF 19 vs. OPCF 19A</td><td>19 = excluded from entire policy. 19A = excluded from one specific described vehicle only.</td></tr>
+      <tr><td>OPCF 28 vs. OPCF 28A</td><td>28 = waives depreciation on glass (enhances). 28A = limits/restricts glass coverage (reduces).</td></tr>
+      <tr><td>OPCF 27 vs. OPCF 49</td><td>27 = liability extension for a regularly-used non-owned vehicle. 49 = physical damage for a temporary substitute non-owned vehicle.</td></tr>
+      <tr><td>Exclusion vs. Condition (auto-specific)</td><td>Exclusion = what's not covered. Condition = what the insured must do (statutory conditions) for coverage to apply/continue.</td></tr>
+      <tr><td>OPCF 16 (storage) vs. OPCF 43 (removal)</td><td>16 = coverage suspended temporarily while vehicle is stored, policy continues. 43 = vehicle permanently removed from a multi-vehicle policy.</td></tr>
+      <tr><td>Conviction Protector vs. clean driving record</td><td>Conviction Protector shields the rating impact of one minor conviction — it does not erase the conviction from the driver's actual record.</td></tr>
+    </table>
+  </div>
+
+  <h2>Practice Questions</h2>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">KNOWLEDGE · DEFINITION · EASY</span>1. Which endorsement completely excludes a named driver from coverage under the entire policy?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="true">A. OPCF 19</button>
+      <button class="pq-opt" data-correct="false">B. OPCF 19A</button>
+      <button class="pq-opt" data-correct="false">C. OPCF 40</button>
+      <button class="pq-opt" data-correct="false">D. OPCF 43</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: A.</strong> OPCF 19 excludes a named driver from the entire policy. OPCF 19A limits the exclusion to one specific described vehicle. OPCF 40 restricts vehicle use, not a driver. OPCF 43 removes a vehicle, not a driver.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">COMPREHENSION · COMPARISON · MODERATE</span>2. What is the key difference between OPCF 27 and OPCF 49?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. They are identical forms with different numbers for different provinces</button>
+      <button class="pq-opt" data-correct="true">B. OPCF 27 extends liability coverage to a regularly-used non-owned vehicle; OPCF 49 extends physical damage coverage to a temporary substitute non-owned vehicle</button>
+      <button class="pq-opt" data-correct="false">C. OPCF 27 is for motorcycles and OPCF 49 is for cars</button>
+      <button class="pq-opt" data-correct="false">D. OPCF 49 is mandatory and OPCF 27 is optional</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> OPCF 27 addresses liability for a regularly-used non-owned vehicle (e.g., a lease). OPCF 49 addresses physical damage to a temporarily-used substitute non-owned vehicle (e.g., a loaner). Both are optional endorsements, and neither is vehicle-type-specific in the way option C suggests.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">APPLICATION · SCENARIO · MODERATE</span>3. A client's vehicle needs a new windshield after a rock chip cracked it. They want to avoid any depreciation deduction on the glass replacement. Which endorsement addresses this specifically?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. OPCF 23A</button>
+      <button class="pq-opt" data-correct="true">B. OPCF 28</button>
+      <button class="pq-opt" data-correct="false">C. OPCF 28A</button>
+      <button class="pq-opt" data-correct="false">D. OPCF 20</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> OPCF 28 specifically waives depreciation on glass claims. OPCF 23A addresses depreciation on a total loss of a relatively new vehicle generally (not glass specifically), and OPCF 28A actually limits glass coverage rather than enhancing it.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">APPLICATION · SCENARIO · DIFFICULT</span>4. A client begins driving for a rideshare platform on weekends. They ask their broker whether the platform's own insurance means they don't need to tell their personal auto insurer. What is the correct guidance?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. Correct — platform insurance always fully replaces the need to disclose anything</button>
+      <button class="pq-opt" data-correct="true">B. Incorrect — this is a material change in use requiring disclosure, since platform coverage often varies by phase and may not fully protect the client at all times the app is on</button>
+      <button class="pq-opt" data-correct="false">C. Correct, but only if the client drives fewer than 10 hours per week</button>
+      <button class="pq-opt" data-correct="false">D. Irrelevant, since rideshare activity has no effect on personal auto coverage</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> Rideshare/delivery activity is a material change in vehicle use that must be disclosed, regardless of frequency. Platform coverage often has real gaps (particularly the "waiting for a request" phase), making proper disclosure and an appropriate endorsement or commercial solution essential.
+    </div>
+  </div>
+
+  <div class="pq">
+    <div class="pq-q"><span class="pq-tag">KNOWLEDGE · REGULATORY · EASY</span>5. Which of the following best describes a statutory condition?</div>
+    <div class="pq-opts">
+      <button class="pq-opt" data-correct="false">A. An optional add-on endorsement a client can decline</button>
+      <button class="pq-opt" data-correct="true">B. A condition legally required to be part of every automobile policy, which the insurer cannot remove or weaken</button>
+      <button class="pq-opt" data-correct="false">C. A limit on the maximum amount payable for a claim</button>
+      <button class="pq-opt" data-correct="false">D. A rule that only applies to commercial automobile policies</button>
+    </div>
+    <div class="pq-explain">
+      <strong>Correct answer: B.</strong> Statutory conditions are mandated by law, apply to personal automobile policies (not exclusively commercial ones), and cannot be weakened or removed by the insurer, unlike optional endorsements or ordinary policy limits.
+    </div>
+  </div>
+
+  <div class="callout important" style="margin-top:30px;">
+    <span class="callout-title">Before moving to Chapter 5</span>
+    Chapter 5 shifts to Personal Lines Habitational — home, condo, and tenant coverage, Coverages A through H, named perils vs. all perils, co-insurance calculations, water coverage (a major current risk area), and habitational endorsements. Many of the same structural concepts from this chapter (policy sections, endorsements modifying base coverage, exclusions vs. conditions) carry directly over.
+  </div>
+</div>
+
+
+    </div>
+  </main>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script>
+// ===== Scrollspy =====
+const sections = document.querySelectorAll('section.topic, div#endmatter');
+const tocLinks = document.querySelectorAll('.toc-section');
+const barFill = document.getElementById('barFill');
+
+function onScroll(){
+  let current = null;
+  const scrollPos = window.scrollY + 140;
+  sections.forEach(sec=>{
+    if(sec.offsetTop <= scrollPos) current = sec.id;
+  });
+  tocLinks.forEach(l=>{
+    l.classList.toggle('active', l.dataset.sec === current);
+  });
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? Math.min(100, (window.scrollY/docHeight)*100) : 0;
+  barFill.style.width = pct+'%';
+
+  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 600);
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
+
+document.getElementById('backToTop').addEventListener('click', ()=>{
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+// ===== Accordion =====
+document.addEventListener('click', (e)=>{
+  const head = e.target.closest('.accordion-head');
+  if(head){
+    const acc = head.closest('.accordion');
+    const body = acc.querySelector('.accordion-body');
+    const isOpen = acc.classList.contains('open');
+    if(isOpen){
+      acc.classList.remove('open');
+      body.style.maxHeight = null;
+    } else {
+      acc.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 40 + 'px';
+    }
+  }
+});
+
+// ===== Reveal =====
+document.addEventListener('click', (e)=>{
+  const prompt = e.target.closest('.reveal-prompt');
+  if(prompt){
+    prompt.closest('.reveal').classList.toggle('open');
+  }
+});
+
+// ===== Tabs =====
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.tab-btn');
+  if(btn){
+    const tabs = btn.closest('.tabs');
+    tabs.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    tabs.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    tabs.querySelector('#'+btn.dataset.target).classList.add('active');
+  }
+});
+
+// ===== Flow diagram =====
+document.addEventListener('click', (e)=>{
+  const step = e.target.closest('.flow-step');
+  if(step){
+    const flowWrap = step.closest('.flow-wrap');
+    flowWrap.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));
+    step.classList.add('active');
+    const detailId = step.dataset.detail;
+    flowWrap.querySelectorAll('.flow-detail').forEach(d=>d.classList.remove('visible'));
+    document.getElementById(detailId).classList.add('visible');
+  }
+});
+
+// ===== Knowledge check =====
+document.addEventListener('click', (e)=>{
+  const opt = e.target.closest('.kc-opt');
+  if(opt){
+    const kc = opt.closest('.kc');
+    if(kc.dataset.answered === 'true') return;
+    kc.dataset.answered = 'true';
+    const correct = opt.dataset.correct === 'true';
+    kc.querySelectorAll('.kc-opt').forEach(o=>{
+      if(o.dataset.correct === 'true') o.classList.add('correct');
+      else if(o===opt) o.classList.add('incorrect');
+    });
+    const fb = kc.querySelector('.kc-feedback');
+    fb.classList.add('visible');
+  }
+});
+
+// ===== Scenario choices =====
+document.addEventListener('click', (e)=>{
+  const choice = e.target.closest('.scenario-choice');
+  if(choice){
+    const scenario = choice.closest('.scenario');
+    if(scenario.dataset.answered === 'true') return;
+    scenario.dataset.answered = 'true';
+    const resultId = choice.dataset.result;
+    scenario.querySelectorAll('.scenario-result').forEach(r=>r.classList.remove('visible'));
+    document.getElementById(resultId).classList.add('visible');
+  }
+});
+
+// ===== Practice question toggle =====
+document.addEventListener('click', (e)=>{
+  const pqq = e.target.closest('.pq-opt');
+  if(pqq){
+    const pq = pqq.closest('.pq');
+    if(pq.dataset.answered === 'true') return;
+    pq.dataset.answered = 'true';
+    pq.querySelectorAll('.pq-opt').forEach(o=>{
+      if(o.dataset.correct === 'true') o.classList.add('correct');
+      else if(o===pqq) o.classList.add('incorrect');
+    });
+    pq.querySelector('.pq-explain').classList.add('visible');
+  }
+});
+
+</script>
+</body>
+</html>
